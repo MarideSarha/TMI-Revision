@@ -1384,7 +1384,7 @@ function Dashboard({ progress, dark, onNavigate }) {
     {
       id: "exam",
       label: "Quiz",
-      description: `${Object.keys(QUIZ).length} questions et examens`,
+      description: `${Object.keys(QUESTIONS).length} questions et examens`,
       icon: ListChecks,
       tone: "text-violet-400",
       surface: dark ? "hover:border-violet-400/60" : "hover:border-violet-400",
