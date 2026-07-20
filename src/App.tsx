@@ -1481,6 +1481,41 @@ function Dashboard({ progress, dark, onNavigate }) {
     if (nextLesson) break;
   }
 
+  const dashboardActions = [
+    {
+      id: "modules",
+      label: "Cours",
+      description: `${totalLessons} leçons progressives`,
+      icon: BookOpen,
+      tone: "text-sky-400",
+      surface: dark ? "hover:border-sky-400/60" : "hover:border-sky-400",
+    },
+    {
+      id: "exam",
+      label: "Quiz",
+      description: `${Object.keys(QUIZ).length} questions et examens`,
+      icon: ListChecks,
+      tone: "text-violet-400",
+      surface: dark ? "hover:border-violet-400/60" : "hover:border-violet-400",
+    },
+    {
+      id: "pannes",
+      label: "Simulateur",
+      description: `${PANNES.length} diagnostics de panne`,
+      icon: ShieldAlert,
+      tone: "text-red-400",
+      surface: dark ? "hover:border-red-400/60" : "hover:border-red-400",
+    },
+    {
+      id: "progression",
+      label: "Progression",
+      description: "Résultats, XP et badges",
+      icon: TrendingUp,
+      tone: "text-emerald-400",
+      surface: dark ? "hover:border-emerald-400/60" : "hover:border-emerald-400",
+    },
+  ];
+
   return (
     <div className="space-y-5 pb-24">
       <div>
@@ -1523,18 +1558,37 @@ function Dashboard({ progress, dark, onNavigate }) {
         <ChevronRight size={20} />
       </button>
 
-      <div className="grid grid-cols-2 gap-3">
-        <button onClick={() => onNavigate("pannes")} className={`rounded-xl border p-4 text-left ${dark ? "bg-slate-800/60 border-slate-700" : "bg-white border-slate-200"}`}>
-          <ShieldAlert className="text-red-400 mb-1" size={20} />
-          <div className={`text-sm font-semibold ${dark ? "text-white" : "text-slate-900"}`}>Diagnostic de panne</div>
-          <div className="text-xs text-slate-400">10 scénarios</div>
-        </button>
-        <button onClick={() => onNavigate("exam")} className={`rounded-xl border p-4 text-left ${dark ? "bg-slate-800/60 border-slate-700" : "bg-white border-slate-200"}`}>
-          <ListChecks className="text-sky-400 mb-1" size={20} />
-          <div className={`text-sm font-semibold ${dark ? "text-white" : "text-slate-900"}`}>Quiz & examens</div>
-          <div className="text-xs text-slate-400">50 questions</div>
-        </button>
-      </div>
+      <section aria-labelledby="quick-access-title">
+        <div className="mb-2 flex items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">Espace de travail</p>
+            <h2 id="quick-access-title" className={`text-lg font-bold ${dark ? "text-white" : "text-slate-900"}`}>
+              Que veux-tu travailler ?
+            </h2>
+          </div>
+          <span className="text-xs text-slate-400">4 activités</span>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {dashboardActions.map((action) => {
+            const Icon = action.icon;
+            return (
+              <button
+                key={action.id}
+                onClick={() => onNavigate(action.id)}
+                className={`group min-h-32 rounded-2xl border p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${action.surface} ${dark ? "border-slate-700 bg-slate-800/70 hover:bg-slate-800" : "border-slate-200 bg-white hover:bg-slate-50"}`}
+              >
+                <span className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${dark ? "bg-slate-900" : "bg-slate-100"}`}>
+                  <Icon className={action.tone} size={21} />
+                </span>
+                <span className={`block text-sm font-bold ${dark ? "text-white" : "text-slate-900"}`}>{action.label}</span>
+                <span className="mt-1 block text-xs leading-relaxed text-slate-400">{action.description}</span>
+                <ChevronRight className="mt-3 text-slate-500 transition-transform group-hover:translate-x-1" size={16} />
+              </button>
+            );
+          })}
+        </div>
+      </section>
 
       <div>
         <h3 className={`text-sm uppercase tracking-wide font-semibold text-slate-400 mb-2`}>Programme de révision</h3>
