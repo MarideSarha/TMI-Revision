@@ -25,6 +25,10 @@ export type LessonSchemaType =
   | "tool-selection"
   | "force-path"
   | "measurement-chain"
+  | "caliper-reading"
+  | "micrometer-reading"
+  | "dial-indicator"
+  | "measurement-report"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";

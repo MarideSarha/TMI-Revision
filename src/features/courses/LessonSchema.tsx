@@ -289,6 +289,83 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "caliper-reading") {
+    return (
+      <svg viewBox="0 0 380 150" className="h-36 w-full" role="img" aria-label="Pied à coulisse mesurant le diamètre extérieur d'un arbre">
+        <line x1="35" y1="72" x2="345" y2="72" stroke={stroke} strokeWidth="9" />
+        <rect x="55" y="50" width="88" height="44" rx="6" fill={box} stroke={accent} strokeWidth="2" />
+        <rect x="247" y="50" width="78" height="44" rx="6" fill={accent} stroke={stroke} strokeWidth="2" />
+        <line x1="143" y1="28" x2="143" y2="120" stroke={stroke} strokeWidth="5" />
+        <line x1="247" y1="28" x2="247" y2="120" stroke={stroke} strokeWidth="5" />
+        <circle cx="195" cy="74" r="47" fill={box} stroke={stroke} strokeWidth="3" />
+        <line x1="148" y1="124" x2="242" y2="124" stroke={accent} strokeWidth="3" />
+        <polygon points="143,124 154,118 154,130" fill={accent} />
+        <polygon points="247,124 236,118 236,130" fill={accent} />
+        <text x="195" y="144" textAnchor="middle" fontSize="9" fill={accent}>diamètre extérieur</text>
+        <text x="99" y="67" textAnchor="middle" fontSize="9" fill={stroke}>coulisseau</text>
+        <text x="286" y="68" textAnchor="middle" fontSize="9" fill="#14151a" fontWeight="bold">24,36 mm</text>
+        <text x="190" y="16" textAnchor="middle" fontSize="10" fill={stroke}>Faces propres · becs parallèles · effort léger</text>
+      </svg>
+    );
+  }
+  if (type === "micrometer-reading") {
+    return (
+      <svg viewBox="0 0 380 150" className="h-36 w-full" role="img" aria-label="Lecture d'un micromètre extérieur avec manchon, tambour et limiteur d'effort">
+        <path d="M 55 112 C 20 112 20 38 55 38 L 115 38 L 115 62 L 72 62 C 61 62 61 88 72 88 L 115 88 L 115 112 Z" fill={box} stroke={stroke} strokeWidth="4" />
+        <line x1="115" y1="75" x2="178" y2="75" stroke={accent} strokeWidth="9" />
+        <rect x="178" y="52" width="92" height="46" rx="5" fill={box} stroke={stroke} strokeWidth="2" />
+        <rect x="270" y="46" width="64" height="58" rx="8" fill={accent} stroke={stroke} strokeWidth="2" />
+        <rect x="334" y="57" width="30" height="36" rx="7" fill={box} stroke={stroke} />
+        {[190, 210, 230, 250].map((x) => <line key={x} x1={x} y1="60" x2={x} y2="72" stroke={stroke} />)}
+        {[282, 294, 306, 318].map((x) => <line key={x} x1={x} y1="48" x2={x} y2="62" stroke="#14151a" />)}
+        <text x="224" y="119" textAnchor="middle" fontSize="9" fill={stroke}>manchon : millimètres + demi-millimètre</text>
+        <text x="301" y="126" textAnchor="middle" fontSize="9" fill={accent}>tambour : centièmes</text>
+        <text x="349" y="45" textAnchor="middle" fontSize="8" fill={stroke}>limiteur</text>
+        <text x="190" y="18" textAnchor="middle" fontSize="10" fill={stroke}>Lire le manchon, puis ajouter le tambour</text>
+      </svg>
+    );
+  }
+  if (type === "dial-indicator") {
+    return (
+      <svg viewBox="0 0 380 155" className="h-36 w-full" role="img" aria-label="Comparateur contrôlant le faux-rond d'un arbre tourné manuellement">
+        <rect x="20" y="122" width="340" height="16" rx="4" fill={box} stroke={stroke} />
+        <line x1="105" y1="122" x2="105" y2="42" stroke={stroke} strokeWidth="7" />
+        <line x1="105" y1="52" x2="180" y2="52" stroke={stroke} strokeWidth="6" />
+        <circle cx="216" cy="52" r="38" fill={box} stroke={accent} strokeWidth="3" />
+        <line x1="216" y1="52" x2="237" y2="31" stroke={accent} strokeWidth="3" />
+        <circle cx="216" cy="52" r="4" fill={stroke} />
+        <line x1="216" y1="90" x2="216" y2="108" stroke={stroke} strokeWidth="4" />
+        <circle cx="216" cy="112" r="5" fill={accent} />
+        <ellipse cx="270" cy="115" rx="62" ry="20" fill={box} stroke={stroke} strokeWidth="3" />
+        <line x1="208" y1="115" x2="332" y2="115" stroke={stroke} strokeWidth="5" />
+        <text x="216" y="56" textAnchor="middle" fontSize="8" fill={stroke}>0,08 mm</text>
+        <text x="270" y="150" textAnchor="middle" fontSize="9" fill={stroke}>tourner à la main, machine consignée</text>
+        <text x="190" y="16" textAnchor="middle" fontSize="10" fill={stroke}>Support rigide · touche préchargée · axe correct</text>
+      </svg>
+    );
+  }
+  if (type === "measurement-report") {
+    return (
+      <svg viewBox="0 0 380 150" className="h-36 w-full" role="img" aria-label="Fiche de contrôle reliant identification, relevés, référence et décision">
+        <rect x="58" y="10" width="264" height="130" rx="8" fill={box} stroke={stroke} strokeWidth="2" />
+        <rect x="75" y="24" width="230" height="22" rx="4" fill={accent} />
+        <text x="190" y="39" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">FICHE DE CONTRÔLE DIMENSIONNEL</text>
+        {[
+          ["Équipement / point", "Arbre M2 · portée A"],
+          ["Moyen / identifiant", "Micromètre MIC-07"],
+          ["Valeurs", "29,98 · 29,99 · 29,98 mm"],
+          ["Référence", "30,00 ± 0,03 mm"],
+          ["Décision / action", "Conforme · surveiller"],
+        ].map(([label, value], index) => (
+          <g key={label}>
+            <text x="78" y={62 + index * 16} fontSize="8" fill={stroke}>{label}</text>
+            <text x="190" y={62 + index * 16} fontSize="8" fill={index === 4 ? accent : stroke} fontWeight={index === 4 ? "bold" : "normal"}>{value}</text>
+          </g>
+        ))}
+        <text x="190" y="132" textAnchor="middle" fontSize="8" fill={stroke}>date · opérateur · conditions · validation</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">
