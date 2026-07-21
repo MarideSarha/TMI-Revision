@@ -2,6 +2,7 @@ import { Cog } from "lucide-react";
 import type { Lesson, TrainingBlock, TrainingModule } from "../types";
 import { MECHANICS_BLOCK4_LESSONS } from "./mechanicsBlock4";
 import { MECHANICS_BLOCK5_LESSONS } from "./mechanicsBlock5";
+import { MECHANICS_BLOCK6_LESSONS } from "./mechanicsBlock6";
 
 const block1Lessons: Lesson[] = [
   {
@@ -2145,7 +2146,15 @@ export const MECHANICS_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m4-b6", num: 6, title: "Arbres, accouplements, alignement et équilibrage", objective: "Maintenir une ligne d'arbres et limiter vibrations et usure.", lessonIds: [], chapterCount: 8, status: "planned" },
+  {
+    id: "m4-b6",
+    num: 6,
+    title: "Arbres, accouplements, alignement et équilibrage",
+    objective: "Maintenir une ligne d'arbres et limiter vibrations et usure.",
+    lessonIds: MECHANICS_BLOCK6_LESSONS.map((lesson) => lesson.id),
+    chapterCount: 8,
+    status: "in_progress",
+  },
   { id: "m4-b7", num: 7, title: "Roulements, paliers, lubrification et étanchéité tournante", objective: "Monter, lubrifier et diagnostiquer les organes de guidage.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b8", num: 8, title: "Courroies, chaînes, engrenages et réducteurs", objective: "Contrôler les transmissions de puissance et corriger leurs défauts.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b9", num: 9, title: "Convoyeurs et équipements de manutention", objective: "Intervenir méthodiquement sur les convoyeurs et leurs sous-ensembles.", lessonIds: [], chapterCount: 8, status: "planned" },
@@ -2161,6 +2170,6 @@ export const MECHANICS_MODULE: TrainingModule = {
   icon: Cog,
   color: "amber",
   source: "[TMI] Parcours progressif débutant → professionnel · références INRS et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...MECHANICS_BLOCK4_LESSONS, ...MECHANICS_BLOCK5_LESSONS],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...MECHANICS_BLOCK4_LESSONS, ...MECHANICS_BLOCK5_LESSONS, ...MECHANICS_BLOCK6_LESSONS],
   blocks: MECHANICS_BLOCKS,
 };
