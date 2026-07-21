@@ -4,7 +4,7 @@ export type Theme = "dark" | "light";
 export type ModuleTone = "amber" | "sky" | "violet";
 export type ProgressTone = ModuleTone | "emerald";
 export type QuestionType = "qcm" | "vf" | "calc";
-export type LessonStage = "read" | "quiz" | "exercice" | "done";
+export type LessonStage = "read" | "checkpoint" | "quiz" | "exercice" | "done";
 export type ExamModeId = "quick" | "daily" | "exam";
 
 export type LessonSchemaType =
@@ -20,12 +20,23 @@ export type LessonSchemaType =
 
 export interface LessonExercise {
   enonce: string;
+  consignes: string[];
+  criteres: string[];
   correction: string;
+}
+
+export interface LessonQuickCheck {
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
 }
 
 export interface Lesson {
   id: string;
   title: string;
+  durationMinutes: number;
+  objectifs: string[];
   simple: string;
   vocab: Array<[string, string]>;
   example: string;
@@ -33,6 +44,7 @@ export interface Lesson {
   retenir: string[];
   erreurs: string[];
   quizIds: string[];
+  verification: LessonQuickCheck;
   exercice: LessonExercise;
 }
 

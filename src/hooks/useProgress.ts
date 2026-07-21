@@ -78,12 +78,16 @@ export function useProgress() {
         lessonsDone: { ...progress.lessonsDone },
         quizAnswers: { ...progress.quizAnswers },
       };
+      const firstCompletion = !nextProgress.lessonsDone[lessonId];
       nextProgress.lessonsDone[lessonId] = true;
       nextProgress.quizAnswers[lessonId] = Object.keys(result.answers).map(
         (questionId) => result.answers[questionId],
       );
-      nextProgress.xp += 20 + result.correctCount * 10;
-      addHistory(nextProgress, `Leçon terminée (${result.correctCount}/${result.total})`);
+      if (firstCompletion) nextProgress.xp += 20 + result.correctCount * 10;
+      addHistory(
+        nextProgress,
+        `${firstCompletion ? "Leçon terminée" : "Leçon révisée"} (${result.correctCount}/${result.total})`,
+      );
       checkBadges(nextProgress);
       persist(nextProgress);
     },

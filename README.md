@@ -4,7 +4,7 @@ Application web interactive de préparation au Titre Professionnel **Technicien 
 
 ## Fonctionnalités actuelles
 
-- cours interactifs de maintenance industrielle ;
+- cours interactifs avec objectifs, vérification rapide, quiz et exercice pratique ;
 - quiz avec corrections ;
 - scénarios de diagnostic de pannes ;
 - progression, XP, niveaux et badges ;
@@ -19,6 +19,16 @@ Application web interactive de préparation au Titre Professionnel **Technicien 
 npm install
 npm run dev
 ```
+
+## Contrôle automatique avant publication
+
+Cette commande vérifie le typage, la cohérence des données pédagogiques et la compilation de production :
+
+```bash
+npm run check
+```
+
+Elle détecte notamment les identifiants en double, les questions absentes, les réponses invalides et les scénarios incomplets.
 
 ## Vérification de production
 
