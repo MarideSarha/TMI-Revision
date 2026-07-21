@@ -6,6 +6,7 @@ export type ProgressTone = ModuleTone | "emerald";
 export type QuestionType = "qcm" | "vf" | "calc";
 export type LessonStage = "read" | "checkpoint" | "quiz" | "exercice" | "done";
 export type ExamModeId = "quick" | "daily" | "exam";
+export type TrainingBlockStatus = "available" | "planned";
 
 export type LessonSchemaType =
   | "orgchart"
@@ -46,6 +47,34 @@ export interface Lesson {
   quizIds: string[];
   verification: LessonQuickCheck;
   exercice: LessonExercise;
+  ascii?: string;
+  astucesPro?: string[];
+  diagnostic?: string[];
+  depannage?: string[];
+  securite?: string[];
+  etudeDeCas?: {
+    situation: string;
+    mission: string[];
+    correction: string;
+  };
+  memo?: string[];
+  resume?: string;
+}
+
+export interface BlockExam {
+  questionIds: string[];
+  passPercent: number;
+}
+
+export interface TrainingBlock {
+  id: string;
+  num: number;
+  title: string;
+  objective: string;
+  lessonIds: string[];
+  chapterCount: number;
+  status: TrainingBlockStatus;
+  exam?: BlockExam;
 }
 
 export interface TrainingModule {
@@ -56,6 +85,7 @@ export interface TrainingModule {
   color: ModuleTone;
   source: string;
   lessons: Lesson[];
+  blocks?: TrainingBlock[];
 }
 
 export interface QuizQuestion {
@@ -112,6 +142,7 @@ export interface Progress {
   lessonsDone: Record<string, boolean>;
   quizAnswers: Record<string, boolean[]>;
   panneScores: Record<string, FaultScore>;
+  blockExamScores: Record<string, QuizResult>;
   streak: number;
   lastVisit: string | null;
   badges: string[];
@@ -123,6 +154,7 @@ export type AppView =
   | "modules"
   | "module"
   | "lesson"
+  | "blockExam"
   | "pannes"
   | "exam"
   | "progression"
@@ -131,6 +163,7 @@ export type AppView =
 export interface ViewData {
   mod?: TrainingModule;
   lesson?: Lesson;
+  block?: TrainingBlock;
 }
 
 export type Navigate = (view: AppView, data?: ViewData) => void;

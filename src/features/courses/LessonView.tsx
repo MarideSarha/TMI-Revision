@@ -86,7 +86,60 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
           <section className={`rounded-xl border p-4 ${dark ? "border-slate-700 bg-slate-800/60" : "border-slate-200 bg-white"}`}>
             <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-400">Schéma</h3>
             <LessonSchema type={lesson.schema} dark={dark} />
+            {lesson.ascii && (
+              <pre className={`mt-3 overflow-x-auto rounded-lg border p-3 text-xs leading-relaxed ${dark ? "border-slate-700 bg-slate-950 text-sky-300" : "border-slate-200 bg-slate-50 text-slate-700"}`}>
+                {lesson.ascii}
+              </pre>
+            )}
           </section>
+
+          {lesson.securite && (
+            <section className={`rounded-xl border-2 border-red-400/40 p-4 ${dark ? "bg-red-400/5" : "bg-red-50"}`}>
+              <h3 className="mb-2 flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-red-400"><AlertTriangle size={15} /> Sécurité avant intervention</h3>
+              <ul className="space-y-2">
+                {lesson.securite.map((item) => <li key={item} className={`flex gap-2 text-sm ${dark ? "text-slate-200" : "text-slate-700"}`}><span className="text-red-400">■</span>{item}</li>)}
+              </ul>
+            </section>
+          )}
+
+          {lesson.astucesPro && (
+            <section className={`rounded-xl border p-4 ${dark ? "border-sky-500/30 bg-sky-500/5" : "border-sky-200 bg-sky-50"}`}>
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-sky-400">Astuces de professionnels</h3>
+              <ul className="space-y-2">
+                {lesson.astucesPro.map((item) => <li key={item} className={`flex gap-2 text-sm ${dark ? "text-slate-200" : "text-slate-700"}`}><span className="text-sky-400">◆</span>{item}</li>)}
+              </ul>
+            </section>
+          )}
+
+          {(lesson.diagnostic || lesson.depannage) && (
+            <section className={`rounded-xl border p-4 ${dark ? "border-slate-700 bg-slate-800/60" : "border-slate-200 bg-white"}`}>
+              {lesson.diagnostic && (
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-400">Méthode de diagnostic</h3>
+                  <ol className="space-y-2">{lesson.diagnostic.map((item, index) => <li key={item} className={`flex gap-2 text-sm ${dark ? "text-slate-200" : "text-slate-700"}`}><span className="font-mono font-bold text-amber-400">{index + 1}.</span>{item}</li>)}</ol>
+                </div>
+              )}
+              {lesson.depannage && (
+                <div className={lesson.diagnostic ? "mt-5 border-t border-slate-700 pt-4" : ""}>
+                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-emerald-500">Procédure de dépannage</h3>
+                  <ol className="space-y-2">{lesson.depannage.map((item, index) => <li key={item} className={`flex gap-2 text-sm ${dark ? "text-slate-200" : "text-slate-700"}`}><span className="font-mono font-bold text-emerald-500">{index + 1}.</span>{item}</li>)}</ol>
+                </div>
+              )}
+            </section>
+          )}
+
+          {lesson.etudeDeCas && (
+            <section className={`rounded-xl border-2 border-violet-400/40 p-4 ${dark ? "bg-violet-400/5" : "bg-violet-50"}`}>
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-violet-400">Étude de cas en usine</h3>
+              <p className={`text-sm leading-relaxed ${dark ? "text-slate-200" : "text-slate-700"}`}>{lesson.etudeDeCas.situation}</p>
+              <p className={`mb-2 mt-3 text-sm font-semibold ${dark ? "text-white" : "text-slate-900"}`}>Ta mission :</p>
+              <ol className="space-y-1">{lesson.etudeDeCas.mission.map((item, index) => <li key={item} className={`text-sm ${dark ? "text-slate-300" : "text-slate-600"}`}>{index + 1}. {item}</li>)}</ol>
+              <details className="mt-3 rounded-lg border border-violet-400/30 p-3">
+                <summary className="cursor-pointer text-sm font-semibold text-violet-400">Voir la correction raisonnée</summary>
+                <p className={`mt-2 text-sm leading-relaxed ${dark ? "text-slate-200" : "text-slate-700"}`}>{lesson.etudeDeCas.correction}</p>
+              </details>
+            </section>
+          )}
 
           <section className={`rounded-xl border-2 border-amber-400/50 p-4 ${dark ? "bg-amber-400/5" : "bg-amber-50"}`}>
             <h3 className="mb-2 flex items-center gap-1 text-sm font-semibold uppercase tracking-wide text-amber-500">
@@ -113,6 +166,14 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
               ))}
             </ul>
           </section>
+
+          {lesson.memo && (
+            <section className={`rounded-xl border p-4 ${dark ? "border-emerald-500/30 bg-emerald-500/5" : "border-emerald-200 bg-emerald-50"}`}>
+              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-emerald-500">Fiche mémo</h3>
+              <div className="flex flex-wrap gap-2">{lesson.memo.map((item) => <span key={item} className="rounded-full border border-emerald-500/30 px-3 py-1.5 text-xs font-semibold text-emerald-500">{item}</span>)}</div>
+              {lesson.resume && <p className={`mt-3 border-t pt-3 text-sm font-semibold ${dark ? "border-slate-700 text-slate-200" : "border-emerald-200 text-slate-700"}`}>En résumé : {lesson.resume}</p>}
+            </section>
+          )}
 
           <button type="button" onClick={() => setStage("checkpoint")} className="w-full rounded-lg bg-amber-400 py-3 font-bold text-slate-950">
             Vérifier ma compréhension

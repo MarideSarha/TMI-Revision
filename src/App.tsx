@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BookOpen, Home, ListChecks, Loader2, MessageCircle, Moon, ShieldAlert, Sun, Wrench } from "lucide-react";
 import { HazardStripe, ModulePlate } from "./components/ui";
 import { MODULES } from "./data";
-import { CoachTMI, Dashboard, ExamMode, LessonView, ModuleView, PanneSimulator, ProgressionView } from "./features";
+import { BlockExamView, CoachTMI, Dashboard, ExamMode, LessonView, ModuleView, PanneSimulator, ProgressionView } from "./features";
 import { useProgress } from "./hooks";
 import type { AppView, Theme, ViewData } from "./types";
 
@@ -26,13 +26,14 @@ export default function App() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [view, setView] = useState<AppView>("dashboard");
   const [viewData, setViewData] = useState<ViewData>({});
-  const { progress, ready, handleLessonDone, handlePanneScore, handleExamFinish } = useProgress();
+  const { progress, ready, handleLessonDone, handlePanneScore, handleExamFinish, handleBlockExamFinish } = useProgress();
 
   const dark = theme === "dark";
 
   function navigate(nextView: AppView, data: ViewData = {}) {
     setView(nextView);
     setViewData(data);
+    window.scrollTo({ top: 0, behavior: "auto" });
   }
 
   if (!ready || !progress) {
@@ -83,7 +84,14 @@ export default function App() {
         )}
 
         {view === "module" && viewData.mod && (
-          <ModuleView mod={viewData.mod} progress={progress} dark={dark} onBack={() => navigate("modules")} onOpenLesson={(lesson) => navigate("lesson", { lesson, mod: viewData.mod })} />
+          <ModuleView
+            mod={viewData.mod}
+            progress={progress}
+            dark={dark}
+            onBack={() => navigate("modules")}
+            onOpenLesson={(lesson) => navigate("lesson", { lesson, mod: viewData.mod })}
+            onOpenBlockExam={(block) => navigate("blockExam", { block, mod: viewData.mod })}
+          />
         )}
 
         {view === "lesson" && viewData.lesson && (
@@ -94,6 +102,21 @@ export default function App() {
             progress={progress}
             onBack={() => navigate("module", { mod: viewData.mod })}
             onDone={handleLessonDone}
+          />
+        )}
+
+        {view === "blockExam" && viewData.block && viewData.mod && (
+          <BlockExamView
+            block={viewData.block}
+            mod={viewData.mod}
+            progress={progress}
+            dark={dark}
+            onBack={() => navigate("module", { mod: viewData.mod })}
+            onReviewLesson={(lessonId) => {
+              const lesson = viewData.mod?.lessons.find((item) => item.id === lessonId);
+              if (lesson) navigate("lesson", { lesson, mod: viewData.mod });
+            }}
+            onFinish={handleBlockExamFinish}
           />
         )}
 
@@ -110,7 +133,7 @@ export default function App() {
         <div className="max-w-2xl mx-auto grid grid-cols-5">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
-            const active = view === item.id || (item.id === "modules" && (view === "module" || view === "lesson"));
+            const active = view === item.id || (item.id === "modules" && (view === "module" || view === "lesson" || view === "blockExam"));
             return (
               <button
                 key={item.id}

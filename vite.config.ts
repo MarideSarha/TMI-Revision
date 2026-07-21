@@ -2,11 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-import { BADGE_DEFS } from "./src/data/badges";
-import { PANNES } from "./src/data/faults";
-import { MODULES } from "./src/data/modules";
-import { QUESTIONS } from "./src/data/questions";
-import { assertLearningData } from "./src/data/validate";
+import { BADGE_DEFS, MODULES, PANNES, QUESTIONS, assertLearningData } from "./src/data";
 
 const dataSummary = assertLearningData({
   modules: MODULES,
@@ -16,7 +12,7 @@ const dataSummary = assertLearningData({
 });
 
 console.info(
-  `[TMI] Contenu validé : ${dataSummary.modules} modules, ${dataSummary.lessons} leçons, ${dataSummary.questions} questions, ${dataSummary.faults} pannes, ${dataSummary.badges} badges.`,
+  `[TMI] Contenu validé : ${dataSummary.modules} modules, ${dataSummary.blocks} blocs, ${dataSummary.lessons} leçons, ${dataSummary.questions} questions, ${dataSummary.faults} pannes, ${dataSummary.badges} badges.`,
 );
 
 export default defineConfig({

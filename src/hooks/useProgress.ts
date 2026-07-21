@@ -23,11 +23,22 @@ function checkBadges(progress: Progress) {
 
   if (Object.keys(progress.lessonsDone).length >= 1) badges.add("first_lesson");
 
-  MODULES.forEach((module, index) => {
+  const moduleBadges: Record<string, string> = {
+    m1: "module_1",
+    m2: "module_2",
+    m3: "module_3",
+  };
+  MODULES.forEach((module) => {
     if (module.lessons.every((lesson) => progress.lessonsDone[lesson.id])) {
-      badges.add(["module_1", "module_2", "module_3"][index]);
+      const badgeId = moduleBadges[module.id];
+      if (badgeId) badges.add(badgeId);
     }
   });
+
+  const mechanicsBlockOne = progress.blockExamScores["m4-b1"];
+  if (mechanicsBlockOne && (mechanicsBlockOne.correctCount / mechanicsBlockOne.total) * 100 >= 80) {
+    badges.add("mechanics_block_1");
+  }
 
   const panneCount = Object.keys(progress.panneScores).length;
   if (panneCount >= 5) badges.add("detective_5");
@@ -124,11 +135,39 @@ export function useProgress() {
     [persist, progress],
   );
 
+  const handleBlockExamFinish = useCallback(
+    (blockId: string, result: QuizResult, passPercent: number) => {
+      if (!progress) return;
+
+      const previous = progress.blockExamScores[blockId];
+      const previousPercent = previous ? (previous.correctCount / previous.total) * 100 : 0;
+      const currentPercent = (result.correctCount / result.total) * 100;
+      const firstPass = previousPercent < passPercent && currentPercent >= passPercent;
+      const nextProgress: Progress = {
+        ...progress,
+        blockExamScores: {
+          ...progress.blockExamScores,
+          [blockId]: currentPercent >= previousPercent ? result : previous,
+        },
+      };
+
+      if (firstPass) nextProgress.xp += 100;
+      addHistory(
+        nextProgress,
+        `Examen de bloc ${currentPercent >= passPercent ? "réussi" : "à retravailler"} (${result.correctCount}/${result.total})`,
+      );
+      checkBadges(nextProgress);
+      persist(nextProgress);
+    },
+    [persist, progress],
+  );
+
   return {
     progress,
     ready,
     handleLessonDone,
     handlePanneScore,
     handleExamFinish,
+    handleBlockExamFinish,
   };
 }

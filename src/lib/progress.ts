@@ -8,6 +8,7 @@ export function emptyProgress(): Progress {
     lessonsDone: {},
     quizAnswers: {},
     panneScores: {},
+    blockExamScores: {},
     streak: 0,
     lastVisit: null,
     badges: [],

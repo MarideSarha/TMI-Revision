@@ -9,6 +9,7 @@ export interface LearningData {
 
 export interface LearningDataSummary {
   modules: number;
+  blocks: number;
   lessons: number;
   questions: number;
   faults: number;
@@ -24,12 +25,16 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
   const lessons = modules.flatMap((module) => module.lessons);
   const lessonIds = lessons.map((lesson) => lesson.id);
   const questionIds = Object.keys(questions);
+  const blocks = modules.flatMap((module) => module.blocks ?? []);
 
   for (const duplicate of new Set(findDuplicates(modules.map((module) => module.id)))) {
     errors.push(`Identifiant de module en double : ${duplicate}.`);
   }
   for (const duplicate of new Set(findDuplicates(lessonIds))) {
     errors.push(`Identifiant de leçon en double : ${duplicate}.`);
+  }
+  for (const duplicate of new Set(findDuplicates(blocks.map((block) => block.id)))) {
+    errors.push(`Identifiant de bloc en double : ${duplicate}.`);
   }
   for (const duplicate of new Set(findDuplicates(faults.map((fault) => fault.id)))) {
     errors.push(`Identifiant de panne en double : ${duplicate}.`);
@@ -51,6 +56,9 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
     if (lesson.exercice.consignes.length === 0 || lesson.exercice.criteres.length === 0) {
       errors.push(`L'exercice de la leçon ${lesson.id} doit avoir des consignes et des critères.`);
     }
+    if (lesson.id.startsWith("4-") && (!lesson.ascii || !lesson.astucesPro?.length || !lesson.diagnostic?.length || !lesson.depannage?.length || !lesson.securite?.length || !lesson.etudeDeCas || !lesson.memo?.length || !lesson.resume)) {
+      errors.push(`La leçon de mécanique ${lesson.id} doit contenir le parcours professionnel complet.`);
+    }
 
     const quickCheck = lesson.verification;
     if (quickCheck.options.length < 2 || quickCheck.correct < 0 || quickCheck.correct >= quickCheck.options.length) {
@@ -63,6 +71,31 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
         errors.push(`La leçon ${lesson.id} référence une question absente : ${questionId}.`);
       } else if (question.lesson !== lesson.id) {
         errors.push(`La question ${questionId} appartient à ${question.lesson}, mais est utilisée par ${lesson.id}.`);
+      }
+    }
+  }
+
+  for (const module of modules) {
+    for (const block of module.blocks ?? []) {
+      for (const lessonId of block.lessonIds) {
+        if (!module.lessons.some((lesson) => lesson.id === lessonId)) {
+          errors.push(`Le bloc ${block.id} référence une leçon absente du module : ${lessonId}.`);
+        }
+      }
+      if (block.status === "available" && block.lessonIds.length !== block.chapterCount) {
+        errors.push(`Le bloc disponible ${block.id} doit contenir ses ${block.chapterCount} chapitres.`);
+      }
+      if (block.exam) {
+        if (block.exam.passPercent < 50 || block.exam.passPercent > 100) {
+          errors.push(`Le seuil de l'examen ${block.id} est invalide.`);
+        }
+        for (const questionId of block.exam.questionIds) {
+          if (!questions[questionId]) errors.push(`L'examen ${block.id} référence une question absente : ${questionId}.`);
+          const lessonId = questions[questionId]?.lesson;
+          if (lessonId && !block.lessonIds.includes(lessonId)) {
+            errors.push(`La question ${questionId} de l'examen ${block.id} ne vient pas de ce bloc.`);
+          }
+        }
       }
     }
   }
@@ -102,6 +135,7 @@ export function assertLearningData(data: LearningData): LearningDataSummary {
 
   return {
     modules: data.modules.length,
+    blocks: data.modules.reduce((total, module) => total + (module.blocks?.length ?? 0), 0),
     lessons: data.modules.reduce((total, module) => total + module.lessons.length, 0),
     questions: Object.keys(data.questions).length,
     faults: data.faults.length,
