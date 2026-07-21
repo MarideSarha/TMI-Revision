@@ -731,6 +731,78 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "shaft-runout") {
+    return (
+      <svg viewBox="0 0 400 175" className="h-40 w-full" role="img" aria-label="Mesure du faux-rond radial d'un arbre avec un comparateur">
+        <rect x="28" y="75" width="300" height="42" rx="21" fill={box} stroke={accent} strokeWidth="4" />
+        <line x1="28" y1="96" x2="328" y2="96" stroke={stroke} strokeDasharray="5,4" />
+        <circle cx="230" cy="38" r="28" fill={box} stroke={stroke} strokeWidth="3" />
+        <line x1="230" y1="38" x2="247" y2="23" stroke={accent} strokeWidth="3" />
+        <line x1="230" y1="66" x2="230" y2="75" stroke={stroke} strokeWidth="4" />
+        <text x="230" y="42" textAnchor="middle" fontSize="8" fill={stroke}>COMPARATEUR</text>
+        <path d="M82 66 A30 30 0 0 1 126 63" fill="none" stroke={accent} strokeWidth="3" />
+        <polygon points="131,66 120,63 127,55" fill={accent} />
+        <text x="105" y="45" textAnchor="middle" fontSize="9" fill={stroke}>rotation lente</text>
+        <text x="200" y="148" textAnchor="middle" fontSize="10" fill={accent}>Lecture totale = maxi − mini</text>
+        <text x="200" y="166" textAnchor="middle" fontSize="8" fill={stroke}>support rigide · surface propre · mesure répétée</text>
+      </svg>
+    );
+  }
+  if (type === "dial-alignment") {
+    return (
+      <svg viewBox="0 0 400 175" className="h-40 w-full" role="img" aria-label="Relevés d'alignement au comparateur aux positions douze, trois, six et neuf heures">
+        <circle cx="200" cy="82" r="55" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="200" cy="82" r="11" fill={accent} />
+        {[['12 h',200,15],['3 h',330,86],['6 h',200,160],['9 h',70,86]].map(([label,x,y]) => (
+          <text key={String(label)} x={Number(x)} y={Number(y)} textAnchor="middle" fontSize="10" fill={stroke}>{label}</text>
+        ))}
+        <line x1="200" y1="27" x2="200" y2="137" stroke={accent} strokeDasharray="4,3" />
+        <line x1="145" y1="82" x2="255" y2="82" stroke={accent} strokeDasharray="4,3" />
+        <rect x="273" y="30" width="42" height="40" rx="6" fill={box} stroke={accent} strokeWidth="2" />
+        <line x1="273" y1="60" x2="250" y2="72" stroke={stroke} strokeWidth="3" />
+        <text x="294" y="54" textAnchor="middle" fontSize="7" fill={stroke}>CADRAN</text>
+        <text x="35" y="145" fontSize="8" fill={accent}>vertical</text>
+        <text x="315" y="145" fontSize="8" fill={accent}>horizontal</text>
+      </svg>
+    );
+  }
+  if (type === "laser-alignment") {
+    return (
+      <svg viewBox="0 0 400 175" className="h-40 w-full" role="img" aria-label="Alignement laser avec cible à froid et position alignée à chaud">
+        <rect x="20" y="58" width="108" height="55" rx="8" fill={box} stroke={stroke} strokeWidth="2" />
+        <rect x="272" y="48" width="108" height="65" rx="8" fill={box} stroke={stroke} strokeWidth="2" />
+        <text x="74" y="89" textAnchor="middle" fontSize="10" fill={stroke}>MOTEUR</text>
+        <text x="326" y="84" textAnchor="middle" fontSize="10" fill={stroke}>POMPE</text>
+        <circle cx="150" cy="84" r="21" fill={accent} stroke={stroke} />
+        <circle cx="250" cy="78" r="21" fill={accent} stroke={stroke} />
+        <line x1="171" y1="84" x2="229" y2="79" stroke="#22c55e" strokeWidth="3" strokeDasharray="5,3" />
+        <text x="200" y="62" textAnchor="middle" fontSize="8" fill="#22c55e">faisceau</text>
+        <line x1="326" y1="48" x2="326" y2="26" stroke="#ef4444" strokeWidth="3" />
+        <polygon points="326,20 320,31 332,31" fill="#ef4444" />
+        <text x="326" y="13" textAnchor="middle" fontSize="8" fill={stroke}>croissance thermique</text>
+        <text x="200" y="143" textAnchor="middle" fontSize="9" fill={accent}>Cible à froid → axes corrects en service</text>
+        <text x="200" y="162" textAnchor="middle" fontSize="8" fill={stroke}>vérifier dimensions · cible · tolérance · rapport final</text>
+      </svg>
+    );
+  }
+  if (type === "balance-vibration") {
+    return (
+      <svg viewBox="0 0 400 175" className="h-40 w-full" role="img" aria-label="Comparaison d'un rotor équilibré et d'un rotor avec balourd">
+        <circle cx="110" cy="78" r="52" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="110" cy="78" r="6" fill={accent} />
+        <circle cx="290" cy="78" r="52" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="290" cy="78" r="6" fill={accent} />
+        <circle cx="323" cy="49" r="12" fill="#ef4444" />
+        <line x1="300" y1="69" x2="336" y2="36" stroke="#ef4444" strokeWidth="3" />
+        <polygon points="342,30 330,35 338,43" fill="#ef4444" />
+        <text x="110" y="151" textAnchor="middle" fontSize="10" fill={stroke}>masse répartie</text>
+        <text x="290" y="151" textAnchor="middle" fontSize="10" fill="#ef4444">balourd → force tournante</text>
+        <text x="200" y="18" textAnchor="middle" fontSize="9" fill={accent}>La force augmente avec le carré de la vitesse</text>
+        <path d="M55 78 C65 58 75 98 85 78 C95 58 105 98 115 78" fill="none" stroke="#22c55e" strokeWidth="2" />
+        <path d="M235 78 C245 38 255 118 265 78 C275 38 285 118 295 78" fill="none" stroke="#ef4444" strokeWidth="3" />
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">
