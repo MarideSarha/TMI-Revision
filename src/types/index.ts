@@ -45,6 +45,10 @@ export type LessonSchemaType =
   | "flange-tightening"
   | "dynamic-sealing"
   | "leak-diagnosis"
+  | "shaft-inspection"
+  | "keyed-joint"
+  | "coupling-selection"
+  | "alignment-basics"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
