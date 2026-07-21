@@ -35,9 +35,13 @@ function checkBadges(progress: Progress) {
     }
   });
 
-  const mechanicsBlockOne = progress.blockExamScores["m4-b1"];
-  if (mechanicsBlockOne && (mechanicsBlockOne.correctCount / mechanicsBlockOne.total) * 100 >= 80) {
-    badges.add("mechanics_block_1");
+  const mechanicsExamBadges: Record<string, string> = {
+    "m4-b1": "mechanics_block_1",
+    "m4-b5": "mechanics_block_5",
+  };
+  for (const [blockId, badgeId] of Object.entries(mechanicsExamBadges)) {
+    const result = progress.blockExamScores[blockId];
+    if (result && (result.correctCount / result.total) * 100 >= 80) badges.add(badgeId);
   }
 
   const panneCount = Object.keys(progress.panneScores).length;
