@@ -180,6 +180,59 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "power-torque") {
+    return (
+      <svg viewBox="0 0 360 145" className="h-36 w-full" role="img" aria-label="Relation entre puissance, couple et vitesse de rotation">
+        <circle cx="92" cy="72" r="40" fill={box} stroke={accent} strokeWidth="3" />
+        <circle cx="92" cy="72" r="7" fill={stroke} />
+        <path d="M 62 50 A 38 38 0 0 1 121 52" fill="none" stroke={accent} strokeWidth="3" />
+        <polygon points="126,55 115,53 121,44" fill={accent} />
+        <text x="92" y="20" textAnchor="middle" fontSize="10" fill={stroke}>rotation n</text>
+        <line x1="132" y1="72" x2="195" y2="72" stroke={stroke} strokeWidth="5" />
+        <polygon points="202,72 191,65 191,79" fill={stroke} />
+        <text x="165" y="60" textAnchor="middle" fontSize="9" fill={stroke}>couple C</text>
+        <rect x="215" y="44" width="120" height="56" rx="8" fill={box} stroke={stroke} />
+        <text x="275" y="66" textAnchor="middle" fontSize="10" fill={stroke}>Puissance mécanique</text>
+        <text x="275" y="84" textAnchor="middle" fontSize="12" fill={accent} fontWeight="bold">P = C × ω</text>
+        <text x="180" y="130" textAnchor="middle" fontSize="10" fill={stroke}>P(kW) ≈ C(N·m) × n(tr/min) / 9 550</text>
+      </svg>
+    );
+  }
+  if (type === "bolted-joint") {
+    return (
+      <svg viewBox="0 0 360 150" className="h-36 w-full" role="img" aria-label="Principe d’un assemblage boulonné serré au couple">
+        <rect x="58" y="50" width="244" height="22" rx="3" fill={box} stroke={stroke} />
+        <rect x="58" y="78" width="244" height="22" rx="3" fill={box} stroke={stroke} />
+        <rect x="166" y="25" width="28" height="100" rx="5" fill={accent} stroke={stroke} strokeWidth="2" />
+        <polygon points="150,25 210,25 200,10 160,10" fill={box} stroke={stroke} />
+        <polygon points="150,125 210,125 200,140 160,140" fill={box} stroke={stroke} />
+        <line x1="145" y1="45" x2="145" y2="12" stroke={accent} strokeWidth="3" />
+        <polygon points="145,7 139,18 151,18" fill={accent} />
+        <line x1="215" y1="105" x2="215" y2="138" stroke={accent} strokeWidth="3" />
+        <polygon points="215,143 209,132 221,132" fill={accent} />
+        <text x="88" y="37" fontSize="9" fill={stroke}>précharge</text>
+        <text x="236" y="121" fontSize="9" fill={stroke}>traction vis</text>
+        <text x="180" y="117" textAnchor="middle" fontSize="9" fill={stroke}>pièces comprimées</text>
+      </svg>
+    );
+  }
+  if (type === "transmission-ratio") {
+    return (
+      <svg viewBox="0 0 360 150" className="h-36 w-full" role="img" aria-label="Rapport de transmission entre une roue menante et une roue menée">
+        <circle cx="100" cy="70" r="35" fill={box} stroke={accent} strokeWidth="3" />
+        <circle cx="260" cy="70" r="58" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="100" cy="70" r="5" fill={stroke} />
+        <circle cx="260" cy="70" r="5" fill={stroke} />
+        <line x1="100" y1="35" x2="260" y2="12" stroke={accent} strokeWidth="3" />
+        <line x1="100" y1="105" x2="260" y2="128" stroke={accent} strokeWidth="3" />
+        <text x="100" y="73" textAnchor="middle" fontSize="10" fill={stroke}>Z₁ = 20</text>
+        <text x="260" y="73" textAnchor="middle" fontSize="10" fill={stroke}>Z₂ = 60</text>
+        <text x="100" y="140" textAnchor="middle" fontSize="9" fill={stroke}>menante n₁</text>
+        <text x="260" y="145" textAnchor="middle" fontSize="9" fill={stroke}>menée n₂</text>
+        <text x="180" y="20" textAnchor="middle" fontSize="10" fill={accent}>i = n₁ / n₂ = Z₂ / Z₁</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">

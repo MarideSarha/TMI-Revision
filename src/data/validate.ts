@@ -98,6 +98,9 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
       if (block.status === "available" && block.lessonIds.length !== block.chapterCount) {
         errors.push(`Le bloc disponible ${block.id} doit contenir ses ${block.chapterCount} chapitres.`);
       }
+      if (block.status === "available" && !block.exam) {
+        errors.push(`Le bloc disponible ${block.id} doit posséder un examen de validation.`);
+      }
       if (block.status === "in_progress" && (block.lessonIds.length === 0 || block.lessonIds.length >= block.chapterCount)) {
         errors.push(`Le bloc en construction ${block.id} doit proposer une partie, mais pas encore la totalité de ses chapitres.`);
       }
@@ -110,6 +113,12 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
           const lessonId = questions[questionId]?.lesson;
           if (lessonId && !block.lessonIds.includes(lessonId)) {
             errors.push(`La question ${questionId} de l'examen ${block.id} ne vient pas de ce bloc.`);
+          }
+        }
+        const coveredLessons = new Set(block.exam.questionIds.map((questionId) => questions[questionId]?.lesson).filter(Boolean));
+        for (const lessonId of block.lessonIds) {
+          if (!coveredLessons.has(lessonId)) {
+            errors.push(`L'examen ${block.id} doit évaluer la leçon ${lessonId}.`);
           }
         }
       }

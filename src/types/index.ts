@@ -19,6 +19,9 @@ export type LessonSchemaType =
   | "unit-scale"
   | "force-diagram"
   | "speed-relationship"
+  | "power-torque"
+  | "bolted-joint"
+  | "transmission-ratio"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
