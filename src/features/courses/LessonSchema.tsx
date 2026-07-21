@@ -664,6 +664,73 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "shaft-inspection") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Arbre mécanique avec portées, épaulements, congés et rainure de clavette">
+        <path d="M25 92 H80 V67 H145 Q157 67 157 55 V48 H250 V67 Q250 78 262 78 H325 V92 H375" fill="none" stroke={accent} strokeWidth="18" strokeLinejoin="round" />
+        <line x1="25" y1="92" x2="375" y2="92" stroke={stroke} strokeDasharray="5,4" />
+        <rect x="183" y="37" width="42" height="18" fill={box} stroke={stroke} strokeWidth="2" />
+        <text x="204" y="28" textAnchor="middle" fontSize="9" fill={stroke}>rainure de clavette</text>
+        <text x="112" y="128" textAnchor="middle" fontSize="9" fill={stroke}>portée roulement</text>
+        <text x="266" y="128" textAnchor="middle" fontSize="9" fill={stroke}>portée joint</text>
+        <line x1="155" y1="65" x2="135" y2="145" stroke={stroke} />
+        <text x="110" y="158" textAnchor="middle" fontSize="8" fill={accent}>congé : zone critique</text>
+        <text x="325" y="22" textAnchor="middle" fontSize="9" fill={stroke}>rotation + couple →</text>
+      </svg>
+    );
+  }
+  if (type === "keyed-joint") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Coupe simplifiée d'une liaison entre arbre, clavette et moyeu">
+        <circle cx="200" cy="84" r="70" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="200" cy="84" r="40" fill="none" stroke={accent} strokeWidth="8" />
+        <rect x="178" y="34" width="44" height="36" fill={accent} stroke={stroke} strokeWidth="2" />
+        <line x1="178" y1="36" x2="178" y2="70" stroke="#ef4444" strokeWidth="4" />
+        <line x1="222" y1="36" x2="222" y2="70" stroke="#ef4444" strokeWidth="4" />
+        <text x="200" y="56" textAnchor="middle" fontSize="9" fill="#14151a" fontWeight="bold">CLAVETTE</text>
+        <text x="200" y="88" textAnchor="middle" fontSize="10" fill={stroke}>ARBRE</text>
+        <text x="200" y="150" textAnchor="middle" fontSize="10" fill={stroke}>MOYEU</text>
+        <text x="55" y="45" textAnchor="middle" fontSize="9" fill="#ef4444">flancs</text>
+        <text x="55" y="60" textAnchor="middle" fontSize="9" fill={stroke}>transmettent</text>
+        <text x="55" y="75" textAnchor="middle" fontSize="9" fill={stroke}>le couple</text>
+        <line x1="85" y1="60" x2="175" y2="52" stroke={stroke} />
+      </svg>
+    );
+  }
+  if (type === "coupling-selection") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Accouplement flexible reliant un moteur à une machine">
+        <rect x="18" y="54" width="90" height="58" rx="8" fill={box} stroke={stroke} strokeWidth="2" />
+        <text x="63" y="87" textAnchor="middle" fontSize="11" fill={stroke}>MOTEUR</text>
+        <line x1="108" y1="83" x2="145" y2="83" stroke={accent} strokeWidth="8" />
+        <rect x="145" y="52" width="36" height="62" rx="6" fill={box} stroke={accent} strokeWidth="3" />
+        <path d="M181 61 L199 52 L217 61 L199 114 L181 105 Z" fill={accent} stroke={stroke} />
+        <rect x="217" y="52" width="36" height="62" rx="6" fill={box} stroke={accent} strokeWidth="3" />
+        <line x1="253" y1="83" x2="290" y2="83" stroke={accent} strokeWidth="8" />
+        <rect x="290" y="54" width="92" height="58" rx="8" fill={box} stroke={stroke} strokeWidth="2" />
+        <text x="336" y="87" textAnchor="middle" fontSize="11" fill={stroke}>MACHINE</text>
+        <text x="199" y="27" textAnchor="middle" fontSize="9" fill={stroke}>moyeux + élément flexible + entrefer</text>
+        <text x="200" y="144" textAnchor="middle" fontSize="9" fill={accent}>Flexible ≠ désalignement illimité</text>
+      </svg>
+    );
+  }
+  if (type === "alignment-basics") {
+    return (
+      <svg viewBox="0 0 400 175" className="h-40 w-full" role="img" aria-label="Comparaison d'axes alignés, décalés parallèlement et désalignés angulairement">
+        <text x="22" y="37" fontSize="9" fill={stroke}>ALIGNÉ</text>
+        <line x1="90" y1="34" x2="370" y2="34" stroke={accent} strokeWidth="4" />
+        <text x="22" y="88" fontSize="9" fill={stroke}>PARALLÈLE</text>
+        <line x1="90" y1="74" x2="220" y2="74" stroke={accent} strokeWidth="4" />
+        <line x1="230" y1="94" x2="370" y2="94" stroke={stroke} strokeWidth="4" />
+        <line x1="300" y1="74" x2="300" y2="94" stroke="#ef4444" strokeDasharray="3,2" />
+        <text x="22" y="142" fontSize="9" fill={stroke}>ANGULAIRE</text>
+        <line x1="90" y1="132" x2="220" y2="132" stroke={accent} strokeWidth="4" />
+        <line x1="230" y1="120" x2="370" y2="151" stroke={stroke} strokeWidth="4" />
+        <path d="M230 132 A30 30 0 0 1 255 126" fill="none" stroke="#ef4444" strokeWidth="2" />
+        <text x="200" y="169" textAnchor="middle" fontSize="9" fill={stroke}>Contrôler vertical + horizontal · serrer puis remesurer</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">
