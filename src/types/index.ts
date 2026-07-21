@@ -4,7 +4,7 @@ export type Theme = "dark" | "light";
 export type ModuleTone = "amber" | "sky" | "violet";
 export type ProgressTone = ModuleTone | "emerald";
 export type QuestionType = "qcm" | "vf" | "calc";
-export type LessonStage = "read" | "checkpoint" | "quiz" | "exercice" | "done";
+export type LessonStage = "read" | "checkpoint" | "quiz" | "remediation" | "exercice" | "done";
 export type ExamModeId = "quick" | "daily" | "exam";
 export type TrainingBlockStatus = "available" | "planned";
 

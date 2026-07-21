@@ -14,7 +14,7 @@ interface LessonStepperProps {
 }
 
 export function LessonStepper({ stage, dark }: LessonStepperProps) {
-  const currentIndex = stage === "done" ? STEPS.length : STEPS.findIndex((step) => step.id === stage);
+  const currentIndex = stage === "done" ? STEPS.length : stage === "remediation" ? 2 : STEPS.findIndex((step) => step.id === stage);
 
   return (
     <ol aria-label="Étapes de la leçon" className="grid grid-cols-4 gap-1">

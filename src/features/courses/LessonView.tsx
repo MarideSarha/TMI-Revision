@@ -3,6 +3,7 @@ import { AlertTriangle, ArrowLeft, CheckCircle2, ClipboardList, Clock3, Target }
 import type { Lesson, LessonStage, Progress, QuizResult, TrainingModule } from "../../types";
 import { QuizRunner } from "../quiz/QuizRunner";
 import { LessonSchema } from "./LessonSchema";
+import { LessonRemediation } from "./LessonRemediation";
 import { LessonStepper } from "./LessonStepper";
 import { PracticalExercise } from "./PracticalExercise";
 import { QuickCheck } from "./QuickCheck";
@@ -16,9 +17,12 @@ interface LessonViewProps {
   progress: Progress;
 }
 
+const LESSON_PASS_PERCENT = 80;
+
 export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: LessonViewProps) {
   const [stage, setStage] = useState<LessonStage>("read");
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
+  const [quizAttempt, setQuizAttempt] = useState(0);
   const [wasAlreadyDone] = useState(() => !!progress.lessonsDone[lesson.id]);
   const earnedXp = wasAlreadyDone ? 0 : 20 + (quizResult?.correctCount ?? 0) * 10;
 
@@ -185,12 +189,27 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
 
       {stage === "quiz" && (
         <QuizRunner
+          key={quizAttempt}
           questionIds={lesson.quizIds}
           dark={dark}
           title="Évaluation progressive · mini-quiz"
           onFinish={(result) => {
             setQuizResult(result);
-            setStage("exercice");
+            const percent = (result.correctCount / result.total) * 100;
+            setStage(percent >= LESSON_PASS_PERCENT ? "exercice" : "remediation");
+          }}
+        />
+      )}
+
+      {stage === "remediation" && quizResult && (
+        <LessonRemediation
+          result={quizResult}
+          dark={dark}
+          passPercent={LESSON_PASS_PERCENT}
+          onRetry={() => {
+            setQuizResult(null);
+            setQuizAttempt((attempt) => attempt + 1);
+            setStage("quiz");
           }}
         />
       )}

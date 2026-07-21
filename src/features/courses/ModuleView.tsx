@@ -38,6 +38,8 @@ function LessonRow({ lesson, index, done, locked, dark, onOpen }: { lesson: Less
 
 export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam, onBack }: ModuleViewProps) {
   const doneCount = mod.lessons.filter((lesson) => progress.lessonsDone[lesson.id]).length;
+  const availableBlocks = mod.blocks?.filter((block) => block.status === "available") ?? [];
+  const plannedBlocks = mod.blocks?.filter((block) => block.status === "planned") ?? [];
 
   function renderLessons(lessons: Lesson[]) {
     return lessons.map((lesson, index) => {
@@ -65,15 +67,14 @@ export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam,
 
       {mod.blocks && (
         <div className="space-y-4">
-          {mod.blocks.map((block, blockIndex) => {
-            const previousBlock = blockIndex > 0 ? mod.blocks![blockIndex - 1] : null;
+          {availableBlocks.map((block, blockIndex) => {
+            const previousBlock = blockIndex > 0 ? availableBlocks[blockIndex - 1] : null;
             const previousPassed = !previousBlock || isBlockPassed(previousBlock, progress);
             const lessons = block.lessonIds.map((id) => mod.lessons.find((lesson) => lesson.id === id)).filter((lesson): lesson is Lesson => !!lesson);
             const complete = lessons.length > 0 && lessons.every((lesson) => progress.lessonsDone[lesson.id]);
             const passed = isBlockPassed(block, progress);
             const result = progress.blockExamScores[block.id];
-            const planned = block.status === "planned";
-            const locked = planned || !previousPassed;
+            const locked = !previousPassed;
 
             return (
               <section key={block.id} className={`overflow-hidden rounded-2xl border ${passed ? "border-emerald-500/50" : dark ? "border-slate-700" : "border-slate-200"}`}>
@@ -88,8 +89,7 @@ export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam,
                       <p className="mt-1 text-xs leading-relaxed text-slate-400">{block.objective}</p>
                     </div>
                   </div>
-                  {planned && <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500"><Construction size={15} /> Contenu prévu dans une prochaine livraison</div>}
-                  {!planned && <div className="mt-3"><ProgressBar value={lessons.filter((lesson) => progress.lessonsDone[lesson.id]).length} max={lessons.length} tone={passed ? "emerald" : "amber"} /></div>}
+                  <div className="mt-3"><ProgressBar value={lessons.filter((lesson) => progress.lessonsDone[lesson.id]).length} max={lessons.length} tone={passed ? "emerald" : "amber"} /></div>
                 </header>
 
                 {!locked && (
@@ -117,6 +117,30 @@ export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam,
               </section>
             );
           })}
+
+          {plannedBlocks.length > 0 && (
+            <details className={`rounded-2xl border ${dark ? "border-slate-700 bg-slate-800/40" : "border-slate-200 bg-white"}`}>
+              <summary className="flex cursor-pointer list-none items-center gap-3 p-4">
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${dark ? "bg-slate-900 text-slate-400" : "bg-slate-100 text-slate-500"}`}><Construction size={20} /></span>
+                <span className="min-w-0 flex-1">
+                  <span className={`block font-bold ${dark ? "text-white" : "text-slate-900"}`}>Feuille de route à venir</span>
+                  <span className="block text-xs text-slate-400">{plannedBlocks.length} blocs seront développés et validés un par un</span>
+                </span>
+                <ChevronRight className="text-slate-500" size={18} />
+              </summary>
+              <ol className={`space-y-3 border-t p-4 ${dark ? "border-slate-700" : "border-slate-200"}`}>
+                {plannedBlocks.map((block) => (
+                  <li key={block.id} className="flex gap-3">
+                    <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${dark ? "bg-slate-900 text-slate-400" : "bg-slate-100 text-slate-500"}`}>{block.num}</span>
+                    <div>
+                      <p className={`text-sm font-semibold ${dark ? "text-slate-200" : "text-slate-700"}`}>{block.title}</p>
+                      <p className="text-xs text-slate-500">{block.objective}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          )}
         </div>
       )}
     </div>
