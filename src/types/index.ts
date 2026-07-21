@@ -49,6 +49,10 @@ export type LessonSchemaType =
   | "keyed-joint"
   | "coupling-selection"
   | "alignment-basics"
+  | "shaft-runout"
+  | "dial-alignment"
+  | "laser-alignment"
+  | "balance-vibration"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
