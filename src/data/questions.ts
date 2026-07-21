@@ -1,6 +1,8 @@
+import type { QuestionBank } from "../types";
+
 /* ---------------------------- DATA: QUESTION BANK (50) ---------------------------- */
 
-export const QUESTIONS = {
+export const QUESTIONS: QuestionBank = {
   q1: { lesson: "1-1", type: "qcm", q: "Quel est le rôle principal du service maintenance ?", options: ["Fabriquer le produit", "Garder les équipements en état de fonctionner", "Vendre les produits", "Contrôler la comptabilité"], correct: 1, exp: "La maintenance ne produit pas : elle garde l'outil de production disponible et fiable." },
   q2: { lesson: "1-1", type: "vf", q: "« Entretenir » et « maintenir » veulent dire exactement la même chose.", options: ["Vrai", "Faux"], correct: 1, exp: "Les deux notions sont proches, mais la maintenance est plus large : elle englobe diagnostic, correction, prévention et amélioration. L'entretien désigne souvent les actions courantes comme nettoyer, lubrifier ou régler." },
   q3: { lesson: "1-1", type: "qcm", q: "Quelle fonction du service maintenance prépare les interventions avant qu'elles aient lieu ?", options: ["Réalisation", "Méthodes", "Magasin", "Qualité"], correct: 1, exp: "La fonction Méthodes analyse et prépare le travail avant l'intervention terrain." },

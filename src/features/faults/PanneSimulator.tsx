@@ -1,11 +1,24 @@
 import { useState } from "react";
 import { ArrowLeft, ChevronRight, ShieldAlert } from "lucide-react";
 import { PANNES } from "../../data";
+import type { FaultScenario, Progress } from "../../types";
 
 /* ---------------------------- PANNE SIMULATOR ---------------------------- */
 
-function PanneCard({ panne, dark, onFinish }) {
-  const [answers, setAnswers] = useState(Array(panne.steps.length).fill(null));
+interface PanneCardProps {
+  panne: FaultScenario;
+  dark: boolean;
+  onFinish: (score: number, total: number) => void;
+}
+
+interface PanneSimulatorProps {
+  progress: Progress;
+  dark: boolean;
+  onScore: (panneId: string, score: number, total: number) => void;
+}
+
+function PanneCard({ panne, dark, onFinish }: PanneCardProps) {
+  const [answers, setAnswers] = useState<Array<number | null>>(Array(panne.steps.length).fill(null));
   const [revealed, setRevealed] = useState(false);
 
   function submit() {
@@ -80,11 +93,11 @@ function PanneCard({ panne, dark, onFinish }) {
   );
 }
 
-export function PanneSimulator({ progress, dark, onScore }) {
-  const [current, setCurrent] = useState(null);
+export function PanneSimulator({ progress, dark, onScore }: PanneSimulatorProps) {
+  const [current, setCurrent] = useState<string | null>(null);
 
   if (current) {
-    const panne = PANNES.find((p) => p.id === current);
+    const panne = PANNES.find((p) => p.id === current)!;
     return (
       <div className="space-y-4 pb-24">
         <button onClick={() => setCurrent(null)} className="flex items-center gap-1 text-sm text-slate-400 hover:text-amber-400">

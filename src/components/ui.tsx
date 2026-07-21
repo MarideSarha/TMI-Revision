@@ -1,6 +1,35 @@
 import { ChevronRight } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
+import type { ProgressTone, TrainingModule } from "../types";
 
-export function HazardStripe({ className = "" }) {
+interface HazardStripeProps {
+  className?: string;
+}
+
+interface ProgressBarProps {
+  value: number;
+  max: number;
+  tone?: ProgressTone;
+}
+
+interface StatTileProps {
+  icon: LucideIcon;
+  label: string;
+  value: ReactNode;
+  sub?: ReactNode;
+  dark: boolean;
+}
+
+interface ModulePlateProps {
+  mod: TrainingModule;
+  dark: boolean;
+  onClick: () => void;
+  completed: number;
+  total: number;
+}
+
+export function HazardStripe({ className = "" }: HazardStripeProps) {
   return (
     <div
       className={`h-2 w-full ${className}`}
@@ -12,7 +41,7 @@ export function HazardStripe({ className = "" }) {
   );
 }
 
-export function ProgressBar({ value, max, tone = "amber" }) {
+export function ProgressBar({ value, max, tone = "amber" }: ProgressBarProps) {
   const pct = Math.min(100, Math.round((value / Math.max(1, max)) * 100));
   const toneMap = {
     amber: "bg-amber-400",
@@ -31,7 +60,7 @@ export function ProgressBar({ value, max, tone = "amber" }) {
   );
 }
 
-export function StatTile({ icon: Icon, label, value, sub, dark }) {
+export function StatTile({ icon: Icon, label, value, sub, dark }: StatTileProps) {
   return (
     <div className={`rounded-xl p-4 border ${dark ? "bg-slate-800/60 border-slate-700" : "bg-white border-slate-200"} flex flex-col gap-1`}>
       <div className="flex items-center gap-2 text-slate-400">
@@ -44,7 +73,7 @@ export function StatTile({ icon: Icon, label, value, sub, dark }) {
   );
 }
 
-export function ModulePlate({ mod, dark, onClick, completed, total }) {
+export function ModulePlate({ mod, dark, onClick, completed, total }: ModulePlateProps) {
   const Icon = mod.icon;
   const colorMap = {
     amber: "text-amber-400 border-amber-400/40",

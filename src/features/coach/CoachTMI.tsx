@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Loader2, MessageCircle, Send } from "lucide-react";
+import type { CoachMessage } from "../../types";
 
 /* ---------------------------- COACH TMI (chat via Claude API) ---------------------------- */
 
@@ -10,22 +11,26 @@ Tu peux : répondre aux questions, reformuler un cours plus simplement, poser de
 Reste toujours bienveillant mais rigoureux sur la sécurité : rappelle systématiquement que la sécurité passe avant la réparation dès qu'un scénario technique est abordé.
 Réponds en français, de façon concise et structurée, avec des listes courtes si utile.`;
 
-export function CoachTMI({ dark }) {
-  const [messages, setMessages] = useState([
+interface CoachTMIProps {
+  dark: boolean;
+}
+
+export function CoachTMI({ dark }: CoachTMIProps) {
+  const [messages, setMessages] = useState<CoachMessage[]>([
     { role: "assistant", content: "Bonjour ! Je suis Coach TMI 👷 Je suis là pour t'accompagner jusqu'à ta rentrée en septembre 2026. Tu peux me poser une question, me demander un exercice personnalisé, une nouvelle panne à diagnostiquer, ou une séance de révision minutée. Par quoi veux-tu commencer ?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, loading]);
 
-  async function send(text) {
+  async function send(text?: string) {
     const content = text ?? input;
     if (!content.trim() || loading) return;
-    const newMessages = [...messages, { role: "user", content }];
+    const newMessages: CoachMessage[] = [...messages, { role: "user", content }];
     setMessages(newMessages);
     setInput("");
     setLoading(true);

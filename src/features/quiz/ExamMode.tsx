@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Calendar, ChevronRight, ListChecks, Timer, Zap } from "lucide-react";
 import { QUESTIONS } from "../../data";
+import type { ExamModeId, QuizResult } from "../../types";
 import { QuizRunner } from "./QuizRunner";
 
 /* ---------------------------- EXAM MODE ---------------------------- */
 
-function shuffle(arr) {
+function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -14,8 +15,13 @@ function shuffle(arr) {
   return a;
 }
 
-export function ExamMode({ dark, onFinish }) {
-  const [mode, setMode] = useState(null);
+interface ExamModeProps {
+  dark: boolean;
+  onFinish: (result: QuizResult) => void;
+}
+
+export function ExamMode({ dark, onFinish }: ExamModeProps) {
+  const [mode, setMode] = useState<ExamModeId | null>(null);
   const allIds = Object.keys(QUESTIONS);
 
   if (mode === "quick") {
@@ -32,7 +38,7 @@ export function ExamMode({ dark, onFinish }) {
     { id: "quick", label: "Quiz rapide", desc: "5 questions aléatoires", icon: Zap, time: "2 min" },
     { id: "daily", label: "Quiz quotidien", desc: "10 questions aléatoires", icon: Calendar, time: "5 min" },
     { id: "exam", label: "Examen blanc chronométré", desc: "20 questions, tous modules", icon: Timer, time: "15 min" },
-  ];
+  ] as const;
 
   return (
     <div className="space-y-4 pb-24">

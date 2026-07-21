@@ -1,8 +1,9 @@
 import { Award, BookOpen, Flame, Gauge, HardHat, ShieldAlert, Target, Zap } from "lucide-react";
+import type { BadgeDefinition } from "../types";
 
 /* ---------------------------- BADGES ---------------------------- */
 
-export const BADGE_DEFS = [
+export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "first_lesson", label: "Premier pas", desc: "Terminer votre première leçon", icon: BookOpen },
   { id: "module_1", label: "Bases solides", desc: "Terminer le module Environnement & sécurité", icon: HardHat },
   { id: "module_2", label: "Calculateur", desc: "Terminer le module Mathématiques appliquées", icon: Gauge },

@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { AlertTriangle, ArrowLeft, CheckCircle2, ClipboardList, PenTool } from "lucide-react";
+import type { Lesson, LessonStage, Progress, QuizResult, TrainingModule } from "../../types";
 import { QuizRunner } from "../quiz/QuizRunner";
 import { LessonSchema } from "./LessonSchema";
 
 /* ---------------------------- LESSON VIEW ---------------------------- */
 
-export function LessonView({ lesson, mod, dark, onBack, onDone, progress }) {
-  const [stage, setStage] = useState("read"); // read -> quiz -> exercice -> done
+interface LessonViewProps {
+  lesson: Lesson;
+  mod: TrainingModule;
+  dark: boolean;
+  onBack: () => void;
+  onDone: (lessonId: string, result: QuizResult) => void;
+  progress: Progress;
+}
+
+export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: LessonViewProps) {
+  const [stage, setStage] = useState<LessonStage>("read"); // read -> quiz -> exercice -> done
   const done = !!progress.lessonsDone[lesson.id];
 
   return (

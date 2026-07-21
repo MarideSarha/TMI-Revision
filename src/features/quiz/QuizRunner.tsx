@@ -2,15 +2,23 @@ import { useState } from "react";
 import { CheckCircle2, ChevronRight, XCircle } from "lucide-react";
 import { ProgressBar } from "../../components/ui";
 import { QUESTIONS } from "../../data";
+import type { QuizResult } from "../../types";
 
 /* ---------------------------- QUIZ COMPONENT ---------------------------- */
 
-export function QuizRunner({ questionIds, onFinish, dark, title }) {
+interface QuizRunnerProps {
+  questionIds: string[];
+  onFinish: (result: QuizResult) => void;
+  dark: boolean;
+  title?: string;
+}
+
+export function QuizRunner({ questionIds, onFinish, dark, title }: QuizRunnerProps) {
   const [idx, setIdx] = useState(0);
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<string, boolean>>({});
 
   const qid = questionIds[idx];
   const question = QUESTIONS[qid];

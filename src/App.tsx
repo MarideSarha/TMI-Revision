@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { BookOpen, Home, ListChecks, Loader2, MessageCircle, Moon, ShieldAlert, Sun, Wrench } from "lucide-react";
 import { HazardStripe, ModulePlate } from "./components/ui";
 import { MODULES } from "./data";
 import { CoachTMI, Dashboard, ExamMode, LessonView, ModuleView, PanneSimulator, ProgressionView } from "./features";
-import { loadProgress, saveProgress, todayStr } from "./lib/progress";
+import { useProgress } from "./hooks";
+import type { AppView, Theme, ViewData } from "./types";
 
 /* ============================================================
    TMI RÉVISION — plateforme de préparation au Titre Pro TMI
@@ -19,84 +20,17 @@ const NAV_ITEMS = [
   { id: "pannes", label: "Pannes", icon: ShieldAlert },
   { id: "exam", label: "Quiz", icon: ListChecks },
   { id: "coach", label: "Coach", icon: MessageCircle },
-];
+] as const;
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
-  const [view, setView] = useState("dashboard");
-  const [viewData, setViewData] = useState({});
-  const [progress, setProgress] = useState(null);
-  const [ready, setReady] = useState(false);
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [view, setView] = useState<AppView>("dashboard");
+  const [viewData, setViewData] = useState<ViewData>({});
+  const { progress, ready, handleLessonDone, handlePanneScore, handleExamFinish } = useProgress();
 
   const dark = theme === "dark";
 
-  useEffect(() => {
-    (async () => {
-      const p = await loadProgress();
-      const today = todayStr();
-      if (p.lastVisit !== today) {
-        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-        p.streak = p.lastVisit === yesterday ? p.streak + 1 : p.lastVisit ? 1 : 1;
-        p.lastVisit = today;
-      }
-      setProgress(p);
-      setReady(true);
-    })();
-  }, []);
-
-  const persist = useCallback((next) => {
-    setProgress(next);
-    saveProgress(next);
-  }, []);
-
-  function addHistory(p, label) {
-    p.history = [...p.history, { label, date: new Date().toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) }];
-  }
-
-  function checkBadges(p) {
-    const badges = new Set(p.badges);
-    if (Object.keys(p.lessonsDone).length >= 1) badges.add("first_lesson");
-    MODULES.forEach((m, i) => {
-      if (m.lessons.every((l) => p.lessonsDone[l.id])) badges.add(["module_1", "module_2", "module_3"][i]);
-    });
-    const panneCount = Object.keys(p.panneScores).length;
-    if (panneCount >= 5) badges.add("detective_5");
-    if (panneCount >= 10) badges.add("detective_10");
-    if (p.streak >= 3) badges.add("streak_3");
-    if (p.streak >= 7) badges.add("streak_7");
-    const totalCorrect = Object.values(p.quizAnswers).reduce((s, arr) => s + arr.filter(Boolean).length, 0);
-    if (totalCorrect >= 50) badges.add("fifty_correct");
-    p.badges = Array.from(badges);
-  }
-
-  function handleLessonDone(lessonId, res) {
-    const next = { ...progress, lessonsDone: { ...progress.lessonsDone }, quizAnswers: { ...progress.quizAnswers } };
-    next.lessonsDone[lessonId] = true;
-    next.quizAnswers[lessonId] = Object.keys(res.answers).map((k) => res.answers[k]);
-    next.xp += 20 + res.correctCount * 10;
-    addHistory(next, `Leçon terminée (${res.correctCount}/${res.total})`);
-    checkBadges(next);
-    persist(next);
-  }
-
-  function handlePanneScore(panneId, score, total) {
-    const next = { ...progress, panneScores: { ...progress.panneScores } };
-    next.panneScores[panneId] = { score, total };
-    next.xp += 15 + score * 5;
-    addHistory(next, `Panne résolue : ${score}/${total}`);
-    checkBadges(next);
-    persist(next);
-  }
-
-  function handleExamFinish(res) {
-    const next = { ...progress };
-    next.xp += res.correctCount * 8;
-    addHistory(next, `Quiz terminé (${res.correctCount}/${res.total})`);
-    checkBadges(next);
-    persist(next);
-  }
-
-  function navigate(nextView, data = {}) {
+  function navigate(nextView: AppView, data: ViewData = {}) {
     setView(nextView);
     setViewData(data);
   }

@@ -1,8 +1,9 @@
 import { Activity, Cog, Droplet, PlugZap, RotateCcw, ShieldAlert, Target, Wind, Zap } from "lucide-react";
+import type { FaultScenario } from "../types";
 
 /* ---------------------------- DATA: PANNES (10 scénarios) ---------------------------- */
 
-export const PANNES = [
+export const PANNES: FaultScenario[] = [
   {
     id: "p1",
     title: "Le convoyeur ne démarre plus",

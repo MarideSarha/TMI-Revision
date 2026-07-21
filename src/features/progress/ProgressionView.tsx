@@ -2,10 +2,16 @@ import { Award, BookOpen, CheckCircle2, Flame, TrendingUp } from "lucide-react";
 import { StatTile } from "../../components/ui";
 import { BADGE_DEFS, MODULES } from "../../data";
 import { levelFromXp, xpForNextLevel } from "../../lib/progress";
+import type { Progress } from "../../types";
 
 /* ---------------------------- PROGRESSION VIEW ---------------------------- */
 
-export function ProgressionView({ progress, dark }) {
+interface ProgressionViewProps {
+  progress: Progress;
+  dark: boolean;
+}
+
+export function ProgressionView({ progress, dark }: ProgressionViewProps) {
   const lvl = levelFromXp(progress.xp);
   const totalLessons = MODULES.reduce((s, m) => s + m.lessons.length, 0);
   const doneLessons = Object.keys(progress.lessonsDone).length;
@@ -13,7 +19,7 @@ export function ProgressionView({ progress, dark }) {
   const totalAnswered = Object.values(progress.quizAnswers).reduce((s, arr) => s + arr.length, 0);
 
   // weak points: lessons with < 60% success
-  const weak = [];
+  const weak: Array<{ title: string; rate: number }> = [];
   MODULES.forEach((m) => m.lessons.forEach((l) => {
     const arr = progress.quizAnswers[l.id];
     if (arr && arr.length) {

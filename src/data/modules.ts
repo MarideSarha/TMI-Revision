@@ -1,8 +1,9 @@
 import { Gauge, HardHat, Zap } from "lucide-react";
+import type { TrainingModule } from "../types";
 
 /* ---------------------------- DATA: MODULES & LEÇONS ---------------------------- */
 
-export const MODULES = [
+export const MODULES: TrainingModule[] = [
   {
     id: "m1",
     num: 1,

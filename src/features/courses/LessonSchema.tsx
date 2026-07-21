@@ -1,6 +1,13 @@
+import type { LessonSchemaType } from "../../types";
+
 /* ---------------------------- SVG SCHEMAS ---------------------------- */
 
-export function LessonSchema({ type, dark }) {
+interface LessonSchemaProps {
+  type: LessonSchemaType;
+  dark: boolean;
+}
+
+export function LessonSchema({ type, dark }: LessonSchemaProps) {
   const stroke = dark ? "#94a3b8" : "#475569";
   const accent = "#f5b400";
   const box = dark ? "#1e293b" : "#f1f5f9";
@@ -12,11 +19,11 @@ export function LessonSchema({ type, dark }) {
         <text x="160" y="24" textAnchor="middle" fontSize="10" fill={stroke}>Direction</text>
         <line x1="160" y1="34" x2="160" y2="55" stroke={stroke} />
         <line x1="45" y1="55" x2="275" y2="55" stroke={stroke} />
-        {[
+        {([
           [45, "Production"],
           [160, "Maintenance"],
           [275, "Qualité"],
-        ].map(([x, label], i) => (
+        ] as Array<[number, string]>).map(([x, label], i) => (
           <g key={i}>
             <line x1={x} y1="55" x2={x} y2="70" stroke={stroke} />
             <rect x={x - 48} y="70" width="96" height="28" rx="4" fill={label === "Maintenance" ? accent : box} stroke={stroke} />

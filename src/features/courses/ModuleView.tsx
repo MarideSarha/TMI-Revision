@@ -1,9 +1,18 @@
 import { ArrowLeft, CheckCircle2, ChevronRight, Lock } from "lucide-react";
 import { ProgressBar } from "../../components/ui";
+import type { Lesson, Progress, TrainingModule } from "../../types";
 
 /* ---------------------------- MODULE VIEW ---------------------------- */
 
-export function ModuleView({ mod, progress, dark, onOpenLesson, onBack }) {
+interface ModuleViewProps {
+  mod: TrainingModule;
+  progress: Progress;
+  dark: boolean;
+  onOpenLesson: (lesson: Lesson) => void;
+  onBack: () => void;
+}
+
+export function ModuleView({ mod, progress, dark, onOpenLesson, onBack }: ModuleViewProps) {
   const doneCount = mod.lessons.filter((l) => progress.lessonsDone[l.id]).length;
   return (
     <div className="space-y-4 pb-24">

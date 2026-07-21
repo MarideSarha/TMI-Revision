@@ -2,10 +2,17 @@ import { AlertTriangle, Award, BookOpen, ChevronRight, Flame, GraduationCap, Lis
 import { ModulePlate, ProgressBar, StatTile } from "../../components/ui";
 import { MODULES, PANNES, QUESTIONS } from "../../data";
 import { levelFromXp } from "../../lib/progress";
+import type { Lesson, Navigate, Progress, TrainingModule } from "../../types";
 
 /* ---------------------------- DASHBOARD ---------------------------- */
 
-export function Dashboard({ progress, dark, onNavigate }) {
+interface DashboardProps {
+  progress: Progress;
+  dark: boolean;
+  onNavigate: Navigate;
+}
+
+export function Dashboard({ progress, dark, onNavigate }: DashboardProps) {
   const lvl = levelFromXp(progress.xp);
   const totalLessons = MODULES.reduce((s, m) => s + m.lessons.length, 0);
   const doneLessons = Object.keys(progress.lessonsDone).length;
@@ -13,7 +20,7 @@ export function Dashboard({ progress, dark, onNavigate }) {
   const totalAnswered = Object.values(progress.quizAnswers).reduce((s, arr) => s + arr.length, 0);
   const successRate = totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : null;
 
-  const weak = [];
+  const weak: string[] = [];
   MODULES.forEach((m) => m.lessons.forEach((l) => {
     const arr = progress.quizAnswers[l.id];
     if (arr && arr.length) {
@@ -24,10 +31,11 @@ export function Dashboard({ progress, dark, onNavigate }) {
 
   const start = new Date();
   const target = new Date("2026-09-02T00:00:00");
-  const daysLeft = Math.max(0, Math.ceil((target - start) / (1000 * 60 * 60 * 24)));
+  const daysLeft = Math.max(0, Math.ceil((target.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)));
 
   // find next lesson to continue
-  let nextLesson = null, nextMod = null;
+  let nextLesson: Lesson | null = null;
+  let nextMod: TrainingModule | null = null;
   for (const m of MODULES) {
     for (const l of m.lessons) {
       if (!progress.lessonsDone[l.id]) { nextLesson = l; nextMod = m; break; }
@@ -68,7 +76,7 @@ export function Dashboard({ progress, dark, onNavigate }) {
       tone: "text-emerald-400",
       surface: dark ? "hover:border-emerald-400/60" : "hover:border-emerald-400",
     },
-  ];
+  ] as const;
 
   return (
     <div className="space-y-5 pb-24">
