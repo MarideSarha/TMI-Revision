@@ -97,6 +97,51 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "measurement-process") {
+    return (
+      <svg viewBox="0 0 360 110" className="h-28 w-full" role="img" aria-label="Méthode de mesure fiable en cinq étapes">
+        {[
+          ["1", "Définir"],
+          ["2", "Estimer"],
+          ["3", "Mesurer"],
+          ["4", "Noter"],
+          ["5", "Comparer"],
+        ].map(([number, label], index) => (
+          <g key={label}>
+            <circle cx={36 + index * 72} cy="42" r="22" fill={index === 2 ? accent : box} stroke={stroke} strokeWidth={index === 2 ? 2 : 1} />
+            <text x={36 + index * 72} y="47" textAnchor="middle" fontSize="13" fill={index === 2 ? "#14151a" : stroke} fontWeight="bold">{number}</text>
+            <text x={36 + index * 72} y="82" textAnchor="middle" fontSize="9" fill={stroke}>{label}</text>
+            {index < 4 && <line x1={59 + index * 72} y1="42" x2={85 + index * 72} y2="42" stroke={stroke} />}
+          </g>
+        ))}
+      </svg>
+    );
+  }
+  if (type === "unit-scale") {
+    return (
+      <svg viewBox="0 0 360 120" className="h-28 w-full" role="img" aria-label="Échelle de conversion des unités de longueur">
+        <text x="180" y="18" textAnchor="middle" fontSize="10" fill={stroke}>Longueur : chaque pas vaut × 1 000 ou ÷ 1 000</text>
+        {[
+          ["m", "mètre"],
+          ["mm", "millimètre"],
+          ["µm", "micromètre"],
+        ].map(([symbol, label], index) => (
+          <g key={symbol}>
+            <rect x={25 + index * 120} y="42" width="70" height="36" rx="7" fill={index === 1 ? accent : box} stroke={stroke} />
+            <text x={60 + index * 120} y="65" textAnchor="middle" fontSize="13" fill={index === 1 ? "#14151a" : stroke} fontWeight="bold">{symbol}</text>
+            <text x={60 + index * 120} y="96" textAnchor="middle" fontSize="8" fill={stroke}>{label}</text>
+            {index < 2 && (
+              <g>
+                <line x1={96 + index * 120} y1="55" x2={142 + index * 120} y2="55" stroke={stroke} />
+                <text x={119 + index * 120} y="49" textAnchor="middle" fontSize="8" fill={accent}>× 1000</text>
+                <text x={119 + index * 120} y="75" textAnchor="middle" fontSize="8" fill={stroke}>÷ 1000</text>
+              </g>
+            )}
+          </g>
+        ))}
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">

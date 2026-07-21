@@ -65,6 +65,19 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
       errors.push(`La vérification rapide de la leçon ${lesson.id} possède une réponse invalide.`);
     }
 
+    if (lesson.activity?.type === "sequence") {
+      const order = lesson.activity.correctOrder;
+      const expected = lesson.activity.items.map((_, index) => index);
+      if (lesson.activity.items.length < 3 || order.length !== expected.length || [...order].sort((a, b) => a - b).some((value, index) => value !== expected[index])) {
+        errors.push(`L'activité de séquence de la leçon ${lesson.id} est incomplète ou possède un ordre invalide.`);
+      }
+    }
+    if (lesson.activity?.type === "conversion") {
+      if (lesson.activity.challenges.length < 2 || lesson.activity.challenges.some((challenge) => !Number.isFinite(challenge.answer) || challenge.tolerance < 0 || !challenge.unit.trim())) {
+        errors.push(`L'atelier de conversion de la leçon ${lesson.id} possède un défi invalide.`);
+      }
+    }
+
     for (const questionId of lesson.quizIds) {
       const question = questions[questionId];
       if (!question) {
@@ -84,6 +97,9 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
       }
       if (block.status === "available" && block.lessonIds.length !== block.chapterCount) {
         errors.push(`Le bloc disponible ${block.id} doit contenir ses ${block.chapterCount} chapitres.`);
+      }
+      if (block.status === "in_progress" && (block.lessonIds.length === 0 || block.lessonIds.length >= block.chapterCount)) {
+        errors.push(`Le bloc en construction ${block.id} doit proposer une partie, mais pas encore la totalité de ses chapitres.`);
       }
       if (block.exam) {
         if (block.exam.passPercent < 50 || block.exam.passPercent > 100) {

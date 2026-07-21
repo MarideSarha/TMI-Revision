@@ -38,7 +38,7 @@ function LessonRow({ lesson, index, done, locked, dark, onOpen }: { lesson: Less
 
 export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam, onBack }: ModuleViewProps) {
   const doneCount = mod.lessons.filter((lesson) => progress.lessonsDone[lesson.id]).length;
-  const availableBlocks = mod.blocks?.filter((block) => block.status === "available") ?? [];
+  const availableBlocks = mod.blocks?.filter((block) => block.status !== "planned") ?? [];
   const plannedBlocks = mod.blocks?.filter((block) => block.status === "planned") ?? [];
 
   function renderLessons(lessons: Lesson[]) {
@@ -84,9 +84,12 @@ export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam,
                       {passed ? <ShieldCheck size={20} /> : locked ? <Lock size={18} /> : block.num}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Bloc {block.num} · {block.chapterCount} chapitres</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                        Bloc {block.num} · {block.status === "in_progress" ? `${lessons.length} chapitres disponibles sur ${block.chapterCount}` : `${block.chapterCount} chapitres`}
+                      </div>
                       <h3 className={`font-bold ${dark ? "text-white" : "text-slate-900"}`}>{block.title}</h3>
                       <p className="mt-1 text-xs leading-relaxed text-slate-400">{block.objective}</p>
+                      {block.status === "in_progress" && <span className="mt-2 inline-flex rounded-full bg-cyan-500/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-cyan-400">Publication progressive</span>}
                     </div>
                   </div>
                   <div className="mt-3"><ProgressBar value={lessons.filter((lesson) => progress.lessonsDone[lesson.id]).length} max={lessons.length} tone={passed ? "emerald" : "amber"} /></div>
@@ -106,12 +109,19 @@ export function ModuleView({ mod, progress, dark, onOpenLesson, onOpenBlockExam,
                         <div className="flex-1">
                           <div className={`font-bold ${dark ? "text-white" : "text-slate-900"}`}>Examen du bloc</div>
                           <div className="text-xs text-slate-400">
-                            {!complete ? "Termine les 8 chapitres pour le débloquer" : result ? `Meilleur résultat : ${result.correctCount}/${result.total} · seuil ${block.exam.passPercent} %` : `${block.exam.questionIds.length} questions · seuil ${block.exam.passPercent} %`}
+                            {!complete ? `Termine les ${block.chapterCount} chapitres pour le débloquer` : result ? `Meilleur résultat : ${result.correctCount}/${result.total} · seuil ${block.exam.passPercent} %` : `${block.exam.questionIds.length} questions · seuil ${block.exam.passPercent} %`}
                           </div>
                         </div>
                         {passed ? <CheckCircle2 className="text-emerald-500" size={20} /> : complete ? <ChevronRight className="text-slate-400" size={20} /> : <Lock className="text-slate-500" size={18} />}
                       </button>
                     )}
+                  </div>
+                )}
+
+                {locked && (
+                  <div className={`flex items-center gap-3 border-t p-4 text-sm ${dark ? "border-slate-700 bg-slate-950/30 text-slate-300" : "border-slate-200 bg-slate-50 text-slate-600"}`}>
+                    <Lock size={18} className="shrink-0 text-amber-400" />
+                    <span>Réussis l’examen du bloc précédent pour débloquer ces chapitres.</span>
                   </div>
                 )}
               </section>

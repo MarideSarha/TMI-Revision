@@ -6,7 +6,7 @@ export type ProgressTone = ModuleTone | "emerald";
 export type QuestionType = "qcm" | "vf" | "calc";
 export type LessonStage = "read" | "checkpoint" | "quiz" | "remediation" | "exercice" | "done";
 export type ExamModeId = "quick" | "daily" | "exam";
-export type TrainingBlockStatus = "available" | "planned";
+export type TrainingBlockStatus = "available" | "in_progress" | "planned";
 
 export type LessonSchemaType =
   | "orgchart"
@@ -15,6 +15,8 @@ export type LessonSchemaType =
   | "percentage-bar"
   | "energy-flow"
   | "torque-diagram"
+  | "measurement-process"
+  | "unit-scale"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
@@ -33,6 +35,32 @@ export interface LessonQuickCheck {
   explanation: string;
 }
 
+export interface LessonSequenceActivity {
+  type: "sequence";
+  title: string;
+  instruction: string;
+  items: string[];
+  correctOrder: number[];
+  success: string;
+}
+
+export interface LessonConversionChallenge {
+  prompt: string;
+  answer: number;
+  tolerance: number;
+  unit: string;
+  explanation: string;
+}
+
+export interface LessonConversionActivity {
+  type: "conversion";
+  title: string;
+  instruction: string;
+  challenges: LessonConversionChallenge[];
+}
+
+export type LessonInteractiveActivity = LessonSequenceActivity | LessonConversionActivity;
+
 export interface Lesson {
   id: string;
   title: string;
@@ -47,6 +75,7 @@ export interface Lesson {
   quizIds: string[];
   verification: LessonQuickCheck;
   exercice: LessonExercise;
+  activity?: LessonInteractiveActivity;
   ascii?: string;
   astucesPro?: string[];
   diagnostic?: string[];

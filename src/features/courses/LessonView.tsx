@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AlertTriangle, ArrowLeft, CheckCircle2, ClipboardList, Clock3, Target } from "lucide-react";
 import type { Lesson, LessonStage, Progress, QuizResult, TrainingModule } from "../../types";
 import { QuizRunner } from "../quiz/QuizRunner";
+import { LessonInteractiveActivity } from "./LessonInteractiveActivity";
 import { LessonSchema } from "./LessonSchema";
 import { LessonRemediation } from "./LessonRemediation";
 import { LessonStepper } from "./LessonStepper";
@@ -86,6 +87,8 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
             <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-400">Exemple concret</h3>
             <p className={`${dark ? "text-slate-200" : "text-slate-700"} text-sm leading-relaxed`}>{lesson.example}</p>
           </section>
+
+          {lesson.activity && <LessonInteractiveActivity activity={lesson.activity} dark={dark} />}
 
           <section className={`rounded-xl border p-4 ${dark ? "border-slate-700 bg-slate-800/60" : "border-slate-200 bg-white"}`}>
             <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-400">Schéma</h3>

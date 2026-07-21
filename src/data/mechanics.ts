@@ -422,6 +422,233 @@ const block1Lessons: Lesson[] = [
   },
 ];
 
+const block2Lessons: Lesson[] = [
+  {
+    id: "4-9",
+    title: "Grandeur, valeur, unité : construire une mesure fiable",
+    durationMinutes: 45,
+    objectifs: [
+      "Distinguer une grandeur physique, sa valeur numérique et son unité.",
+      "Préparer, relever et tracer une mesure mécanique sans lui faire dire plus qu'elle ne permet.",
+      "Comparer un résultat à une référence en tenant compte de la résolution et des conditions de mesure.",
+    ],
+    simple:
+      "Mesurer ne consiste pas seulement à lire un nombre. Il faut d'abord savoir quelle grandeur on cherche — longueur, diamètre, jeu, vitesse, force ou température — puis choisir une unité et une précision adaptées. Une valeur sans unité est inutilisable. Une valeur sans lieu, date ou condition de mesure est difficile à comparer. Enfin, un résultat n'est utile que s'il est confronté à une référence : plan, notice, tolérance, mesure antérieure ou équipement identique en bon état.",
+    vocab: [
+      ["Grandeur", "Propriété que l'on peut mesurer, par exemple une longueur, une force ou une température."],
+      ["Valeur", "Nombre obtenu ou attendu pour une grandeur."],
+      ["Unité", "Référence attachée à la valeur : mm, N, °C, tr/min, etc."],
+      ["Résolution", "Plus petite variation que l'instrument peut afficher ou distinguer."],
+      ["Tolérance", "Intervalle de valeurs accepté pour que la pièce ou le réglage soit conforme."],
+      ["Incertitude", "Marge de doute inévitable autour d'un résultat de mesure."],
+      ["Traçabilité", "Informations qui permettent de retrouver qui a mesuré quoi, où, quand, comment et dans quelles conditions."],
+    ],
+    example:
+      "Un plan indique un diamètre d'arbre de 30,00 ± 0,05 mm. Écrire seulement « 29,93 » ne suffit pas. Le compte-rendu utile précise : diamètre 29,93 mm, portée côté entraînement, machine arrêtée et sécurisée, surface nettoyée, trois relevés concordants. La limite basse vaut 29,95 mm : le résultat est donc hors tolérance, sous réserve d'un moyen de mesure adapté et vérifié.",
+    schema: "measurement-process",
+    ascii: [
+      "BESOIN → GRANDEUR → UNITÉ / RÉSOLUTION → MESURE → TRACE → COMPARAISON",
+      "usure    diamètre        mm / 0,01 mm       29,93     lieu     29,95 mini",
+      "                                                         ↓",
+      "                                              conclusion justifiée",
+    ].join("\n"),
+    activity: {
+      type: "sequence",
+      title: "Atelier : remettre une mesure dans l'ordre",
+      instruction: "Clique les cinq actions dans l'ordre logique. La mesure vient après la préparation, jamais avant.",
+      items: [
+        "Mesurer puis noter la valeur, l'unité, le lieu et les conditions",
+        "Identifier la grandeur nécessaire au diagnostic",
+        "Comparer le résultat à une référence fiable",
+        "Estimer l'ordre de grandeur attendu",
+        "Choisir une unité et une résolution adaptées",
+      ],
+      correctOrder: [1, 3, 4, 0, 2],
+      success: "Tu as construit une mesure exploitable : besoin défini, ordre de grandeur estimé, moyen adapté, résultat tracé puis comparé.",
+    },
+    retenir: [
+      "Une mesure complète s'écrit valeur + unité + localisation + conditions.",
+      "La résolution de l'instrument doit être compatible avec la tolérance à contrôler.",
+      "On estime d'abord l'ordre de grandeur pour détecter une erreur de lecture ou d'unité.",
+      "Une mesure isolée devient plus fiable lorsqu'elle est répétée et comparée à une référence pertinente.",
+    ],
+    erreurs: [
+      "Noter « 25 » sans préciser s'il s'agit de mm, °C, N ou tr/min.",
+      "Utiliser un moyen lisible au millimètre pour décider d'une tolérance de quelques centièmes de millimètre.",
+      "Mesurer sur une surface sale, chaude ou endommagée sans le signaler.",
+      "Conclure qu'une pièce est défectueuse à partir d'un seul relevé incohérent.",
+    ],
+    astucesPro: [
+      "Avant la mesure, annonce mentalement la valeur probable : une réponse mille fois trop grande sautera aux yeux.",
+      "Conserve la même unité que le plan ou la notice jusqu'à la conclusion pour limiter les conversions inutiles.",
+      "Répète la mesure à plusieurs positions si tu recherches ovalisation, conicité ou défaut localisé.",
+      "Un instrument précis n'améliore pas une mauvaise préparation de surface ou une mauvaise méthode.",
+    ],
+    diagnostic: [
+      "Transformer le symptôme en grandeur observable : jeu, diamètre, température, vitesse ou vibration.",
+      "Rechercher la valeur de référence et sa tolérance avant de mesurer.",
+      "Estimer l'ordre de grandeur et choisir la résolution nécessaire.",
+      "Effectuer plusieurs relevés dans des conditions maîtrisées puis comparer sans arrondir trop tôt.",
+    ],
+    depannage: [
+      "Si une valeur paraît impossible, vérifier d'abord l'unité, le zéro, la gamme et la position de mesure.",
+      "Nettoyer ou préparer la zone selon la procédure, puis recommencer sans modifier la pièce.",
+      "Comparer avec un second point, une seconde méthode autorisée ou une pièce de référence.",
+      "Ne remplacer ou régler un organe qu'après confirmation du défaut et analyse de la cause probable.",
+    ],
+    securite: [
+      "Ne jamais mesurer au contact d'une pièce en rotation ou dans un point rentrant accessible.",
+      "L'arrêt simple ne suffit pas si la mesure impose l'accès à une zone dangereuse : appliquer la consignation prévue par le site.",
+      "Une mesure en fonctionnement n'est réalisée que si la procédure l'autorise, avec protecteurs en place et moyen sans contact adapté.",
+    ],
+    etudeDeCas: {
+      situation: "Un roulement neuf chauffe à 72 °C. Un collègue affirme qu'il est défectueux parce que « 72, c'est trop ».",
+      mission: [
+        "Identifier les informations manquantes avant de conclure.",
+        "Proposer une méthode de relevé et de comparaison.",
+        "Citer trois causes possibles sans en présenter une comme certaine.",
+      ],
+      correction:
+        "Il faut préciser l'unité, le point et le moyen de mesure, la température ambiante, la charge, le régime, la durée depuis le démarrage et la valeur habituelle ou limite constructeur. Relever une tendance à intervalles définis et comparer au palier opposé ou à l'historique. Les hypothèses peuvent inclure excès de graisse, défaut de montage, charge excessive ou désalignement, mais elles doivent être contrôlées.",
+    },
+    memo: ["Grandeur ≠ valeur ≠ unité", "Estimer avant de mesurer", "Tracer les conditions", "Comparer avant de conclure"],
+    resume: "Une mesure fiable répond à une question précise, utilise une unité et une résolution adaptées, reste traçable et ne conduit à une conclusion qu'après comparaison.",
+    quizIds: ["mec41", "mec42", "mec43", "mec44", "mec45"],
+    verification: {
+      question: "Quelle écriture constitue le relevé le plus exploitable ?",
+      options: ["Le palier est chaud", "72", "72 °C au palier entraînement, après 20 min à charge nominale", "Roulement cassé"],
+      correct: 2,
+      explanation: "La valeur, l'unité, la localisation et les conditions rendent le relevé comparable et traçable.",
+    },
+    exercice: {
+      enonce: "Le plan d'un arbre indique 30,00 ± 0,05 mm. Trois relevés au même endroit donnent 29,94 mm, 29,93 mm et 29,94 mm.",
+      consignes: [
+        "Calcule les limites basse et haute de la tolérance.",
+        "Compare les trois valeurs sans oublier l'unité.",
+        "Rédige une conclusion prudente et les vérifications à faire avant décision.",
+      ],
+      criteres: [
+        "J'ai obtenu 29,95 mm et 30,05 mm comme limites.",
+        "J'ai constaté que les trois valeurs sont sous la limite basse.",
+        "J'ai demandé de confirmer la méthode, le moyen de mesure et l'état de surface avant remplacement.",
+      ],
+      correction:
+        "La plage conforme va de 29,95 à 30,05 mm. Les trois relevés sont inférieurs à 29,95 mm et sont proches entre eux : une usure ou un diamètre insuffisant est plausible. Il faut néanmoins confirmer que l'instrument et sa résolution conviennent, vérifier son zéro, nettoyer la portée et mesurer à plusieurs angles et positions avant de décider.",
+    },
+  },
+  {
+    id: "4-10",
+    title: "Convertir les unités d'atelier sans erreur",
+    durationMinutes: 50,
+    objectifs: [
+      "Convertir des longueurs entre m, mm et µm, ainsi que des forces et puissances avec leurs préfixes.",
+      "Choisir le sens de la conversion sans mémoriser aveuglément une règle.",
+      "Contrôler un résultat grâce à son ordre de grandeur et présenter le calcul avec ses unités.",
+    ],
+    simple:
+      "Les préfixes changent la taille de l'unité. Kilo signifie mille fois l'unité ; milli signifie un millième ; micro signifie un millionième. Pour exprimer la même longueur dans une unité plus petite, le nombre devient plus grand : 1,25 m = 1 250 mm. Vers une unité plus grande, le nombre devient plus petit : 4 500 N = 4,5 kN. Le bon réflexe est de prévoir ce sens avant de déplacer une virgule.",
+    vocab: [
+      ["Préfixe", "Élément placé devant une unité pour indiquer un facteur, par exemple kilo, milli ou micro."],
+      ["Kilo (k)", "Mille fois l'unité : 1 kN = 1 000 N et 1 kW = 1 000 W."],
+      ["Milli (m)", "Un millième de l'unité : 1 mm = 0,001 m."],
+      ["Micro (µ)", "Un millionième de l'unité : 1 µm = 0,000001 m et 1 mm = 1 000 µm."],
+      ["Facteur de conversion", "Nombre par lequel on multiplie ou divise pour changer d'unité sans changer la grandeur réelle."],
+      ["Ordre de grandeur", "Estimation de la taille du résultat utilisée pour repérer une erreur grossière."],
+    ],
+    example:
+      "Une notice demande un jeu maximal de 0,15 mm alors qu'un rapport indique 120 µm. Comme 1 mm vaut 1 000 µm, 120 µm = 0,120 mm. Le jeu mesuré reste donc sous la limite de 0,15 mm. Écrire 120 mm à la place provoquerait une conclusion absurde et potentiellement une intervention inutile.",
+    schema: "unit-scale",
+    ascii: [
+      "          unité plus petite → nombre plus grand",
+      "  m   ─────── × 1 000 ───────>   mm   ─────── × 1 000 ───────>   µm",
+      "  m   <─────── ÷ 1 000 ───────   mm   <─────── ÷ 1 000 ───────   µm",
+      "          unité plus grande → nombre plus petit",
+      "",
+      "kN ↔ N et kW ↔ W : facteur 1 000",
+    ].join("\n"),
+    activity: {
+      type: "conversion",
+      title: "Atelier de conversion",
+      instruction: "Résous les quatre défis. La virgule et le point décimal sont tous les deux acceptés.",
+      challenges: [
+        { prompt: "Convertis 1,25 m en millimètres.", answer: 1250, tolerance: 0.0001, unit: "mm", explanation: "On passe vers une unité 1 000 fois plus petite : 1,25 × 1 000 = 1 250 mm." },
+        { prompt: "Convertis 0,08 mm en micromètres.", answer: 80, tolerance: 0.0001, unit: "µm", explanation: "1 mm = 1 000 µm, donc 0,08 × 1 000 = 80 µm." },
+        { prompt: "Convertis 4 500 N en kilonewtons.", answer: 4.5, tolerance: 0.0001, unit: "kN", explanation: "On passe vers une unité 1 000 fois plus grande : 4 500 ÷ 1 000 = 4,5 kN." },
+        { prompt: "Convertis 2,2 kW en watts.", answer: 2200, tolerance: 0.0001, unit: "W", explanation: "Kilo vaut 1 000 : 2,2 × 1 000 = 2 200 W." },
+      ],
+    },
+    retenir: [
+      "Changer d'unité ne change jamais la grandeur réelle, seulement son écriture.",
+      "Vers une unité plus petite, le nombre augmente ; vers une unité plus grande, il diminue.",
+      "m ↔ mm ↔ µm et kN ↔ N ou kW ↔ W utilisent ici des facteurs de 1 000.",
+      "Écrire les unités à chaque ligne permet de voir ce qui se simplifie et d'éviter les mélanges.",
+    ],
+    erreurs: [
+      "Déplacer la virgule sans avoir prévu si le nombre doit augmenter ou diminuer.",
+      "Confondre le symbole m de mètre avec le préfixe milli selon le contexte.",
+      "Écrire 0,08 mm = 0,00008 µm au lieu de 80 µm.",
+      "Mélanger des valeurs en N et en kN dans une même formule sans conversion préalable.",
+    ],
+    astucesPro: [
+      "Écris d'abord l'égalité de référence : 1 m = 1 000 mm ou 1 kN = 1 000 N.",
+      "Utilise un espace pour séparer les milliers : 12 500 mm, pas 12.500 mm dans un document français.",
+      "Conserve quelques chiffres supplémentaires pendant le calcul et arrondis seulement à la fin selon la précision utile.",
+      "Si une conversion transforme un petit jeu mécanique en plusieurs mètres, arrête-toi : le sens ou le facteur est faux.",
+    ],
+    diagnostic: [
+      "Lister toutes les valeurs utilisées avec leur unité.",
+      "Choisir une unité commune avant toute comparaison ou formule.",
+      "Écrire le facteur de conversion et calculer sans arrondir prématurément.",
+      "Comparer le résultat à un ordre de grandeur réaliste pour la machine.",
+    ],
+    depannage: [
+      "Lorsqu'un résultat est incohérent, vérifier les préfixes et les unités avant d'accuser le matériel.",
+      "Reprendre le calcul ligne par ligne avec une unité sur chaque valeur.",
+      "Comparer au plan, à la plaque ou à une valeur connue dans la même unité.",
+      "Corriger le compte-rendu et signaler toute décision antérieure basée sur une unité erronée.",
+    ],
+    securite: [
+      "Une erreur d'unité sur un couple de serrage, une pression ou une charge peut provoquer rupture, fuite ou chute de pièce.",
+      "Ne jamais appliquer sur une machine réelle une valeur convertie sans vérifier l'unité demandée par la documentation constructeur.",
+      "Pour un levage, un serrage critique ou une pression, faire valider le calcul selon les règles et responsabilités du site.",
+    ],
+    etudeDeCas: {
+      situation: "Une fiche de contrôle donne un jeu axial de 180 µm. La notice accepte de 0,10 à 0,20 mm. Deux techniciens ne sont pas d'accord sur la conformité.",
+      mission: [
+        "Convertir les trois valeurs dans la même unité.",
+        "Conclure sur la conformité du jeu.",
+        "Rédiger une ligne de compte-rendu qui évite toute ambiguïté.",
+      ],
+      correction:
+        "180 µm = 0,180 mm. La plage admissible est de 0,10 à 0,20 mm, soit 100 à 200 µm. La valeur se trouve dans la plage. Compte-rendu possible : « Jeu axial mesuré : 0,180 mm (180 µm), conforme à la plage constructeur 0,10–0,20 mm. »",
+    },
+    memo: ["Petite unité → grand nombre", "kilo = × 1 000", "milli = ÷ 1 000", "micro = ÷ 1 000 000", "Une unité à chaque ligne"],
+    resume: "Une conversion fiable commence par une égalité de référence, prévoit le sens de variation du nombre et se termine par un contrôle d'ordre de grandeur.",
+    quizIds: ["mec46", "mec47", "mec48", "mec49", "mec50"],
+    verification: {
+      question: "Quelle égalité est correcte ?",
+      options: ["1 m = 100 mm", "1 mm = 1 000 µm", "1 kN = 100 N", "1 kW = 0,001 W"],
+      correct: 1,
+      explanation: "Un millimètre contient 1 000 micromètres. Les autres facteurs proposés sont faux.",
+    },
+    exercice: {
+      enonce: "Une notice demande un jeu compris entre 0,10 et 0,18 mm. Le rapport de mesure indique 150 µm.",
+      consignes: [
+        "Convertis 150 µm en millimètres en écrivant le facteur utilisé.",
+        "Compare le résultat aux deux limites.",
+        "Rédige la conclusion avec les deux écritures de la valeur.",
+      ],
+      criteres: [
+        "J'ai utilisé 1 mm = 1 000 µm.",
+        "J'ai obtenu 0,150 mm.",
+        "J'ai conclu que la valeur est comprise entre 0,10 et 0,18 mm.",
+      ],
+      correction:
+        "150 µm ÷ 1 000 = 0,150 mm. Comme 0,10 ≤ 0,150 ≤ 0,18, le jeu est conforme. Conclusion : « Jeu mesuré 0,150 mm (150 µm), conforme à la plage 0,10–0,18 mm. »",
+    },
+  },
+];
+
 export const MECHANICS_BLOCKS: TrainingBlock[] = [
   {
     id: "m4-b1",
@@ -436,7 +663,7 @@ export const MECHANICS_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m4-b2", num: 2, title: "Grandeurs et calculs mécaniques indispensables", objective: "Mesurer et calculer les efforts, vitesses, puissances et rendements utiles.", lessonIds: [], chapterCount: 8, status: "planned" },
+  { id: "m4-b2", num: 2, title: "Grandeurs et calculs mécaniques indispensables", objective: "Mesurer, convertir puis calculer les grandeurs utiles sans perdre les unités ni le sens physique.", lessonIds: block2Lessons.map((lesson) => lesson.id), chapterCount: 8, status: "in_progress" },
   { id: "m4-b3", num: 3, title: "Outillage, mesure et métrologie d'atelier", objective: "Choisir, utiliser et contrôler les outils et instruments de mesure.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b4", num: 4, title: "Plans, tolérances, matériaux et fabrication", objective: "Lire les documents mécaniques et comprendre les choix de fabrication.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b5", num: 5, title: "Assemblages, fixations et étanchéité", objective: "Démonter, contrôler et remonter les assemblages de façon fiable.", lessonIds: [], chapterCount: 8, status: "planned" },
@@ -456,6 +683,6 @@ export const MECHANICS_MODULE: TrainingModule = {
   icon: Cog,
   color: "amber",
   source: "[TMI] Parcours progressif débutant → professionnel · références INRS et constructeurs",
-  lessons: block1Lessons,
+  lessons: [...block1Lessons, ...block2Lessons],
   blocks: MECHANICS_BLOCKS,
 };
