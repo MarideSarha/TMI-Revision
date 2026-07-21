@@ -589,6 +589,81 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "static-sealing") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Compression correcte et incorrecte d'un joint torique dans sa gorge">
+        <text x="105" y="24" textAnchor="middle" fontSize="10" fill={stroke}>COMPRESSION CORRECTE</text>
+        <rect x="20" y="45" width="170" height="25" rx="3" fill={box} stroke={stroke} />
+        <path d="M55 95 H78 V76 H132 V95 H155" fill="none" stroke={stroke} strokeWidth="3" />
+        <ellipse cx="105" cy="76" rx="22" ry="15" fill="none" stroke={accent} strokeWidth="6" />
+        <text x="105" y="124" textAnchor="middle" fontSize="9" fill={accent}>joint centré · gorge propre</text>
+        <text x="295" y="24" textAnchor="middle" fontSize="10" fill={stroke}>JOINT PINCÉ</text>
+        <rect x="210" y="45" width="170" height="25" rx="3" fill={box} stroke={stroke} />
+        <path d="M245 95 H268 V76 H322 V95 H345" fill="none" stroke={stroke} strokeWidth="3" />
+        <path d="M275 76 C278 55 315 55 327 85 C312 78 294 92 275 76" fill="none" stroke="#ef4444" strokeWidth="6" />
+        <text x="295" y="124" textAnchor="middle" fontSize="9" fill="#ef4444">torsion · coupure · fuite</text>
+        <text x="200" y="154" textAnchor="middle" fontSize="9" fill={stroke}>Référence + matière + surfaces + compression = étanchéité fiable</text>
+      </svg>
+    );
+  }
+  if (type === "flange-tightening") {
+    const bolts = [
+      [200, 28, "1"], [200, 140, "2"], [120, 84, "3"], [280, 84, "4"],
+      [143, 44, "5"], [257, 124, "6"], [257, 44, "7"], [143, 124, "8"],
+    ] as const;
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Exemple pédagogique d'ordre de serrage croisé d'une bride à huit boulons">
+        <circle cx="200" cy="84" r="70" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="200" cy="84" r="38" fill="none" stroke={accent} strokeWidth="5" />
+        <path d="M200 28 L200 140 M120 84 L280 84 M143 44 L257 124 M257 44 L143 124" stroke={accent} strokeDasharray="4,4" opacity="0.7" />
+        {bolts.map(([cx, cy, number]) => (
+          <g key={number}>
+            <circle cx={cx} cy={cy} r="13" fill={number === "1" ? accent : box} stroke={stroke} strokeWidth="2" />
+            <text x={cx} y={cy + 4} textAnchor="middle" fontSize="10" fontWeight="bold" fill={number === "1" ? "#14151a" : stroke}>{number}</text>
+          </g>
+        ))}
+        <text x="55" y="45" textAnchor="middle" fontSize="9" fill={stroke}>Approche</text>
+        <text x="55" y="65" textAnchor="middle" fontSize="9" fill={stroke}>Passes croisées</text>
+        <text x="55" y="85" textAnchor="middle" fontSize="9" fill={accent}>Contrôle final</text>
+        <text x="342" y="148" textAnchor="middle" fontSize="8" fill={stroke}>La gamme fait foi</text>
+      </svg>
+    );
+  }
+  if (type === "dynamic-sealing") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Joint à lèvre monté autour d'un arbre tournant avec orientation vers l'huile">
+        <rect x="35" y="38" width="330" height="95" rx="8" fill={box} stroke={stroke} strokeWidth="2" />
+        <rect x="20" y="76" width="360" height="24" rx="12" fill="none" stroke={accent} strokeWidth="4" />
+        <text x="200" y="92" textAnchor="middle" fontSize="9" fill={stroke}>ARBRE TOURNANT</text>
+        <path d="M235 42 L235 72 L262 84 L235 104 L235 129" fill="none" stroke={accent} strokeWidth="7" />
+        <line x1="262" y1="84" x2="300" y2="60" stroke={stroke} strokeWidth="2" />
+        <text x="320" y="58" textAnchor="middle" fontSize="9" fill={stroke}>lèvre vers</text>
+        <text x="320" y="71" textAnchor="middle" fontSize="9" fill={accent}>le fluide</text>
+        <text x="78" y="61" textAnchor="middle" fontSize="10" fill={stroke}>AIR / POUSSIÈRE</text>
+        <text x="315" y="116" textAnchor="middle" fontSize="10" fill={accent}>HUILE</text>
+        <path d="M75 110 C55 129 95 137 75 153" fill="none" stroke={stroke} strokeWidth="2" />
+        <text x="160" y="153" textAnchor="middle" fontSize="9" fill={stroke}>portée lisse · jeu et faux-rond contrôlés</text>
+      </svg>
+    );
+  }
+  if (type === "leak-diagnosis") {
+    const steps = [["1", "Sécuriser"], ["2", "Observer"], ["3", "Localiser"], ["4", "Réparer"], ["5", "Valider"]] as const;
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Méthode progressive de diagnostic et de validation d'une fuite">
+        {steps.map(([number, label], index) => (
+          <g key={number}>
+            <circle cx={40 + index * 80} cy="68" r="25" fill={index === 4 ? accent : box} stroke={stroke} strokeWidth="2" />
+            <text x={40 + index * 80} y="65" textAnchor="middle" fontSize="11" fill={index === 4 ? "#14151a" : accent} fontWeight="bold">{number}</text>
+            <text x={40 + index * 80} y="80" textAnchor="middle" fontSize="7" fill={index === 4 ? "#14151a" : stroke}>{label}</text>
+            {index < 4 && <line x1={66 + index * 80} y1="68" x2={94 + index * 80} y2="68" stroke={stroke} />}
+          </g>
+        ))}
+        <rect x="54" y="115" width="292" height="35" rx="7" fill="none" stroke="#ef4444" strokeWidth="2" />
+        <text x="200" y="130" textAnchor="middle" fontSize="9" fill="#ef4444" fontWeight="bold">HAUTE PRESSION : JAMAIS LA MAIN</text>
+        <text x="200" y="144" textAnchor="middle" fontSize="8" fill={stroke}>distance + écran + méthode autorisée</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">
