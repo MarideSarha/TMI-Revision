@@ -10,6 +10,7 @@ export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "module_3", label: "Électricien", desc: "Terminer le module Électrotechnique", icon: Zap },
   { id: "mechanics_block_1", label: "Observateur mécanique", desc: "Maîtriser le bloc 1 de mécanique avec au moins 80 %", icon: ShieldCheck },
   { id: "mechanics_block_5", label: "Assembleur fiable", desc: "Maîtriser assemblages, fixations et étanchéité avec au moins 80 %", icon: Wrench },
+  { id: "mechanics_block_6", label: "Aligneur de précision", desc: "Maîtriser arbres, accouplements, alignement et vibrations avec au moins 80 %", icon: Target },
   { id: "detective_5", label: "Détective", desc: "Résoudre 5 scénarios de panne", icon: Target },
   { id: "detective_10", label: "Maître du diagnostic", desc: "Résoudre les 10 scénarios de panne", icon: ShieldAlert },
   { id: "streak_3", label: "Régularité", desc: "3 jours de révision d'affilée", icon: Flame },
