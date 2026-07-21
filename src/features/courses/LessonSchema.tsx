@@ -453,6 +453,75 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "tolerance-zone") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Zone de tolérance autour d'une cote nominale">
+        <line x1="40" y1="88" x2="340" y2="88" stroke={stroke} strokeWidth="3" />
+        <rect x="130" y="55" width="120" height="66" rx="7" fill={box} stroke={accent} strokeWidth="3" />
+        <line x1="190" y1="38" x2="190" y2="138" stroke={stroke} strokeDasharray="5,4" />
+        <text x="190" y="28" textAnchor="middle" fontSize="10" fill={stroke}>nominal 40,00 mm</text>
+        <text x="130" y="145" textAnchor="middle" fontSize="10" fill={accent}>39,98</text>
+        <text x="250" y="145" textAnchor="middle" fontSize="10" fill={accent}>40,02</text>
+        <text x="190" y="80" textAnchor="middle" fontSize="10" fill={accent} fontWeight="bold">ZONE CONFORME</text>
+        <circle cx="228" cy="88" r="6" fill="#22c55e" />
+        <text x="228" y="105" textAnchor="middle" fontSize="8" fill={stroke}>40,015</text>
+        <circle cx="278" cy="88" r="6" fill="#ef4444" />
+        <text x="278" y="105" textAnchor="middle" fontSize="8" fill={stroke}>40,03</text>
+        <text x="190" y="162" textAnchor="middle" fontSize="9" fill={stroke}>Conforme seulement entre les deux limites incluses</text>
+      </svg>
+    );
+  }
+  if (type === "fit-clearance") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Comparaison d'un ajustement avec jeu et d'un ajustement serré">
+        <text x="95" y="24" textAnchor="middle" fontSize="10" fill={accent}>AVEC JEU</text>
+        <circle cx="95" cy="82" r="52" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="95" cy="82" r="38" fill={dark ? "#020617" : "#ffffff"} stroke={accent} strokeWidth="3" />
+        <line x1="40" y1="145" x2="150" y2="145" stroke={stroke} />
+        <text x="95" y="160" textAnchor="middle" fontSize="9" fill={stroke}>alésage &gt; arbre</text>
+        <text x="285" y="24" textAnchor="middle" fontSize="10" fill={accent}>SERRÉ</text>
+        <circle cx="285" cy="82" r="48" fill={box} stroke={accent} strokeWidth="6" />
+        <circle cx="285" cy="82" r="46" fill={stroke} opacity="0.25" />
+        <line x1="230" y1="145" x2="340" y2="145" stroke={stroke} />
+        <text x="285" y="160" textAnchor="middle" fontSize="9" fill={stroke}>arbre ≥ alésage</text>
+        <text x="190" y="90" textAnchor="middle" fontSize="16" fill={stroke}>≠</text>
+      </svg>
+    );
+  }
+  if (type === "material-selection") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Choix d'un matériau selon les fonctions et l'environnement">
+        <circle cx="190" cy="82" r="43" fill={accent} stroke={stroke} strokeWidth="2" />
+        <text x="190" y="78" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">MATÉRIAU</text>
+        <text x="190" y="94" textAnchor="middle" fontSize="9" fill="#14151a">adapté</text>
+        {[["Efforts", 190, 16], ["Usure", 305, 55], ["Corrosion", 300, 130], ["Masse", 80, 130], ["Température", 70, 55]].map(([label, x, y]) => (
+          <g key={String(label)}>
+            <rect x={Number(x) - 38} y={Number(y) - 12} width="76" height="24" rx="5" fill={box} stroke={stroke} />
+            <text x={Number(x)} y={Number(y) + 4} textAnchor="middle" fontSize="8" fill={stroke}>{label}</text>
+            <line x1={190 + (Number(x) - 190) * 0.42} y1={82 + (Number(y) - 82) * 0.42} x2={190 + (Number(x) - 190) * 0.67} y2={82 + (Number(y) - 82) * 0.67} stroke={stroke} />
+          </g>
+        ))}
+        <text x="190" y="166" textAnchor="middle" fontSize="9" fill={stroke}>On choisit une combinaison de propriétés, pas une couleur ou un poids seul</text>
+      </svg>
+    );
+  }
+  if (type === "manufacturing-process") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Chaîne de fabrication d'une pièce mécanique et traces observables">
+        {[["Brut", "forge / fonte"], ["Forme", "tour / fraise"], ["Surface", "rectifie"], ["Protection", "traite / revêt"]].map(([title, subtitle], index) => (
+          <g key={title}>
+            <rect x={8 + index * 98} y="52" width="82" height="58" rx="7" fill={index === 2 ? accent : box} stroke={stroke} />
+            <text x={49 + index * 98} y="75" textAnchor="middle" fontSize="9" fill={index === 2 ? "#14151a" : stroke} fontWeight="bold">{title}</text>
+            <text x={49 + index * 98} y="94" textAnchor="middle" fontSize="8" fill={index === 2 ? "#14151a" : stroke}>{subtitle}</text>
+            {index < 3 && <line x1={90 + index * 98} y1="81" x2={105 + index * 98} y2="81" stroke={stroke} strokeWidth="2" />}
+          </g>
+        ))}
+        <text x="200" y="25" textAnchor="middle" fontSize="10" fill={stroke}>Chaque procédé laisse une géométrie, un état de surface et des contraintes</text>
+        <text x="200" y="139" textAnchor="middle" fontSize="9" fill={accent}>Une retouche peut supprimer une couche traitée ou une cote fonctionnelle</text>
+        <text x="200" y="158" textAnchor="middle" fontSize="9" fill={stroke}>Observer → identifier → mesurer → faire valider avant modification</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">

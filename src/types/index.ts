@@ -33,6 +33,10 @@ export type LessonSchemaType =
   | "orthographic-views"
   | "section-view"
   | "functional-dimensioning"
+  | "tolerance-zone"
+  | "fit-clearance"
+  | "material-selection"
+  | "manufacturing-process"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
