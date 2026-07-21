@@ -142,6 +142,44 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "force-diagram") {
+    return (
+      <svg viewBox="0 0 360 150" className="h-36 w-full" role="img" aria-label="Différence entre masse, poids et forces appliquées à une charge">
+        <rect x="135" y="52" width="90" height="48" rx="6" fill={box} stroke={stroke} strokeWidth="2" />
+        <text x="180" y="72" textAnchor="middle" fontSize="10" fill={stroke}>charge</text>
+        <text x="180" y="88" textAnchor="middle" fontSize="10" fill={accent} fontWeight="bold">m = 20 kg</text>
+        <line x1="180" y1="100" x2="180" y2="137" stroke={accent} strokeWidth="3" />
+        <polygon points="180,144 174,134 186,134" fill={accent} />
+        <text x="194" y="132" fontSize="9" fill={accent}>P = m × g</text>
+        <line x1="135" y1="76" x2="88" y2="76" stroke={stroke} strokeWidth="3" />
+        <polygon points="80,76 91,70 91,82" fill={stroke} />
+        <text x="55" y="68" textAnchor="middle" fontSize="9" fill={stroke}>force F</text>
+        <line x1="225" y1="76" x2="272" y2="76" stroke={stroke} strokeWidth="3" />
+        <polygon points="280,76 269,70 269,82" fill={stroke} />
+        <text x="305" y="68" textAnchor="middle" fontSize="9" fill={stroke}>réaction</text>
+        <text x="180" y="25" textAnchor="middle" fontSize="10" fill={stroke}>La masse s’exprime en kg · les forces en N</text>
+      </svg>
+    );
+  }
+  if (type === "speed-relationship") {
+    return (
+      <svg viewBox="0 0 360 135" className="h-32 w-full" role="img" aria-label="Relation entre vitesse de rotation d’un tambour et vitesse linéaire d’une bande">
+        <circle cx="92" cy="68" r="38" fill={box} stroke={accent} strokeWidth="3" />
+        <circle cx="92" cy="68" r="4" fill={stroke} />
+        <path d="M 68 45 A 34 34 0 0 1 116 45" fill="none" stroke={accent} strokeWidth="2" />
+        <polygon points="119,48 110,47 115,39" fill={accent} />
+        <text x="92" y="20" textAnchor="middle" fontSize="10" fill={stroke}>rotation n (tr/min)</text>
+        <line x1="92" y1="106" x2="92" y2="122" stroke={stroke} />
+        <text x="92" y="132" textAnchor="middle" fontSize="9" fill={stroke}>diamètre D</text>
+        <line x1="130" y1="52" x2="325" y2="52" stroke={stroke} strokeWidth="5" />
+        <line x1="130" y1="84" x2="325" y2="84" stroke={stroke} strokeWidth="5" />
+        <line x1="186" y1="38" x2="275" y2="38" stroke={accent} strokeWidth="3" />
+        <polygon points="284,38 272,31 272,45" fill={accent} />
+        <text x="230" y="26" textAnchor="middle" fontSize="10" fill={accent}>vitesse v (m/s)</text>
+        <text x="230" y="112" textAnchor="middle" fontSize="10" fill={stroke}>v = π × D × n / 60</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">

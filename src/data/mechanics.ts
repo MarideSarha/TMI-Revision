@@ -647,6 +647,235 @@ const block2Lessons: Lesson[] = [
         "150 µm ÷ 1 000 = 0,150 mm. Comme 0,10 ≤ 0,150 ≤ 0,18, le jeu est conforme. Conclusion : « Jeu mesuré 0,150 mm (150 µm), conforme à la plage 0,10–0,18 mm. »",
     },
   },
+  {
+    id: "4-11",
+    title: "Masse, poids et force : ne plus les confondre",
+    durationMinutes: 50,
+    objectifs: [
+      "Distinguer la masse exprimée en kilogrammes d'une force exprimée en newtons.",
+      "Calculer le poids d'une pièce avec P = m × g et contrôler l'ordre de grandeur.",
+      "Identifier les principales forces qui agissent sur un équipement sans transformer un calcul scolaire en autorisation de levage.",
+    ],
+    simple:
+      "La masse décrit la quantité de matière d'un objet et s'exprime en kilogrammes. Le poids est la force avec laquelle la gravité attire cette masse vers le sol ; il s'exprime en newtons. Sur Terre, on utilise g ≈ 9,81 N/kg, souvent arrondi à 10 N/kg pour une estimation rapide. Ainsi, une pièce de 20 kg a une masse de 20 kg et un poids d'environ 196 N. Une force peut aussi pousser, tirer, serrer ou soutenir : son unité reste le newton.",
+    vocab: [
+      ["Masse", "Quantité de matière d'un objet, exprimée en kilogrammes (kg)."],
+      ["Force", "Action mécanique capable de pousser, tirer, déformer ou modifier un mouvement, exprimée en newtons (N)."],
+      ["Poids", "Force de gravité exercée sur une masse : P = m × g."],
+      ["Gravité g", "Intensité de la pesanteur ; on prend environ 9,81 N/kg sur Terre."],
+      ["Réaction d'appui", "Force exercée par un support sur la charge qu'il porte."],
+      ["Résultante", "Force unique équivalente à l'ensemble des forces appliquées."],
+      ["Équilibre", "Situation où les forces se compensent et où l'accélération est nulle."],
+      ["Centre de gravité", "Point autour duquel le poids de l'objet peut être considéré comme concentré pour l'étude de l'équilibre."],
+    ],
+    example:
+      "Un motoréducteur possède une masse constructeur de 42 kg. Son poids vaut environ 42 × 9,81 = 412 N. Cette valeur aide à comprendre les efforts sur le support. Pour le manutentionner, le technicien utilise toutefois la masse déclarée, les points de levage prévus, un équipement dont la capacité est suffisante et le plan de manutention du site : le calcul seul n'autorise jamais le levage.",
+    schema: "force-diagram",
+    ascii: [
+      "                 ↑ réaction du support R",
+      "                 │",
+      "            ┌──────────┐      → force appliquée F",
+      "            │ masse m  │",
+      "            └──────────┘",
+      "                 │",
+      "                 ↓ poids P = m × g",
+      "",
+      "À l'équilibre vertical idéal : R = P",
+    ].join("\n"),
+    activity: {
+      type: "calculation",
+      title: "Atelier : passer de la masse aux forces",
+      instruction: "Utilise g = 9,81 N/kg. Donne seulement la valeur demandée ; l'unité est déjà affichée.",
+      challenges: [
+        { prompt: "Quel est le poids d'une pièce de 20 kg ?", answer: 196.2, tolerance: 0.01, unit: "N", explanation: "P = m × g = 20 × 9,81 = 196,2 N." },
+        { prompt: "Quel est le poids d'un motoréducteur de 75 kg ?", answer: 735.75, tolerance: 0.01, unit: "N", explanation: "P = 75 × 9,81 = 735,75 N, soit environ 736 N." },
+        { prompt: "Une charge a un poids de 490,5 N. Quelle est sa masse ?", answer: 50, tolerance: 0.01, unit: "kg", explanation: "m = P ÷ g = 490,5 ÷ 9,81 = 50 kg." },
+        { prompt: "Dans un modèle idéal, une charge de 60 kg repose également sur deux appuis. Quelle force verticale reçoit chaque appui ?", answer: 294.3, tolerance: 0.01, unit: "N", explanation: "Poids total = 60 × 9,81 = 588,6 N. Répartition idéale sur deux appuis : 588,6 ÷ 2 = 294,3 N par appui. Une vraie structure exige une étude adaptée." },
+      ],
+    },
+    retenir: [
+      "La masse s'exprime en kg ; une force et le poids s'expriment en N.",
+      "Sur Terre, P = m × 9,81 ; pour une estimation mentale, P ≈ m × 10.",
+      "Une pièce immobile peut subir plusieurs forces qui se compensent.",
+      "La répartition réelle des efforts dépend des appuis, du centre de gravité, des accélérations et de la structure.",
+    ],
+    erreurs: [
+      "Dire qu'une pièce « pèse 200 N » puis traiter 200 comme une masse en kg.",
+      "Utiliser 9,81 sans écrire son unité N/kg ni préciser la grandeur calculée.",
+      "Supposer que deux appuis reçoivent toujours exactement la moitié de la charge.",
+      "Choisir un appareil de levage uniquement à partir d'un calcul, sans capacité nominale, accessoires ni procédure.",
+    ],
+    astucesPro: [
+      "Fais d'abord l'estimation avec g ≈ 10 : une masse de 80 kg donne un poids proche de 800 N.",
+      "Dessine chaque force par une flèche avec direction, sens et point d'application avant d'écrire une formule.",
+      "Sur une plaque ou une notice, vérifie si la capacité est donnée en kg, N, daN ou kN avant toute comparaison.",
+      "Une charge décentrée sollicite davantage un appui : ne répartis jamais automatiquement par le nombre de pieds.",
+    ],
+    diagnostic: [
+      "Identifier la pièce ou la charge étudiée et isoler mentalement son système mécanique.",
+      "Recenser poids, réactions d'appui, efforts d'entraînement, tension et frottements avec leur direction.",
+      "Vérifier les unités et estimer l'ordre de grandeur de chaque force.",
+      "Relier une surcharge possible aux symptômes : flexion, échauffement, usure, déclenchement ou vibration.",
+    ],
+    depannage: [
+      "Si une structure se déforme, arrêter et sécuriser selon la procédure avant toute inspection rapprochée.",
+      "Comparer charge réelle, répartition, montage et limites constructeur sans modifier les protections.",
+      "Rechercher une charge décentrée, un appui desserré, un bourrage ou un effort parasite.",
+      "Faire valider toute modification de support, de fixation ou de capacité par la personne compétente.",
+    ],
+    securite: [
+      "Ne jamais se placer sous une charge suspendue ni utiliser un organe mécanique non prévu comme point de levage.",
+      "La capacité d'un palan, d'une élingue ou d'un point d'ancrage ne se déduit pas d'un exercice : utiliser les marquages, documents et procédures du site.",
+      "Une charge en mouvement crée des efforts supplémentaires ; le calcul statique présenté ici ne couvre pas les chocs ni les accélérations.",
+    ],
+    etudeDeCas: {
+      situation: "Huit colis de 25 kg s'accumulent sur une zone de convoyeur normalement prévue pour quatre colis. Le moteur ralentit et le bâti vibre davantage.",
+      mission: [
+        "Calculer la masse totale et le poids approximatif des huit colis.",
+        "Expliquer pourquoi ce calcul ne suffit pas à connaître l'effort moteur ni la charge de chaque pied.",
+        "Proposer les actions immédiates et les informations à vérifier.",
+      ],
+      correction:
+        "Masse totale : 8 × 25 = 200 kg. Poids : 200 × 9,81 = 1 962 N, soit environ 2 kN. L'effort moteur dépend aussi de la pente, des frottements, de l'accélération et de la transmission ; la charge des pieds dépend de la position des colis et du bâti. Sécuriser la situation, supprimer l'accumulation selon la procédure, puis vérifier charge admissible, capteurs, stratégie d'accumulation et état mécanique.",
+    },
+    memo: ["kg = masse", "N = force", "P = m × g", "g ≈ 9,81 N/kg", "Calculer n'autorise pas à lever"],
+    resume: "La masse décrit l'objet ; le poids et les autres forces décrivent les actions mécaniques qu'il subit. Les unités et le diagramme des forces évitent les confusions.",
+    quizIds: ["mec51", "mec52", "mec53", "mec54", "mec55"],
+    verification: {
+      question: "Quelle affirmation est correcte pour une pièce de masse 10 kg sur Terre ?",
+      options: ["Son poids vaut 10 N", "Sa masse vaut environ 98,1 N", "Son poids vaut environ 98,1 N", "Sa masse vaut 98,1 kg"],
+      correct: 2,
+      explanation: "La masse reste 10 kg. Son poids vaut P = 10 × 9,81 = 98,1 N.",
+    },
+    exercice: {
+      enonce: "Un moteur de 36 kg repose idéalement au centre de deux supports identiques. On néglige les effets dynamiques.",
+      consignes: [
+        "Calcule le poids total avec g = 9,81 N/kg.",
+        "Calcule la réaction verticale idéale sur chaque support.",
+        "Explique pourquoi ce résultat doit être vérifié sur une installation réelle.",
+      ],
+      criteres: [
+        "J'ai obtenu 353,16 N pour le poids total.",
+        "J'ai obtenu 176,58 N par support dans le modèle idéal.",
+        "J'ai cité le centre de gravité, les efforts dynamiques ou la géométrie réelle comme limites du modèle.",
+      ],
+      correction:
+        "P = 36 × 9,81 = 353,16 N. Dans le modèle parfaitement centré et statique, chaque support reprend 353,16 ÷ 2 = 176,58 N. En réalité, la position du centre de gravité, les fixations, les vibrations, le couple moteur et la rigidité du bâti peuvent modifier la répartition.",
+    },
+  },
+  {
+    id: "4-12",
+    title: "Vitesse linéaire et vitesse de rotation sur un convoyeur",
+    durationMinutes: 55,
+    objectifs: [
+      "Distinguer une vitesse linéaire en m/s d'une vitesse de rotation en tr/min.",
+      "Calculer v = distance ÷ temps et relier la rotation d'un tambour à la vitesse d'une bande.",
+      "Utiliser v = π × D × n ÷ 60 en vérifiant les unités et les hypothèses du modèle.",
+    ],
+    simple:
+      "La vitesse linéaire indique la distance parcourue chaque seconde, par exemple 0,6 m/s pour une bande. La vitesse de rotation indique combien de tours un arbre effectue chaque minute, par exemple 60 tr/min. À chaque tour, la surface d'un tambour avance théoriquement d'une circonférence π × D. Si le tambour tourne à n tr/min et ne glisse pas sur la bande, la vitesse vaut v = π × D × n ÷ 60, avec D en mètres et v en mètres par seconde.",
+    vocab: [
+      ["Vitesse linéaire", "Distance parcourue par unité de temps, généralement en m/s ou m/min."],
+      ["Vitesse de rotation", "Nombre de tours effectués par unité de temps, souvent en tr/min."],
+      ["Circonférence", "Longueur d'un tour complet d'un cercle : C = π × D."],
+      ["Diamètre primitif ou utile", "Diamètre réellement utilisé par le calcul de transmission ou de déplacement."],
+      ["Glissement", "Différence de mouvement entre deux surfaces qui devraient avancer ensemble."],
+      ["Rapport de transmission", "Rapport entre les vitesses d'entrée et de sortie d'un mécanisme ; il sera détaillé dans un chapitre suivant."],
+      ["Régime", "Vitesse de rotation d'un moteur, d'un arbre ou d'un tambour."],
+    ],
+    example:
+      "Un tambour de convoyeur de diamètre 200 mm, soit 0,200 m, tourne à 60 tr/min. Sa circonférence vaut π × 0,200 ≈ 0,628 m. À 60 tr/min, il fait un tour par seconde : la bande avance théoriquement à environ 0,628 m/s, soit 37,7 m/min, en l'absence de glissement.",
+    schema: "speed-relationship",
+    ascii: [
+      "                 n = 60 tr/min",
+      "                      ↻",
+      "                .-----------.",
+      "bande ─────────(  tambour D  )─────────→ v en m/s",
+      "                '-----------'",
+      "",
+      "1 tour avance de π × D     |     v = π × D × n / 60",
+    ].join("\n"),
+    activity: {
+      type: "calculation",
+      title: "Atelier : calculer la vitesse d'un convoyeur",
+      instruction: "Utilise π ≈ 3,1416. Arrondis à trois décimales lorsque le résultat n'est pas exact.",
+      challenges: [
+        { prompt: "Une bande parcourt 12 m en 20 s. Quelle est sa vitesse linéaire ?", answer: 0.6, tolerance: 0.001, unit: "m/s", explanation: "v = d ÷ t = 12 ÷ 20 = 0,6 m/s." },
+        { prompt: "Convertis une vitesse de 0,5 m/s en mètres par minute.", answer: 30, tolerance: 0.001, unit: "m/min", explanation: "Une minute contient 60 secondes : 0,5 × 60 = 30 m/min." },
+        { prompt: "Un tambour de 0,200 m tourne à 60 tr/min. Quelle est la vitesse théorique de la bande ?", answer: 0.628, tolerance: 0.001, unit: "m/s", explanation: "v = π × 0,200 × 60 ÷ 60 = 0,628 m/s." },
+        { prompt: "Pour obtenir environ 0,314 m/s avec un tambour de 0,200 m, quel régime faut-il ?", answer: 30, tolerance: 0.1, unit: "tr/min", explanation: "n = v × 60 ÷ (π × D) = 0,314 × 60 ÷ (π × 0,200) ≈ 30 tr/min." },
+      ],
+    },
+    retenir: [
+      "La vitesse linéaire s'exprime en m/s ou m/min ; la rotation en tr/min.",
+      "v = d ÷ t pour un déplacement mesuré.",
+      "Un tour de tambour correspond théoriquement à π × D mètres de bande.",
+      "v = π × D × n ÷ 60 exige D en mètres et suppose l'absence de glissement.",
+    ],
+    erreurs: [
+      "Introduire un diamètre en millimètres dans une formule qui doit fournir des mètres par seconde.",
+      "Oublier de diviser les tr/min par 60 pour obtenir des tours par seconde.",
+      "Confondre diamètre et rayon, ce qui double ou divise le résultat par deux.",
+      "Conclure à un défaut de variateur sans vérifier glissement, diamètre utile et rapport mécanique.",
+    ],
+    astucesPro: [
+      "Avant de calculer, écris D en m, n en tr/min et la vitesse demandée en m/s ou m/min.",
+      "Contrôle le résultat par une méthode simple : nombre de tours par seconde × circonférence.",
+      "Compare vitesse théorique et vitesse réellement mesurée pour rechercher un glissement ou une mauvaise donnée de diamètre.",
+      "Sur un convoyeur chargé, une vitesse qui chute peut révéler surcharge, patinage, tension incorrecte ou résistance mécanique.",
+    ],
+    diagnostic: [
+      "Préciser la vitesse attendue et la condition : à vide, en charge, démarrage ou régime établi.",
+      "Relever le diamètre utile du tambour et le régime réel de sortie du réducteur.",
+      "Calculer la vitesse théorique avec des unités cohérentes.",
+      "Comparer à une mesure autorisée puis localiser l'écart entre commande, rotation et déplacement de bande.",
+    ],
+    depannage: [
+      "Si le régime moteur est faux, contrôler consigne, fréquence, paramètres et charge selon les habilitations.",
+      "Si le régime tambour est faux mais le moteur correct, contrôler la transmission après consignation.",
+      "Si le tambour tourne au bon régime mais la bande est lente, rechercher patinage, tension ou contamination.",
+      "Après correction, vérifier la vitesse à vide puis en charge et tracer les deux résultats.",
+    ],
+    securite: [
+      "Ne jamais poser un repère, un mètre ou un tachymètre au contact d'une bande ou d'un arbre accessible en mouvement.",
+      "Les mesures en marche utilisent uniquement une méthode autorisée, sans franchir les protecteurs ni s'approcher d'un point rentrant.",
+      "Après toute intervention sur la transmission, remettre les protecteurs et effectuer la remise en service selon la procédure.",
+    ],
+    etudeDeCas: {
+      situation: "La consigne d'un convoyeur est 0,60 m/s. Le moteur et la sortie du réducteur tournent au régime attendu, mais la bande mesurée avance à 0,45 m/s sous charge et à 0,58 m/s à vide.",
+      mission: [
+        "Comparer les écarts à vide et en charge.",
+        "Formuler trois hypothèses mécaniques cohérentes.",
+        "Proposer un ordre de contrôles sûr et une vérification finale.",
+      ],
+      correction:
+        "L'écart est faible à vide mais important en charge, alors que le tambour garde son régime : un glissement bande-tambour, une tension insuffisante, une contamination ou une résistance mécanique liée à la charge est plausible. Observer sans accès dangereux, puis consigner avant de contrôler état et tension de bande, tambour, rouleaux et points durs. Après correction, mesurer à vide et à charge et comparer à la consigne.",
+    },
+    memo: ["v = d / t", "C = π × D", "v = π × D × n / 60", "D en mètres", "tr/min ÷ 60 = tr/s"],
+    resume: "La vitesse de bande dépend du déplacement dans le temps et, théoriquement, de la circonférence et du régime du tambour. L'écart entre théorie et réalité devient un outil de diagnostic.",
+    quizIds: ["mec56", "mec57", "mec58", "mec59", "mec60"],
+    verification: {
+      question: "Un tambour tourne à 60 tr/min. Combien de tours effectue-t-il par seconde ?",
+      options: ["0,5 tr/s", "1 tr/s", "60 tr/s", "3 600 tr/s"],
+      correct: 1,
+      explanation: "60 tr/min ÷ 60 s/min = 1 tr/s.",
+    },
+    exercice: {
+      enonce: "Un tambour de diamètre 160 mm tourne à 90 tr/min. On suppose qu'il n'y a pas de glissement.",
+      consignes: [
+        "Convertis le diamètre en mètres.",
+        "Calcule la vitesse de bande en m/s avec v = π × D × n ÷ 60.",
+        "Convertis ensuite le résultat en m/min et indique les limites du modèle.",
+      ],
+      criteres: [
+        "J'ai utilisé D = 0,160 m.",
+        "J'ai obtenu environ 0,754 m/s.",
+        "J'ai obtenu environ 45,24 m/min et cité l'hypothèse d'absence de glissement.",
+      ],
+      correction:
+        "D = 160 ÷ 1 000 = 0,160 m. v = π × 0,160 × 90 ÷ 60 ≈ 0,754 m/s. En m/min : 0,754 × 60 ≈ 45,24 m/min. Le calcul suppose un diamètre utile exact, un régime stable et l'absence de glissement entre tambour et bande.",
+    },
+  },
 ];
 
 export const MECHANICS_BLOCKS: TrainingBlock[] = [

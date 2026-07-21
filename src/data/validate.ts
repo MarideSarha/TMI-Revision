@@ -72,9 +72,9 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
         errors.push(`L'activité de séquence de la leçon ${lesson.id} est incomplète ou possède un ordre invalide.`);
       }
     }
-    if (lesson.activity?.type === "conversion") {
+    if (lesson.activity?.type === "conversion" || lesson.activity?.type === "calculation") {
       if (lesson.activity.challenges.length < 2 || lesson.activity.challenges.some((challenge) => !Number.isFinite(challenge.answer) || challenge.tolerance < 0 || !challenge.unit.trim())) {
-        errors.push(`L'atelier de conversion de la leçon ${lesson.id} possède un défi invalide.`);
+        errors.push(`L'atelier numérique de la leçon ${lesson.id} possède un défi invalide.`);
       }
     }
 

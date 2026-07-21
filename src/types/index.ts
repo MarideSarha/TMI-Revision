@@ -17,6 +17,8 @@ export type LessonSchemaType =
   | "torque-diagram"
   | "measurement-process"
   | "unit-scale"
+  | "force-diagram"
+  | "speed-relationship"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
@@ -59,7 +61,14 @@ export interface LessonConversionActivity {
   challenges: LessonConversionChallenge[];
 }
 
-export type LessonInteractiveActivity = LessonSequenceActivity | LessonConversionActivity;
+export interface LessonCalculationActivity {
+  type: "calculation";
+  title: string;
+  instruction: string;
+  challenges: LessonConversionChallenge[];
+}
+
+export type LessonInteractiveActivity = LessonSequenceActivity | LessonConversionActivity | LessonCalculationActivity;
 
 export interface Lesson {
   id: string;
