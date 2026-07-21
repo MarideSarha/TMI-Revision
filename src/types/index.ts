@@ -22,6 +22,9 @@ export type LessonSchemaType =
   | "power-torque"
   | "bolted-joint"
   | "transmission-ratio"
+  | "tool-selection"
+  | "force-path"
+  | "measurement-chain"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";

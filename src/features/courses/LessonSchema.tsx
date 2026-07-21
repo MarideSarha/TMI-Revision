@@ -233,6 +233,62 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "tool-selection") {
+    return (
+      <svg viewBox="0 0 360 145" className="h-36 w-full" role="img" aria-label="Choix d'un outil adapté à la fixation et à l'effort">
+        <rect x="18" y="52" width="82" height="42" rx="7" fill={box} stroke={stroke} />
+        <text x="59" y="69" textAnchor="middle" fontSize="9" fill={stroke}>Fixation</text>
+        <text x="59" y="84" textAnchor="middle" fontSize="10" fill={accent} fontWeight="bold">forme + taille</text>
+        <line x1="100" y1="73" x2="137" y2="73" stroke={stroke} strokeWidth="2" />
+        <polygon points="144,73 133,67 133,79" fill={stroke} />
+        <rect x="144" y="36" width="92" height="74" rx="8" fill={accent} stroke={stroke} strokeWidth="2" />
+        <text x="190" y="61" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">OUTIL</text>
+        <text x="190" y="78" textAnchor="middle" fontSize="9" fill="#14151a">bon profil</text>
+        <text x="190" y="94" textAnchor="middle" fontSize="9" fill="#14151a">bon état</text>
+        <line x1="236" y1="73" x2="273" y2="73" stroke={stroke} strokeWidth="2" />
+        <polygon points="280,73 269,67 269,79" fill={stroke} />
+        <rect x="280" y="52" width="62" height="42" rx="7" fill={box} stroke={stroke} />
+        <text x="311" y="69" textAnchor="middle" fontSize="9" fill={stroke}>Effort</text>
+        <text x="311" y="84" textAnchor="middle" fontSize="9" fill={accent}>contrôlé</text>
+        <text x="180" y="20" textAnchor="middle" fontSize="10" fill={stroke}>Observer → choisir → contrôler → engager → agir</text>
+        <text x="180" y="132" textAnchor="middle" fontSize="9" fill={stroke}>Si ça glisse ou se déforme : arrêter et réévaluer</text>
+      </svg>
+    );
+  }
+  if (type === "force-path") {
+    return (
+      <svg viewBox="0 0 360 155" className="h-36 w-full" role="img" aria-label="Chemin correct de l'effort lors du montage d'un roulement sur un arbre">
+        <line x1="28" y1="82" x2="332" y2="82" stroke={stroke} strokeWidth="18" />
+        <circle cx="190" cy="82" r="48" fill={box} stroke={stroke} strokeWidth="12" />
+        <circle cx="190" cy="82" r="27" fill="none" stroke={accent} strokeWidth="10" />
+        <rect x="90" y="44" width="44" height="76" rx="4" fill={box} stroke={accent} strokeWidth="3" />
+        <line x1="47" y1="82" x2="86" y2="82" stroke={accent} strokeWidth="5" />
+        <polygon points="91,82 80,75 80,89" fill={accent} />
+        <line x1="134" y1="82" x2="158" y2="82" stroke={accent} strokeWidth="5" />
+        <polygon points="163,82 152,75 152,89" fill={accent} />
+        <text x="68" y="65" textAnchor="middle" fontSize="9" fill={accent}>effort</text>
+        <text x="112" y="135" textAnchor="middle" fontSize="9" fill={stroke}>tube sur bague intérieure</text>
+        <text x="190" y="20" textAnchor="middle" fontSize="10" fill={stroke}>Emmanchement sur arbre : effort vers la bague serrée</text>
+        <text x="282" y="125" textAnchor="middle" fontSize="9" fill={stroke}>pas par les éléments roulants</text>
+      </svg>
+    );
+  }
+  if (type === "measurement-chain") {
+    return (
+      <svg viewBox="0 0 380 135" className="h-32 w-full" role="img" aria-label="Chaîne qui transforme une question technique en décision grâce à une mesure traçable">
+        {[["Besoin", "quoi ?"], ["Moyen", "adapté ?"], ["Mesure", "répétée"], ["Référence", "tolérance"], ["Décision", "tracée"]].map(([title, subtitle], index) => (
+          <g key={title}>
+            <rect x={6 + index * 75} y="42" width="64" height="48" rx="7" fill={index === 2 ? accent : box} stroke={stroke} />
+            <text x={38 + index * 75} y="62" textAnchor="middle" fontSize="9" fill={index === 2 ? "#14151a" : stroke} fontWeight="bold">{title}</text>
+            <text x={38 + index * 75} y="78" textAnchor="middle" fontSize="8" fill={index === 2 ? "#14151a" : stroke}>{subtitle}</text>
+            {index < 4 && <line x1={70 + index * 75} y1="66" x2={81 + index * 75} y2="66" stroke={stroke} strokeWidth="2" />}
+          </g>
+        ))}
+        <text x="190" y="20" textAnchor="middle" fontSize="10" fill={stroke}>Une valeur seule n'est pas encore une décision</text>
+        <text x="190" y="116" textAnchor="middle" fontSize="9" fill={accent}>Nettoyer · vérifier le zéro · maîtriser le contact · noter les conditions</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">

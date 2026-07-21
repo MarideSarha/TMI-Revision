@@ -53,6 +53,9 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
     if (lesson.quizIds.length === 0) {
       errors.push(`La leçon ${lesson.id} ne contient aucune question.`);
     }
+    if (lesson.id.startsWith("4-") && lesson.quizIds.length !== 5) {
+      errors.push(`La leçon de mécanique ${lesson.id} doit contenir exactement cinq questions progressives.`);
+    }
     if (lesson.exercice.consignes.length === 0 || lesson.exercice.criteres.length === 0) {
       errors.push(`L'exercice de la leçon ${lesson.id} doit avoir des consignes et des critères.`);
     }
