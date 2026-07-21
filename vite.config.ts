@@ -18,4 +18,26 @@ console.info(
 export default defineConfig({
   cacheDir: ".vite-cache",
   plugins: [react(), tailwindcss()],
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            {
+              name: "vendor-react",
+              test: /[\\/]node_modules[\\/](?:react|react-dom)[\\/]/,
+            },
+            {
+              name: "vendor-icons",
+              test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            },
+            {
+              name: "learning-data",
+              test: /[\\/]src[\\/]data[\\/]/,
+            },
+          ],
+        },
+      },
+    },
+  },
 });
