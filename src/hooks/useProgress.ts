@@ -38,6 +38,7 @@ function checkBadges(progress: Progress) {
   const mechanicsExamBadges: Record<string, string> = {
     "m4-b1": "mechanics_block_1",
     "m4-b5": "mechanics_block_5",
+    "m4-b6": "mechanics_block_6",
   };
   for (const [blockId, badgeId] of Object.entries(mechanicsExamBadges)) {
     const result = progress.blockExamScores[blockId];
