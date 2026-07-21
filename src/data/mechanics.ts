@@ -1,5 +1,6 @@
 import { Cog } from "lucide-react";
 import type { Lesson, TrainingBlock, TrainingModule } from "../types";
+import { MECHANICS_BLOCK4_LESSONS } from "./mechanicsBlock4";
 
 const block1Lessons: Lesson[] = [
   {
@@ -2117,7 +2118,7 @@ export const MECHANICS_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m4-b4", num: 4, title: "Plans, tolérances, matériaux et fabrication", objective: "Lire les documents mécaniques et comprendre les choix de fabrication.", lessonIds: [], chapterCount: 8, status: "planned" },
+  { id: "m4-b4", num: 4, title: "Plans, tolérances, matériaux et fabrication", objective: "Lire les documents mécaniques et comprendre les choix de fabrication.", lessonIds: MECHANICS_BLOCK4_LESSONS.map((lesson) => lesson.id), chapterCount: 8, status: "in_progress" },
   { id: "m4-b5", num: 5, title: "Assemblages, fixations et étanchéité", objective: "Démonter, contrôler et remonter les assemblages de façon fiable.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b6", num: 6, title: "Arbres, accouplements, alignement et équilibrage", objective: "Maintenir une ligne d'arbres et limiter vibrations et usure.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b7", num: 7, title: "Roulements, paliers, lubrification et étanchéité tournante", objective: "Monter, lubrifier et diagnostiquer les organes de guidage.", lessonIds: [], chapterCount: 8, status: "planned" },
@@ -2135,6 +2136,6 @@ export const MECHANICS_MODULE: TrainingModule = {
   icon: Cog,
   color: "amber",
   source: "[TMI] Parcours progressif débutant → professionnel · références INRS et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...MECHANICS_BLOCK4_LESSONS],
   blocks: MECHANICS_BLOCKS,
 };

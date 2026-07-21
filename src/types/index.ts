@@ -29,6 +29,10 @@ export type LessonSchemaType =
   | "micrometer-reading"
   | "dial-indicator"
   | "measurement-report"
+  | "blueprint-document"
+  | "orthographic-views"
+  | "section-view"
+  | "functional-dimensioning"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";

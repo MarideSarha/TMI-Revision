@@ -366,6 +366,93 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "blueprint-document") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Organisation d'un plan mécanique avec zone graphique, cartouche et indice">
+        <rect x="20" y="12" width="340" height="146" fill={box} stroke={stroke} strokeWidth="2" />
+        <rect x="225" y="112" width="135" height="46" fill="none" stroke={accent} strokeWidth="2" />
+        <line x1="225" y1="132" x2="360" y2="132" stroke={stroke} />
+        <line x1="285" y1="112" x2="285" y2="158" stroke={stroke} />
+        <line x1="330" y1="112" x2="330" y2="158" stroke={stroke} />
+        <rect x="74" y="42" width="108" height="48" rx="4" fill="none" stroke={stroke} strokeWidth="3" />
+        <circle cx="128" cy="66" r="14" fill="none" stroke={accent} strokeWidth="3" />
+        <text x="128" y="105" textAnchor="middle" fontSize="9" fill={stroke}>zone graphique</text>
+        <text x="255" y="126" textAnchor="middle" fontSize="8" fill={stroke}>DÉSIGNATION</text>
+        <text x="307" y="126" textAnchor="middle" fontSize="8" fill={stroke}>ÉCHELLE</text>
+        <text x="345" y="126" textAnchor="middle" fontSize="8" fill={stroke}>IND.</text>
+        <text x="255" y="148" textAnchor="middle" fontSize="8" fill={accent}>PALIER</text>
+        <text x="307" y="148" textAnchor="middle" fontSize="9" fill={accent}>1:2</text>
+        <text x="345" y="148" textAnchor="middle" fontSize="10" fill={accent}>C</text>
+        <text x="190" y="166" textAnchor="middle" fontSize="9" fill={stroke}>Le cartouche identifie la bonne définition avant toute mesure</text>
+      </svg>
+    );
+  }
+  if (type === "orthographic-views") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Trois vues orthogonales d'une pièce mécanique">
+        <g fill="none" stroke={stroke} strokeWidth="2">
+          <rect x="35" y="35" width="95" height="62" />
+          <path d="M 35 68 H 70 V 48 H 100 V 68 H 130" />
+          <rect x="180" y="35" width="62" height="62" />
+          <circle cx="211" cy="66" r="15" stroke={accent} strokeWidth="3" />
+          <rect x="35" y="120" width="95" height="34" />
+          <line x1="70" y1="120" x2="70" y2="154" strokeDasharray="5,4" />
+          <line x1="100" y1="120" x2="100" y2="154" strokeDasharray="5,4" />
+        </g>
+        <line x1="145" y1="35" x2="145" y2="154" stroke={accent} strokeDasharray="3,3" />
+        <text x="82" y="25" textAnchor="middle" fontSize="10" fill={accent}>FACE</text>
+        <text x="211" y="25" textAnchor="middle" fontSize="10" fill={stroke}>PROFIL</text>
+        <text x="82" y="115" textAnchor="middle" fontSize="10" fill={stroke}>DESSUS</text>
+        <text x="285" y="54" fontSize="9" fill={stroke}>Même pièce</text>
+        <text x="285" y="72" fontSize="9" fill={stroke}>3 directions</text>
+        <text x="285" y="90" fontSize="9" fill={accent}>alignées</text>
+        <text x="190" y="166" textAnchor="middle" fontSize="9" fill={stroke}>Une arête se retrouve à la même position dans les vues liées</text>
+      </svg>
+    );
+  }
+  if (type === "section-view") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Principe d'une coupe mécanique avec plan de coupe et hachures">
+        <g fill="none" stroke={stroke} strokeWidth="2">
+          <rect x="30" y="38" width="120" height="82" />
+          <circle cx="90" cy="79" r="22" />
+          <line x1="90" y1="22" x2="90" y2="137" stroke={accent} strokeWidth="3" strokeDasharray="10,4,2,4" />
+          <polygon points="84,27 96,27 90,16" fill={accent} stroke="none" />
+          <polygon points="84,132 96,132 90,143" fill={accent} stroke="none" />
+          <rect x="215" y="38" width="120" height="82" />
+          <rect x="258" y="38" width="34" height="82" fill={dark ? "#020617" : "#ffffff"} />
+        </g>
+        {[0, 1, 2, 3, 4, 5].map((index) => (
+          <g key={index} stroke={accent} strokeWidth="1.5">
+            <line x1={218 + index * 18} y1="116" x2={238 + index * 18} y2="42" />
+          </g>
+        ))}
+        <text x="90" y="154" textAnchor="middle" fontSize="9" fill={stroke}>plan A—A</text>
+        <text x="275" y="28" textAnchor="middle" fontSize="10" fill={accent}>COUPE A—A</text>
+        <text x="275" y="136" textAnchor="middle" fontSize="9" fill={stroke}>hachures = matière coupée</text>
+        <text x="190" y="166" textAnchor="middle" fontSize="9" fill={stroke}>Le vide intérieur reste sans hachures</text>
+      </svg>
+    );
+  }
+  if (type === "functional-dimensioning") {
+    return (
+      <svg viewBox="0 0 380 170" className="h-40 w-full" role="img" aria-label="Cotation fonctionnelle d'une pièce depuis une surface de référence">
+        <rect x="60" y="52" width="250" height="60" fill={box} stroke={stroke} strokeWidth="3" />
+        <circle cx="245" cy="82" r="18" fill="none" stroke={accent} strokeWidth="3" />
+        <line x1="60" y1="38" x2="60" y2="134" stroke={accent} strokeWidth="4" />
+        <text x="48" y="30" textAnchor="middle" fontSize="10" fill={accent}>A</text>
+        <line x1="60" y1="132" x2="245" y2="132" stroke={stroke} />
+        <line x1="60" y1="122" x2="60" y2="142" stroke={stroke} />
+        <line x1="245" y1="122" x2="245" y2="142" stroke={stroke} />
+        <polygon points="68,132 80,126 80,138" fill={stroke} />
+        <polygon points="237,132 225,126 225,138" fill={stroke} />
+        <text x="152" y="126" textAnchor="middle" fontSize="11" fill={accent} fontWeight="bold">120 ± 0,10</text>
+        <line x1="245" y1="48" x2="245" y2="20" stroke={stroke} />
+        <text x="245" y="16" textAnchor="middle" fontSize="10" fill={stroke}>⌀ 24 H7</text>
+        <text x="190" y="160" textAnchor="middle" fontSize="9" fill={stroke}>Mesurer la fonction depuis la référence indiquée, pas depuis une arête quelconque</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">
