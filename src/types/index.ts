@@ -41,6 +41,10 @@ export type LessonSchemaType =
   | "bolt-grade"
   | "locking-methods"
   | "seized-fastener"
+  | "static-sealing"
+  | "flange-tightening"
+  | "dynamic-sealing"
+  | "leak-diagnosis"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";
