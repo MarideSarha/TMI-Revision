@@ -2139,7 +2139,11 @@ export const MECHANICS_BLOCKS: TrainingBlock[] = [
     objective: "Démonter, contrôler et remonter les assemblages de façon fiable.",
     lessonIds: MECHANICS_BLOCK5_LESSONS.map((lesson) => lesson.id),
     chapterCount: 8,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["mec161", "mec164", "mec167", "mec169", "mec171", "mec173", "mec176", "mec180", "mec181", "mec184", "mec186", "mec190", "mec191", "mec194", "mec196", "mec200"],
+      passPercent: 80,
+    },
   },
   { id: "m4-b6", num: 6, title: "Arbres, accouplements, alignement et équilibrage", objective: "Maintenir une ligne d'arbres et limiter vibrations et usure.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m4-b7", num: 7, title: "Roulements, paliers, lubrification et étanchéité tournante", objective: "Monter, lubrifier et diagnostiquer les organes de guidage.", lessonIds: [], chapterCount: 8, status: "planned" },
