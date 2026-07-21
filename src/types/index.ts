@@ -37,6 +37,10 @@ export type LessonSchemaType =
   | "fit-clearance"
   | "material-selection"
   | "manufacturing-process"
+  | "thread-profile"
+  | "bolt-grade"
+  | "locking-methods"
+  | "seized-fastener"
   | "ohm-triangle"
   | "control-circuit"
   | "measurement-tools";

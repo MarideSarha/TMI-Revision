@@ -522,6 +522,73 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "thread-profile") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Profil simplifié d'un filetage métrique avec diamètre et pas">
+        <line x1="35" y1="55" x2="365" y2="55" stroke={stroke} strokeDasharray="5,4" />
+        <path d="M35 95 L60 65 L85 95 L110 65 L135 95 L160 65 L185 95 L210 65 L235 95 L260 65 L285 95 L310 65 L335 95 L365 65" fill="none" stroke={accent} strokeWidth="4" />
+        <line x1="60" y1="120" x2="110" y2="120" stroke={stroke} strokeWidth="2" />
+        <polygon points="60,120 70,114 70,126" fill={stroke} />
+        <polygon points="110,120 100,114 100,126" fill={stroke} />
+        <text x="85" y="139" textAnchor="middle" fontSize="10" fill={accent}>pas P</text>
+        <line x1="325" y1="55" x2="325" y2="95" stroke={stroke} />
+        <text x="337" y="79" fontSize="9" fill={stroke}>⌀ nominal</text>
+        <text x="200" y="22" textAnchor="middle" fontSize="11" fill={stroke}>M12 × 1,75</text>
+        <text x="200" y="156" textAnchor="middle" fontSize="9" fill={stroke}>Même diamètre ne signifie pas même pas ni même fonction</text>
+      </svg>
+    );
+  }
+  if (type === "bolt-grade") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Tête de vis marquée 8.8 et chaîne de serrage contrôlé">
+        <polygon points="45,48 95,20 145,48 145,102 95,130 45,102" fill={box} stroke={accent} strokeWidth="4" />
+        <text x="95" y="82" textAnchor="middle" fontSize="24" fill={accent} fontWeight="bold">8.8</text>
+        <text x="95" y="151" textAnchor="middle" fontSize="9" fill={stroke}>classe de propriété</text>
+        {[['Préparer', 180], ['Approcher', 250], ['Serrer', 320]].map(([label, x], index) => (
+          <g key={String(label)}>
+            <circle cx={Number(x)} cy="75" r="27" fill={index === 2 ? accent : box} stroke={stroke} />
+            <text x={Number(x)} y="79" textAnchor="middle" fontSize="8" fill={index === 2 ? "#14151a" : stroke}>{label}</text>
+            {index < 2 && <line x1={Number(x) + 28} y1="75" x2={Number(x) + 41} y2="75" stroke={stroke} />}
+          </g>
+        ))}
+        <text x="250" y="126" textAnchor="middle" fontSize="9" fill={stroke}>ordre + méthode + valeur prescrite</text>
+        <text x="250" y="145" textAnchor="middle" fontSize="9" fill={accent}>la classe ne donne pas à elle seule le couple</text>
+      </svg>
+    );
+  }
+  if (type === "locking-methods") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Familles de dispositifs de freinage des assemblages filetés">
+        {[['Friction', 'écrou frein'], ['Forme', 'goupille'], ['Chimique', 'frein-filet'], ['Sécurité', 'fil / tôle']].map(([title, subtitle], index) => (
+          <g key={title}>
+            <rect x={8 + index * 98} y="45" width="84" height="70" rx="8" fill={index === 1 ? accent : box} stroke={stroke} />
+            <text x={50 + index * 98} y="70" textAnchor="middle" fontSize="9" fill={index === 1 ? "#14151a" : stroke} fontWeight="bold">{title}</text>
+            <text x={50 + index * 98} y="91" textAnchor="middle" fontSize="8" fill={index === 1 ? "#14151a" : stroke}>{subtitle}</text>
+          </g>
+        ))}
+        <text x="200" y="22" textAnchor="middle" fontSize="10" fill={stroke}>Empêcher la rotation ou conserver la précharge selon le risque</text>
+        <text x="200" y="140" textAnchor="middle" fontSize="9" fill={accent}>Identifier le dispositif avant démontage</text>
+        <text x="200" y="158" textAnchor="middle" fontSize="9" fill={stroke}>Remplacer les éléments à usage unique selon la documentation</text>
+      </svg>
+    );
+  }
+  if (type === "seized-fastener") {
+    return (
+      <svg viewBox="0 0 400 170" className="h-40 w-full" role="img" aria-label="Escalade progressive pour traiter une fixation grippée">
+        {[['1', 'Observer'], ['2', 'Nettoyer'], ['3', 'Outiller'], ['4', 'Débloquer'], ['5', 'Escalader']].map(([number, label], index) => (
+          <g key={number}>
+            <circle cx={40 + index * 80} cy="72" r="25" fill={index === 4 ? accent : box} stroke={stroke} strokeWidth="2" />
+            <text x={40 + index * 80} y="68" textAnchor="middle" fontSize="11" fill={index === 4 ? "#14151a" : accent} fontWeight="bold">{number}</text>
+            <text x={40 + index * 80} y="86" textAnchor="middle" fontSize="7" fill={index === 4 ? "#14151a" : stroke}>{label}</text>
+            {index < 4 && <line x1={66 + index * 80} y1="72" x2={94 + index * 80} y2="72" stroke={stroke} />}
+          </g>
+        ))}
+        <text x="200" y="25" textAnchor="middle" fontSize="10" fill={stroke}>L'effort augmente seulement si le contact et le risque restent maîtrisés</text>
+        <text x="200" y="128" textAnchor="middle" fontSize="9" fill={accent}>Glissement · torsion · fissure · échauffement anormal = ARRÊT</text>
+        <text x="200" y="150" textAnchor="middle" fontSize="9" fill={stroke}>Préserver la pièce vaut mieux que gagner une minute</text>
+      </svg>
+    );
+  }
   if (type === "ohm-triangle") {
     return (
       <svg viewBox="0 0 200 130" className="w-full h-32">
