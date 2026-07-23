@@ -57,6 +57,17 @@ export type LessonSchemaType =
   | "control-circuit"
   | "measurement-tools";
 
+/**
+ * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
+ * Contrairement à LessonSchemaType (illustration fixe), ceux-ci proposent
+ * une interaction (étapes cliquables) ou une animation légère. Chaque
+ * illustration reste compréhensible sans mouvement (repli statique) et
+ * respecte la préférence système « réduire les animations ».
+ */
+export type InteractiveSchemaType =
+  | "consignation-interactive"
+  | "circuit-states";
+
 export interface LessonExercise {
   enonce: string;
   consignes: string[];
@@ -119,6 +130,8 @@ export interface Lesson {
   verification: LessonQuickCheck;
   exercice: LessonExercise;
   activity?: LessonInteractiveActivity;
+  /** Schémas interactifs ou animés affichés dans la leçon (facultatif). */
+  illustrations?: InteractiveSchemaType[];
   ascii?: string;
   astucesPro?: string[];
   diagnostic?: string[];

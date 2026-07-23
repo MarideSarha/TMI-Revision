@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AlertTriangle, ArrowLeft, CheckCircle2, ClipboardList, Clock3, Target } from "lucide-react";
 import type { Lesson, LessonStage, Progress, QuizResult, TrainingModule } from "../../types";
 import { QuizRunner } from "../quiz/QuizRunner";
+import { InteractiveSchema } from "./InteractiveSchema";
 import { LessonInteractiveActivity } from "./LessonInteractiveActivity";
 import { LessonSchema } from "./LessonSchema";
 import { LessonRemediation } from "./LessonRemediation";
@@ -99,6 +100,10 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
               </pre>
             )}
           </section>
+
+          {lesson.illustrations?.map((illustration) => (
+            <InteractiveSchema key={illustration} type={illustration} dark={dark} />
+          ))}
 
           {lesson.securite && (
             <section className={`rounded-xl border-2 border-red-400/40 p-4 ${dark ? "bg-red-400/5" : "bg-red-50"}`}>

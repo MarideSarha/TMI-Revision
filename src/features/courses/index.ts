@@ -1,4 +1,5 @@
 export { LessonSchema } from "./LessonSchema";
+export { InteractiveSchema } from "./InteractiveSchema";
 export { LessonInteractiveActivity } from "./LessonInteractiveActivity";
 export { LessonView } from "./LessonView";
 export { LessonRemediation } from "./LessonRemediation";

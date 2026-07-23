@@ -1,0 +1,23 @@
+import type { QuestionBank } from "../types";
+
+/* ----------------------------------------------------------------
+   BANQUE DE QUESTIONS — MODULE 3, BLOC 2 (Sécurité électrique)
+   Préfixe « els » = électrotechnique · sécurité. Les questions des
+   fondamentaux (bloc 1) restent dans questions.ts (q33 à q50).
+   ---------------------------------------------------------------- */
+
+export const ELECTRO_QUESTIONS: QuestionBank = {
+  // --- Leçon 3-4 : Comprendre le risque électrique ---
+  els1: { lesson: "3-4", type: "qcm", q: "Un « contact direct » désigne le fait de toucher :", options: ["Une masse métallique mise accidentellement sous tension", "Une partie normalement sous tension (un conducteur actif)", "Le sol de l'atelier", "Un câble débranché"], correct: 1, exp: "Le contact direct, c'est le contact avec une pièce normalement sous tension (phase, borne active). Le contact indirect concerne une masse mise sous tension par un défaut." },
+  els2: { lesson: "3-4", type: "qcm", q: "Un « contact indirect » se produit lorsqu'on touche :", options: ["Un conducteur actif non isolé", "Une carcasse métallique devenue sous tension à cause d'un défaut d'isolement", "Un interrupteur ouvert", "Une pile de 1,5 V"], correct: 1, exp: "Le contact indirect met en jeu une masse (carcasse, châssis) devenue accidentellement sous tension. La liaison à la terre et le différentiel servent à s'en protéger." },
+  els3: { lesson: "3-4", type: "qcm", q: "Pour le corps humain, le paramètre le plus déterminant du danger électrique est :", options: ["La couleur du câble", "L'intensité qui traverse le corps et la durée du passage", "Le poids de l'appareil", "La longueur du fil"], correct: 1, exp: "C'est le courant (intensité) traversant le corps, et la durée, qui déterminent la gravité. La tension et la résistance du corps influent sur cette intensité." },
+  els4: { lesson: "3-4", type: "vf", q: "Un court-circuit provoque une intensité beaucoup plus élevée que le courant normal.", options: ["Vrai", "Faux"], correct: 0, exp: "Le court-circuit offre un chemin de très faible résistance : l'intensité s'emballe, d'où l'échauffement et le risque d'incendie ou de brûlure." },
+  els5: { lesson: "3-4", type: "qcm", q: "En cas de court-circuit, quel élément doit couper le circuit pour protéger l'installation ?", options: ["Le contacteur de commande", "Le disjoncteur ou le fusible", "Le bouton-poussoir", "Le voyant de signalisation"], correct: 1, exp: "La protection contre les courts-circuits est assurée par le disjoncteur (réarmable) ou le fusible (à remplacer), pas par les organes de commande." },
+
+  // --- Leçon 3-5 : La consignation électrique étape par étape ---
+  els6: { lesson: "3-5", type: "qcm", q: "Quelle est la première étape d'une consignation électrique ?", options: ["Vérifier l'absence de tension", "Séparer (couper toutes les sources d'alimentation)", "Poser l'étiquette de repérage", "Cadenasser l'organe de coupure"], correct: 1, exp: "L'ordre est : séparer, condamner, identifier, puis vérifier l'absence de tension (VAT). On commence toujours par séparer." },
+  els7: { lesson: "3-5", type: "qcm", q: "À quoi sert la condamnation (cadenas + pancarte) ?", options: ["À mesurer la tension", "À empêcher toute remise sous tension par une autre personne", "À accélérer l'intervention", "À identifier l'équipement"], correct: 1, exp: "La condamnation verrouille physiquement l'organe de coupure en position ouverte : personne ne peut ré-alimenter le circuit par erreur." },
+  els8: { lesson: "3-5", type: "qcm", q: "La vérification d'absence de tension (VAT) doit se faire :", options: ["N'importe où dans l'atelier", "Au plus près du point de travail, avec un VAT testé avant et après", "Une fois l'intervention terminée", "Uniquement à l'œil"], correct: 1, exp: "La VAT se réalise au plus près du lieu de travail ; le VAT doit être vérifié juste avant et juste après la mesure pour être sûr qu'il fonctionne." },
+  els9: { lesson: "3-5", type: "vf", q: "Tant que la VAT n'a pas confirmé l'absence de tension, l'installation doit être considérée comme dangereuse.", options: ["Vrai", "Faux"], correct: 0, exp: "Couper ne suffit pas : tant que la VAT n'a pas confirmé 0 V au point de travail, on considère l'ouvrage comme sous tension." },
+  els10: { lesson: "3-5", type: "qcm", q: "Qui réalise une consignation électrique ?", options: ["N'importe quel opérateur disponible", "Une personne habilitée, selon la procédure de l'entreprise", "Le premier arrivé sur place", "Un stagiaire seul"], correct: 1, exp: "La consignation est réalisée par une personne titulaire de l'habilitation adaptée, en suivant la procédure de l'entreprise. Cette application reste pédagogique et ne remplace pas une formation encadrée." },
+};

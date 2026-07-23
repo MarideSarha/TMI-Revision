@@ -176,6 +176,192 @@ const block1Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 2 — SÉCURITÉ ÉLECTRIQUE, CONSIGNATION ET HABILITATIONS
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block2Lessons: Lesson[] = [
+  {
+    id: "3-4",
+    title: "Comprendre le risque électrique",
+    durationMinutes: 30,
+    objectifs: [
+      "Distinguer un contact direct d'un contact indirect.",
+      "Expliquer pourquoi un court-circuit est dangereux et ce qui doit le couper.",
+      "Situer ce qui rend le courant dangereux pour le corps humain.",
+    ],
+    simple:
+      "L'électricité ne se voit pas, ne s'entend pas et ne se sent pas avant qu'il ne soit trop tard. Comprendre comment on peut être en contact avec elle, et pourquoi un court-circuit est violent, est la base de toute intervention en sécurité.",
+    vocab: [
+      ["Contact direct", "Toucher une partie normalement sous tension (un conducteur actif, une borne)."],
+      ["Contact indirect", "Toucher une masse métallique devenue sous tension à cause d'un défaut d'isolement."],
+      ["Court-circuit", "Contact accidentel entre deux conducteurs, offrant un chemin de très faible résistance : l'intensité s'emballe."],
+      ["Masse", "Partie métallique accessible d'un équipement, normalement hors tension, reliée à la terre."],
+      ["Différentiel (DDR)", "Dispositif qui coupe le circuit dès qu'un courant de fuite vers la terre est détecté (protège contre le contact indirect)."],
+      ["Électrisation", "Passage d'un courant dans le corps. Quand elle entraîne la mort, on parle d'électrocution."],
+    ],
+    example:
+      "Sur une machine d'atelier, un fil dénudé touche la carcasse métallique. La carcasse est alors sous tension : un opérateur qui la touche subit un contact indirect. Si l'installation est correctement reliée à la terre et protégée par un différentiel, celui-ci coupe l'alimentation en une fraction de seconde.",
+    schema: "control-circuit",
+    illustrations: ["circuit-states"],
+    ascii: [
+      "CONTACT DIRECT        CONTACT INDIRECT",
+      "  main → phase          main → carcasse (défaut)",
+      "                              │",
+      "                          terre + différentiel → coupe",
+    ].join("\n"),
+    retenir: [
+      "Contact direct = pièce normalement sous tension. Contact indirect = masse mise sous tension par un défaut.",
+      "Le danger pour le corps dépend surtout de l'intensité qui le traverse et de la durée.",
+      "Un court-circuit fait grimper l'intensité : c'est le disjoncteur ou le fusible qui doit couper.",
+      "La liaison à la terre + le différentiel protègent contre les contacts indirects.",
+    ],
+    erreurs: [
+      "Croire qu'une basse tension est toujours sans danger : même 230 V peut être mortel.",
+      "Toucher une carcasse métallique en supposant qu'elle est forcément hors tension.",
+      "Confondre le rôle du différentiel (fuite à la terre) et celui du disjoncteur (surcharge, court-circuit).",
+    ],
+    astucesPro: [
+      "Avant de toucher une machine suspecte, on ne se fie pas au hasard : on consigne et on vérifie l'absence de tension.",
+      "Un différentiel qui déclenche « sans raison » signale souvent un vrai défaut d'isolement à rechercher, pas un caprice.",
+    ],
+    diagnostic: [
+      "Identifier si le risque est un contact direct (pièce active accessible) ou indirect (masse).",
+      "Vérifier la présence et l'état de la liaison à la terre et des protections.",
+      "Rechercher un défaut d'isolement en cas de déclenchement répété du différentiel.",
+    ],
+    depannage: [
+      "Sécuriser : consigner l'installation avant tout contrôle nécessitant un accès.",
+      "Contrôler la continuité de la liaison à la terre (hors tension).",
+      "Ne remettre sous tension qu'après avoir traité la cause du défaut.",
+    ],
+    securite: [
+      "Toute intervention nécessitant un accès aux parties actives exige une consignation et une habilitation adaptée.",
+      "La vérification d'absence de tension (VAT) se fait selon la procédure, juste avant tout contact.",
+      "Cette application est pédagogique : elle ne remplace ni une formation pratique encadrée, ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Un opérateur signale qu'il « ressent des picotements » en touchant le capot d'une machine.",
+      mission: ["Nommer le type de contact en cause.", "Citer la protection qui aurait dû agir.", "Indiquer la conduite immédiate à tenir."],
+      correction:
+        "Il s'agit d'un contact indirect : le capot (une masse) est probablement sous tension à cause d'un défaut d'isolement. La liaison à la terre associée à un différentiel aurait dû couper l'alimentation. Conduite immédiate : ne plus toucher la machine, la mettre hors service, la signaler et la faire consigner, puis rechercher le défaut avec une personne habilitée. Ne jamais continuer à l'utiliser.",
+    },
+    memo: ["Direct = pièce active", "Indirect = masse en défaut", "Terre + différentiel protègent", "Court-circuit → disjoncteur/fusible"],
+    resume:
+      "Le risque électrique se comprend par le type de contact (direct/indirect) et par le court-circuit ; la terre, le différentiel et les protections contre les surintensités en sont les garde-fous.",
+    quizIds: ["els1", "els2", "els3", "els4", "els5"],
+    verification: {
+      question: "Toucher la carcasse métallique d'une machine mise sous tension par un défaut d'isolement, c'est un contact :",
+      options: ["Direct", "Indirect", "Sans danger", "Volontaire"],
+      correct: 1,
+      explanation: "La carcasse est une masse : mise sous tension par un défaut, elle provoque un contact indirect. La terre et le différentiel servent à s'en protéger.",
+    },
+    exercice: {
+      enonce:
+        "Un collègue dit : « Ce n'est que du 230 V, ce n'est pas dangereux, je peux toucher sans consigner. » Que lui répondez-vous, et quelle démarche imposez-vous ?",
+      consignes: [
+        "Corrige l'idée fausse sur la « basse » tension.",
+        "Explique ce qui rend le courant dangereux pour le corps.",
+        "Rappelle la démarche de sécurité obligatoire avant contact.",
+      ],
+      criteres: [
+        "J'ai indiqué que 230 V peut être mortel.",
+        "J'ai relié le danger à l'intensité qui traverse le corps et à la durée.",
+        "J'ai exigé une consignation et une vérification d'absence de tension par une personne habilitée.",
+      ],
+      correction:
+        "230 V n'a rien d'anodin : c'est une tension qui provoque chaque année des accidents graves. Ce qui blesse, c'est l'intensité qui traverse le corps et la durée du passage. Avant tout contact avec des parties pouvant être sous tension, il faut consigner l'installation et vérifier l'absence de tension, en respectant les habilitations et la procédure de l'entreprise.",
+    },
+  },
+  {
+    id: "3-5",
+    title: "La consignation électrique étape par étape",
+    durationMinutes: 32,
+    objectifs: [
+      "Remettre dans l'ordre les quatre étapes d'une consignation électrique.",
+      "Expliquer le rôle précis de chaque étape et la place de la vérification d'absence de tension.",
+    ],
+    simple:
+      "Avant d'intervenir sur un équipement électrique, on doit être certain qu'il ne peut ni être sous tension, ni le redevenir pendant le travail. La consignation est la suite d'opérations qui garantit cela, dans un ordre précis qui ne s'improvise pas.",
+    vocab: [
+      ["Consignation", "Ensemble des opérations qui mettent et maintiennent un ouvrage hors tension pour intervenir en sécurité."],
+      ["Séparation", "Couper toutes les sources d'alimentation à l'aide d'un organe de coupure (sectionneur, disjoncteur)."],
+      ["Condamnation", "Verrouiller l'organe de coupure en position ouverte (cadenas) et signaler par une pancarte."],
+      ["Identification", "Repérer avec certitude l'ouvrage sur lequel on va travailler."],
+      ["VAT", "Vérification d'Absence de Tension, réalisée au plus près du point de travail avec un appareil testé avant et après."],
+      ["Habilitation", "Reconnaissance, par l'employeur, qu'une personne est formée pour réaliser des opérations électriques données."],
+    ],
+    example:
+      "Pour remplacer un contacteur dans une armoire, le technicien habilité ouvre le disjoncteur (séparer), le cadenasse et pose une pancarte (condamner), vérifie sur le schéma qu'il s'agit du bon départ (identifier), puis mesure l'absence de tension au VAT juste avant de toucher les bornes (VAT).",
+    schema: "consignation-steps",
+    illustrations: ["consignation-interactive"],
+    ascii: "SÉPARER → CONDAMNER → IDENTIFIER → VÉRIFIER (VAT)\n couper     cadenas       repérer        0 V confirmé",
+    retenir: [
+      "L'ordre : séparer → condamner → identifier → vérifier l'absence de tension (VAT).",
+      "Couper ne suffit pas : tant que la VAT n'a pas confirmé 0 V, l'ouvrage est considéré sous tension.",
+      "La condamnation empêche une remise sous tension par un tiers, même bien intentionné.",
+      "En haute tension, une mise à la terre et en court-circuit s'ajoute après la VAT.",
+    ],
+    erreurs: [
+      "Sauter l'étape de VAT en supposant que « c'est coupé ».",
+      "Ne pas condamner parce qu'on « reste à côté » : un tiers peut réarmer sans le savoir.",
+      "Vérifier l'absence de tension avec un appareil dont on n'a pas contrôlé le bon fonctionnement.",
+    ],
+    astucesPro: [
+      "On teste le VAT sur une source connue avant ET après la mesure : s'il ne fonctionne plus après, la mesure ne vaut rien.",
+      "La pancarte et le cadenas portent souvent le nom de l'intervenant : la levée de consignation lui revient.",
+    ],
+    diagnostic: [
+      "Vérifier que toutes les sources d'alimentation ont bien été séparées, pas seulement la principale.",
+      "Contrôler que l'organe de coupure est condamné en position ouverte.",
+      "S'assurer que le point de VAT correspond bien à la zone de travail.",
+    ],
+    depannage: [
+      "Reprendre la consignation dans l'ordre si un doute existe sur une étape.",
+      "En cas de sources multiples (secours, condensateurs), traiter chaque source avant d'intervenir.",
+      "Ne lever la consignation qu'une fois le travail terminé et les personnes prévenues.",
+    ],
+    securite: [
+      "La consignation électrique est réalisée par une personne habilitée, selon la procédure de l'entreprise.",
+      "On ne shunte jamais un dispositif de sécurité pour aller plus vite.",
+      "Cette application est pédagogique et ne remplace pas une formation pratique encadrée ni les procédures internes.",
+    ],
+    etudeDeCas: {
+      situation: "Un intervenant a coupé le disjoncteur et commence à démonter, sans cadenas ni VAT.",
+      mission: ["Repérer les deux étapes manquantes.", "Expliquer le risque concret créé.", "Donner l'ordre correct à respecter."],
+      correction:
+        "Il manque la condamnation (cadenas + pancarte) et la vérification d'absence de tension. Risque concret : un collègue peut réarmer le disjoncteur sans savoir qu'une intervention est en cours, et rien ne prouve que la zone de travail est réellement hors tension. Ordre correct : séparer, condamner, identifier, puis vérifier l'absence de tension avec un VAT testé avant et après. Aucun contact avant la VAT.",
+    },
+    memo: ["Séparer", "Condamner", "Identifier", "Vérifier (VAT)", "Pas de contact avant 0 V confirmé"],
+    resume:
+      "La consignation suit quatre étapes ordonnées ; la vérification d'absence de tension est le point de non-retour qui autorise l'intervention.",
+    quizIds: ["els6", "els7", "els8", "els9", "els10"],
+    verification: {
+      question: "Dans une consignation, à quel moment peut-on considérer que l'on est autorisé à intervenir ?",
+      options: ["Dès que le disjoncteur est ouvert", "Après avoir cadenassé", "Une fois la VAT réalisée et l'absence de tension confirmée", "Dès l'identification de l'ouvrage"],
+      correct: 2,
+      explanation: "La VAT est l'étape qui confirme réellement l'absence de tension. Avant elle, l'ouvrage reste considéré comme dangereux, même coupé et cadenassé.",
+    },
+    exercice: {
+      enonce:
+        "Remettez dans l'ordre et justifiez : (a) vérifier l'absence de tension, (b) cadenasser l'organe de coupure, (c) ouvrir le sectionneur, (d) repérer l'équipement concerné.",
+      consignes: [
+        "Donne l'ordre correct des quatre opérations.",
+        "Justifie la place de chaque étape.",
+        "Explique pourquoi la VAT est en dernier.",
+      ],
+      criteres: [
+        "L'ordre proposé est c, b, d, a.",
+        "J'ai justifié le rôle de la condamnation et de l'identification.",
+        "J'ai expliqué que la VAT confirme l'absence réelle de tension avant tout contact.",
+      ],
+      correction:
+        "Ordre correct : (c) ouvrir le sectionneur pour séparer, (b) cadenasser pour condamner, (d) repérer pour identifier, (a) vérifier l'absence de tension. La VAT vient en dernier car elle valide, au point de travail, que toutes les étapes précédentes ont bien mis l'ouvrage hors tension : c'est le contrôle qui autorise l'intervention.",
+    },
+  },
+];
+
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
   {
     id: "m3-b1",
@@ -190,7 +376,15 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m3-b2", num: 2, title: "Sécurité électrique, consignation et habilitations", objective: "Appliquer une démarche de consignation et situer les habilitations avant toute intervention électrique.", lessonIds: [], chapterCount: 7, status: "planned" },
+  {
+    id: "m3-b2",
+    num: 2,
+    title: "Sécurité électrique, consignation et habilitations",
+    objective: "Appliquer une démarche de consignation et situer les habilitations avant toute intervention électrique.",
+    lessonIds: block2Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   { id: "m3-b3", num: 3, title: "Réseaux, distribution et régimes de neutre", objective: "Distinguer monophasé et triphasé, comprendre la distribution et les régimes de neutre.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m3-b4", num: 4, title: "Appareillage de commande et de protection approfondi", objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m3-b5", num: 5, title: "Moteurs asynchrones et variation de vitesse", objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.", lessonIds: [], chapterCount: 8, status: "planned" },
@@ -205,6 +399,6 @@ export const ELECTRO_MODULE: TrainingModule = {
   icon: Zap,
   color: "violet",
   source: "[AFORP] Module 3 · parcours progressif débutant → opérationnel · références NF C 18-510 et constructeurs",
-  lessons: [...block1Lessons],
+  lessons: [...block1Lessons, ...block2Lessons],
   blocks: ELECTRO_BLOCKS,
 };
