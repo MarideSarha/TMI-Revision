@@ -991,5 +991,73 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "asynchronous-motor") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Stator */}
+        <circle cx="120" cy="70" r="52" fill="none" stroke={stroke} strokeWidth="2" />
+        <text x="120" y="18" textAnchor="middle" fontSize="9" fill={stroke}>Stator (fixe)</text>
+        {/* Bobinages (3 paires) */}
+        {[0, 60, 120].map((a) => {
+          const r = (a * Math.PI) / 180;
+          return <line key={a} x1={120 + Math.cos(r) * 40} y1={70 + Math.sin(r) * 40} x2={120 - Math.cos(r) * 40} y2={70 - Math.sin(r) * 40} stroke={accent} strokeWidth="3" />;
+        })}
+        {/* Rotor */}
+        <circle cx="120" cy="70" r="20" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="120" y="73" textAnchor="middle" fontSize="8" fill={stroke}>Rotor</text>
+        {/* Légende champ tournant */}
+        <text x="245" y="55" textAnchor="middle" fontSize="9" fill={stroke}>Champ</text>
+        <text x="245" y="68" textAnchor="middle" fontSize="9" fill={stroke}>tournant</text>
+        <path d="M225 80 a18 18 0 1 1 12 6" fill="none" stroke={accent} strokeWidth="2" markerEnd="url(#am-arrow)" />
+        <defs>
+          <marker id="am-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={accent} />
+          </marker>
+        </defs>
+      </svg>
+    );
+  }
+  if (type === "star-delta-coupling") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Étoile (Y) */}
+        <text x="80" y="18" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Étoile (Y)</text>
+        {[90, 210, 330].map((a, i) => {
+          const r = (a * Math.PI) / 180;
+          return <line key={i} x1="80" y1="70" x2={80 + Math.cos(r) * 34} y2={70 + Math.sin(r) * 34} stroke={accent} strokeWidth="3" />;
+        })}
+        <circle cx="80" cy="70" r="4" fill={stroke} />
+        <text x="80" y="118" textAnchor="middle" fontSize="7" fill={stroke}>point commun (neutre)</text>
+        {/* Triangle (Δ) */}
+        <text x="240" y="18" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Triangle (Δ)</text>
+        <polygon points="240,44 214,88 266,88" fill="none" stroke={accent} strokeWidth="3" />
+        <text x="240" y="108" textAnchor="middle" fontSize="7" fill={stroke}>enroulements en boucle</text>
+      </svg>
+    );
+  }
+  if (type === "vfd-blockdiagram") {
+    const stages: Array<[string, string]> = [
+      ["Réseau", "AC ~"],
+      ["Redresseur", "AC → DC"],
+      ["Bus continu", "DC ="],
+      ["Onduleur", "DC → AC"],
+      ["Moteur", "vitesse réglable"],
+    ];
+    return (
+      <svg viewBox="0 0 320 90" className="w-full h-24">
+        {stages.map(([l1, l2], i) => {
+          const x = 6 + i * 63;
+          return (
+            <g key={l1}>
+              <rect x={x} y="26" width="52" height="40" rx="5" fill={i === 4 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 26} y="44" textAnchor="middle" fontSize="7.5" fill={i === 4 ? "#14151a" : stroke} fontWeight="bold">{l1}</text>
+              <text x={x + 26} y="55" textAnchor="middle" fontSize="6.5" fill={i === 4 ? "#14151a" : stroke}>{l2}</text>
+              {i < 4 && <line x1={x + 52} y1="46" x2={x + 63} y2="46" stroke={stroke} strokeWidth="1.5" />}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
   return null;
 }

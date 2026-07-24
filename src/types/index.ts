@@ -61,7 +61,10 @@ export type LessonSchemaType =
   | "electrical-first-aid"
   | "power-distribution"
   | "three-phase-voltages"
-  | "command-power-circuit";
+  | "command-power-circuit"
+  | "asynchronous-motor"
+  | "star-delta-coupling"
+  | "vfd-blockdiagram";
 
 /**
  * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
@@ -75,7 +78,8 @@ export type InteractiveSchemaType =
   | "circuit-states"
   | "habilitation-decoder"
   | "neutral-regimes"
-  | "contactor-thermal";
+  | "contactor-thermal"
+  | "rotation-direction";
 
 export interface LessonExercise {
   enonce: string;

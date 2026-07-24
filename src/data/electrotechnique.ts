@@ -1979,6 +1979,266 @@ const block4Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 5 — MOTEURS ASYNCHRONES ET VARIATION DE VITESSE
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block5Lessons: Lesson[] = [
+  {
+    id: "3-25",
+    title: "Le moteur asynchrone triphasé : constitution et principe",
+    durationMinutes: 30,
+    objectifs: [
+      "Identifier les parties principales d'un moteur asynchrone (stator, rotor).",
+      "Expliquer le champ tournant et la notion de glissement.",
+    ],
+    simple:
+      "Le moteur asynchrone est le moteur le plus répandu en industrie. Il est robuste et simple. Ses bobinages fixes créent un champ magnétique qui tourne ; ce champ entraîne le rotor, qui tourne un peu moins vite que lui — d'où le nom « asynchrone ».",
+    vocab: [
+      ["Stator", "Partie fixe du moteur, portant les bobinages qui créent le champ tournant."],
+      ["Rotor", "Partie mobile qui tourne, entraînée par le champ magnétique."],
+      ["Champ tournant", "Champ magnétique créé par les bobinages triphasés, qui tourne dans le stator."],
+      ["Vitesse de synchronisme", "Vitesse de rotation du champ tournant, liée à la fréquence et au nombre de pôles."],
+      ["Glissement", "Petit écart entre la vitesse du rotor et celle du champ tournant."],
+    ],
+    example:
+      "Sur un convoyeur, un moteur asynchrone triphasé entraîne le tambour. Les bobinages du stator, alimentés en triphasé, créent un champ tournant ; le rotor suit ce champ avec un léger retard (glissement) et fournit le couple qui met la bande en mouvement.",
+    schema: "asynchronous-motor",
+    ascii: "STATOR (fixe) → bobinages triphases → CHAMP TOURNANT\n         ↓ entraine\nROTOR (mobile) tourne un peu moins vite (GLISSEMENT) → asynchrone",
+    retenir: [
+      "Le moteur asynchrone comprend un stator fixe et un rotor mobile.",
+      "Les bobinages triphasés du stator créent un champ magnétique tournant.",
+      "Le rotor tourne un peu moins vite que le champ : c'est le glissement.",
+      "La vitesse du champ (synchronisme) dépend de la fréquence et du nombre de pôles.",
+    ],
+    erreurs: [
+      "Croire que le rotor tourne exactement à la vitesse du champ : il y a toujours un glissement en charge.",
+      "Confondre stator (fixe) et rotor (mobile).",
+      "Penser qu'un moteur asynchrone n'a pas besoin de triphasé pour créer le champ tournant.",
+    ],
+    astucesPro: [
+      "Un glissement anormalement élevé peut signaler une surcharge ou un défaut d'alimentation.",
+      "La plaque signalétique donne la vitesse nominale, légèrement inférieure au synchronisme.",
+    ],
+    diagnostic: [
+      "Vérifier la présence des trois phases pour obtenir un champ tournant correct.",
+      "Comparer la vitesse observée à la vitesse nominale de la plaque.",
+      "Repérer un échauffement ou un bruit anormal du moteur.",
+    ],
+    depannage: [
+      "Contrôler l'alimentation triphasée (présence et équilibre des phases).",
+      "Vérifier la charge entraînée en cas de vitesse basse ou de surchauffe.",
+      "Respecter la consignation pour tout contrôle nécessitant un accès.",
+    ],
+    securite: [
+      "Un moteur peut démarrer à distance : on consigne avant toute intervention mécanique ou électrique.",
+      "Les surfaces d'un moteur en marche peuvent être chaudes.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur asynchrone tourne nettement moins vite que d'habitude et chauffe.",
+      mission: ["Formuler deux hypothèses.", "Indiquer les contrôles.", "Préciser la précaution."],
+      correction:
+        "Deux hypothèses : une surcharge mécanique (glissement qui augmente, échauffement) ou un défaut d'alimentation (phase manquante, déséquilibre). Contrôles : présence et équilibre des trois phases à la pince, état de la charge entraînée, comparaison à la vitesse nominale. Avant tout contrôle nécessitant un accès, on consigne l'installation ; les mesures sous tension se font avec l'habilitation adaptée.",
+    },
+    memo: ["Stator fixe / rotor mobile", "Champ tournant triphasé", "Glissement = écart de vitesse", "Robuste et répandu"],
+    resume:
+      "Le moteur asynchrone triphasé crée un champ tournant dans son stator qui entraîne le rotor avec un léger glissement ; c'est le moteur industriel de référence.",
+    quizIds: ["els106", "els107", "els108", "els109", "els110"],
+    verification: {
+      question: "Pourquoi le moteur « asynchrone » porte-t-il ce nom ?",
+      options: ["Le rotor tourne plus vite que le champ", "Le rotor tourne un peu moins vite que le champ tournant (glissement)", "Il n'a pas de rotor", "Il fonctionne en continu"],
+      correct: 1,
+      explanation: "Le rotor tourne un peu moins vite que le champ tournant : cet écart, le glissement, fait que la rotation n'est pas synchrone.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le principe du moteur asynchrone en reliant stator, champ tournant, rotor et glissement.",
+      consignes: [
+        "Décris le rôle du stator.",
+        "Explique comment le rotor est entraîné.",
+        "Définis le glissement.",
+      ],
+      criteres: [
+        "J'ai indiqué que le stator crée le champ tournant.",
+        "J'ai expliqué que le champ entraîne le rotor.",
+        "J'ai défini le glissement comme l'écart de vitesse.",
+      ],
+      correction:
+        "Les bobinages triphasés du stator (fixe) créent un champ magnétique tournant. Ce champ entraîne le rotor (mobile) par induction. Le rotor tourne un peu moins vite que le champ : cet écart de vitesse s'appelle le glissement, et c'est lui qui permet au moteur de fournir un couple.",
+    },
+  },
+  {
+    id: "3-26",
+    title: "Plaque signalétique et couplage étoile / triangle",
+    durationMinutes: 30,
+    objectifs: [
+      "Lire les informations essentielles d'une plaque signalétique moteur.",
+      "Choisir le couplage étoile ou triangle selon la tension du réseau.",
+    ],
+    simple:
+      "La plaque signalétique d'un moteur indique ses caractéristiques, dont deux tensions. Selon la tension du réseau, on relie les enroulements en étoile ou en triangle, pour que chaque enroulement reçoive la tension pour laquelle il est prévu.",
+    vocab: [
+      ["Plaque signalétique", "Étiquette du moteur indiquant tensions, puissance, courant, vitesse, cos φ."],
+      ["Couplage étoile (Y)", "Les enroulements sont reliés par un point commun ; chaque enroulement reçoit la tension simple."],
+      ["Couplage triangle (Δ)", "Les enroulements sont reliés en boucle ; chaque enroulement reçoit la tension composée."],
+      ["Tension d'enroulement", "Tension que doit recevoir chaque enroulement (la plus basse des deux valeurs de la plaque)."],
+      ["Plaque à bornes", "Bornier du moteur où l'on place les barrettes pour réaliser le couplage."],
+    ],
+    example:
+      "Un moteur marqué « 230 V / 400 V » a des enroulements prévus pour 230 V. Sur un réseau triphasé 400 V (entre phases), on le couple en étoile : chaque enroulement reçoit alors 400 / √3 ≈ 230 V, la tension pour laquelle il est prévu.",
+    schema: "star-delta-coupling",
+    ascii: "Plaque 230 V / 400 V  → enroulements prevus pour 230 V\nReseau 400 V (entre phases) → COUPLAGE ETOILE (Y)\nchaque enroulement recoit 400/√3 ≈ 230 V",
+    retenir: [
+      "La plaque signalétique donne deux tensions : la plus basse est la tension d'un enroulement.",
+      "En étoile (Y), chaque enroulement reçoit la tension simple (phase-neutre).",
+      "En triangle (Δ), chaque enroulement reçoit la tension composée (phase-phase).",
+      "Un moteur 230/400 V se couple en étoile sur un réseau 400 V.",
+    ],
+    erreurs: [
+      "Coupler en triangle un moteur 230/400 V sur un réseau 400 V : chaque enroulement recevrait 400 V et grillerait.",
+      "Ignorer la plaque signalétique et coupler au hasard.",
+      "Confondre tension d'enroulement et tension du réseau.",
+    ],
+    astucesPro: [
+      "On vérifie toujours la plaque et la position des barrettes avant de mettre sous tension.",
+      "Un mauvais couplage se paie cash : surchauffe immédiate ou couple insuffisant.",
+    ],
+    diagnostic: [
+      "Lire la plaque signalétique et la tension du réseau.",
+      "Déterminer le couplage correct (étoile ou triangle).",
+      "Vérifier la position des barrettes sur la plaque à bornes.",
+    ],
+    depannage: [
+      "Corriger le couplage si le moteur chauffe ou manque de couple.",
+      "Contrôler le serrage et la position des barrettes, hors tension.",
+      "Respecter la consignation avant d'ouvrir la boîte à bornes.",
+    ],
+    securite: [
+      "L'ouverture de la boîte à bornes se fait hors tension, après consignation.",
+      "Un mauvais couplage peut détruire le moteur et créer un danger.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur 230 V / 400 V a été couplé en triangle sur un réseau 400 V ; il chauffe très vite.",
+      mission: ["Expliquer l'erreur.", "Indiquer le couplage correct.", "Préciser la conduite à tenir."],
+      correction:
+        "L'erreur est le couplage : en triangle sur un réseau 400 V, chaque enroulement reçoit 400 V au lieu des 230 V prévus, d'où une surchauffe rapide et un risque de destruction. Le couplage correct est l'étoile, qui applique 400/√3 ≈ 230 V à chaque enroulement. Conduite à tenir : couper et consigner, ouvrir la boîte à bornes hors tension, replacer les barrettes en étoile, puis contrôler avant remise en service.",
+    },
+    memo: ["Plaque = 2 tensions", "Étoile → tension simple", "Triangle → tension composée", "230/400 sur 400 V → étoile"],
+    resume:
+      "La plaque signalétique guide le couplage : étoile ou triangle selon la tension du réseau, pour que chaque enroulement reçoive sa tension nominale.",
+    quizIds: ["els111", "els112", "els113", "els114", "els115"],
+    verification: {
+      question: "Un moteur 230 V / 400 V est raccordé à un réseau triphasé 400 V. Quel couplage choisir ?",
+      options: ["Triangle", "Étoile", "Peu importe", "Aucun couplage"],
+      correct: 1,
+      explanation: "En étoile, chaque enroulement reçoit 400 / √3 ≈ 230 V, la tension pour laquelle il est prévu. En triangle, il recevrait 400 V et grillerait.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment choisir entre couplage étoile et triangle à partir de la plaque signalétique et de la tension du réseau.",
+      consignes: [
+        "Explique ce que représente la tension la plus basse de la plaque.",
+        "Donne la règle de choix du couplage.",
+        "Illustre avec un moteur 230/400 V sur réseau 400 V.",
+      ],
+      criteres: [
+        "J'ai identifié la tension d'enroulement.",
+        "J'ai donné la règle étoile/triangle selon le réseau.",
+        "J'ai conclu au couplage étoile dans l'exemple.",
+      ],
+      correction:
+        "La tension la plus basse de la plaque est celle que doit recevoir chaque enroulement. On choisit le couplage pour que l'enroulement reçoive cette tension : étoile quand la tension composée du réseau vaut la valeur haute de la plaque, triangle quand elle vaut la valeur basse. Exemple : moteur 230/400 V sur réseau 400 V → couplage étoile, car chaque enroulement reçoit alors 400/√3 ≈ 230 V.",
+    },
+  },
+  {
+    id: "3-27",
+    title: "Le démarrage direct",
+    durationMinutes: 26,
+    objectifs: [
+      "Décrire le démarrage direct et ses caractéristiques.",
+      "Identifier ses avantages, ses limites et ses cas d'usage.",
+    ],
+    simple:
+      "Le démarrage direct consiste à appliquer d'un coup la pleine tension au moteur. C'est la méthode la plus simple, mais elle provoque une forte pointe de courant au démarrage et un à-coup mécanique, ce qui la réserve plutôt aux moteurs de faible puissance.",
+    vocab: [
+      ["Démarrage direct", "Mise sous pleine tension du moteur en une seule fois."],
+      ["Courant de démarrage", "Pointe de courant à l'instant du démarrage, bien plus élevée que le courant nominal."],
+      ["Couple de démarrage", "Effort de rotation fourni au démarrage."],
+      ["À-coup", "Secousse mécanique brutale au démarrage."],
+      ["Chute de tension", "Baisse momentanée de la tension du réseau due à la pointe de courant."],
+    ],
+    example:
+      "Un petit ventilateur est démarré en direct : on ferme le contacteur et le moteur reçoit d'emblée la pleine tension. Le courant de démarrage atteint plusieurs fois le courant nominal pendant un court instant, puis retombe une fois la vitesse atteinte.",
+    schema: "command-power-circuit",
+    ascii: "DEMARRAGE DIRECT : pleine tension d'un coup\n+ simple, peu de materiel\n- forte pointe de courant, a-coup mecanique → plutot petits moteurs",
+    retenir: [
+      "Le démarrage direct applique la pleine tension en une seule fois.",
+      "Il provoque une forte pointe de courant (plusieurs fois le courant nominal).",
+      "Il est simple et économique, mais crée un à-coup mécanique et une chute de tension.",
+      "On le réserve souvent aux moteurs de faible puissance.",
+    ],
+    erreurs: [
+      "Démarrer en direct un gros moteur là où le réseau ou la mécanique ne le supportent pas.",
+      "Négliger la pointe de courant lors du dimensionnement des protections.",
+      "Confondre courant de démarrage (bref) et courant nominal (permanent).",
+    ],
+    astucesPro: [
+      "Si des à-coups gênent la mécanique ou si la pointe de courant fait chuter le réseau, on envisage un démarrage réduit (étoile-triangle, démarreur, variateur).",
+      "La pointe de courant est brève : les protections en tiennent compte (courbe, temporisation).",
+    ],
+    diagnostic: [
+      "Vérifier si la méthode de démarrage est adaptée à la puissance du moteur.",
+      "Observer les à-coups mécaniques et les chutes de tension au démarrage.",
+      "Contrôler le comportement des protections au démarrage.",
+    ],
+    depannage: [
+      "Envisager un démarrage réduit si la pointe de courant ou l'à-coup posent problème.",
+      "Vérifier le réglage et la courbe des protections.",
+      "Respecter la consignation pour tout contrôle nécessitant un accès.",
+    ],
+    securite: [
+      "Un à-coup au démarrage peut être dangereux pour la mécanique et les personnes : on reste à distance.",
+      "Les interventions se font après consignation et avec l'habilitation adaptée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur assez puissant, démarré en direct, fait vaciller l'éclairage de l'atelier à chaque démarrage.",
+      mission: ["Expliquer le phénomène.", "Proposer une solution.", "Indiquer un critère de choix."],
+      correction:
+        "Le vacillement de l'éclairage vient de la forte pointe de courant au démarrage direct, qui provoque une chute de tension momentanée sur le réseau. Une solution est d'adopter un démarrage à tension réduite (étoile-triangle, démarreur progressif ou variateur), qui limite la pointe de courant. Le choix dépend de la puissance du moteur, des contraintes du réseau et de la mécanique entraînée.",
+    },
+    memo: ["Pleine tension d'un coup", "Forte pointe de courant", "À-coup mécanique", "Plutôt petits moteurs"],
+    resume:
+      "Le démarrage direct est simple mais génère une forte pointe de courant et un à-coup ; on le réserve souvent aux moteurs de faible puissance.",
+    quizIds: ["els116", "els117", "els118", "els119", "els120"],
+    verification: {
+      question: "Quel est l'inconvénient principal du démarrage direct ?",
+      options: ["Il est très compliqué", "Il provoque une forte pointe de courant et un à-coup", "Il ne démarre jamais le moteur", "Il nécessite un variateur"],
+      correct: 1,
+      explanation: "Le démarrage direct applique la pleine tension d'un coup : la pointe de courant et l'à-coup mécanique sont ses principaux inconvénients, d'où son usage plutôt sur des petits moteurs.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi le démarrage direct est réservé plutôt aux moteurs de faible puissance, et ce qu'on peut faire pour les moteurs plus puissants.",
+      consignes: [
+        "Rappelle la caractéristique du démarrage direct.",
+        "Explique la conséquence sur le réseau et la mécanique.",
+        "Cite une alternative pour les gros moteurs.",
+      ],
+      criteres: [
+        "J'ai indiqué la forte pointe de courant.",
+        "J'ai relié cela aux à-coups et chutes de tension.",
+        "J'ai cité un démarrage réduit (étoile-triangle, démarreur, variateur).",
+      ],
+      correction:
+        "Le démarrage direct applique la pleine tension d'un coup, ce qui provoque une pointe de courant de plusieurs fois le courant nominal et un à-coup mécanique. Sur un gros moteur, cela peut faire chuter la tension du réseau et malmener la mécanique. Pour les moteurs plus puissants, on utilise un démarrage à tension réduite : étoile-triangle, démarreur progressif ou variateur de vitesse.",
+    },
+  },
+];
+
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
   {
     id: "m3-b1",
@@ -2032,7 +2292,15 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m3-b5", num: 5, title: "Moteurs asynchrones et variation de vitesse", objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.", lessonIds: [], chapterCount: 8, status: "planned" },
+  {
+    id: "m3-b5",
+    num: 5,
+    title: "Moteurs asynchrones et variation de vitesse",
+    objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.",
+    lessonIds: block5Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   { id: "m3-b6", num: 6, title: "Lecture de schémas électriques industriels", objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m3-b7", num: 7, title: "Méthode de diagnostic électrique et synthèse", objective: "Structurer une recherche de panne électrique méthodique et tracée.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];
@@ -2044,6 +2312,6 @@ export const ELECTRO_MODULE: TrainingModule = {
   icon: Zap,
   color: "violet",
   source: "[AFORP] Module 3 · parcours progressif débutant → opérationnel · références NF C 18-510 et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons],
   blocks: ELECTRO_BLOCKS,
 };
