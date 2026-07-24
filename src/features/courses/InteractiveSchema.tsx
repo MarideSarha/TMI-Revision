@@ -524,6 +524,128 @@ function NeutralRegimes({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 5 — CONTACTEUR + RELAIS THERMIQUE EN ACTION
+   Repos → marche → déclenchement sur surcharge.
+   --------------------------------------------------------------- */
+
+type ContactorState = "repos" | "marche" | "declenche";
+
+const CONTACTOR_INFO: Record<ContactorState, { label: string; coil: string; contacts: string; thermal: string; motor: string; text: string }> = {
+  repos: {
+    label: "Repos",
+    coil: "non alimentée",
+    contacts: "ouverts",
+    thermal: "au repos",
+    motor: "arrêté",
+    text: "Au repos, la bobine du contacteur n'est pas alimentée : les contacts principaux restent ouverts et le moteur est à l'arrêt.",
+  },
+  marche: {
+    label: "Marche",
+    coil: "alimentée",
+    contacts: "fermés",
+    thermal: "surveille le courant",
+    motor: "en marche",
+    text: "En marche, la bobine est alimentée : elle attire les contacts principaux, qui se ferment et alimentent le moteur. Le relais thermique surveille le courant absorbé.",
+  },
+  declenche: {
+    label: "Surcharge",
+    coil: "coupée par le relais thermique",
+    contacts: "ouverts",
+    thermal: "déclenché (surcharge)",
+    motor: "arrêté (protégé)",
+    text: "En cas de surcharge prolongée, le relais thermique se déclenche : il ouvre le circuit de commande, la bobine n'est plus alimentée, les contacts s'ouvrent et le moteur s'arrête. On recherche la cause avant de réarmer.",
+  },
+};
+
+function ContactorThermal({ dark }: { dark: boolean }) {
+  const [state, setState] = useState<ContactorState>("repos");
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const info = CONTACTOR_INFO[state];
+  const closed = state === "marche";
+  const tripped = state === "declenche";
+
+  return (
+    <Figure
+      dark={dark}
+      title="Contacteur et relais thermique en action"
+      legend="Bobine = électro-aimant qui ferme les contacts · contacts principaux = interrupteurs de puissance · relais thermique = protection contre la surcharge · M = moteur."
+      explanation="Le contacteur commande le moteur : quand sa bobine est alimentée, elle ferme les contacts principaux et le moteur tourne. Le relais thermique, placé en série, surveille le courant ; en cas de surcharge prolongée, il ouvre le circuit de commande, ce qui coupe la bobine et arrête le moteur. Le contacteur commande, le relais thermique protège."
+      controls={
+        <div role="group" aria-label="Choisir l'état du contacteur" className="grid grid-cols-3 gap-2">
+          {(Object.keys(CONTACTOR_INFO) as ContactorState[]).map((key) => {
+            const active = state === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setState(key)}
+                className={`rounded-lg border-2 px-2 py-2 text-xs font-bold transition ${active ? "border-amber-400 bg-amber-400 text-slate-950" : dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}
+              >
+                {CONTACTOR_INFO[key].label}
+              </button>
+            );
+          })}
+        </div>
+      }
+    >
+      <svg viewBox="0 0 320 190" className="h-auto w-full" role="img" aria-label={`${info.label} : contacts ${info.contacts}, moteur ${info.motor}.`}>
+        {/* Source */}
+        <text x="80" y="18" textAnchor="middle" fontSize="8" fill={stroke}>Source 3~</text>
+        <line x1="80" y1="22" x2="80" y2="48" stroke={stroke} strokeWidth="2" />
+
+        {/* Contacts principaux (contacteur) */}
+        <circle cx="80" cy="52" r="3" fill={stroke} />
+        <circle cx="80" cy="86" r="3" fill={stroke} />
+        <line x1="80" y1="52" x2={closed ? "80" : "98"} y2={closed ? "86" : "60"} stroke={closed ? "#10b981" : stroke} strokeWidth="3" strokeLinecap="round" />
+        <text x="52" y="72" textAnchor="middle" fontSize="8" fill={stroke}>KM1</text>
+        <text x="52" y="82" textAnchor="middle" fontSize="7" fill={stroke}>{info.contacts}</text>
+
+        {/* Liaison mécanique bobine → contacts */}
+        <line x1="88" y1="69" x2="176" y2="69" stroke={stroke} strokeWidth="1" strokeDasharray="3 3" />
+
+        {/* Bobine */}
+        <rect x="176" y="52" width="48" height="34" rx="5" fill={state === "repos" || tripped ? box : "#f5b400"} stroke={stroke} strokeWidth="1.5" />
+        <text x="200" y="66" textAnchor="middle" fontSize="8" fill={state === "marche" ? "#14151a" : stroke} fontWeight="bold">Bobine</text>
+        <text x="200" y="78" textAnchor="middle" fontSize="7" fill={state === "marche" ? "#14151a" : stroke}>{state === "marche" ? "alimentée" : "hors tension"}</text>
+
+        {/* Relais thermique */}
+        <line x1="80" y1="86" x2="80" y2="104" stroke={stroke} strokeWidth="2" />
+        <rect x="60" y="104" width="40" height="26" rx="3" fill={tripped ? "#ef4444" : box} stroke={stroke} strokeWidth="1.5" />
+        <text x="80" y="118" textAnchor="middle" fontSize="8" fill={tripped ? "#fff" : stroke} fontWeight="bold">F2</text>
+        <text x="126" y="114" textAnchor="middle" fontSize="7" fill={stroke}>relais</text>
+        <text x="126" y="123" textAnchor="middle" fontSize="7" fill={stroke}>thermique</text>
+
+        {/* Moteur */}
+        <line x1="80" y1="130" x2="80" y2="146" stroke={stroke} strokeWidth="2" />
+        <circle cx="80" cy="162" r="16" fill={closed ? "#10b981" : box} stroke={stroke} strokeWidth="1.5" />
+        <text x="80" y="166" textAnchor="middle" fontSize="10" fill={closed ? "#fff" : stroke} fontWeight="bold">M</text>
+        <text x="128" y="160" textAnchor="middle" fontSize="8" fill={stroke}>moteur</text>
+        <text x="128" y="170" textAnchor="middle" fontSize="7" fill={stroke}>{info.motor}</text>
+
+        {/* Indicateur de déclenchement */}
+        {tripped && (
+          <g transform="translate(230,150)">
+            <circle cx="12" cy="12" r="12" fill="#ef4444" />
+            <path d="M13 4 l-6 10 h5 l-2 6 l7 -10 h-5 z" fill="#fff" />
+          </g>
+        )}
+      </svg>
+
+      {/* État détaillé (texte + icône, jamais la couleur seule) */}
+      <div className="mt-1 flex items-center justify-center gap-2 pb-1 text-center text-xs font-semibold" role="status">
+        {tripped ? <TriangleAlert size={15} className="text-red-400" /> : closed ? <Zap size={15} className="text-emerald-500" /> : <Zap size={15} className="text-slate-400" />}
+        <span className={tripped ? "text-red-400" : closed ? "text-emerald-500" : "text-slate-400"}>
+          Bobine {info.coil} · contacts {info.contacts} · moteur {info.motor}
+        </span>
+      </div>
+      <p className={`mt-2 rounded-lg border p-3 text-sm ${dark ? "border-slate-700 bg-slate-900/60 text-slate-200" : "border-slate-200 bg-white text-slate-700"}`}>{info.text}</p>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -532,5 +654,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "circuit-states") return <CircuitStates dark={dark} />;
   if (type === "habilitation-decoder") return <HabilitationDecoder dark={dark} />;
   if (type === "neutral-regimes") return <NeutralRegimes dark={dark} />;
+  if (type === "contactor-thermal") return <ContactorThermal dark={dark} />;
   return null;
 }

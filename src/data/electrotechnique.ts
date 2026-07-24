@@ -1382,6 +1382,267 @@ const block3Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 4 — APPAREILLAGE DE COMMANDE ET DE PROTECTION APPROFONDI
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block4Lessons: Lesson[] = [
+  {
+    id: "3-18",
+    title: "Les fonctions d'un départ moteur",
+    durationMinutes: 28,
+    objectifs: [
+      "Identifier les quatre grandes fonctions d'un départ moteur.",
+      "Associer chaque fonction à l'appareil qui la réalise.",
+    ],
+    simple:
+      "Pour faire fonctionner un moteur en sécurité, une armoire réunit plusieurs appareils qui se répartissent le travail : isoler, protéger contre le court-circuit, commander la marche, protéger contre la surcharge. Comprendre ces fonctions permet de savoir quel appareil regarder selon le problème.",
+    vocab: [
+      ["Départ moteur", "Ensemble des appareils qui alimentent et protègent un moteur."],
+      ["Sectionnement", "Fonction d'isolement : séparer le circuit de sa source pour intervenir."],
+      ["Commande", "Fonction de mise en marche et d'arrêt du moteur, souvent à distance."],
+      ["Protection court-circuit", "Fonction assurée par le disjoncteur ou les fusibles."],
+      ["Protection surcharge", "Fonction assurée par le relais thermique."],
+    ],
+    example:
+      "Sur un départ moteur classique : le sectionneur isole, le disjoncteur (ou les fusibles) protège contre le court-circuit, le contacteur commande la marche/arrêt, et le relais thermique protège contre la surcharge. Chaque appareil a un rôle précis.",
+    schema: "control-circuit",
+    ascii: "SECTIONNER → PROTEGER (court-circuit) → COMMANDER → PROTEGER (surcharge) → MOTEUR\nsectionneur     disjoncteur/fusibles      contacteur     relais thermique",
+    retenir: [
+      "Quatre fonctions : sectionner, protéger contre le court-circuit, commander, protéger contre la surcharge.",
+      "Sectionneur = isoler ; disjoncteur/fusibles = court-circuit ; contacteur = commander ; relais thermique = surcharge.",
+      "Le contacteur commande mais ne protège pas ; les protections coupent mais ne commandent pas.",
+      "Savoir quelle fonction est en cause oriente directement le diagnostic.",
+    ],
+    erreurs: [
+      "Attendre d'un contacteur qu'il protège le moteur : il commande seulement.",
+      "Confondre protection contre le court-circuit (disjoncteur/fusibles) et contre la surcharge (relais thermique).",
+      "Oublier la fonction de sectionnement, indispensable pour intervenir en sécurité.",
+    ],
+    astucesPro: [
+      "Devant un départ moteur, on identifie mentalement chaque fonction avant de diagnostiquer.",
+      "Le repérage des appareils (KM, F, Q) sur l'armoire aide à relier fonction et composant.",
+    ],
+    diagnostic: [
+      "Déterminer quelle fonction est défaillante (isolement, court-circuit, commande, surcharge).",
+      "Associer la fonction à l'appareil correspondant.",
+      "Contrôler cet appareil en priorité, après sécurisation.",
+    ],
+    depannage: [
+      "Vérifier la commande si le moteur ne démarre pas et qu'aucune protection n'a agi.",
+      "Contrôler le relais thermique en cas d'arrêt après quelques minutes.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Le sectionnement et la consignation restent le préalable à toute intervention.",
+      "On n'intervient sur un départ moteur qu'avec l'habilitation adaptée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur ne démarre pas ; aucune protection n'a visiblement déclenché.",
+      mission: ["Nommer la fonction à contrôler en priorité.", "Citer l'appareil concerné.", "Indiquer la précaution avant contrôle."],
+      correction:
+        "Si aucune protection n'a agi, la fonction la plus probablement en cause est la commande : on contrôle donc le contacteur et son circuit de commande (bobine, bouton, auto-maintien). Avant tout contrôle nécessitant un accès aux parties actives, on consigne l'installation et on vérifie l'absence de tension, dans le cadre de son habilitation.",
+    },
+    memo: ["Sectionner", "Court-circuit → disjoncteur", "Commander → contacteur", "Surcharge → relais thermique"],
+    resume:
+      "Un départ moteur réunit quatre fonctions — sectionner, protéger du court-circuit, commander, protéger de la surcharge — chacune portée par un appareil précis.",
+    quizIds: ["els71", "els72", "els73", "els74", "els75"],
+    verification: {
+      question: "Quel appareil assure la fonction de commande (marche/arrêt) d'un moteur ?",
+      options: ["Le sectionneur", "Le contacteur", "Le relais thermique", "Le fusible"],
+      correct: 1,
+      explanation: "Le contacteur commande la marche et l'arrêt du moteur. Le sectionneur isole, le relais thermique et le disjoncteur/fusibles protègent.",
+    },
+    exercice: {
+      enonce:
+        "Associez chaque fonction à son appareil : (1) isoler pour intervenir, (2) protéger contre le court-circuit, (3) commander la marche, (4) protéger contre la surcharge.",
+      consignes: [
+        "Associe chaque fonction à un appareil.",
+        "Justifie brièvement chaque association.",
+        "Rappelle quel appareil ne protège pas.",
+      ],
+      criteres: [
+        "(1) sectionneur, (2) disjoncteur/fusibles, (3) contacteur, (4) relais thermique.",
+        "J'ai justifié chaque association.",
+        "J'ai rappelé que le contacteur commande mais ne protège pas.",
+      ],
+      correction:
+        "(1) sectionneur pour isoler, (2) disjoncteur ou fusibles contre le court-circuit, (3) contacteur pour commander la marche/arrêt, (4) relais thermique contre la surcharge. Le contacteur commande mais n'assure aucune protection : ce sont les protections dédiées qui coupent en cas de défaut.",
+    },
+  },
+  {
+    id: "3-19",
+    title: "Le sectionneur et l'isolement de sécurité",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer le rôle d'isolement du sectionneur et sa manœuvre.",
+      "Distinguer sectionneur, interrupteur et disjoncteur.",
+    ],
+    simple:
+      "Le sectionneur sert à isoler un circuit de sa source pour intervenir en sécurité. Attention : un sectionneur simple se manœuvre hors charge, il n'est pas fait pour couper un courant en fonctionnement. C'est aussi lui qu'on condamne lors d'une consignation.",
+    vocab: [
+      ["Sectionneur", "Appareil d'isolement qui sépare un circuit de sa source ; se manœuvre hors charge."],
+      ["Pouvoir de coupure", "Capacité d'un appareil à couper un courant en charge sans se détériorer."],
+      ["Interrupteur-sectionneur", "Appareil qui isole ET peut couper en charge (il a un pouvoir de coupure)."],
+      ["Disjoncteur", "Appareil qui coupe automatiquement en cas de défaut et peut couper en charge, réarmable."],
+      ["Condamnation", "Verrouillage du sectionneur en position ouverte (cadenas) lors d'une consignation."],
+    ],
+    example:
+      "Lors d'une consignation, on ouvre le sectionneur (séparation) puis on le cadenasse (condamnation). Un sectionneur simple ne doit pas être ouvert alors que le moteur tourne : on arrête d'abord par le contacteur, puis on isole avec le sectionneur.",
+    schema: "consignation-steps",
+    ascii: "SECTIONNEUR simple → isole HORS CHARGE (pas de pouvoir de coupure)\nINTERRUPTEUR-SECTIONNEUR → isole ET coupe en charge\nDISJONCTEUR → coupe en charge + protege (automatique)",
+    retenir: [
+      "Le sectionneur assure l'isolement : il sépare le circuit de sa source.",
+      "Un sectionneur simple se manœuvre hors charge (pas de pouvoir de coupure).",
+      "L'interrupteur-sectionneur et le disjoncteur peuvent, eux, couper en charge.",
+      "Le sectionneur est l'organe que l'on condamne lors d'une consignation.",
+    ],
+    erreurs: [
+      "Ouvrir un sectionneur simple alors que le moteur tourne : risque d'arc électrique.",
+      "Confondre sectionneur (isole) et disjoncteur (isole, coupe en charge et protège).",
+      "Croire qu'un sectionneur protège : il n'assure que l'isolement.",
+    ],
+    astucesPro: [
+      "On arrête le moteur par le contacteur avant d'ouvrir un sectionneur simple.",
+      "La présence d'un dispositif de condamnation sur le sectionneur facilite la consignation.",
+    ],
+    diagnostic: [
+      "Vérifier la position réelle du sectionneur (ouvert/fermé) avant de conclure.",
+      "Distinguer un simple isolement d'une coupure de protection.",
+      "S'assurer que l'isolement couvre toutes les sources d'alimentation.",
+    ],
+    depannage: [
+      "Isoler avec le sectionneur après avoir arrêté la charge.",
+      "Condamner le sectionneur avant toute intervention.",
+      "Vérifier l'absence de tension en aval avant de travailler.",
+    ],
+    securite: [
+      "Un sectionneur simple ne se manœuvre jamais en charge.",
+      "La condamnation du sectionneur fait partie de la consignation, réalisée par une personne habilitée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un opérateur s'apprête à ouvrir le sectionneur d'un moteur en pleine marche pour « aller plus vite ».",
+      mission: ["Dire si c'est correct.", "Expliquer le risque.", "Donner la bonne séquence."],
+      correction:
+        "Ce n'est pas correct : un sectionneur simple n'a pas de pouvoir de coupure, l'ouvrir en charge peut provoquer un arc électrique dangereux et détériorer l'appareil. La bonne séquence est d'arrêter d'abord le moteur par le contacteur (commande), puis d'ouvrir le sectionneur pour isoler, et enfin de le condamner avant d'intervenir.",
+    },
+    memo: ["Sectionneur = isoler", "Hors charge", "On condamne le sectionneur", "Disjoncteur = coupe + protège"],
+    resume:
+      "Le sectionneur isole le circuit de sa source et se manœuvre hors charge ; c'est l'organe que l'on condamne lors d'une consignation.",
+    quizIds: ["els76", "els77", "els78", "els79", "els80"],
+    verification: {
+      question: "Comment se manœuvre un sectionneur simple ?",
+      options: ["En charge, moteur en marche", "Hors charge, après arrêt du moteur", "Uniquement sous surcharge", "Peu importe l'état"],
+      correct: 1,
+      explanation: "Un sectionneur simple n'a pas de pouvoir de coupure : on l'ouvre hors charge, après avoir arrêté le moteur par le contacteur.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre un sectionneur simple, un interrupteur-sectionneur et un disjoncteur, du point de vue de la coupure en charge.",
+      consignes: [
+        "Indique lequel peut couper en charge.",
+        "Précise lequel protège en plus d'isoler.",
+        "Relie le sectionneur à la consignation.",
+      ],
+      criteres: [
+        "J'ai indiqué que le sectionneur simple ne coupe pas en charge.",
+        "J'ai identifié le disjoncteur comme coupant en charge ET protégeant.",
+        "J'ai relié le sectionneur à la condamnation.",
+      ],
+      correction:
+        "Le sectionneur simple isole mais ne coupe pas en charge (pas de pouvoir de coupure). L'interrupteur-sectionneur isole ET peut couper en charge. Le disjoncteur coupe en charge, protège automatiquement contre les défauts et se réarme. Le sectionneur est l'organe que l'on condamne lors de la consignation pour garantir l'isolement.",
+    },
+  },
+  {
+    id: "3-20",
+    title: "Le contacteur : commander le moteur à distance",
+    durationMinutes: 30,
+    objectifs: [
+      "Décrire le fonctionnement d'un contacteur (bobine, contacts).",
+      "Distinguer contacts principaux (puissance) et contacts auxiliaires (commande).",
+    ],
+    simple:
+      "Le contacteur est un interrupteur commandé à distance par un électro-aimant. Quand sa bobine est alimentée, elle attire une pièce mobile qui ferme les contacts et laisse passer le courant vers le moteur. Dès que la bobine n'est plus alimentée, les contacts s'ouvrent.",
+    vocab: [
+      ["Bobine", "Électro-aimant du contacteur : alimentée, elle ferme les contacts."],
+      ["Contacts principaux", "Contacts de puissance qui alimentent le moteur (fort courant)."],
+      ["Contacts auxiliaires", "Contacts de faible courant utilisés dans le circuit de commande (auto-maintien, signalisation)."],
+      ["Pôle", "Chaque voie de courant du contacteur (souvent 3 pôles en triphasé)."],
+      ["Contact NO / NF", "Normalement Ouvert / Normalement Fermé au repos de la bobine."],
+    ],
+    example:
+      "Quand on appuie sur « marche », la bobine du contacteur KM1 est alimentée : elle ferme les trois contacts principaux et le moteur démarre. Un contact auxiliaire se ferme aussi pour maintenir l'alimentation de la bobine (auto-maintien) même après avoir relâché le bouton.",
+    schema: "control-circuit",
+    illustrations: ["contactor-thermal"],
+    ascii: "bobine alimentée → contacts principaux FERMES → moteur alimenté\nbobine coupée     → contacts principaux OUVERTS → moteur arrêté\nauxiliaire NO → auto-maintien de la commande",
+    retenir: [
+      "Le contacteur est commandé par sa bobine (électro-aimant).",
+      "Bobine alimentée = contacts fermés ; bobine coupée = contacts ouverts.",
+      "Les contacts principaux alimentent le moteur ; les auxiliaires servent à la commande.",
+      "Un contact NO est ouvert au repos, un contact NF est fermé au repos.",
+    ],
+    erreurs: [
+      "Confondre contacts principaux (puissance) et auxiliaires (commande).",
+      "Croire qu'un contacteur protège le moteur : il ne fait que commander.",
+      "Oublier que la coupure de la bobine ouvre immédiatement les contacts.",
+    ],
+    astucesPro: [
+      "Un contacteur qui « colle » (contacts restés fermés) est dangereux : le moteur ne s'arrête plus par la commande.",
+      "Le bruit et l'état de la bobine renseignent : un ronflement peut signaler un problème d'alimentation de commande.",
+    ],
+    diagnostic: [
+      "Vérifier si la bobine est bien alimentée quand on commande la marche.",
+      "Contrôler l'état des contacts principaux (collés, usés).",
+      "Distinguer un défaut de commande (bobine, bouton) d'un défaut de puissance (contacts).",
+    ],
+    depannage: [
+      "Contrôler la tension de commande aux bornes de la bobine (avec habilitation et précautions).",
+      "Vérifier les contacts principaux hors tension après consignation.",
+      "Remplacer un contacteur dont les contacts sont collés ou très usés.",
+    ],
+    securite: [
+      "Un contacteur collé empêche l'arrêt par la commande : on isole par le sectionneur et on consigne.",
+      "Les contrôles sous tension du circuit de commande relèvent d'une personne habilitée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur ne s'arrête plus quand on appuie sur « arrêt » ; le contacteur semble rester fermé.",
+      mission: ["Nommer le défaut probable.", "Indiquer le risque.", "Donner la conduite à tenir."],
+      correction:
+        "Le défaut probable est un contacteur « collé » : ses contacts principaux restent fermés et le moteur reste alimenté malgré la commande d'arrêt. Le risque est de ne plus pouvoir arrêter le moteur par la commande normale. Conduite à tenir : arrêter par un moyen sûr (sectionnement après procédure), consigner l'installation, puis contrôler et remplacer le contacteur hors tension. On ne laisse pas fonctionner un départ dont la commande d'arrêt est inopérante.",
+    },
+    memo: ["Bobine = commande", "Principaux = puissance", "Auxiliaires = commande", "NO ouvert / NF fermé au repos"],
+    resume:
+      "Le contacteur commande le moteur à distance par sa bobine ; ses contacts principaux alimentent la puissance, ses contacts auxiliaires servent au circuit de commande.",
+    quizIds: ["els81", "els82", "els83", "els84", "els85"],
+    verification: {
+      question: "Que se passe-t-il quand la bobine d'un contacteur n'est plus alimentée ?",
+      options: ["Les contacts principaux se ferment", "Les contacts principaux s'ouvrent et le moteur s'arrête", "Le moteur accélère", "Rien ne change"],
+      correct: 1,
+      explanation: "Sans alimentation de la bobine, l'électro-aimant relâche : les contacts principaux s'ouvrent et le moteur s'arrête.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le rôle de la bobine et la différence entre contacts principaux et contacts auxiliaires d'un contacteur.",
+      consignes: [
+        "Décris ce que fait la bobine quand elle est alimentée.",
+        "Distingue contacts principaux et auxiliaires.",
+        "Donne un exemple d'usage d'un contact auxiliaire.",
+      ],
+      criteres: [
+        "J'ai indiqué que la bobine ferme les contacts.",
+        "J'ai distingué puissance (principaux) et commande (auxiliaires).",
+        "J'ai cité l'auto-maintien comme usage d'un contact auxiliaire.",
+      ],
+      correction:
+        "Alimentée, la bobine attire la partie mobile et ferme les contacts. Les contacts principaux, prévus pour un fort courant, alimentent le moteur ; les contacts auxiliaires, de faible courant, servent au circuit de commande (par exemple l'auto-maintien qui garde la bobine alimentée après le relâchement du bouton marche, ou la signalisation).",
+    },
+  },
+];
+
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
   {
     id: "m3-b1",
@@ -1422,7 +1683,15 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m3-b4", num: 4, title: "Appareillage de commande et de protection approfondi", objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.", lessonIds: [], chapterCount: 7, status: "planned" },
+  {
+    id: "m3-b4",
+    num: 4,
+    title: "Appareillage de commande et de protection approfondi",
+    objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.",
+    lessonIds: block4Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   { id: "m3-b5", num: 5, title: "Moteurs asynchrones et variation de vitesse", objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m3-b6", num: 6, title: "Lecture de schémas électriques industriels", objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m3-b7", num: 7, title: "Méthode de diagnostic électrique et synthèse", objective: "Structurer une recherche de panne électrique méthodique et tracée.", lessonIds: [], chapterCount: 6, status: "planned" },
@@ -1435,6 +1704,6 @@ export const ELECTRO_MODULE: TrainingModule = {
   icon: Zap,
   color: "violet",
   source: "[AFORP] Module 3 · parcours progressif débutant → opérationnel · références NF C 18-510 et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons],
   blocks: ELECTRO_BLOCKS,
 };

@@ -965,5 +965,31 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "command-power-circuit") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Circuit de commande */}
+        <text x="80" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Circuit de commande</text>
+        <rect x="20" y="24" width="120" height="90" rx="6" fill="none" stroke={stroke} strokeDasharray="4 3" />
+        <circle cx="50" cy="45" r="4" fill="none" stroke={stroke} />
+        <text x="50" y="66" textAnchor="middle" fontSize="7" fill={stroke}>bouton</text>
+        <line x1="54" y1="45" x2="90" y2="45" stroke={stroke} />
+        <circle cx="110" cy="80" r="12" fill={box} stroke={accent} strokeWidth="2" />
+        <text x="110" y="83" textAnchor="middle" fontSize="8" fill={stroke}>KM1</text>
+        <text x="110" y="104" textAnchor="middle" fontSize="7" fill={stroke}>bobine</text>
+        {/* Circuit de puissance */}
+        <text x="240" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Circuit de puissance</text>
+        <rect x="180" y="24" width="120" height="90" rx="6" fill="none" stroke={stroke} />
+        <line x1="240" y1="30" x2="240" y2="52" stroke={stroke} strokeWidth="2" />
+        <line x1="240" y1="52" x2="255" y2="40" stroke={accent} strokeWidth="3" />
+        <text x="278" y="52" textAnchor="middle" fontSize="7" fill={stroke}>contacts</text>
+        <line x1="240" y1="52" x2="240" y2="74" stroke={stroke} strokeWidth="2" />
+        <circle cx="240" cy="90" r="14" fill={accent} />
+        <text x="240" y="94" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">M</text>
+        {/* Lien commande → puissance */}
+        <text x="160" y="122" textAnchor="middle" fontSize="7" fill={stroke}>la bobine ferme les contacts de puissance →</text>
+      </svg>
+    );
+  }
   return null;
 }
