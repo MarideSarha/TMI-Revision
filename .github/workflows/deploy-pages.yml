@@ -2,10 +2,7 @@ name: Publier TMI Révision
 
 on:
   push:
-    # `main` = publication officielle. La branche de travail Claude est ajoutée
-    # temporairement pour permettre de réviser en ligne avant la fusion ;
-    # à retirer une fois le travail fusionné dans `main`.
-    branches: ["main", "claude/tmi-revision-takeover-agajbi"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
