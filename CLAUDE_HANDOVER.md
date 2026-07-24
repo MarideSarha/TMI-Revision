@@ -92,6 +92,15 @@ aucune réécriture d'historique.)
 - **3-31 — Synthèse moteurs et mise en situation** (références 3-25 à 3-30).
 - Examen du bloc 5 (14 questions) + badge `electro_block_5` (« Moteurs & variation »).
 
+**Étape 7** — module 3, bloc 6 **complet (6 chapitres, statut `available` avec examen)** :
+- **3-32 — Lire un schéma électrique : à quoi ça sert**.
+- **3-33 — Symboles et repérage normalisés**. Intègre le **schéma interactif « décodeur de repères »** (Q, KM, F, S, M, H, T, K).
+- **3-34 — Schéma unifilaire et schéma développé**. Schéma statique `schematic-comparison`.
+- **3-35 — Folios, renvois et organisation d'un dossier**.
+- **3-36 — Suivre un schéma pour localiser une panne**.
+- **3-37 — Synthèse lecture de schémas et mise en situation** (références 3-32 à 3-36).
+- Examen du bloc 6 (12 questions) + badge `electro_block_6` (« Lecture de schémas »).
+
 ## Fichiers créés
 
 **Étape 1**
@@ -154,9 +163,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après bloc 5 : **4 modules, 19 blocs, 85 leçons, 430 questions, 10 pannes, 16 badges.**
+- Build réussi. Décomptes après bloc 6 : **4 modules, 19 blocs, 91 leçons, 460 questions, 10 pannes, 17 badges.**
 - Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` isolé (budget 500 kB/fichier).
-- **Module 3 : blocs 1 à 5 disponibles (31 chapitres) ; blocs 6 et 7 restant à développer.**
+- **Module 3 : blocs 1 à 6 disponibles (37 chapitres) ; bloc 7 restant à développer.**
 
 ## Problèmes connus
 
@@ -168,9 +177,9 @@ aucune réécriture d'historique.)
 
 ## Éléments restant à faire
 
-- **Blocs 2, 3, 4 et 5 de M3 : terminés** (7 chapitres chacun, examen, badge).
-- Développer les **blocs 6 et 7 de M3** (lecture de schémas électriques industriels,
-  méthode de diagnostic électrique et synthèse).
+- **Blocs 2, 3, 4, 5 et 6 de M3 : terminés** (examen + badge chacun).
+- Développer le **bloc 7 de M3** (méthode de diagnostic électrique et synthèse du module) —
+  dernier bloc pour terminer entièrement le module 3.
 - Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
   de M3 harmonisés** (attention : 3-1/3-2/3-3 n'ont pas encore le parcours pro complet — ne pas activer
   la règle avant de les avoir enrichis, sinon le build échoue).
@@ -192,6 +201,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `ci(pages): revient au deploiement depuis main uniquement`
 - `feat(module-3): demarre le bloc 5 (moteur asynchrone, couplage, demarrage direct)`
 - `feat(module-3): complete le bloc 5 (3-28 a 3-31), examen et badge`
+- `feat(module-3): demarre le bloc 6 (lecture de schemas electriques)`
+- `feat(module-3): complete le bloc 6 (3-35 a 3-37), examen et badge`
 
 ## Instructions pour reprendre le développement
 

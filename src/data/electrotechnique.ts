@@ -2835,6 +2835,258 @@ const block6Lessons: Lesson[] = [
         "Le schéma unifilaire simplifie en représentant plusieurs conducteurs (par exemple les trois phases) par une seule ligne : il donne une vue d'ensemble de l'architecture. Le schéma développé détaille chaque conducteur et chaque contact, en séparant souvent puissance et commande : il sert au dépannage précis. On utilise l'unifilaire pour situer et comprendre l'ensemble, puis le développé pour analyser finement un circuit.",
     },
   },
+  {
+    id: "3-35",
+    title: "Folios, renvois et organisation d'un dossier",
+    durationMinutes: 26,
+    objectifs: [
+      "Se repérer dans un dossier de schémas grâce aux folios et aux renvois.",
+      "Comprendre l'organisation d'un dossier électrique.",
+    ],
+    simple:
+      "Un schéma d'installation tient rarement sur une seule page : il est découpé en folios (pages) numérotés. Des renvois permettent de suivre un fil ou un circuit d'une page à l'autre. Savoir naviguer dans ce dossier est indispensable pour ne pas se perdre.",
+    vocab: [
+      ["Folio", "Page numérotée d'un dossier de schémas."],
+      ["Renvoi", "Indication qui pointe vers un autre folio où le circuit continue."],
+      ["Dossier électrique", "Ensemble organisé des folios et documents d'une installation."],
+      ["Bornier", "Ensemble de bornes repérées où sont raccordés les conducteurs entre folios ou équipements."],
+      ["Cartouche", "Encadré du folio indiquant le repère de la page, l'installation, la date, etc."],
+    ],
+    example:
+      "Un circuit de commande démarre sur le folio 3 et se poursuit sur le folio 5 : un renvoi indique « voir folio 5 ». En suivant ce renvoi, le technicien continue à lire le circuit sans se perdre dans le dossier.",
+    schema: "power-distribution",
+    ascii: "DOSSIER = folios numerotes (pages)\nRENVOI : « voir folio 5 » → suivre le circuit d'une page a l'autre\nCARTOUCHE : repere du folio, installation, date",
+    retenir: [
+      "Un dossier de schémas est découpé en folios (pages) numérotés.",
+      "Les renvois permettent de suivre un circuit d'un folio à l'autre.",
+      "Les borniers repérés relient les circuits entre folios et équipements.",
+      "Le cartouche identifie chaque folio (repère, installation, date).",
+    ],
+    erreurs: [
+      "Perdre le fil d'un circuit en ignorant les renvois entre folios.",
+      "Confondre deux folios sans regarder leur cartouche.",
+      "Négliger le repérage des borniers entre pages.",
+    ],
+    astucesPro: [
+      "On note le folio et le repère de départ pour retrouver rapidement un circuit.",
+      "Les renvois se lisent dans les deux sens : d'où vient et où va le circuit.",
+    ],
+    diagnostic: [
+      "Identifier le folio contenant le circuit concerné.",
+      "Suivre les renvois pour reconstituer le circuit complet.",
+      "Utiliser les borniers repérés pour relier les folios entre eux.",
+    ],
+    depannage: [
+      "Se repérer dans le dossier avant d'intervenir.",
+      "Suivre le circuit de folio en folio grâce aux renvois.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Un dossier bien lu réduit les erreurs et donc les risques.",
+      "La lecture du dossier ne dispense pas de la consignation ni de l'habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un circuit de commande semble s'interrompre en bas d'un folio, sans suite visible.",
+      mission: ["Expliquer où continuer la lecture.", "Nommer l'élément à repérer.", "Indiquer la méthode."],
+      correction:
+        "Le circuit ne s'interrompt pas : il continue sur un autre folio. Il faut repérer le renvoi (par exemple « voir folio 5 ») en bas ou en marge du folio, puis poursuivre la lecture sur le folio indiqué. La méthode consiste à suivre systématiquement les renvois et le repérage des borniers pour reconstituer le circuit complet, sans se perdre dans le dossier.",
+    },
+    memo: ["Folio = page", "Renvoi = suite ailleurs", "Bornier relie les folios", "Cartouche identifie la page"],
+    resume:
+      "Un dossier électrique se lit en naviguant entre folios grâce aux renvois et aux borniers repérés ; le cartouche identifie chaque page.",
+    quizIds: ["els156", "els157", "els158", "els159", "els160"],
+    verification: {
+      question: "À quoi sert un renvoi sur un schéma ?",
+      options: ["À décorer la page", "À indiquer sur quel autre folio le circuit continue", "À couper le circuit", "À mesurer la tension"],
+      correct: 1,
+      explanation: "Un renvoi pointe vers l'autre folio où le circuit se poursuit, ce qui permet de le suivre d'une page à l'autre.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment suivre un circuit qui s'étend sur plusieurs folios d'un dossier électrique.",
+      consignes: [
+        "Explique le rôle des folios.",
+        "Explique le rôle des renvois.",
+        "Cite l'élément qui relie les circuits entre folios.",
+      ],
+      criteres: [
+        "J'ai défini le folio comme une page numérotée.",
+        "J'ai expliqué que les renvois indiquent la suite du circuit.",
+        "J'ai cité les borniers repérés.",
+      ],
+      correction:
+        "Un dossier est découpé en folios (pages numérotées). Pour suivre un circuit qui s'étend sur plusieurs pages, on utilise les renvois, qui indiquent sur quel folio le circuit continue. Les borniers repérés relient physiquement les circuits d'un folio ou d'un équipement à l'autre. En suivant renvois et borniers, on reconstitue le circuit complet.",
+    },
+  },
+  {
+    id: "3-36",
+    title: "Suivre un schéma pour localiser une panne",
+    durationMinutes: 30,
+    objectifs: [
+      "Utiliser un schéma pour cibler l'origine d'une panne.",
+      "Relier le symptôme au circuit concerné et aux points de contrôle.",
+    ],
+    simple:
+      "Le schéma devient un outil de diagnostic quand on l'utilise pour suivre le chemin du courant à partir d'un symptôme. On repère le circuit concerné, on suit les contacts un à un, et on identifie les points où mesurer pour trouver où le courant s'arrête.",
+    vocab: [
+      ["Point de contrôle", "Endroit du circuit où l'on mesure pour vérifier la présence du signal ou de la tension."],
+      ["Chemin du courant", "Trajet suivi par le courant à travers les composants d'un circuit."],
+      ["Symptôme", "Manifestation de la panne (moteur qui ne démarre pas, voyant éteint…)."],
+      ["Circuit concerné", "Partie du schéma correspondant au symptôme observé."],
+      ["Contact", "Élément qui laisse passer ou coupe le courant (bouton, auxiliaire, relais)."],
+    ],
+    example:
+      "Un moteur ne démarre pas : sur le schéma développé du circuit de commande, on suit le chemin depuis l'alimentation, à travers le bouton marche, le contact d'auto-maintien et le contact du relais thermique, jusqu'à la bobine. On mesure aux points de contrôle pour trouver où le courant s'interrompt.",
+    schema: "control-circuit",
+    ascii: "SYMPTOME → repérer le CIRCUIT concerne sur le schema\n→ suivre le CHEMIN du courant, contact par contact\n→ mesurer aux POINTS DE CONTROLE pour trouver l'interruption",
+    retenir: [
+      "On part du symptôme pour repérer le circuit concerné sur le schéma.",
+      "On suit le chemin du courant contact par contact.",
+      "On mesure aux points de contrôle pour localiser l'interruption.",
+      "Le schéma développé est particulièrement adapté à cette recherche.",
+    ],
+    erreurs: [
+      "Mesurer au hasard sans suivre le chemin du courant.",
+      "Oublier un contact (auto-maintien, contact du relais thermique) dans le circuit.",
+      "Intervenir sans consigner quand un accès est nécessaire.",
+    ],
+    astucesPro: [
+      "On avance dans le sens du courant et on note le dernier point où il est présent et le premier où il disparaît.",
+      "Un contact du relais thermique resté ouvert coupe la commande : on le vérifie tôt.",
+    ],
+    diagnostic: [
+      "Traduire le symptôme en circuit concerné sur le schéma.",
+      "Suivre le chemin du courant à travers chaque contact.",
+      "Mesurer aux points de contrôle pour situer l'interruption.",
+    ],
+    depannage: [
+      "Localiser le composant ou le contact défaillant à l'aide du schéma.",
+      "Confirmer par la mesure avant de remplacer.",
+      "Respecter la consignation pour les contrôles nécessitant un accès.",
+    ],
+    securite: [
+      "Les mesures sous tension se font avec habilitation et matériel adaptés.",
+      "Les contrôles hors tension imposent une consignation préalable.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur ne démarre pas ; le bouton marche fonctionne, mais la bobine n'est jamais alimentée.",
+      mission: ["Décrire la lecture du schéma.", "Citer les contacts à suivre.", "Indiquer la précaution de mesure."],
+      correction:
+        "Sur le schéma développé du circuit de commande, on suit le chemin du courant depuis l'alimentation : bouton arrêt (fermé), bouton marche, contact d'auto-maintien, contact du relais thermique, jusqu'à la bobine. On vérifie chaque contact dans l'ordre en mesurant aux points de contrôle pour trouver où le courant s'arrête (par exemple un contact du relais thermique resté ouvert). Les mesures se font selon l'habilitation et les précautions adaptées ; les contrôles hors tension imposent une consignation.",
+    },
+    memo: ["Symptôme → circuit", "Suivre le courant", "Mesurer aux points de contrôle", "Développé = idéal"],
+    resume:
+      "Suivre un schéma pour localiser une panne, c'est traduire le symptôme en circuit, suivre le chemin du courant et mesurer aux points de contrôle pour trouver l'interruption.",
+    quizIds: ["els161", "els162", "els163", "els164", "els165"],
+    verification: {
+      question: "Comment utilise-t-on un schéma pour localiser une panne ?",
+      options: ["En mesurant au hasard", "En suivant le chemin du courant depuis le symptôme jusqu'à l'interruption", "En remplaçant tous les composants", "En ignorant les contacts"],
+      correct: 1,
+      explanation: "On part du symptôme, on repère le circuit, on suit le chemin du courant contact par contact et on mesure aux points de contrôle pour situer l'interruption.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez la méthode pour localiser, à l'aide d'un schéma, la panne d'un moteur qui ne démarre pas.",
+      consignes: [
+        "Explique comment repérer le circuit concerné.",
+        "Décris le suivi du chemin du courant.",
+        "Indique où et comment mesurer.",
+      ],
+      criteres: [
+        "J'ai relié le symptôme au circuit de commande.",
+        "J'ai décrit le suivi des contacts dans le sens du courant.",
+        "J'ai indiqué la mesure aux points de contrôle, en sécurité.",
+      ],
+      correction:
+        "On traduit le symptôme (moteur qui ne démarre pas) en circuit concerné (le circuit de commande) sur le schéma développé. On suit ensuite le chemin du courant contact par contact : bouton arrêt, bouton marche, auto-maintien, contact du relais thermique, jusqu'à la bobine. On mesure aux points de contrôle pour repérer où le courant s'interrompt, en respectant l'habilitation pour les mesures sous tension et la consignation pour les contrôles hors tension.",
+    },
+  },
+  {
+    id: "3-37",
+    title: "Synthèse lecture de schémas et mise en situation",
+    durationMinutes: 28,
+    objectifs: [
+      "Mobiliser symboles, repères, folios et types de schémas dans une lecture complète.",
+      "Conduire un diagnostic en s'appuyant sur le schéma.",
+    ],
+    simple:
+      "Ce chapitre rassemble le bloc : comprendre l'utilité d'un schéma, lire ses symboles et repères, distinguer unifilaire et développé, naviguer entre folios et suivre le courant pour localiser une panne. Le schéma devient un véritable outil de diagnostic.",
+    vocab: [
+      ["Repère", "Lettre + numéro identifiant un composant (chapitre 3-33)."],
+      ["Unifilaire / développé", "Vue d'ensemble / vue détaillée (chapitre 3-34)."],
+      ["Folio et renvoi", "Page du dossier et lien vers la suite du circuit (chapitre 3-35)."],
+      ["Point de contrôle", "Endroit où mesurer pour localiser une interruption (chapitre 3-36)."],
+      ["Diagnostic", "Recherche méthodique de la cause d'une panne."],
+    ],
+    example:
+      "Face à une panne, on situe le circuit sur l'unifilaire, on passe au développé pour le détail, on décode les repères (KM1, F2…), on suit les renvois entre folios et on mesure aux points de contrôle pour trouver l'origine, le tout après consignation.",
+    schema: "schematic-comparison",
+    ascii: "COMPRENDRE (3-32) → REPERES (3-33) → UNIFILAIRE/DEVELOPPE (3-34)\n→ FOLIOS/RENVOIS (3-35) → SUIVRE LE COURANT (3-36) → localiser la panne",
+    retenir: [
+      "Le schéma est un outil de diagnostic à part entière.",
+      "On combine décodage des repères, bon type de schéma et navigation entre folios.",
+      "On suit le chemin du courant et on mesure aux points de contrôle.",
+      "La sécurité (consignation, VAT, habilitation) encadre toute l'intervention.",
+    ],
+    erreurs: [
+      "Lire un schéma sans en décoder la légende et les repères.",
+      "Rester sur l'unifilaire pour un diagnostic fin de commande.",
+      "Oublier la consignation avant les contrôles nécessitant un accès.",
+    ],
+    astucesPro: [
+      "On situe d'abord avec l'unifilaire, puis on détaille avec le développé.",
+      "On note les repères et les points mesurés pour tracer le diagnostic.",
+    ],
+    diagnostic: [
+      "Situer le circuit sur l'unifilaire, puis détailler sur le développé.",
+      "Décoder les repères pour relier schéma et armoire.",
+      "Suivre les folios et le chemin du courant jusqu'à l'interruption.",
+    ],
+    depannage: [
+      "Localiser le composant défaillant à l'aide du schéma et des repères.",
+      "Confirmer par la mesure avant de remplacer.",
+      "Consigner, corriger la cause, remettre en service et tracer.",
+    ],
+    securite: [
+      "Les règles de sécurité des blocs précédents restent valables lors de la lecture et du diagnostic.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine est en panne ; on dispose du dossier de schémas complet.",
+      mission: ["Décrire la démarche de lecture.", "Citer les notions du bloc mobilisées.", "Indiquer ce que l'on trace."],
+      correction:
+        "Démarche : situer le circuit concerné sur l'unifilaire (3-34), passer au développé pour le détail, décoder les repères pour relier schéma et armoire (3-33), suivre les renvois entre folios (3-35), puis suivre le chemin du courant et mesurer aux points de contrôle pour localiser l'interruption (3-36), le tout après consignation. On corrige la cause, on remet en service de façon maîtrisée et on trace le diagnostic (repères contrôlés, mesures, action). Le schéma est le fil conducteur de toute la recherche.",
+    },
+    memo: ["Comprendre → repères → type → folios → courant", "Situer puis détailler", "Consigner puis tracer"],
+    resume:
+      "Lire un schéma pour diagnostiquer, c'est combiner décodage des repères, choix du bon schéma, navigation entre folios et suivi du courant, en sécurité et avec traçabilité.",
+    quizIds: ["els166", "els167", "els168", "els169", "els170"],
+    verification: {
+      question: "Dans un diagnostic appuyé sur le schéma, par quelle vue commence-t-on souvent ?",
+      options: ["Le développé, tout de suite", "L'unifilaire pour situer, puis le développé pour détailler", "La plaque signalétique", "Le carnet de commandes"],
+      correct: 1,
+      explanation: "On situe d'abord le circuit avec l'unifilaire (vue d'ensemble), puis on passe au développé pour l'analyse fine.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez, dans l'ordre, comment utiliser un dossier de schémas pour diagnostiquer une machine en panne, en citant les notions du bloc.",
+      consignes: [
+        "Donne les étapes de la lecture, de la vue d'ensemble à la mesure.",
+        "Relie chaque étape à un chapitre (3-32 à 3-36).",
+        "Rappelle la sécurité et la traçabilité.",
+      ],
+      criteres: [
+        "Les étapes sont ordonnées et complètes.",
+        "Chaque étape est reliée à une notion.",
+        "J'ai rappelé la consignation et la traçabilité.",
+      ],
+      correction:
+        "Comprendre le rôle du schéma (3-32), situer le circuit sur l'unifilaire puis détailler sur le développé (3-34), décoder les repères pour relier schéma et armoire (3-33), suivre les renvois entre folios (3-35), puis suivre le chemin du courant et mesurer aux points de contrôle pour localiser l'interruption (3-36). Le tout après consignation ; on corrige la cause, on remet en service de façon maîtrisée et on trace le diagnostic.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
@@ -2909,8 +3161,12 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
     title: "Lecture de schémas électriques industriels",
     objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.",
     lessonIds: block6Lessons.map((lesson) => lesson.id),
-    chapterCount: 6,
-    status: "in_progress",
+    chapterCount: block6Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["els141", "els142", "els146", "els148", "els151", "els153", "els156", "els158", "els161", "els163", "els166", "els168"],
+      passPercent: 80,
+    },
   },
   { id: "m3-b7", num: 7, title: "Méthode de diagnostic électrique et synthèse", objective: "Structurer une recherche de panne électrique méthodique et tracée.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];
