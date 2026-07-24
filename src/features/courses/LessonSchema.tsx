@@ -1059,5 +1059,40 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "schematic-comparison") {
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        {/* Unifilaire : une seule ligne pour les 3 phases */}
+        <text x="80" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Unifilaire</text>
+        <line x1="80" y1="24" x2="80" y2="118" stroke={stroke} strokeWidth="2" />
+        <text x="96" y="40" fontSize="7" fill={stroke}>3</text>
+        <line x1="72" y1="36" x2="88" y2="30" stroke={stroke} strokeWidth="1" />
+        <rect x="66" y="52" width="28" height="16" rx="2" fill={box} stroke={stroke} />
+        <text x="80" y="63" textAnchor="middle" fontSize="7" fill={stroke}>Q</text>
+        <rect x="66" y="80" width="28" height="16" rx="2" fill={box} stroke={stroke} />
+        <text x="80" y="91" textAnchor="middle" fontSize="7" fill={stroke}>KM</text>
+        <circle cx="80" cy="112" r="8" fill={accent} />
+        <text x="80" y="115" textAnchor="middle" fontSize="7" fill="#14151a">M</text>
+        <text x="80" y="132" textAnchor="middle" fontSize="6.5" fill={stroke}>vue simplifiée</text>
+        {/* Développé : détaillé, commande séparée */}
+        <text x="230" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Développé</text>
+        {[190, 210, 230].map((x, i) => (
+          <g key={i}>
+            <line x1={x} y1="24" x2={x} y2="70" stroke={accent} strokeWidth="1.5" />
+          </g>
+        ))}
+        <text x="210" y="40" textAnchor="middle" fontSize="6.5" fill={stroke}>puissance (3 fils)</text>
+        <rect x="186" y="70" width="48" height="14" rx="2" fill={box} stroke={stroke} />
+        <text x="210" y="80" textAnchor="middle" fontSize="6.5" fill={stroke}>moteur</text>
+        <line x1="270" y1="24" x2="270" y2="96" stroke={stroke} strokeWidth="1.5" />
+        <circle cx="270" cy="50" r="3" fill="none" stroke={stroke} />
+        <text x="286" y="53" fontSize="6.5" fill={stroke}>S (bouton)</text>
+        <circle cx="270" cy="78" r="6" fill={box} stroke={accent} />
+        <text x="286" y="81" fontSize="6.5" fill={stroke}>KM (bobine)</text>
+        <text x="230" y="118" textAnchor="middle" fontSize="6.5" fill={stroke}>puissance + commande</text>
+        <text x="230" y="130" textAnchor="middle" fontSize="6.5" fill={stroke}>détaillées séparément</text>
+      </svg>
+    );
+  }
   return null;
 }

@@ -726,6 +726,70 @@ function RotationDirection({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 7 — DÉCODEUR DE REPÈRES DE SCHÉMA ÉLECTRIQUE
+   Tape une lettre-repère pour savoir quel composant elle désigne.
+   --------------------------------------------------------------- */
+
+interface SymbolRef {
+  code: string;
+  name: string;
+  role: string;
+}
+
+const SYMBOL_REFS: SymbolRef[] = [
+  { code: "Q", name: "Sectionnement / protection", role: "Sectionneur, interrupteur-sectionneur, disjoncteur (ex : Q1)." },
+  { code: "KM", name: "Contacteur", role: "Contacteur de puissance qui commande le moteur (ex : KM1)." },
+  { code: "F", name: "Protection", role: "Fusible ou relais thermique (ex : F2 pour le relais thermique)." },
+  { code: "S", name: "Commande (organe manuel)", role: "Bouton-poussoir, interrupteur de commande (ex : S1 marche, S2 arrêt)." },
+  { code: "M", name: "Moteur", role: "Moteur électrique, souvent asynchrone triphasé (ex : M1)." },
+  { code: "H", name: "Signalisation", role: "Voyant, lampe ou avertisseur (ex : H1 voyant marche)." },
+  { code: "T", name: "Transformateur", role: "Transformateur, par exemple pour le circuit de commande (ex : T1)." },
+  { code: "K", name: "Relais", role: "Relais de commande ou auxiliaire, temporisateur (ex : KA1, KT1)." },
+];
+
+function SymbolDecoder({ dark }: { dark: boolean }) {
+  const [index, setIndex] = useState(1); // KM par défaut
+  const current = SYMBOL_REFS[index];
+
+  return (
+    <Figure
+      dark={dark}
+      title="Décoder les repères d'un schéma"
+      legend="Sur un schéma, chaque composant porte une lettre-repère normalisée suivie d'un numéro (ex : KM1, Q1, F2)."
+      explanation="Les schémas électriques utilisent des lettres-repères pour désigner les composants, quelle que soit la langue. Savoir les lire permet de relier un symbole du schéma au composant réel dans l'armoire. Les repères ci-dessous sont les plus courants pour un départ moteur ; un schéma complet en donne toujours la légende."
+      controls={
+        <div role="group" aria-label="Choisir un repère" className="flex flex-wrap gap-2">
+          {SYMBOL_REFS.map((symbol, i) => {
+            const active = i === index;
+            return (
+              <button
+                key={symbol.code}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setIndex(i)}
+                className={`rounded-lg border-2 px-3 py-1.5 font-mono text-sm font-bold transition ${active ? "border-amber-400 bg-amber-400 text-slate-950" : dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}
+              >
+                {symbol.code}
+              </button>
+            );
+          })}
+        </div>
+      }
+    >
+      <div className="p-2 text-center">
+        <div className={`mx-auto flex h-16 w-20 items-center justify-center rounded-xl border-2 font-mono text-3xl font-bold ${dark ? "border-sky-500/50 bg-slate-900 text-sky-300" : "border-sky-300 bg-white text-sky-700"}`}>
+          {current.code}
+        </div>
+        <p className={`mt-3 text-base font-bold ${dark ? "text-white" : "text-slate-900"}`}>{current.name}</p>
+      </div>
+      <p className={`mt-1 rounded-lg p-3 text-sm ${dark ? "bg-amber-400/10 text-slate-200" : "bg-amber-50 text-slate-700"}`}>
+        <span className="font-semibold">Ce que ça désigne : </span>{current.role}
+      </p>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -736,5 +800,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "neutral-regimes") return <NeutralRegimes dark={dark} />;
   if (type === "contactor-thermal") return <ContactorThermal dark={dark} />;
   if (type === "rotation-direction") return <RotationDirection dark={dark} />;
+  if (type === "symbol-decoder") return <SymbolDecoder dark={dark} />;
   return null;
 }

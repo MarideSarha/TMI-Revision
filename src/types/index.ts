@@ -64,7 +64,8 @@ export type LessonSchemaType =
   | "command-power-circuit"
   | "asynchronous-motor"
   | "star-delta-coupling"
-  | "vfd-blockdiagram";
+  | "vfd-blockdiagram"
+  | "schematic-comparison";
 
 /**
  * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
@@ -79,7 +80,8 @@ export type InteractiveSchemaType =
   | "habilitation-decoder"
   | "neutral-regimes"
   | "contactor-thermal"
-  | "rotation-direction";
+  | "rotation-direction"
+  | "symbol-decoder";
 
 export interface LessonExercise {
   enonce: string;

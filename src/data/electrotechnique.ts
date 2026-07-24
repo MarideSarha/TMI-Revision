@@ -2576,6 +2576,267 @@ const block5Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 6 — LECTURE DE SCHÉMAS ÉLECTRIQUES INDUSTRIELS
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block6Lessons: Lesson[] = [
+  {
+    id: "3-32",
+    title: "Lire un schéma électrique : à quoi ça sert",
+    durationMinutes: 26,
+    objectifs: [
+      "Expliquer l'utilité d'un schéma électrique en maintenance.",
+      "Citer les grands types de schémas et leur usage.",
+    ],
+    simple:
+      "Un schéma électrique est le plan de l'installation. Il permet de comprendre comment les composants sont reliés, de retrouver un élément dans l'armoire et de suivre le chemin du courant, sans tout démonter. C'est un outil de diagnostic essentiel.",
+    vocab: [
+      ["Schéma électrique", "Représentation graphique des composants et de leurs liaisons."],
+      ["Schéma unifilaire", "Vue simplifiée où plusieurs conducteurs sont représentés par une seule ligne."],
+      ["Schéma développé", "Vue détaillée séparant clairement puissance et commande."],
+      ["Légende", "Liste qui explique les symboles et repères utilisés dans le schéma."],
+      ["Dossier électrique", "Ensemble des schémas et documents d'une installation."],
+    ],
+    example:
+      "Face à une armoire complexe, le technicien ouvre d'abord le schéma : il y repère le départ concerné, suit le chemin du courant et identifie les composants à contrôler. Il gagne un temps précieux par rapport à une recherche « à l'aveugle ».",
+    schema: "control-circuit",
+    ascii: "SCHEMA = plan de l'installation\n→ comprendre les liaisons\n→ retrouver un composant\n→ suivre le chemin du courant",
+    retenir: [
+      "Le schéma est le plan de l'installation : il montre les composants et leurs liaisons.",
+      "Il permet de localiser un composant et de suivre le chemin du courant sans tout démonter.",
+      "Il existe plusieurs types de schémas (unifilaire, développé) selon le niveau de détail.",
+      "Une légende accompagne toujours un schéma pour expliquer symboles et repères.",
+    ],
+    erreurs: [
+      "Chercher une panne dans l'armoire sans consulter le schéma.",
+      "Ignorer la légende et interpréter les symboles au hasard.",
+      "Confondre les différents types de schémas et leur usage.",
+    ],
+    astucesPro: [
+      "On commence toujours un diagnostic par la lecture du schéma et du repérage.",
+      "Un dossier électrique à jour fait gagner un temps considérable en intervention.",
+    ],
+    diagnostic: [
+      "Identifier le schéma correspondant à l'installation à dépanner.",
+      "Repérer le départ ou le circuit concerné sur le schéma.",
+      "Suivre le chemin du courant pour cibler les composants à contrôler.",
+    ],
+    depannage: [
+      "Utiliser le schéma pour localiser précisément le composant suspect.",
+      "Comparer le schéma à l'installation réelle.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Le schéma aide à intervenir en sécurité en identifiant les circuits avant d'agir.",
+      "La lecture du schéma ne dispense pas de la consignation ni de l'habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien débutant démonte plusieurs composants au hasard pour trouver une panne, sans succès.",
+      mission: ["Identifier l'erreur de méthode.", "Proposer la bonne démarche.", "Indiquer l'outil à utiliser d'abord."],
+      correction:
+        "L'erreur est d'intervenir sans méthode, à l'aveugle, ce qui fait perdre du temps et augmente les risques. La bonne démarche consiste à ouvrir d'abord le schéma électrique, à repérer le circuit concerné et à suivre le chemin du courant pour cibler les composants à contrôler. Le schéma (et le repérage de l'armoire) est le premier outil à utiliser, avant tout démontage, et toujours après avoir sécurisé l'intervention.",
+    },
+    memo: ["Schéma = plan", "Localiser + suivre le courant", "Toujours une légende", "Lire avant de démonter"],
+    resume:
+      "Le schéma électrique est le plan qui permet de comprendre l'installation, de localiser les composants et de suivre le courant : c'est le point de départ d'un diagnostic méthodique.",
+    quizIds: ["els141", "els142", "els143", "els144", "els145"],
+    verification: {
+      question: "Par quoi commence-t-on idéalement un diagnostic dans une armoire complexe ?",
+      options: ["Par démonter au hasard", "Par lire le schéma et le repérage", "Par remplacer le moteur", "Par couper tout le site"],
+      correct: 1,
+      explanation: "On lit d'abord le schéma et le repérage pour localiser le circuit et suivre le courant, avant tout démontage et après sécurisation.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez trois usages concrets d'un schéma électrique pour un technicien de maintenance.",
+      consignes: [
+        "Cite un usage lié à la compréhension de l'installation.",
+        "Cite un usage lié à la localisation d'un composant.",
+        "Cite un usage lié au diagnostic.",
+      ],
+      criteres: [
+        "J'ai cité la compréhension des liaisons.",
+        "J'ai cité la localisation d'un composant.",
+        "J'ai cité le suivi du courant pour diagnostiquer.",
+      ],
+      correction:
+        "Un schéma permet : (1) de comprendre comment les composants sont reliés entre eux, (2) de retrouver un composant précis dans l'armoire grâce au repérage, et (3) de suivre le chemin du courant pour cibler les éléments à contrôler lors d'un diagnostic. Il évite les démontages inutiles et fait gagner du temps.",
+    },
+  },
+  {
+    id: "3-33",
+    title: "Symboles et repérage normalisés",
+    durationMinutes: 30,
+    objectifs: [
+      "Reconnaître les principaux symboles et lettres-repères d'un schéma.",
+      "Relier un repère du schéma au composant réel de l'armoire.",
+    ],
+    simple:
+      "Sur un schéma, chaque composant est représenté par un symbole et désigné par une lettre-repère suivie d'un numéro (par exemple KM1). Ces repères sont normalisés : ils permettent de relier le schéma au composant réel, quelle que soit la langue.",
+    vocab: [
+      ["Symbole", "Dessin normalisé représentant un composant (contact, bobine, moteur…)."],
+      ["Lettre-repère", "Lettre normalisée désignant la famille du composant (Q, KM, F, S, M…)."],
+      ["Repère", "Lettre + numéro identifiant un composant précis (ex : KM1, F2)."],
+      ["Bornier", "Ensemble des bornes où sont raccordés les conducteurs, souvent repérées."],
+      ["Repérage des conducteurs", "Marquage des fils pour les identifier sur le schéma et dans l'armoire."],
+    ],
+    example:
+      "Sur le schéma, « KM1 » désigne le contacteur principal, « Q1 » le disjoncteur, « F2 » le relais thermique et « S1 » le bouton marche. En retrouvant ces repères sur l'armoire, le technicien identifie chaque composant réel.",
+    schema: "control-circuit",
+    illustrations: ["symbol-decoder"],
+    ascii: "Q = sectionnement/protection   KM = contacteur\nF = protection (fusible/thermique) S = commande (bouton)\nM = moteur   H = signalisation   T = transformateur   K = relais",
+    retenir: [
+      "Chaque composant a un symbole et une lettre-repère normalisés.",
+      "Le repère (lettre + numéro) identifie un composant précis, par exemple KM1.",
+      "Les repères se retrouvent à l'identique sur le schéma et sur l'armoire.",
+      "Le repérage des conducteurs aide à suivre les liaisons.",
+    ],
+    erreurs: [
+      "Confondre des repères proches (Q, KM, F…) sans se référer à la légende.",
+      "Ignorer le repérage des bornes et des conducteurs.",
+      "Croire que les repères changent d'une installation à l'autre sans logique.",
+    ],
+    astucesPro: [
+      "On utilise la légende du schéma pour lever tout doute sur un repère.",
+      "Le même repère sur le schéma et sur l'armoire relie directement plan et réalité.",
+    ],
+    diagnostic: [
+      "Identifier le repère du composant suspect sur le schéma.",
+      "Retrouver ce repère sur l'armoire pour localiser le composant réel.",
+      "Suivre les conducteurs repérés pour vérifier les liaisons.",
+    ],
+    depannage: [
+      "Se servir des repères pour aller directement au bon composant.",
+      "Vérifier les raccordements au bornier repéré.",
+      "Respecter la consignation avant tout contact.",
+    ],
+    securite: [
+      "Un repérage clair réduit les erreurs et donc les risques.",
+      "La lecture des repères ne dispense pas de la consignation ni de l'habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Le schéma indique un défaut probable sur « F2 », mais le technicien ne sait pas ce que c'est.",
+      mission: ["Décoder le repère F2.", "Indiquer où le retrouver.", "Préciser la précaution avant contrôle."],
+      correction:
+        "Le repère « F » désigne une protection ; dans un départ moteur, « F2 » correspond typiquement au relais thermique. On le retrouve sur l'armoire grâce à son repère « F2 » identique à celui du schéma. Avant tout contrôle nécessitant un accès, on consigne l'installation et on vérifie l'absence de tension, dans le cadre de son habilitation. En cas de doute sur un repère, on se réfère à la légende du schéma.",
+    },
+    memo: ["Symbole + repère normalisés", "KM = contacteur, F = protection", "Même repère plan/armoire", "Légende en cas de doute"],
+    resume:
+      "Les symboles et lettres-repères normalisés relient le schéma au composant réel ; les connaître permet de localiser rapidement un élément dans l'armoire.",
+    quizIds: ["els146", "els147", "els148", "els149", "els150"],
+    verification: {
+      question: "Sur un schéma, que désigne le plus souvent le repère « KM » ?",
+      options: ["Un moteur", "Un contacteur", "Un fusible", "Un bouton"],
+      correct: 1,
+      explanation: "« KM » désigne un contacteur (ex : KM1). « M » désigne le moteur, « F » une protection, « S » un organe de commande.",
+    },
+    exercice: {
+      enonce:
+        "Décodez les repères suivants d'un départ moteur : Q1, KM1, F2, S1, M1.",
+      consignes: [
+        "Donne la famille de chaque repère.",
+        "Précise le composant réel correspondant.",
+        "Rappelle comment lever un doute sur un repère.",
+      ],
+      criteres: [
+        "J'ai décodé chaque lettre-repère.",
+        "J'ai associé chaque repère à un composant.",
+        "J'ai cité la légende comme référence en cas de doute.",
+      ],
+      correction:
+        "Q1 = sectionnement/protection (disjoncteur ou sectionneur), KM1 = contacteur principal, F2 = protection (relais thermique), S1 = organe de commande (bouton marche), M1 = moteur. En cas de doute sur un repère, on se réfère toujours à la légende du schéma, qui explique les symboles et repères utilisés.",
+    },
+  },
+  {
+    id: "3-34",
+    title: "Schéma unifilaire et schéma développé",
+    durationMinutes: 28,
+    objectifs: [
+      "Distinguer un schéma unifilaire d'un schéma développé.",
+      "Choisir le type de schéma adapté au besoin.",
+    ],
+    simple:
+      "Le schéma unifilaire donne une vue d'ensemble simplifiée : plusieurs conducteurs sont représentés par une seule ligne. Le schéma développé, lui, détaille précisément chaque liaison et sépare souvent la puissance et la commande. On passe de l'un à l'autre selon ce qu'on cherche.",
+    vocab: [
+      ["Schéma unifilaire", "Vue simplifiée : une ligne représente plusieurs conducteurs (ex : les 3 phases)."],
+      ["Schéma développé", "Vue détaillée : chaque conducteur et contact est représenté séparément."],
+      ["Circuit de puissance", "Partie qui alimente le moteur (fort courant)."],
+      ["Circuit de commande", "Partie qui pilote la bobine (faible courant), souvent détaillée dans le développé."],
+      ["Vue d'ensemble", "Représentation globale utile pour comprendre l'architecture."],
+    ],
+    example:
+      "Pour comprendre l'architecture générale d'une installation, on utilise le schéma unifilaire. Pour dépanner précisément un circuit de commande (bouton, bobine, auto-maintien), on utilise le schéma développé, qui montre chaque contact.",
+    schema: "schematic-comparison",
+    ascii: "UNIFILAIRE : 1 ligne = plusieurs conducteurs → vue d'ensemble\nDEVELOPPE  : chaque fil/contact detaille → depannage precis\n(souvent puissance et commande separees)",
+    retenir: [
+      "Le schéma unifilaire simplifie : une ligne pour plusieurs conducteurs.",
+      "Le schéma développé détaille chaque liaison et chaque contact.",
+      "L'unifilaire sert à la vue d'ensemble ; le développé au dépannage précis.",
+      "Le développé sépare souvent clairement puissance et commande.",
+    ],
+    erreurs: [
+      "Vouloir dépanner un circuit de commande fin avec un simple unifilaire.",
+      "Se perdre dans un développé sans avoir d'abord la vue d'ensemble.",
+      "Confondre les deux représentations d'une même installation.",
+    ],
+    astucesPro: [
+      "On part de l'unifilaire pour situer, puis on passe au développé pour le détail.",
+      "Le développé est l'outil privilégié pour suivre pas à pas un circuit de commande.",
+    ],
+    diagnostic: [
+      "Choisir l'unifilaire pour comprendre l'architecture générale.",
+      "Passer au développé pour analyser un circuit précis.",
+      "Faire le lien entre les deux vues d'une même installation.",
+    ],
+    depannage: [
+      "Utiliser le développé pour suivre un circuit de commande contact par contact.",
+      "Revenir à l'unifilaire pour resituer un circuit dans l'ensemble.",
+      "Respecter la consignation avant tout contrôle nécessitant un accès.",
+    ],
+    securite: [
+      "Bien lire le bon schéma évite les erreurs d'intervention.",
+      "La lecture des schémas ne dispense pas de la consignation ni de l'habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien doit comprendre pourquoi une bobine n'est pas alimentée, mais il n'a que le schéma unifilaire.",
+      mission: ["Dire si l'unifilaire suffit.", "Indiquer le schéma adapté.", "Expliquer pourquoi."],
+      correction:
+        "L'unifilaire ne suffit pas ici : il donne la vue d'ensemble mais ne détaille pas le circuit de commande contact par contact. Le schéma adapté est le schéma développé, qui montre chaque contact du circuit de commande (bouton, auto-maintien, contact du relais thermique) et permet de suivre pas à pas pourquoi la bobine n'est pas alimentée. On utilise donc le développé pour ce type de diagnostic fin.",
+    },
+    memo: ["Unifilaire = vue d'ensemble", "Développé = détail", "Situer puis détailler", "Développé pour la commande"],
+    resume:
+      "L'unifilaire donne la vue d'ensemble, le développé le détail ; on combine les deux : situer avec l'unifilaire, dépanner avec le développé.",
+    quizIds: ["els151", "els152", "els153", "els154", "els155"],
+    verification: {
+      question: "Quel schéma est le plus adapté pour dépanner précisément un circuit de commande ?",
+      options: ["Le schéma unifilaire", "Le schéma développé", "Aucun", "La plaque signalétique"],
+      correct: 1,
+      explanation: "Le schéma développé détaille chaque contact du circuit de commande, ce qui permet de suivre pas à pas et de dépanner précisément.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre schéma unifilaire et schéma développé, et dites quand utiliser chacun.",
+      consignes: [
+        "Décris ce que simplifie l'unifilaire.",
+        "Décris ce que détaille le développé.",
+        "Indique l'usage de chacun.",
+      ],
+      criteres: [
+        "J'ai indiqué que l'unifilaire représente plusieurs conducteurs par une ligne.",
+        "J'ai indiqué que le développé détaille chaque liaison et contact.",
+        "J'ai associé unifilaire = vue d'ensemble et développé = dépannage précis.",
+      ],
+      correction:
+        "Le schéma unifilaire simplifie en représentant plusieurs conducteurs (par exemple les trois phases) par une seule ligne : il donne une vue d'ensemble de l'architecture. Le schéma développé détaille chaque conducteur et chaque contact, en séparant souvent puissance et commande : il sert au dépannage précis. On utilise l'unifilaire pour situer et comprendre l'ensemble, puis le développé pour analyser finement un circuit.",
+    },
+  },
+];
+
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
   {
     id: "m3-b1",
@@ -2642,7 +2903,15 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m3-b6", num: 6, title: "Lecture de schémas électriques industriels", objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m3-b6",
+    num: 6,
+    title: "Lecture de schémas électriques industriels",
+    objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.",
+    lessonIds: block6Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
   { id: "m3-b7", num: 7, title: "Méthode de diagnostic électrique et synthèse", objective: "Structurer une recherche de panne électrique méthodique et tracée.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];
 
@@ -2653,6 +2922,6 @@ export const ELECTRO_MODULE: TrainingModule = {
   icon: Zap,
   color: "violet",
   source: "[AFORP] Module 3 · parcours progressif débutant → opérationnel · références NF C 18-510 et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons, ...block6Lessons],
   blocks: ELECTRO_BLOCKS,
 };
