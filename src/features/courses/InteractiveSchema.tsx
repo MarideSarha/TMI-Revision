@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Lightbulb, Pause, Play, RotateCcw, TriangleAlert, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lightbulb, Pause, Play, RotateCcw, ShieldCheck, TriangleAlert, Zap } from "lucide-react";
 import type { InteractiveSchemaType } from "../../types";
 
 /* ============================================================
@@ -790,6 +790,137 @@ function SymbolDecoder({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 8 — ASSISTANT DE DIAGNOSTIC (ARBRE DE DÉCISION GUIDÉ)
+   Guide la démarche « moteur ne démarre pas ». Non noté : il montre
+   la méthode, il complète le simulateur de pannes (scénarios notés).
+   --------------------------------------------------------------- */
+
+interface DiagOption {
+  label: string;
+  next?: string;
+  conclusion?: string;
+}
+
+interface DiagNode {
+  prompt: string;
+  options: DiagOption[];
+}
+
+const DIAG_NODES: Record<string, DiagNode> = {
+  start: {
+    prompt: "Le moteur ne démarre pas. Une protection a-t-elle déclenché ?",
+    options: [
+      { label: "Oui, une protection a déclenché", next: "protection" },
+      { label: "Non, aucune protection n'a déclenché", next: "commande" },
+    ],
+  },
+  protection: {
+    prompt: "Quelle protection a déclenché ?",
+    options: [
+      { label: "Le relais thermique", conclusion: "Surcharge probable. Mesurer le courant absorbé, vérifier le réglage (courant nominal) et la charge mécanique. Rechercher la cause AVANT de réarmer ; ne jamais dérégler le relais." },
+      { label: "Le disjoncteur", conclusion: "Surintensité (surcharge ou court-circuit). Localiser le défaut avant de réarmer. Ne pas augmenter le calibre pour masquer le déclenchement." },
+      { label: "Le différentiel (DDR)", conclusion: "Fuite à la terre (défaut d'isolement). Isoler les circuits pour trouver le récepteur en défaut, contrôler l'isolement hors tension. Ne jamais neutraliser le différentiel." },
+    ],
+  },
+  commande: {
+    prompt: "En commandant la marche, la bobine du contacteur est-elle alimentée ?",
+    options: [
+      { label: "Oui, la bobine est alimentée", next: "puissance" },
+      { label: "Non, la bobine n'est pas alimentée", next: "commandeDetail" },
+    ],
+  },
+  puissance: {
+    prompt: "Le contacteur se ferme mais le moteur ne tourne pas. Quelle piste suivre ?",
+    options: [
+      { label: "Vérifier la puissance (contacts, phases, moteur)", conclusion: "Défaut de puissance : contrôler les contacts principaux (collés ou usés), la présence des trois phases, le couplage et le moteur — après consignation et vérification d'absence de tension." },
+    ],
+  },
+  commandeDetail: {
+    prompt: "En suivant le circuit de commande, où le courant s'arrête-t-il ?",
+    options: [
+      { label: "À un contact ouvert (bouton, auto-maintien, thermique)", conclusion: "Défaut dans le circuit de commande : contrôler les boutons (marche/arrêt), le contact d'auto-maintien et le contact du relais thermique, ainsi que le câblage." },
+      { label: "Le circuit est continu mais la bobine reste inerte", conclusion: "Vérifier l'alimentation de commande (tension, transformateur de commande) et la bobine elle-même. Les mesures sous tension se font avec l'habilitation adaptée." },
+    ],
+  },
+};
+
+function DiagnosticTree({ dark }: { dark: boolean }) {
+  const [nodeId, setNodeId] = useState<string>("start");
+  const [conclusion, setConclusion] = useState<string | null>(null);
+  const [path, setPath] = useState<string[]>([]);
+  const node = DIAG_NODES[nodeId];
+
+  function choose(option: DiagOption) {
+    setPath((p) => [...p, option.label]);
+    if (option.conclusion) {
+      setConclusion(option.conclusion);
+    } else if (option.next) {
+      setNodeId(option.next);
+    }
+  }
+
+  function restart() {
+    setNodeId("start");
+    setConclusion(null);
+    setPath([]);
+  }
+
+  return (
+    <Figure
+      dark={dark}
+      title="Assistant de diagnostic : moteur qui ne démarre pas"
+      legend="Choisis l'observation qui correspond ; l'assistant guide la démarche jusqu'à une piste. Outil pédagogique, non noté."
+      explanation="Cet assistant illustre une démarche de diagnostic structurée : on part du symptôme, on observe, puis on oriente la recherche étape par étape jusqu'à une piste probable. Il ne remplace pas le raisonnement ni la sécurité : toute intervention se fait après consignation et dans les limites de son habilitation. Pour t'entraîner sur des scénarios notés, utilise aussi la section « Pannes »."
+      controls={
+        conclusion !== null || path.length > 0 ? (
+          <button type="button" onClick={restart} className={`flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Recommencer le diagnostic
+          </button>
+        ) : undefined
+      }
+    >
+      <div className="p-1">
+        {/* Chemin parcouru */}
+        {path.length > 0 && (
+          <ol className="mb-3 space-y-1">
+            {path.map((step, i) => (
+              <li key={i} className={`flex gap-2 text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>
+                <span className="font-mono font-bold text-amber-400">{i + 1}.</span>{step}
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {conclusion === null ? (
+          <div className={`rounded-lg border p-3 ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+            <p className={`mb-3 font-semibold ${dark ? "text-white" : "text-slate-900"}`}>{node.prompt}</p>
+            <div className="space-y-2">
+              {node.options.map((option) => (
+                <button
+                  key={option.label}
+                  type="button"
+                  onClick={() => choose(option)}
+                  className={`flex w-full items-center gap-2 rounded-lg border-2 p-3 text-left text-sm transition ${dark ? "border-slate-600 hover:border-amber-400 text-slate-200" : "border-slate-300 hover:border-amber-500 text-slate-700"}`}
+                >
+                  <ArrowRight size={15} className="shrink-0 text-amber-400" /> {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-lg border-2 border-emerald-500/40 bg-emerald-500/5 p-3">
+            <p className="mb-1 flex items-center gap-2 text-sm font-bold text-emerald-500">
+              <ShieldCheck size={16} /> Piste de diagnostic
+            </p>
+            <p className={`text-sm leading-relaxed ${dark ? "text-slate-200" : "text-slate-700"}`}>{conclusion}</p>
+          </div>
+        )}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -801,5 +932,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "contactor-thermal") return <ContactorThermal dark={dark} />;
   if (type === "rotation-direction") return <RotationDirection dark={dark} />;
   if (type === "symbol-decoder") return <SymbolDecoder dark={dark} />;
+  if (type === "diagnostic-tree") return <DiagnosticTree dark={dark} />;
   return null;
 }

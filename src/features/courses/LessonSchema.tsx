@@ -1094,5 +1094,34 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "diagnostic-flow") {
+    const steps = ["Constater", "Sécuriser", "Analyser", "Localiser", "Réparer", "Contrôler", "Tracer"];
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        {steps.map((label, i) => {
+          const col = i % 4;
+          const row = Math.floor(i / 4);
+          const x = 12 + col * 78;
+          const y = 20 + row * 60;
+          const last = i === steps.length - 1;
+          return (
+            <g key={label}>
+              <rect x={x} y={y} width="66" height="30" rx="6" fill={i === 1 ? "#ef4444" : last ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 33} y={y + 19} textAnchor="middle" fontSize="8.5" fill={i === 1 ? "#fff" : last ? "#14151a" : stroke} fontWeight="bold">{label}</text>
+              {/* flèche horizontale */}
+              {col < 3 && i < steps.length - 1 && <line x1={x + 66} y1={y + 15} x2={x + 78} y2={y + 15} stroke={stroke} strokeWidth="1.5" markerEnd="url(#df-arrow)" />}
+              {/* passage à la ligne (après la 4e case) */}
+              {i === 3 && <line x1={x + 33} y1={y + 30} x2={12 + 33} y2={y + 60} stroke={stroke} strokeWidth="1.5" markerEnd="url(#df-arrow)" />}
+            </g>
+          );
+        })}
+        <defs>
+          <marker id="df-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+      </svg>
+    );
+  }
   return null;
 }

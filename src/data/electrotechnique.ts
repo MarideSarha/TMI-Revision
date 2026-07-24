@@ -3089,6 +3089,267 @@ const block6Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 7 — MÉTHODE DE DIAGNOSTIC ÉLECTRIQUE ET SYNTHÈSE
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block7Lessons: Lesson[] = [
+  {
+    id: "3-38",
+    title: "La démarche de diagnostic structurée",
+    durationMinutes: 30,
+    objectifs: [
+      "Décrire les étapes d'une démarche de diagnostic structurée.",
+      "Comprendre pourquoi la méthode fait gagner du temps et de la sécurité.",
+    ],
+    simple:
+      "Diagnostiquer une panne au hasard fait perdre du temps et augmente les risques. Une démarche structurée suit toujours les mêmes étapes : constater, sécuriser, analyser, localiser, réparer, contrôler et tracer. Cette méthode est la même quel que soit l'équipement.",
+    vocab: [
+      ["Diagnostic", "Recherche méthodique de la cause d'une panne."],
+      ["Constater", "Décrire précisément le symptôme et les conditions d'apparition."],
+      ["Localiser", "Réduire la recherche jusqu'à l'élément défaillant."],
+      ["Contrôler", "Vérifier que la réparation a résolu le problème sans en créer un autre."],
+      ["Tracer", "Consigner par écrit le constat, les mesures et l'action réalisée."],
+    ],
+    example:
+      "Face à un moteur qui ne démarre pas, le technicien ne démonte pas au hasard : il constate le symptôme, sécurise (consignation), analyse le circuit sur le schéma, localise l'élément en cause, répare, contrôle le bon fonctionnement, puis trace l'intervention.",
+    schema: "diagnostic-flow",
+    ascii: "CONSTATER → SECURISER → ANALYSER → LOCALISER → REPARER → CONTROLER → TRACER\n  symptome   consignation  hypotheses  element    action   verifier   compte rendu",
+    retenir: [
+      "La démarche : constater, sécuriser, analyser, localiser, réparer, contrôler, tracer.",
+      "La sécurité (consignation) intervient très tôt, avant tout contact.",
+      "On localise en réduisant progressivement la zone de recherche.",
+      "On termine toujours par un contrôle et une trace écrite.",
+    ],
+    erreurs: [
+      "Se précipiter sur une réparation sans avoir constaté ni analysé.",
+      "Oublier de sécuriser avant d'intervenir.",
+      "Ne pas contrôler le résultat ni tracer l'intervention.",
+    ],
+    astucesPro: [
+      "Une méthode suivie systématiquement évite d'oublier une étape sous la pression.",
+      "La trace écrite fait gagner du temps lors de la prochaine panne similaire.",
+    ],
+    diagnostic: [
+      "Constater précisément le symptôme et les conditions.",
+      "Analyser à l'aide du schéma pour formuler des hypothèses.",
+      "Localiser l'élément défaillant en réduisant la zone de recherche.",
+    ],
+    depannage: [
+      "Sécuriser avant tout contrôle nécessitant un accès.",
+      "Réparer la cause, pas seulement le symptôme.",
+      "Contrôler le bon fonctionnement puis tracer l'intervention.",
+    ],
+    securite: [
+      "La sécurisation (consignation, VAT) fait partie intégrante de la démarche.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien répare une panne, mais ne vérifie pas le résultat et ne note rien ; la panne réapparaît le lendemain.",
+      mission: ["Identifier les étapes négligées.", "Expliquer les conséquences.", "Rappeler la démarche complète."],
+      correction:
+        "Les étapes négligées sont le contrôle du résultat et la traçabilité. Conséquences : rien ne garantit que la cause a été traitée (peut-être seulement le symptôme), et l'absence de trace empêche de capitaliser sur l'intervention. La démarche complète est : constater, sécuriser, analyser, localiser, réparer, contrôler puis tracer. Le contrôle vérifie que la panne est réellement résolue ; la trace documente le constat, les mesures et l'action.",
+    },
+    memo: ["Constater → Sécuriser → Analyser → Localiser → Réparer → Contrôler → Tracer", "Sécuriser tôt", "Contrôler et tracer à la fin"],
+    resume:
+      "Une démarche de diagnostic structurée suit des étapes fixes — constater, sécuriser, analyser, localiser, réparer, contrôler, tracer — pour gagner du temps et de la sécurité.",
+    quizIds: ["els171", "els172", "els173", "els174", "els175"],
+    verification: {
+      question: "À quel moment intervient la sécurisation (consignation) dans la démarche de diagnostic ?",
+      options: ["À la toute fin", "Très tôt, avant tout contact avec les parties actives", "Jamais", "Uniquement si la panne est grave"],
+      correct: 1,
+      explanation: "La sécurisation intervient très tôt : dès qu'un contact avec des parties pouvant être sous tension est nécessaire, on consigne et on vérifie l'absence de tension.",
+    },
+    exercice: {
+      enonce:
+        "Énoncez, dans l'ordre, les étapes d'une démarche de diagnostic structurée et expliquez le rôle de chacune.",
+      consignes: [
+        "Donne les étapes dans l'ordre.",
+        "Explique brièvement chaque étape.",
+        "Insiste sur la place de la sécurité et de la traçabilité.",
+      ],
+      criteres: [
+        "L'ordre constater → sécuriser → analyser → localiser → réparer → contrôler → tracer est respecté.",
+        "Chaque étape a un rôle expliqué.",
+        "J'ai souligné la sécurité tôt et la trace à la fin.",
+      ],
+      correction:
+        "Constater (décrire le symptôme), sécuriser (consigner avant tout contact), analyser (formuler des hypothèses à l'aide du schéma), localiser (réduire la zone jusqu'à l'élément défaillant), réparer (traiter la cause), contrôler (vérifier que la panne est résolue sans effet secondaire) et tracer (consigner constat, mesures et action). La sécurité intervient tôt et la traçabilité clôt l'intervention.",
+    },
+  },
+  {
+    id: "3-39",
+    title: "Du symptôme aux hypothèses",
+    durationMinutes: 28,
+    objectifs: [
+      "Recueillir les informations utiles à partir d'un symptôme.",
+      "Formuler des hypothèses sans conclure trop vite.",
+    ],
+    simple:
+      "Un bon diagnostic commence par bien comprendre le symptôme : ce qui se passe, depuis quand, dans quelles conditions. À partir de ces informations et de l'historique, on formule plusieurs hypothèses, qu'on vérifiera ensuite. On évite de conclure sur la première idée.",
+    vocab: [
+      ["Symptôme", "Ce que l'on observe : moteur qui ne démarre pas, bruit, odeur, arrêt intempestif…"],
+      ["Historique", "Ce qui s'est passé avant : interventions récentes, pannes précédentes."],
+      ["Hypothèse", "Cause possible, à confirmer ou infirmer par un contrôle."],
+      ["Observation", "Recueil des indices sans démonter, depuis une zone sûre."],
+      ["Recueil d'informations", "Questions à l'opérateur, lecture des consignes et de l'historique."],
+    ],
+    example:
+      "Un moteur s'arrête après quelques minutes : on demande à l'opérateur depuis quand, si c'est régulier, s'il y a eu une intervention récente. Avec l'historique (déclenchements répétés du relais thermique), on formule l'hypothèse d'une surcharge, à confirmer par la mesure.",
+    schema: "control-circuit",
+    ascii: "SYMPTOME + CONDITIONS + HISTORIQUE → plusieurs HYPOTHESES\n→ a confirmer par des controles (ne pas conclure trop vite)",
+    retenir: [
+      "On décrit précisément le symptôme et ses conditions d'apparition.",
+      "L'historique et les questions à l'opérateur orientent la recherche.",
+      "On formule plusieurs hypothèses avant de vérifier.",
+      "On ne conclut pas sur la première idée : une hypothèse se confirme.",
+    ],
+    erreurs: [
+      "Conclure immédiatement sans recueillir d'informations.",
+      "Négliger l'historique et les interventions récentes.",
+      "Ne retenir qu'une seule hypothèse et s'y enfermer.",
+    ],
+    astucesPro: [
+      "Les questions à l'opérateur (depuis quand, dans quelles conditions) font gagner un temps précieux.",
+      "Un symptôme intermittent demande de recueillir les conditions exactes d'apparition.",
+    ],
+    diagnostic: [
+      "Décrire le symptôme et ses conditions.",
+      "Consulter l'historique et interroger l'opérateur.",
+      "Lister plusieurs hypothèses hiérarchisées par probabilité.",
+    ],
+    depannage: [
+      "Vérifier les hypothèses de la plus probable à la moins probable.",
+      "Observer d'abord depuis une zone sûre avant tout accès.",
+      "Consigner avant les contrôles nécessitant un contact.",
+    ],
+    securite: [
+      "L'observation en fonctionnement se fait à distance, carters fermés.",
+      "Tout contrôle nécessitant un accès impose une consignation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un opérateur signale « la machine s'arrête toute seule », sans autre précision.",
+      mission: ["Citer trois questions utiles.", "Expliquer l'intérêt de l'historique.", "Formuler deux hypothèses."],
+      correction:
+        "Trois questions utiles : depuis quand cela arrive-t-il ? Est-ce régulier ou aléatoire ? Y a-t-il eu une intervention ou un changement récent ? L'historique aide à repérer une cause récurrente (déclenchements répétés, réparation récente). Deux hypothèses possibles : une surcharge qui fait déclencher le relais thermique, ou un défaut de commande intermittent. Ces hypothèses seront confirmées par des contrôles, sans conclure trop vite.",
+    },
+    memo: ["Symptôme + conditions + historique", "Plusieurs hypothèses", "Confirmer avant de conclure"],
+    resume:
+      "Passer du symptôme aux hypothèses, c'est recueillir les informations et l'historique, puis lister plusieurs causes possibles à vérifier, sans conclure trop vite.",
+    quizIds: ["els176", "els177", "els178", "els179", "els180"],
+    verification: {
+      question: "Après avoir recueilli le symptôme et l'historique, que fait-on ?",
+      options: ["On conclut immédiatement", "On formule plusieurs hypothèses à vérifier", "On remplace le moteur", "On ignore l'historique"],
+      correct: 1,
+      explanation: "On formule plusieurs hypothèses hiérarchisées, que l'on confirmera ou infirmera par des contrôles, plutôt que de conclure sur la première idée.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi il ne faut pas conclure sur la première hypothèse, et comment bien recueillir les informations d'un symptôme.",
+      consignes: [
+        "Explique le risque de conclure trop vite.",
+        "Cite les sources d'information utiles.",
+        "Indique comment formuler les hypothèses.",
+      ],
+      criteres: [
+        "J'ai expliqué le risque de se tromper de cause.",
+        "J'ai cité l'opérateur et l'historique.",
+        "J'ai indiqué de lister plusieurs hypothèses hiérarchisées.",
+      ],
+      correction:
+        "Conclure sur la première hypothèse risque de traiter le mauvais élément et de laisser la vraie cause en place. Pour bien recueillir les informations, on interroge l'opérateur (depuis quand, dans quelles conditions), on consulte l'historique et on observe depuis une zone sûre. On formule alors plusieurs hypothèses, hiérarchisées par probabilité, que l'on vérifie ensuite une à une.",
+    },
+  },
+  {
+    id: "3-40",
+    title: "L'organigramme de recherche de panne",
+    durationMinutes: 30,
+    objectifs: [
+      "Utiliser un organigramme (arbre de décision) pour rechercher une panne.",
+      "Enchaîner des tests « oui / non » pour converger vers la cause.",
+    ],
+    simple:
+      "Un organigramme de recherche de panne est un arbre de décision : à chaque étape, on fait un test simple dont la réponse (oui ou non) oriente vers l'étape suivante. En suivant les branches, on réduit progressivement les possibilités jusqu'à la cause.",
+    vocab: [
+      ["Organigramme", "Schéma logique enchaînant des tests et des décisions."],
+      ["Arbre de décision", "Enchaînement de questions oui/non menant à une conclusion."],
+      ["Test", "Contrôle simple dont le résultat oriente la suite (ex : la bobine est-elle alimentée ?)."],
+      ["Branche", "Chemin suivi selon la réponse à un test."],
+      ["Convergence", "Réduction progressive des possibilités jusqu'à la cause."],
+    ],
+    example:
+      "Pour un moteur qui ne démarre pas : « Une protection a-t-elle déclenché ? » Si oui, on regarde laquelle ; si non, « la bobine est-elle alimentée ? », et ainsi de suite. Chaque réponse élimine des possibilités et guide vers la cause.",
+    schema: "diagnostic-flow",
+    illustrations: ["diagnostic-tree"],
+    ascii: "TEST 1 (oui/non) → TEST 2 (oui/non) → ... → CAUSE\nchaque reponse elimine des possibilites et oriente la branche suivante",
+    retenir: [
+      "L'organigramme enchaîne des tests simples oui/non.",
+      "Chaque réponse oriente vers la branche suivante.",
+      "On converge progressivement vers la cause en éliminant des possibilités.",
+      "La méthode reste valable après consignation et dans les limites de l'habilitation.",
+    ],
+    erreurs: [
+      "Sauter des tests ou en inverser l'ordre logique.",
+      "Interpréter un test sans mesure fiable.",
+      "Suivre l'organigramme sans respecter la sécurité.",
+    ],
+    astucesPro: [
+      "Un bon organigramme part des tests les plus simples et les plus discriminants.",
+      "On note le résultat de chaque test pour ne pas repartir de zéro.",
+    ],
+    diagnostic: [
+      "Choisir le premier test le plus discriminant.",
+      "Suivre la branche correspondant au résultat.",
+      "Continuer jusqu'à converger vers la cause.",
+    ],
+    depannage: [
+      "Confirmer chaque test par une mesure fiable.",
+      "Respecter la consignation pour les tests nécessitant un accès.",
+      "Corriger la cause identifiée, puis contrôler.",
+    ],
+    securite: [
+      "Suivre un organigramme ne dispense pas de sécuriser avant tout contact.",
+      "Les mesures sous tension se font avec l'habilitation adaptée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur ne démarre pas ; on dispose d'un organigramme de recherche de panne.",
+      mission: ["Donner un premier test pertinent.", "Expliquer comment la réponse oriente la suite.", "Rappeler la précaution."],
+      correction:
+        "Un premier test pertinent et discriminant est : « Une protection a-t-elle déclenché ? ». Si oui, on identifie laquelle (relais thermique, disjoncteur, différentiel) pour orienter vers une surcharge, un court-circuit ou une fuite. Si non, on teste la commande : « la bobine est-elle alimentée ? », ce qui sépare un défaut de commande d'un défaut de puissance. Chaque réponse élimine des possibilités. Les tests nécessitant un accès se font après consignation, avec l'habilitation adaptée.",
+    },
+    memo: ["Tests oui/non", "Suivre les branches", "Éliminer et converger", "Sécuriser avant de tester"],
+    resume:
+      "L'organigramme de recherche de panne enchaîne des tests oui/non qui, branche après branche, réduisent les possibilités jusqu'à la cause.",
+    quizIds: ["els181", "els182", "els183", "els184", "els185"],
+    verification: {
+      question: "Comment fonctionne un organigramme de recherche de panne ?",
+      options: ["On remplace les composants au hasard", "On enchaîne des tests oui/non qui orientent vers la cause", "On lit la plaque signalétique seulement", "On attend que la panne disparaisse"],
+      correct: 1,
+      explanation: "L'organigramme enchaîne des tests simples dont la réponse (oui/non) oriente la branche suivante, jusqu'à converger vers la cause.",
+    },
+    exercice: {
+      enonce:
+        "Construisez le début d'un organigramme pour un moteur qui ne démarre pas (au moins deux tests successifs).",
+      consignes: [
+        "Donne un premier test discriminant.",
+        "Indique les deux branches (oui / non).",
+        "Propose un deuxième test pour l'une des branches.",
+      ],
+      criteres: [
+        "Le premier test est pertinent et discriminant.",
+        "Les deux branches sont précisées.",
+        "Un deuxième test logique est proposé.",
+      ],
+      correction:
+        "Test 1 : « Une protection a-t-elle déclenché ? ». Branche « oui » → identifier la protection (relais thermique = surcharge, disjoncteur = surintensité, différentiel = fuite). Branche « non » → Test 2 : « La bobine du contacteur est-elle alimentée quand on commande la marche ? ». Si oui, on oriente vers un défaut de puissance ; si non, vers un défaut du circuit de commande. Chaque test se fait en sécurité, après consignation si un accès est nécessaire.",
+    },
+  },
+];
+
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
   {
     id: "m3-b1",
@@ -3168,7 +3429,15 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m3-b7", num: 7, title: "Méthode de diagnostic électrique et synthèse", objective: "Structurer une recherche de panne électrique méthodique et tracée.", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m3-b7",
+    num: 7,
+    title: "Méthode de diagnostic électrique et synthèse",
+    objective: "Structurer une recherche de panne électrique méthodique et tracée.",
+    lessonIds: block7Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
 ];
 
 export const ELECTRO_MODULE: TrainingModule = {
@@ -3178,6 +3447,6 @@ export const ELECTRO_MODULE: TrainingModule = {
   icon: Zap,
   color: "violet",
   source: "[AFORP] Module 3 · parcours progressif débutant → opérationnel · références NF C 18-510 et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons, ...block6Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons, ...block6Lessons, ...block7Lessons],
   blocks: ELECTRO_BLOCKS,
 };
