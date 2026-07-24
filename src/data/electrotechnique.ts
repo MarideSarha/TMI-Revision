@@ -1641,6 +1641,342 @@ const block4Lessons: Lesson[] = [
         "Alimentée, la bobine attire la partie mobile et ferme les contacts. Les contacts principaux, prévus pour un fort courant, alimentent le moteur ; les contacts auxiliaires, de faible courant, servent au circuit de commande (par exemple l'auto-maintien qui garde la bobine alimentée après le relâchement du bouton marche, ou la signalisation).",
     },
   },
+  {
+    id: "3-21",
+    title: "Le relais thermique et la protection contre les surcharges",
+    durationMinutes: 30,
+    objectifs: [
+      "Expliquer comment le relais thermique protège le moteur contre la surcharge.",
+      "Comprendre le réglage au courant nominal et la conduite après un déclenchement.",
+    ],
+    simple:
+      "Le relais thermique surveille le courant absorbé par le moteur. Si ce courant reste trop élevé trop longtemps (surcharge), un mécanisme sensible à la chaleur (bilames) finit par couper le circuit de commande, ce qui arrête le moteur avant qu'il ne s'abîme.",
+    vocab: [
+      ["Relais thermique", "Protection contre la surcharge : il coupe si le courant reste trop élevé trop longtemps."],
+      ["Bilame", "Lame sensible à la chaleur qui se déforme sous l'effet du courant et provoque le déclenchement."],
+      ["Courant nominal (In)", "Courant normal du moteur, sur lequel on règle le relais thermique."],
+      ["Classe de déclenchement", "Indique le temps que met le relais à couper pour une surcharge donnée (ex : classe 10)."],
+      ["Réarmement", "Remise en service du relais après déclenchement, une fois la cause traitée."],
+    ],
+    example:
+      "Un relais thermique réglé sur le courant nominal du moteur laisse passer le fonctionnement normal. Si le moteur force (mécanisme bloqué, roulement grippé), le courant augmente : après un certain temps, le relais déclenche et coupe la commande. On cherche la cause de la surcharge avant de réarmer.",
+    schema: "control-circuit",
+    ascii: "courant normal  → pas de declenchement\nsurcharge (courant eleve, duree) → bilames chauffent → COUPURE\nreglage sur le courant nominal (In) du moteur",
+    retenir: [
+      "Le relais thermique protège contre la surcharge, pas contre le court-circuit.",
+      "On le règle sur le courant nominal (In) du moteur.",
+      "Le déclenchement dépend de l'intensité ET de la durée (classe de déclenchement).",
+      "On recherche la cause de la surcharge avant de réarmer.",
+    ],
+    erreurs: [
+      "Régler le relais bien au-dessus du courant nominal pour « qu'il ne déclenche plus » : le moteur n'est plus protégé.",
+      "Réarmer à répétition sans chercher la cause de la surcharge.",
+      "Confondre relais thermique (surcharge) et disjoncteur magnétique (court-circuit).",
+    ],
+    astucesPro: [
+      "Un déclenchement répété signale souvent un problème mécanique (charge, grippage) à traiter.",
+      "On vérifie que le réglage correspond bien à la plaque signalétique du moteur.",
+    ],
+    diagnostic: [
+      "Vérifier le réglage du relais par rapport au courant nominal du moteur.",
+      "Mesurer le courant absorbé (à la pince) pour confirmer une surcharge.",
+      "Rechercher une cause mécanique (charge excessive, frottement).",
+    ],
+    depannage: [
+      "Traiter la cause de la surcharge avant de réarmer.",
+      "Contrôler l'entraînement mécanique et l'état du moteur.",
+      "Respecter la consignation pour les contrôles nécessitant un accès.",
+    ],
+    securite: [
+      "Ne jamais dérégler un relais thermique pour contourner un déclenchement.",
+      "Les mesures sous tension se font avec habilitation et matériel adaptés.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur déclenche son relais thermique chaque jour, toujours après quelques minutes de marche.",
+      mission: ["Formuler l'hypothèse la plus probable.", "Proposer les contrôles.", "Indiquer l'erreur à éviter."],
+      correction:
+        "Le déclenchement répété après quelques minutes évoque une surcharge : le moteur absorbe un courant trop élevé durablement. On contrôle le réglage du relais par rapport au courant nominal, on mesure le courant absorbé à la pince, et on recherche une cause mécanique (charge excessive, roulement grippé, entraînement dur). L'erreur à éviter est de dérégler le relais vers le haut pour masquer le problème : cela supprimerait la protection et risquerait de détruire le moteur.",
+    },
+    memo: ["Surcharge, pas court-circuit", "Réglé sur In", "Intensité + durée", "Cause avant réarmement"],
+    resume:
+      "Le relais thermique protège le moteur contre la surcharge en fonction de l'intensité et de la durée ; il se règle sur le courant nominal et impose de chercher la cause avant de réarmer.",
+    quizIds: ["els86", "els87", "els88", "els89", "els90"],
+    verification: {
+      question: "Sur quelle valeur règle-t-on un relais thermique ?",
+      options: ["Sur le courant nominal du moteur", "Sur la tension du réseau", "Sur la fréquence", "Au hasard"],
+      correct: 0,
+      explanation: "Le relais thermique se règle sur le courant nominal (In) du moteur, indiqué sur sa plaque signalétique, pour protéger sans déclencher en fonctionnement normal.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi dérégler un relais thermique au-dessus du courant nominal est dangereux, et donnez la bonne démarche face à des déclenchements répétés.",
+      consignes: [
+        "Explique le rôle du réglage sur In.",
+        "Décris le risque d'un réglage trop élevé.",
+        "Donne la démarche correcte.",
+      ],
+      criteres: [
+        "J'ai relié le réglage au courant nominal.",
+        "J'ai indiqué que le moteur n'est plus protégé si le réglage est trop élevé.",
+        "J'ai proposé de chercher la cause de la surcharge.",
+      ],
+      correction:
+        "Le relais est réglé sur le courant nominal pour couper si le moteur consomme durablement plus que prévu. En le réglant bien au-dessus, il ne déclenche plus même en cas de surcharge réelle : le moteur peut alors surchauffer et se détruire. Face à des déclenchements répétés, la bonne démarche est de mesurer le courant, de vérifier le réglage et de rechercher la cause (souvent mécanique), pas de dérégler la protection.",
+    },
+  },
+  {
+    id: "3-22",
+    title: "Circuit de commande et circuit de puissance",
+    durationMinutes: 30,
+    objectifs: [
+      "Distinguer le circuit de commande du circuit de puissance.",
+      "Comprendre le principe marche/arrêt avec auto-maintien.",
+    ],
+    simple:
+      "Dans un départ moteur, on sépare deux circuits : le circuit de puissance, qui transporte le fort courant vers le moteur, et le circuit de commande, à faible courant, qui pilote la bobine du contacteur. Le bouton marche démarre, le bouton arrêt coupe, et l'auto-maintien garde le moteur en marche.",
+    vocab: [
+      ["Circuit de puissance", "Circuit à fort courant qui alimente le moteur à travers les contacts principaux."],
+      ["Circuit de commande", "Circuit à faible courant qui pilote la bobine du contacteur."],
+      ["Bouton marche", "Bouton (normalement ouvert) qui alimente la bobine quand on appuie."],
+      ["Bouton arrêt", "Bouton (normalement fermé) qui coupe la bobine quand on appuie."],
+      ["Auto-maintien", "Contact auxiliaire qui maintient la bobine alimentée après le relâchement du bouton marche."],
+    ],
+    example:
+      "On appuie sur marche : la bobine est alimentée, les contacts principaux se ferment (le moteur démarre) et un contact auxiliaire se ferme pour maintenir la bobine. On relâche marche : le moteur continue grâce à l'auto-maintien. On appuie sur arrêt : la bobine est coupée, tout s'ouvre, le moteur s'arrête.",
+    schema: "command-power-circuit",
+    ascii: "COMMANDE (faible courant) : marche → bobine → auto-maintien ; arret → coupe\nPUISSANCE (fort courant) : contacts principaux → relais thermique → moteur",
+    retenir: [
+      "Le circuit de puissance alimente le moteur ; le circuit de commande pilote la bobine.",
+      "Le bouton marche (NO) alimente la bobine ; le bouton arrêt (NF) la coupe.",
+      "L'auto-maintien garde la bobine alimentée après le relâchement du bouton marche.",
+      "Couper la commande (arrêt, défaut) ouvre les contacts et arrête le moteur.",
+    ],
+    erreurs: [
+      "Confondre les deux circuits : la commande est à faible courant, la puissance à fort courant.",
+      "Oublier l'auto-maintien et s'étonner que le moteur s'arrête au relâchement du bouton.",
+      "Chercher un défaut de puissance alors que le problème vient de la commande.",
+    ],
+    astucesPro: [
+      "Pour un moteur qui démarre puis s'arrête au relâchement du bouton, on suspecte l'auto-maintien.",
+      "On distingue toujours un défaut de commande d'un défaut de puissance avant de démonter.",
+    ],
+    diagnostic: [
+      "Déterminer si le défaut est dans la commande (bobine, boutons, auto-maintien) ou la puissance (contacts, moteur).",
+      "Vérifier la continuité du circuit de commande (hors tension après consignation).",
+      "Contrôler l'alimentation de la bobine lors d'une commande de marche.",
+    ],
+    depannage: [
+      "Contrôler les boutons et le contact d'auto-maintien.",
+      "Vérifier l'alimentation de la bobine.",
+      "Séparer clairement les contrôles commande et puissance.",
+    ],
+    securite: [
+      "Le circuit de commande peut rester sous tension : on respecte la consignation avant tout contact.",
+      "Les contrôles sous tension relèvent d'une personne habilitée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur démarre quand on maintient le bouton marche, mais s'arrête dès qu'on le relâche.",
+      mission: ["Nommer la fonction défaillante.", "Indiquer le contrôle à faire.", "Préciser la précaution."],
+      correction:
+        "La fonction défaillante est l'auto-maintien : le moteur ne « tient » pas après le relâchement du bouton marche, ce qui indique que le contact auxiliaire d'auto-maintien ne ferme pas (contact défectueux, câblage). On contrôle ce contact et le câblage du circuit de commande, hors tension après consignation, avant de conclure. On distingue bien ce défaut de commande d'un éventuel défaut de puissance.",
+    },
+    memo: ["Puissance = fort courant", "Commande = faible courant", "Marche NO / Arrêt NF", "Auto-maintien tient la bobine"],
+    resume:
+      "Un départ moteur sépare puissance (moteur) et commande (bobine) ; le principe marche/arrêt avec auto-maintien pilote le contacteur.",
+    quizIds: ["els91", "els92", "els93", "els94", "els95"],
+    verification: {
+      question: "À quoi sert l'auto-maintien dans un circuit de commande ?",
+      options: ["À protéger le moteur", "À garder la bobine alimentée après le relâchement du bouton marche", "À mesurer le courant", "À couper le circuit de puissance"],
+      correct: 1,
+      explanation: "L'auto-maintien est un contact auxiliaire qui maintient la bobine alimentée après le relâchement du bouton marche, pour que le moteur continue de tourner.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez le fonctionnement marche/arrêt d'un départ moteur, en distinguant circuit de commande et circuit de puissance et en expliquant l'auto-maintien.",
+      consignes: [
+        "Décris ce qui se passe quand on appuie sur marche.",
+        "Explique le rôle de l'auto-maintien.",
+        "Décris ce qui se passe quand on appuie sur arrêt.",
+      ],
+      criteres: [
+        "J'ai distingué commande (bobine) et puissance (moteur).",
+        "J'ai expliqué l'auto-maintien.",
+        "J'ai décrit l'arrêt (coupure de la bobine).",
+      ],
+      correction:
+        "Appui sur marche : le circuit de commande alimente la bobine, les contacts principaux (puissance) se ferment et le moteur démarre ; un contact auxiliaire d'auto-maintien se ferme pour garder la bobine alimentée après le relâchement du bouton. Appui sur arrêt : le bouton (NF) coupe le circuit de commande, la bobine n'est plus alimentée, les contacts s'ouvrent et le moteur s'arrête.",
+    },
+  },
+  {
+    id: "3-23",
+    title: "Temporisateurs et relais auxiliaires",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer le rôle d'un temporisateur dans un circuit de commande.",
+      "Distinguer temporisation au travail et au repos, et le rôle des relais auxiliaires.",
+    ],
+    simple:
+      "Certaines actions doivent se produire avec un décalage dans le temps : c'est le rôle des temporisateurs. Les relais auxiliaires, eux, multiplient et relaient des ordres dans le circuit de commande. Ensemble, ils permettent d'automatiser des séquences simples.",
+    vocab: [
+      ["Temporisateur", "Appareil qui retarde une action d'un temps réglable."],
+      ["Temporisation au travail", "Le contact change d'état un certain temps APRÈS l'alimentation."],
+      ["Temporisation au repos", "Le contact revient à son état un certain temps APRÈS la coupure."],
+      ["Relais auxiliaire", "Relais de commande à faible courant qui relaie ou multiplie des ordres."],
+      ["Séquence", "Enchaînement d'actions automatisé grâce aux temporisateurs et relais."],
+    ],
+    example:
+      "Dans un démarrage étoile-triangle, un temporisateur maintient le couplage étoile pendant quelques secondes, puis commande le passage en triangle. Le décalage de temps est réglé sur le temporisateur.",
+    schema: "command-power-circuit",
+    ascii: "TEMPO au travail : ordre → (delai) → action\nTEMPO au repos  : coupure → (delai) → retour\nRELAIS AUX. : relaie/multiplie des ordres de commande",
+    retenir: [
+      "Le temporisateur retarde une action d'un temps réglable.",
+      "Temporisation au travail = action après l'alimentation ; au repos = retour après la coupure.",
+      "Les relais auxiliaires relaient et multiplient des ordres dans la commande.",
+      "Temporisateurs et relais permettent d'automatiser des séquences simples.",
+    ],
+    erreurs: [
+      "Confondre temporisation au travail et au repos.",
+      "Régler un temps inadapté (trop court ou trop long) pour une séquence.",
+      "Confondre relais auxiliaire (commande) et contacteur de puissance.",
+    ],
+    astucesPro: [
+      "On lit le type de temporisation et le temps réglé sur l'appareil avant de diagnostiquer une séquence.",
+      "Un temps de temporisation dérivé peut expliquer une séquence qui « part trop tôt » ou « trop tard ».",
+    ],
+    diagnostic: [
+      "Identifier le type de temporisation utilisé dans la séquence.",
+      "Vérifier le temps réglé par rapport au fonctionnement attendu.",
+      "Contrôler les relais auxiliaires impliqués dans la commande.",
+    ],
+    depannage: [
+      "Ajuster ou remplacer un temporisateur défaillant.",
+      "Vérifier le câblage des relais auxiliaires.",
+      "Respecter la consignation pour les contrôles nécessitant un accès.",
+    ],
+    securite: [
+      "Une séquence automatisée peut redémarrer seule : on consigne avant d'intervenir.",
+      "Les contrôles sous tension relèvent d'une personne habilitée.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un démarrage étoile-triangle, le passage en triangle se fait beaucoup trop tôt.",
+      mission: ["Nommer l'appareil en cause.", "Indiquer le réglage à vérifier.", "Préciser la précaution."],
+      correction:
+        "L'appareil en cause est le temporisateur qui gère la durée du couplage étoile : un passage trop précoce en triangle indique un temps réglé trop court ou un temporisateur défaillant. On vérifie le temps réglé par rapport au besoin, puis l'état du temporisateur. Avant tout contrôle nécessitant un accès, on consigne, car une séquence automatisée peut se relancer.",
+    },
+    memo: ["Tempo au travail / au repos", "Temps réglable", "Relais aux. relaie la commande", "Séquences automatisées"],
+    resume:
+      "Les temporisateurs retardent des actions (au travail ou au repos) et les relais auxiliaires relaient des ordres, ce qui permet d'automatiser des séquences simples comme l'étoile-triangle.",
+    quizIds: ["els96", "els97", "els98", "els99", "els100"],
+    verification: {
+      question: "Que fait un temporisateur dans un circuit de commande ?",
+      options: ["Il protège contre le court-circuit", "Il retarde une action d'un temps réglable", "Il mesure la tension", "Il isole le circuit"],
+      correct: 1,
+      explanation: "Le temporisateur retarde une action d'un temps réglable ; il permet d'enchaîner des étapes dans une séquence (ex : étoile-triangle).",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre une temporisation au travail et une temporisation au repos, avec un exemple simple.",
+      consignes: [
+        "Définis la temporisation au travail.",
+        "Définis la temporisation au repos.",
+        "Donne un exemple d'usage.",
+      ],
+      criteres: [
+        "J'ai défini la temporisation au travail (action après alimentation).",
+        "J'ai défini la temporisation au repos (retour après coupure).",
+        "J'ai donné un exemple (ex : étoile-triangle).",
+      ],
+      correction:
+        "La temporisation au travail fait changer le contact d'état un certain temps après l'alimentation du temporisateur (l'action arrive avec retard). La temporisation au repos fait revenir le contact à son état un certain temps après la coupure (le retour est retardé). Exemple : dans un démarrage étoile-triangle, une temporisation au travail maintient le couplage étoile quelques secondes avant de commander le passage en triangle.",
+    },
+  },
+  {
+    id: "3-24",
+    title: "Synthèse appareillage et mise en situation",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier les appareils de commande et de protection dans un départ moteur complet.",
+      "Conduire un diagnostic méthodique face à un départ moteur défaillant.",
+    ],
+    simple:
+      "Ce chapitre rassemble le bloc : sectionner, protéger, commander et temporiser. Face à un départ moteur qui ne fonctionne pas, on raisonne fonction par fonction pour trouver l'appareil en cause, en restant méthodique et en sécurité.",
+    vocab: [
+      ["Départ moteur", "Ensemble sectionneur, protection, contacteur, relais thermique (chapitres 3-18 à 3-21)."],
+      ["Circuit de commande", "Partie qui pilote la bobine (chapitre 3-22)."],
+      ["Séquence", "Enchaînement automatisé par temporisateurs et relais (chapitre 3-23)."],
+      ["Diagnostic méthodique", "Recherche de panne fonction par fonction, du plus simple au plus probable."],
+      ["Traçabilité", "Trace écrite des constats, mesures et actions."],
+    ],
+    example:
+      "Un moteur ne démarre pas : on vérifie l'isolement et la présence de tension (3-19), l'état du contacteur et de sa bobine (3-20), le circuit de commande et l'auto-maintien (3-22), le relais thermique (3-21) et, si séquence, le temporisateur (3-23), le tout après consignation quand un accès est nécessaire.",
+    schema: "control-circuit",
+    ascii: "ISOLEMENT (3-19) → PROTECTIONS (3-18/3-21) → COMMANDE (3-20/3-22) → SEQUENCE (3-23)\ndiagnostic fonction par fonction, apres consignation, puis tracer",
+    retenir: [
+      "Un départ moteur se diagnostique fonction par fonction.",
+      "On distingue toujours défaut de commande et défaut de puissance.",
+      "Le type de déclenchement (thermique, magnétique, différentiel) oriente la recherche.",
+      "La sécurité (consignation, VAT, habilitation) encadre toute l'intervention.",
+    ],
+    erreurs: [
+      "Démonter au hasard sans raisonner par fonction.",
+      "Oublier la consignation avant les contrôles nécessitant un accès.",
+      "Ne pas tracer les constats et les mesures.",
+    ],
+    astucesPro: [
+      "On part du symptôme et on remonte la chaîne des fonctions dans un ordre logique.",
+      "On note les valeurs mesurées : elles servent de référence pour la suite.",
+    ],
+    diagnostic: [
+      "Situer la fonction défaillante (isolement, protection, commande, séquence).",
+      "Contrôler l'appareil correspondant, du plus probable au moins probable.",
+      "Confirmer par la mesure avant de remplacer une pièce.",
+    ],
+    depannage: [
+      "Consigner avant tout contrôle nécessitant un accès aux parties actives.",
+      "Rechercher la cause avant de réarmer une protection.",
+      "Remettre en service de façon maîtrisée et tracer l'intervention.",
+    ],
+    securite: [
+      "Les règles de sécurité des blocs précédents restent valables sur un départ moteur.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur s'arrête tout seul après quelques minutes ; en réarmant, il repart puis s'arrête à nouveau.",
+      mission: ["Nommer l'appareil probablement en cause.", "Décrire la démarche de diagnostic.", "Indiquer ce que l'on trace."],
+      correction:
+        "L'arrêt temporisé et récurrent après réarmement évoque le relais thermique qui déclenche sur une surcharge (chapitre 3-21). Démarche : mesurer le courant absorbé (pince), vérifier le réglage du relais par rapport au courant nominal, rechercher une cause mécanique (charge, grippage), le tout après consignation pour les contrôles nécessitant un accès. On recherche la cause avant de réarmer, on remet en service de façon maîtrisée et on trace le constat, les mesures et l'action réalisée.",
+    },
+    memo: ["Fonction par fonction", "Commande vs puissance", "Cause avant réarmement", "Consigner puis tracer"],
+    resume:
+      "Diagnostiquer un départ moteur, c'est raisonner fonction par fonction — isoler, protéger, commander, temporiser — en sécurité et avec traçabilité.",
+    quizIds: ["els101", "els102", "els103", "els104", "els105"],
+    verification: {
+      question: "Un moteur s'arrête seul après quelques minutes, de façon répétée. Quel appareil suspecter en premier ?",
+      options: ["Le sectionneur", "Le relais thermique (surcharge)", "Le bouton marche", "Le voyant"],
+      correct: 1,
+      explanation: "Un arrêt temporisé et répété évoque le relais thermique qui déclenche sur une surcharge : on mesure le courant et on recherche la cause avant de réarmer.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez, dans l'ordre, la démarche pour diagnostiquer un départ moteur qui ne démarre pas, en citant les appareils et fonctions du bloc.",
+      consignes: [
+        "Donne les étapes de contrôle, de l'isolement à la séquence.",
+        "Relie chaque étape à un appareil ou une fonction (3-18 à 3-23).",
+        "Rappelle la place de la sécurité et de la traçabilité.",
+      ],
+      criteres: [
+        "Les étapes sont ordonnées et complètes.",
+        "Chaque étape est reliée à un appareil/fonction.",
+        "J'ai rappelé la consignation et la traçabilité.",
+      ],
+      correction:
+        "Vérifier l'isolement et la présence de tension au sectionneur (3-19), contrôler les protections (disjoncteur/fusibles et relais thermique, 3-18/3-21), vérifier la commande — bobine du contacteur, boutons, auto-maintien (3-20/3-22) —, puis, en cas de séquence, le temporisateur (3-23). On distingue défaut de commande et défaut de puissance, on confirme par la mesure, le tout après consignation. On recherche la cause avant de réarmer, on remet en service de façon maîtrisée et on trace l'intervention.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
@@ -1689,8 +2025,12 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
     title: "Appareillage de commande et de protection approfondi",
     objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.",
     lessonIds: block4Lessons.map((lesson) => lesson.id),
-    chapterCount: 7,
-    status: "in_progress",
+    chapterCount: block4Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["els71", "els73", "els76", "els79", "els81", "els82", "els86", "els88", "els91", "els93", "els96", "els98", "els101", "els103"],
+      passPercent: 80,
+    },
   },
   { id: "m3-b5", num: 5, title: "Moteurs asynchrones et variation de vitesse", objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m3-b6", num: 6, title: "Lecture de schémas électriques industriels", objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.", lessonIds: [], chapterCount: 6, status: "planned" },

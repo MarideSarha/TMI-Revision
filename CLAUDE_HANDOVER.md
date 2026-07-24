@@ -72,6 +72,16 @@ aucune réécriture d'historique.)
 - **3-17 — Synthèse distribution et mise en situation** (références aux chapitres 3-11 à 3-16).
 - Examen du bloc 3 (14 questions couvrant les 7 chapitres, seuil 80 %) + badge `electro_block_3` (« Distribution & protections »).
 
+**Étape 5** — module 3, bloc 4 **complet (7 chapitres, statut `available` avec examen)** :
+- **3-18 — Les fonctions d'un départ moteur** (sectionner, protéger du court-circuit, commander, protéger de la surcharge).
+- **3-19 — Le sectionneur et l'isolement de sécurité** (manœuvre hors charge, condamnation).
+- **3-20 — Le contacteur : commander le moteur à distance**. Intègre le **schéma interactif « contacteur + relais thermique en action »**.
+- **3-21 — Le relais thermique et la protection contre les surcharges** (réglage sur In, classe de déclenchement).
+- **3-22 — Circuit de commande et circuit de puissance** (marche/arrêt, auto-maintien). Schéma statique `command-power-circuit`.
+- **3-23 — Temporisateurs et relais auxiliaires** (temporisation au travail/au repos, étoile-triangle).
+- **3-24 — Synthèse appareillage et mise en situation** (diagnostic fonction par fonction, références 3-18 à 3-23).
+- Examen du bloc 4 (14 questions) + badge `electro_block_4` (« Commande & appareillage »).
+
 ## Fichiers créés
 
 **Étape 1**
@@ -134,9 +144,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après bloc 3 : **4 modules, 19 blocs, 71 leçons, 360 questions, 10 pannes, 14 badges.**
-- Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` ≈ 84 kB (budget 500 kB/fichier).
-- **Module 3 : blocs 1, 2 et 3 disponibles (17 chapitres) ; blocs 4 à 7 restant à développer.**
+- Build réussi. Décomptes après bloc 4 : **4 modules, 19 blocs, 78 leçons, 395 questions, 10 pannes, 15 badges.**
+- Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` isolé (budget 500 kB/fichier).
+- **Module 3 : blocs 1 à 4 disponibles (24 chapitres) ; blocs 5 à 7 restant à développer.**
 
 ## Problèmes connus
 
@@ -148,9 +158,9 @@ aucune réécriture d'historique.)
 
 ## Éléments restant à faire
 
-- **Blocs 2 et 3 de M3 : terminés** (7 chapitres chacun, examen, badge).
-- Développer les **blocs 4 à 7 de M3** (appareillage de commande et de protection approfondi,
-  moteurs et variation de vitesse, lecture de schémas électriques, méthode de diagnostic électrique).
+- **Blocs 2, 3 et 4 de M3 : terminés** (7 chapitres chacun, examen, badge).
+- Développer les **blocs 5 à 7 de M3** (moteurs asynchrones et variation de vitesse,
+  lecture de schémas électriques, méthode de diagnostic électrique).
 - Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
   de M3 harmonisés** (attention : 3-1/3-2/3-3 n'ont pas encore le parcours pro complet — ne pas activer
   la règle avant de les avoir enrichis, sinon le build échoue).
@@ -166,6 +176,9 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-3): complete le bloc securite (3-8, 3-9, 3-10), examen et badge`
 - `feat(module-3): demarre le bloc 3 (distribution, triphase, regimes de neutre)`
 - `feat(module-3): complete le bloc 3 (3-14 a 3-17), examen et badge`
+- `feat(module-3): demarre le bloc 4 (fonctions depart moteur, sectionneur, contacteur)`
+- `feat(module-3): complete le bloc 4 (3-21 a 3-24), examen et badge`
+- `ci(pages): publie aussi depuis la branche de travail pour reviser en ligne`
 
 ## Instructions pour reprendre le développement
 
