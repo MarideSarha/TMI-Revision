@@ -913,5 +913,57 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "power-distribution") {
+    const stages: Array<[string, string]> = [
+      ["Réseau", "arrivée"],
+      ["TGBT", "tableau général"],
+      ["Tableaux", "divisionnaires"],
+      ["Départs", "machines"],
+    ];
+    return (
+      <svg viewBox="0 0 320 90" className="w-full h-24">
+        {stages.map(([l1, l2], i) => {
+          const x = 8 + i * 78;
+          return (
+            <g key={l1}>
+              <rect x={x} y="26" width="64" height="38" rx="5" fill={i === 3 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 32} y="45" textAnchor="middle" fontSize="9" fill={i === 3 ? "#14151a" : stroke} fontWeight="bold">{l1}</text>
+              <text x={x + 32} y="57" textAnchor="middle" fontSize="7" fill={i === 3 ? "#14151a" : stroke}>{l2}</text>
+              {i < 3 && <line x1={x + 64} y1="45" x2={x + 78} y2="45" stroke={stroke} strokeWidth="1.5" />}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (type === "three-phase-voltages") {
+    const phases: Array<[string, string]> = [
+      ["L1", "phase 1"],
+      ["L2", "phase 2"],
+      ["L3", "phase 3"],
+      ["N", "neutre"],
+    ];
+    return (
+      <svg viewBox="0 0 320 110" className="w-full h-28">
+        {phases.map(([l1, l2], i) => {
+          const x = 26 + i * 72;
+          const isNeutral = l1 === "N";
+          return (
+            <g key={l1}>
+              <line x1={x} y1="20" x2={x} y2="70" stroke={isNeutral ? stroke : accent} strokeWidth="3" />
+              <circle cx={x} cy="70" r="4" fill={isNeutral ? stroke : accent} />
+              <text x={x} y="86" textAnchor="middle" fontSize="10" fill={stroke} fontWeight="bold">{l1}</text>
+              <text x={x} y="98" textAnchor="middle" fontSize="7" fill={stroke}>{l2}</text>
+            </g>
+          );
+        })}
+        {/* Tension simple (phase-neutre) et composée (phase-phase) */}
+        <text x="230" y="34" textAnchor="middle" fontSize="8" fill={stroke}>230 V</text>
+        <text x="230" y="16" textAnchor="middle" fontSize="7" fill={stroke}>phase–neutre</text>
+        <line x1="98" y1="46" x2="170" y2="46" stroke={stroke} strokeDasharray="3 2" />
+        <text x="134" y="42" textAnchor="middle" fontSize="8" fill={stroke}>400 V (phase–phase)</text>
+      </svg>
+    );
+  }
   return null;
 }

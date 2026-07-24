@@ -400,6 +400,130 @@ function HabilitationDecoder({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 4 — RÉGIMES DE NEUTRE (TT / TN / IT)
+   Montre comment le neutre et les masses sont reliés à la terre,
+   et ce qui coupe un défaut selon le régime.
+   --------------------------------------------------------------- */
+
+type Regime = "TT" | "TN" | "IT";
+
+const REGIMES: Record<Regime, { neutral: string; masses: string; fault: string; protection: string }> = {
+  TT: {
+    neutral: "Neutre relié à la terre au niveau de la source.",
+    masses: "Masses reliées à une prise de terre séparée.",
+    fault: "Un défaut d'isolement crée un courant de fuite vers la terre.",
+    protection: "Coupure assurée par le dispositif différentiel (DDR), obligatoire.",
+  },
+  TN: {
+    neutral: "Neutre relié à la terre au niveau de la source.",
+    masses: "Masses reliées au neutre par un conducteur de protection (PE).",
+    fault: "Un défaut d'isolement devient un court-circuit phase–PE.",
+    protection: "Coupure assurée par la protection contre les surintensités (disjoncteur, fusible).",
+  },
+  IT: {
+    neutral: "Neutre isolé de la terre (ou relié par une impédance).",
+    masses: "Masses reliées à la terre.",
+    fault: "Le premier défaut ne coupe pas : la continuité de service est préservée.",
+    protection: "Premier défaut signalé par un contrôleur permanent d'isolement (CPI) ; le second défaut doit être traité.",
+  },
+};
+
+function Ground({ x, y, stroke }: { x: number; y: number; stroke: string }) {
+  return (
+    <g stroke={stroke} strokeWidth="1.5">
+      <line x1={x} y1={y} x2={x} y2={y + 8} />
+      <line x1={x - 9} y1={y + 8} x2={x + 9} y2={y + 8} />
+      <line x1={x - 6} y1={y + 12} x2={x + 6} y2={y + 12} />
+      <line x1={x - 3} y1={y + 16} x2={x + 3} y2={y + 16} />
+    </g>
+  );
+}
+
+function NeutralRegimes({ dark }: { dark: boolean }) {
+  const [regime, setRegime] = useState<Regime>("TT");
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const info = REGIMES[regime];
+
+  return (
+    <Figure
+      dark={dark}
+      title="Régimes de neutre : TT, TN, IT"
+      legend="Le symbole de terre = liaison à la terre · « N » = point neutre de la source · « PE » = conducteur de protection reliant les masses."
+      explanation="Le régime de neutre définit comment le neutre de la source et les masses des équipements sont reliés à la terre. Ce choix détermine ce qui se passe lors d'un défaut d'isolement et quel dispositif assure la protection des personnes. Les libellés sont simplifiés pour comprendre le principe ; la conception réelle relève d'un électricien qualifié et de la norme."
+      controls={
+        <div role="group" aria-label="Choisir le régime de neutre" className="grid grid-cols-3 gap-2">
+          {(Object.keys(REGIMES) as Regime[]).map((key) => {
+            const active = regime === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setRegime(key)}
+                className={`rounded-lg border-2 px-2 py-2 font-mono text-sm font-bold transition ${active ? "border-amber-400 bg-amber-400 text-slate-950" : dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}
+              >
+                {key}
+              </button>
+            );
+          })}
+        </div>
+      }
+    >
+      <svg viewBox="0 0 320 175" className="h-auto w-full" role="img" aria-label={`Régime ${regime} : ${info.neutral} ${info.masses}`}>
+        {/* Source */}
+        <rect x="18" y="38" width="74" height="56" rx="6" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="55" y="60" textAnchor="middle" fontSize="9" fill={stroke}>Source</text>
+        <text x="55" y="74" textAnchor="middle" fontSize="8" fill={stroke}>(neutre N)</text>
+
+        {/* Machine */}
+        <rect x="228" y="38" width="74" height="56" rx="6" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="265" y="60" textAnchor="middle" fontSize="9" fill={stroke}>Machine</text>
+        <text x="265" y="74" textAnchor="middle" fontSize="8" fill={stroke}>(masse)</text>
+
+        {/* Phases */}
+        <line x1="92" y1="52" x2="228" y2="52" stroke="#f5b400" strokeWidth="2.5" />
+        <text x="160" y="46" textAnchor="middle" fontSize="8" fill={stroke}>L (phases)</text>
+
+        {/* Neutre de la source vers la terre */}
+        <line x1="55" y1="94" x2="55" y2="132" stroke={stroke} strokeWidth="1.5" strokeDasharray={regime === "IT" ? "4 3" : "0"} />
+        {regime === "IT" && <text x="55" y="118" textAnchor="middle" fontSize="7" fill={stroke}>isolé / impédance</text>}
+        <Ground x={55} y={132} stroke={stroke} />
+
+        {/* Masses de la machine */}
+        {regime === "TN" ? (
+          <g>
+            {/* PE : masse reliée au neutre de la source */}
+            <line x1="265" y1="94" x2="265" y2="114" stroke={stroke} strokeWidth="1.5" />
+            <line x1="265" y1="114" x2="55" y2="114" stroke={stroke} strokeWidth="1.5" />
+            <text x="160" y="110" textAnchor="middle" fontSize="8" fill={stroke}>PE (masses reliées au neutre)</text>
+          </g>
+        ) : (
+          <g>
+            <line x1="265" y1="94" x2="265" y2="132" stroke={stroke} strokeWidth="1.5" />
+            <Ground x={265} y={132} stroke={stroke} />
+          </g>
+        )}
+
+        {/* Etiquette du régime */}
+        <rect x="140" y="150" width="40" height="20" rx="4" fill="#f5b400" />
+        <text x="160" y="164" textAnchor="middle" fontSize="11" fill="#14151a" fontWeight="bold">{regime}</text>
+      </svg>
+
+      {/* Détail texte (le cœur pédagogique, indépendant de la couleur) */}
+      <dl className="mt-2 space-y-2 text-sm">
+        {([["Neutre", info.neutral], ["Masses", info.masses], ["1er défaut", info.fault], ["Protection", info.protection]] as Array<[string, string]>).map(([term, value]) => (
+          <div key={term} className={`rounded-lg border p-2 ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+            <dt className={`text-xs font-semibold uppercase tracking-wide ${dark ? "text-sky-300" : "text-sky-700"}`}>{term}</dt>
+            <dd className={dark ? "text-slate-200" : "text-slate-700"}>{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -407,5 +531,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "consignation-interactive") return <ConsignationInteractive dark={dark} />;
   if (type === "circuit-states") return <CircuitStates dark={dark} />;
   if (type === "habilitation-decoder") return <HabilitationDecoder dark={dark} />;
+  if (type === "neutral-regimes") return <NeutralRegimes dark={dark} />;
   return null;
 }

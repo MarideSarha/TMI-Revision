@@ -785,6 +785,267 @@ const block2Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 3 — RÉSEAUX, DISTRIBUTION ET RÉGIMES DE NEUTRE
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block3Lessons: Lesson[] = [
+  {
+    id: "3-11",
+    title: "Du réseau à la machine : la distribution électrique",
+    durationMinutes: 28,
+    objectifs: [
+      "Situer les niveaux de distribution entre l'arrivée du réseau et la machine.",
+      "Suivre le chemin de l'énergie électrique dans une installation industrielle.",
+    ],
+    simple:
+      "L'électricité n'arrive pas directement sur chaque machine : elle passe par une succession de tableaux qui répartissent et protègent l'énergie. Comprendre ce chemin aide à localiser une coupure et à savoir où intervenir.",
+    vocab: [
+      ["TGBT", "Tableau Général Basse Tension : le tableau principal qui reçoit l'arrivée et distribue l'énergie."],
+      ["Tableau divisionnaire", "Tableau secondaire qui alimente une zone ou un atelier à partir du TGBT."],
+      ["Départ", "Circuit protégé qui alimente une machine ou un groupe de machines."],
+      ["Jeu de barres", "Barres conductrices qui répartissent le courant dans un tableau."],
+      ["Protection de tête", "Protection placée en amont d'un tableau, qui protège l'ensemble situé en aval."],
+    ],
+    example:
+      "Dans une usine, l'arrivée alimente le TGBT. De là partent plusieurs tableaux divisionnaires (un par atelier). Chaque tableau divisionnaire distribue des départs qui alimentent les machines. Si un atelier entier est éteint, on regarde d'abord son tableau divisionnaire, pas chaque machine.",
+    schema: "power-distribution",
+    ascii: "RESEAU → TGBT → TABLEAUX DIVISIONNAIRES → DEPARTS → MACHINES\n arrivee  general   par zone/atelier        protege   utilisation",
+    retenir: [
+      "L'énergie descend du réseau vers les machines en passant par des tableaux successifs.",
+      "TGBT = tableau principal ; tableaux divisionnaires = répartition par zone ; départs = vers les machines.",
+      "Une protection de tête protège tout ce qui est en aval.",
+      "Pour localiser une coupure, on remonte du plus près de la machine vers l'amont.",
+    ],
+    erreurs: [
+      "Chercher une panne sur la machine alors qu'un tableau amont a déclenché.",
+      "Confondre le tableau général (TGBT) et un tableau divisionnaire de zone.",
+      "Oublier qu'une protection de tête peut couper plusieurs départs à la fois.",
+    ],
+    astucesPro: [
+      "On lit le repérage des départs sur les tableaux pour aller directement au bon circuit.",
+      "Un plan de l'installation (schéma unifilaire) fait gagner beaucoup de temps en recherche de panne.",
+    ],
+    diagnostic: [
+      "Déterminer l'étendue de la coupure (une machine, une zone, tout le site).",
+      "Remonter vers le tableau qui couvre exactement cette étendue.",
+      "Contrôler l'état des protections de ce tableau.",
+    ],
+    depannage: [
+      "Repérer le départ concerné à partir du repérage du tableau.",
+      "Vérifier la protection correspondante avant d'accuser la machine.",
+      "Respecter la consignation avant tout accès aux parties actives du tableau.",
+    ],
+    securite: [
+      "Un tableau électrique reste un ouvrage à risque : accès et interventions selon habilitation et consignation.",
+      "On ne réarme pas une protection sans avoir cherché la cause du déclenchement.",
+      "Cette application est pédagogique et ne remplace pas les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Tout un atelier est hors service, mais le reste de l'usine fonctionne normalement.",
+      mission: ["Situer l'étendue de la coupure.", "Indiquer où regarder en priorité.", "Donner l'ordre de recherche."],
+      correction:
+        "La coupure touche une zone entière mais pas tout le site : cela oriente vers le tableau divisionnaire de cet atelier, pas vers une machine ni vers le TGBT (qui couperait tout le site). On contrôle donc la protection de tête de ce tableau divisionnaire, puis on remonte ou descend selon le résultat, en respectant la consignation.",
+    },
+    memo: ["Réseau → TGBT → divisionnaires → départs", "Coupure de zone = tableau de zone", "Remonter du plus près vers l'amont"],
+    resume:
+      "La distribution répartit l'énergie du réseau vers les machines par des tableaux successifs ; l'étendue d'une coupure indique à quel niveau chercher.",
+    quizIds: ["els36", "els37", "els38", "els39", "els40"],
+    verification: {
+      question: "Un seul atelier est éteint, le reste de l'usine fonctionne. Où regarde-t-on en priorité ?",
+      options: ["Chaque machine une par une", "Le tableau divisionnaire de cet atelier", "L'arrivée générale du site", "Le compteur du fournisseur"],
+      correct: 1,
+      explanation: "Une coupure limitée à une zone oriente vers le tableau divisionnaire qui alimente cette zone, pas vers le TGBT (tout le site) ni vers chaque machine.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez le chemin de l'énergie électrique, de l'arrivée du réseau jusqu'à un moteur d'atelier, en nommant chaque niveau.",
+      consignes: [
+        "Place les niveaux dans l'ordre.",
+        "Associe un rôle à chaque niveau.",
+        "Indique où tu regarderais si le moteur seul ne démarre pas.",
+      ],
+      criteres: [
+        "L'ordre réseau → TGBT → divisionnaire → départ → moteur est respecté.",
+        "Chaque niveau a un rôle.",
+        "J'ai ciblé le départ du moteur en cas de panne isolée.",
+      ],
+      correction:
+        "Réseau (arrivée) → TGBT (tableau général) → tableau divisionnaire (zone/atelier) → départ protégé → moteur. Si seul le moteur ne démarre pas, on contrôle d'abord son départ (protection, commande), pas tout le tableau, après avoir sécurisé l'intervention.",
+    },
+  },
+  {
+    id: "3-12",
+    title: "Monophasé et triphasé approfondis",
+    durationMinutes: 30,
+    objectifs: [
+      "Distinguer tension simple (phase-neutre) et tension composée (phase-phase).",
+      "Expliquer l'intérêt du triphasé et l'importance de l'équilibrage des phases.",
+    ],
+    simple:
+      "Le chapitre 3-1 a présenté le monophasé et le triphasé. On va plus loin ici : d'où viennent les 230 V et les 400 V, pourquoi le triphasé est partout en industrie, et pourquoi on cherche à répartir la charge sur les trois phases.",
+    vocab: [
+      ["Tension simple", "Tension entre une phase et le neutre, environ 230 V en France."],
+      ["Tension composée", "Tension entre deux phases, environ 400 V en France."],
+      ["Phase", "Conducteur actif porteur de la tension alternative."],
+      ["Neutre", "Conducteur de référence, souvent proche du potentiel de la terre."],
+      ["Équilibrage des phases", "Répartir les charges sur les 3 phases pour qu'elles consomment des courants proches."],
+    ],
+    example:
+      "Une prise domestique utilise une phase et le neutre : 230 V (tension simple). Un moteur d'atelier utilise les trois phases : 400 V entre phases (tension composée). Le rapport entre les deux est √3, soit environ 1,732 : 230 × 1,732 ≈ 400.",
+    schema: "three-phase-voltages",
+    ascii: "phase–neutre  = 230 V (tension simple)\nphase–phase   = 400 V (tension composee)\nrapport ≈ √3 (1,732) : 230 × 1,732 ≈ 400",
+    retenir: [
+      "Tension simple = phase-neutre (≈ 230 V). Tension composée = phase-phase (≈ 400 V).",
+      "Les deux tensions sont liées par le rapport √3 (≈ 1,732).",
+      "Le triphasé fournit un champ tournant naturel : idéal pour les moteurs.",
+      "On équilibre les charges sur les 3 phases pour éviter de surcharger l'une d'elles.",
+    ],
+    erreurs: [
+      "Croire que 230 V et 400 V sont deux réseaux séparés : ce sont deux tensions du même réseau triphasé.",
+      "Brancher trop de charges sur une seule phase et déséquilibrer l'installation.",
+      "Confondre neutre et terre : ils ont des rôles différents.",
+    ],
+    astucesPro: [
+      "Sur une installation déséquilibrée, le courant dans le neutre augmente : c'est un signe à surveiller.",
+      "On répartit les circuits monophasés sur les trois phases dès la conception du tableau.",
+    ],
+    diagnostic: [
+      "Identifier si un récepteur est monophasé (phase + neutre) ou triphasé (3 phases).",
+      "Vérifier la présence des trois phases pour un moteur triphasé.",
+      "Repérer un déséquilibre en comparant les courants de chaque phase.",
+    ],
+    depannage: [
+      "Contrôler la présence et l'équilibre des phases à la pince ampèremétrique.",
+      "Rechercher une phase manquante en cas de fonctionnement anormal d'un moteur.",
+      "Rééquilibrer la répartition des charges si une phase est surchargée.",
+    ],
+    securite: [
+      "Les mesures sous tension sur du triphasé se font avec habilitation et matériel adaptés.",
+      "Une phase manquante peut endommager un moteur : on coupe avant d'intervenir.",
+      "Cette application est pédagogique et ne remplace pas la formation pratique.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur triphasé chauffe, vibre et manque de puissance ; un bruit anormal est audible.",
+      mission: ["Formuler une hypothèse liée aux phases.", "Indiquer le contrôle à faire.", "Préciser la précaution avant intervention."],
+      correction:
+        "Ces symptômes évoquent une marche sur deux phases (une phase manquante), qui déséquilibre le moteur. On contrôle la présence des trois phases et l'équilibre des courants à la pince ampèremétrique. Avant toute intervention nécessitant un accès, on consigne et on vérifie l'absence de tension ; la mesure sous tension éventuelle se fait avec l'habilitation adaptée.",
+    },
+    memo: ["230 V = phase-neutre", "400 V = phase-phase", "×√3 entre les deux", "Équilibrer les 3 phases"],
+    resume:
+      "Le réseau triphasé fournit deux tensions liées par √3 (230 V simple, 400 V composée) ; l'équilibrage des phases préserve l'installation.",
+    quizIds: ["els41", "els42", "els43", "els44", "els45"],
+    verification: {
+      question: "Quelle est la tension entre deux phases d'un réseau triphasé standard français ?",
+      options: ["12 V", "230 V", "400 V", "1000 V"],
+      correct: 2,
+      explanation: "La tension composée (phase-phase) est d'environ 400 V ; la tension simple (phase-neutre) est d'environ 230 V. Les deux sont liées par √3.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre 230 V et 400 V sur un réseau triphasé, et vérifiez par le calcul que 230 × √3 ≈ 400.",
+      consignes: [
+        "Définis tension simple et tension composée.",
+        "Effectue le calcul 230 × 1,732.",
+        "Conclus sur le lien entre les deux tensions.",
+      ],
+      criteres: [
+        "J'ai défini phase-neutre et phase-phase.",
+        "Mon calcul donne environ 398 V.",
+        "J'ai conclu que les deux tensions sont liées par √3.",
+      ],
+      correction:
+        "230 V est la tension simple (entre une phase et le neutre) ; 400 V est la tension composée (entre deux phases). Calcul : 230 × 1,732 ≈ 398 V, soit environ 400 V. Les deux tensions appartiennent au même réseau triphasé et sont liées par le facteur √3.",
+    },
+  },
+  {
+    id: "3-13",
+    title: "La terre et les régimes de neutre (TT, TN, IT)",
+    durationMinutes: 34,
+    objectifs: [
+      "Expliquer le rôle de la mise à la terre dans la protection des personnes.",
+      "Distinguer les régimes TT, TN et IT par leur comportement en cas de défaut.",
+    ],
+    simple:
+      "La liaison à la terre protège les personnes en cas de défaut d'isolement. La façon dont le neutre de la source et les masses sont reliés à la terre s'appelle le régime de neutre. Selon le régime, un défaut est coupé par un dispositif différent.",
+    vocab: [
+      ["Régime de neutre", "Façon dont le neutre de la source et les masses sont reliés à la terre (TT, TN, IT)."],
+      ["Prise de terre", "Liaison conductrice entre une masse et la terre, qui évacue un courant de défaut."],
+      ["Conducteur de protection (PE)", "Conducteur qui relie les masses à la terre ou au neutre selon le régime."],
+      ["Différentiel (DDR)", "Dispositif qui coupe dès qu'un courant de fuite vers la terre est détecté."],
+      ["CPI", "Contrôleur Permanent d'Isolement : surveille l'isolement en régime IT et signale le premier défaut."],
+    ],
+    example:
+      "En régime TT (le plus courant en France pour le domestique et beaucoup d'installations), un défaut d'isolement crée un courant de fuite vers la terre, coupé par le différentiel. En régime IT, souvent utilisé là où la continuité est vitale (hôpitaux, certains procédés), le premier défaut ne coupe pas mais est signalé.",
+    schema: "three-phase-voltages",
+    illustrations: ["neutral-regimes"],
+    ascii: "TT → defaut = fuite terre  → coupe par le DIFFERENTIEL\nTN → defaut = court-circuit → coupe par la SURINTENSITE (disjoncteur)\nIT → 1er defaut signale (CPI), continuite ; 2e defaut a traiter",
+    retenir: [
+      "La liaison à la terre protège les personnes contre les contacts indirects.",
+      "TT : masses à une terre séparée ; le différentiel (DDR) coupe le défaut.",
+      "TN : masses reliées au neutre (PE) ; la protection contre les surintensités coupe le défaut.",
+      "IT : neutre isolé ; le premier défaut est signalé (CPI) sans couper, le second doit être traité.",
+    ],
+    erreurs: [
+      "Confondre le rôle du différentiel (fuite à la terre) et celui du disjoncteur (surintensité).",
+      "Croire qu'en IT on peut ignorer le premier défaut : il doit être recherché et réparé.",
+      "Négliger la qualité des prises de terre, essentielles à la protection.",
+    ],
+    astucesPro: [
+      "En IT, un premier défaut signalé doit être localisé et corrigé avant qu'un second n'apparaisse.",
+      "Une bonne prise de terre se contrôle : une terre défaillante compromet toute la protection.",
+    ],
+    diagnostic: [
+      "Identifier le régime de neutre de l'installation avant de raisonner sur un défaut.",
+      "Déterminer quel dispositif est censé couper (différentiel ou surintensité).",
+      "En IT, tenir compte de la signalisation du CPI.",
+    ],
+    depannage: [
+      "Vérifier la continuité et la qualité des liaisons à la terre.",
+      "Contrôler le dispositif de protection adapté au régime (DDR en TT, protections en TN).",
+      "Rechercher et réparer le défaut avant remise en service, en respectant la consignation.",
+    ],
+    securite: [
+      "La protection des personnes dépend d'une mise à la terre correcte : on ne la neutralise jamais.",
+      "Le choix et la vérification du régime de neutre relèvent d'un électricien qualifié.",
+      "Cette application est pédagogique : elle explique le principe, elle ne remplace pas la norme ni la formation.",
+    ],
+    etudeDeCas: {
+      situation: "Sur une installation, un défaut d'isolement apparaît mais aucune coupure ne se produit ; un voyant de défaut s'allume au tableau.",
+      mission: ["Identifier le régime de neutre probable.", "Expliquer pourquoi il n'y a pas de coupure.", "Indiquer la conduite à tenir."],
+      correction:
+        "L'absence de coupure au premier défaut, avec une signalisation, est caractéristique du régime IT et de son contrôleur permanent d'isolement (CPI). Le premier défaut ne coupe pas afin de préserver la continuité de service, mais il doit être localisé et réparé rapidement : si un second défaut survient, il se comporte comme un court-circuit dangereux. On fait donc intervenir une personne habilitée pour rechercher et éliminer le défaut.",
+    },
+    memo: ["Terre = protection des personnes", "TT → différentiel", "TN → surintensité", "IT → 1er défaut signalé (CPI)"],
+    resume:
+      "Le régime de neutre (TT, TN, IT) définit comment neutre et masses sont reliés à la terre et quel dispositif coupe un défaut ; la qualité de la terre est essentielle.",
+    quizIds: ["els46", "els47", "els48", "els49", "els50"],
+    verification: {
+      question: "En régime TT, quel dispositif assure la coupure lors d'un défaut d'isolement ?",
+      options: ["Le contacteur", "Le dispositif différentiel (DDR)", "Le variateur", "Le bouton d'arrêt"],
+      correct: 1,
+      explanation: "En TT, un défaut crée un courant de fuite vers la terre : c'est le différentiel (DDR) qui le détecte et coupe l'alimentation.",
+    },
+    exercice: {
+      enonce:
+        "Pour chaque régime, indiquez ce qui coupe un défaut d'isolement : (a) TT, (b) TN, (c) IT au premier défaut.",
+      consignes: [
+        "Associe chaque régime à son dispositif de protection.",
+        "Explique le comportement du régime IT au premier défaut.",
+        "Rappelle le rôle général de la mise à la terre.",
+      ],
+      criteres: [
+        "(a) différentiel, (b) protection contre les surintensités, (c) pas de coupure mais signalisation.",
+        "J'ai expliqué la continuité de service en IT au premier défaut.",
+        "J'ai rappelé que la terre protège les personnes.",
+      ],
+      correction:
+        "(a) TT : le différentiel (DDR) coupe le courant de fuite vers la terre. (b) TN : le défaut devient un court-circuit phase-PE, coupé par la protection contre les surintensités (disjoncteur, fusible). (c) IT : le premier défaut ne coupe pas et est signalé par le CPI, ce qui préserve la continuité ; il doit être réparé avant l'apparition d'un second défaut. Dans tous les cas, la mise à la terre protège les personnes contre les contacts indirects.",
+    },
+  },
+];
+
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
   {
     id: "m3-b1",
@@ -812,7 +1073,15 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m3-b3", num: 3, title: "Réseaux, distribution et régimes de neutre", objective: "Distinguer monophasé et triphasé, comprendre la distribution et les régimes de neutre.", lessonIds: [], chapterCount: 7, status: "planned" },
+  {
+    id: "m3-b3",
+    num: 3,
+    title: "Réseaux, distribution et régimes de neutre",
+    objective: "Distinguer monophasé et triphasé, comprendre la distribution et les régimes de neutre.",
+    lessonIds: block3Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   { id: "m3-b4", num: 4, title: "Appareillage de commande et de protection approfondi", objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m3-b5", num: 5, title: "Moteurs asynchrones et variation de vitesse", objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.", lessonIds: [], chapterCount: 8, status: "planned" },
   { id: "m3-b6", num: 6, title: "Lecture de schémas électriques industriels", objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.", lessonIds: [], chapterCount: 6, status: "planned" },
@@ -826,6 +1095,6 @@ export const ELECTRO_MODULE: TrainingModule = {
   icon: Zap,
   color: "violet",
   source: "[AFORP] Module 3 · parcours progressif débutant → opérationnel · références NF C 18-510 et constructeurs",
-  lessons: [...block1Lessons, ...block2Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
   blocks: ELECTRO_BLOCKS,
 };
