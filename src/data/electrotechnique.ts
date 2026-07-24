@@ -3348,6 +3348,258 @@ const block7Lessons: Lesson[] = [
         "Test 1 : « Une protection a-t-elle déclenché ? ». Branche « oui » → identifier la protection (relais thermique = surcharge, disjoncteur = surintensité, différentiel = fuite). Branche « non » → Test 2 : « La bobine du contacteur est-elle alimentée quand on commande la marche ? ». Si oui, on oriente vers un défaut de puissance ; si non, vers un défaut du circuit de commande. Chaque test se fait en sécurité, après consignation si un accès est nécessaire.",
     },
   },
+  {
+    id: "3-41",
+    title: "Mesures et tests de confirmation",
+    durationMinutes: 28,
+    objectifs: [
+      "Choisir la mesure adaptée pour confirmer ou infirmer une hypothèse.",
+      "Interpréter un résultat en le comparant à une valeur attendue.",
+    ],
+    simple:
+      "Une hypothèse ne devient une certitude qu'après vérification. La mesure sert à confirmer ou infirmer : on choisit la bonne grandeur à mesurer (tension, intensité, continuité), on réalise la mesure en sécurité, puis on compare le résultat à ce qu'on attend.",
+    vocab: [
+      ["Mesure de confirmation", "Mesure réalisée pour vérifier une hypothèse précise."],
+      ["Valeur attendue", "Valeur normale à laquelle on compare la mesure (plaque, référence, calcul)."],
+      ["Continuité", "Test qui vérifie qu'un circuit n'est pas coupé (hors tension)."],
+      ["Présence de tension", "Mesure qui vérifie qu'un point est alimenté (sous tension, avec précautions)."],
+      ["Interprétation", "Conclusion tirée de la comparaison entre mesure et valeur attendue."],
+    ],
+    example:
+      "Hypothèse : le contact du relais thermique est ouvert. On mesure la continuité de ce contact hors tension : s'il est ouvert alors qu'il devrait être fermé, l'hypothèse est confirmée. On compare toujours le résultat à ce qui est attendu.",
+    schema: "measurement-safety",
+    ascii: "HYPOTHESE → choisir la mesure adaptee (tension / intensite / continuite)\n→ mesurer EN SECURITE → comparer a la VALEUR ATTENDUE → confirmer / infirmer",
+    retenir: [
+      "La mesure confirme ou infirme une hypothèse précise.",
+      "On choisit la grandeur adaptée : tension, intensité ou continuité.",
+      "Continuité et résistance se mesurent hors tension ; présence de tension sous tension avec précautions.",
+      "On interprète en comparant à une valeur attendue, pas dans l'absolu.",
+    ],
+    erreurs: [
+      "Mesurer sans hypothèse claire : on ne sait pas quoi conclure.",
+      "Mesurer une continuité sous tension (danger et appareil endommagé).",
+      "Interpréter une mesure sans valeur de référence.",
+    ],
+    astucesPro: [
+      "On formule d'abord l'hypothèse, puis on choisit la mesure qui la teste directement.",
+      "La plaque signalétique et les valeurs de référence servent de comparaison.",
+    ],
+    diagnostic: [
+      "Traduire l'hypothèse en mesure à réaliser.",
+      "Choisir la grandeur et l'appareil adaptés.",
+      "Comparer le résultat à la valeur attendue pour conclure.",
+    ],
+    depannage: [
+      "Confirmer la cause par la mesure avant de remplacer.",
+      "Réaliser les mesures hors tension après consignation quand c'est requis.",
+      "Documenter les valeurs mesurées.",
+    ],
+    securite: [
+      "Les mesures de continuité et de résistance se font hors tension, après consignation.",
+      "Les mesures sous tension se font avec l'habilitation et le matériel adaptés.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "On suppose qu'une phase est manquante sur un moteur qui vibre et manque de puissance.",
+      mission: ["Choisir la mesure de confirmation.", "Indiquer l'état du circuit pour la mesure.", "Expliquer l'interprétation."],
+      correction:
+        "Pour confirmer une phase manquante, on mesure l'intensité sur chacune des trois phases à la pince ampèremétrique (mesure sous tension, avec habilitation et précautions) : une phase à courant nul ou très différent des deux autres confirme l'hypothèse. On peut aussi contrôler la présence de tension sur chaque phase. On interprète en comparant les trois phases entre elles et à la valeur attendue ; toute mesure hors tension (continuité d'un enroulement) impose une consignation préalable.",
+    },
+    memo: ["Hypothèse → mesure ciblée", "Bonne grandeur, en sécurité", "Comparer à l'attendu", "Confirmer avant de remplacer"],
+    resume:
+      "La mesure de confirmation teste une hypothèse précise : on choisit la bonne grandeur, on mesure en sécurité et on compare à une valeur attendue pour conclure.",
+    quizIds: ["els186", "els187", "els188", "els189", "els190"],
+    verification: {
+      question: "À quoi sert une mesure de confirmation dans un diagnostic ?",
+      options: ["À décorer le rapport", "À confirmer ou infirmer une hypothèse précise", "À remplacer la consignation", "À augmenter la tension"],
+      correct: 1,
+      explanation: "La mesure de confirmation teste une hypothèse : on compare le résultat à la valeur attendue pour la confirmer ou l'infirmer.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment choisir et interpréter une mesure pour confirmer une hypothèse de panne.",
+      consignes: [
+        "Explique le lien entre hypothèse et grandeur à mesurer.",
+        "Rappelle la sécurité selon le type de mesure.",
+        "Explique l'interprétation par comparaison.",
+      ],
+      criteres: [
+        "J'ai relié l'hypothèse à une mesure ciblée.",
+        "J'ai distingué mesures sous tension et hors tension.",
+        "J'ai expliqué la comparaison à une valeur attendue.",
+      ],
+      correction:
+        "On part de l'hypothèse pour choisir la grandeur qui la teste directement : présence de tension pour vérifier une alimentation, intensité pour une charge ou une phase, continuité pour un contact ou un enroulement. Continuité et résistance se mesurent hors tension (après consignation) ; les mesures sous tension se font avec l'habilitation adaptée. On interprète en comparant le résultat à la valeur attendue (plaque, référence) : l'écart confirme ou infirme l'hypothèse.",
+    },
+  },
+  {
+    id: "3-42",
+    title: "Étude de cas transversale",
+    durationMinutes: 32,
+    objectifs: [
+      "Mener un diagnostic complet en mobilisant plusieurs notions du module.",
+      "Enchaîner méthode, sécurité, mesure et traçabilité sur un cas réel.",
+    ],
+    simple:
+      "Ce chapitre met tout en pratique sur un cas complet : un départ moteur en panne. On applique la démarche structurée, on lit le schéma, on suit un organigramme, on mesure pour confirmer, et on trace l'intervention — en respectant la sécurité du début à la fin.",
+    vocab: [
+      ["Cas transversal", "Situation qui mobilise plusieurs notions à la fois."],
+      ["Départ moteur", "Ensemble sectionnement, protection, commande, moteur."],
+      ["Hypothèse", "Cause possible à confirmer par la mesure."],
+      ["Confirmation", "Vérification de l'hypothèse par un contrôle."],
+      ["Traçabilité", "Trace écrite de la démarche et du résultat."],
+    ],
+    example:
+      "Cas : un moteur de convoyeur s'arrête après quelques minutes et ne repart pas. Symptôme + historique orientent vers une surcharge (relais thermique). On confirme par la mesure du courant, on traite la cause mécanique, on contrôle et on trace.",
+    schema: "control-circuit",
+    ascii: "CAS : moteur qui s'arrete apres quelques minutes\nMETHODE + SCHEMA + ORGANIGRAMME + MESURE + TRACABILITE → cause traitee",
+    retenir: [
+      "Un cas réel se traite avec la même méthode structurée que la théorie.",
+      "On combine schéma, organigramme et mesures de confirmation.",
+      "On traite la cause, pas seulement le symptôme.",
+      "La sécurité et la traçabilité encadrent tout le cas.",
+    ],
+    erreurs: [
+      "Réagir au symptôme sans appliquer la méthode.",
+      "Sauter la confirmation par la mesure.",
+      "Réarmer sans traiter la cause de fond.",
+    ],
+    astucesPro: [
+      "On garde la même rigueur sur un cas simple que sur un cas complexe.",
+      "Les notes prises pendant le cas servent de référence pour les suivants.",
+    ],
+    diagnostic: [
+      "Appliquer la démarche : constater, sécuriser, analyser, localiser.",
+      "S'appuyer sur le schéma et un organigramme pour cibler.",
+      "Confirmer par la mesure avant d'agir.",
+    ],
+    depannage: [
+      "Traiter la cause identifiée (mécanique, électrique).",
+      "Contrôler le bon fonctionnement après réparation.",
+      "Tracer le constat, les mesures et l'action.",
+    ],
+    securite: [
+      "La consignation et la vérification d'absence de tension s'appliquent dès qu'un accès est requis.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur de convoyeur s'arrête après 5 minutes de marche ; en réarmant le relais thermique, il repart puis s'arrête à nouveau au bout de quelques minutes.",
+      mission: ["Appliquer la démarche complète.", "Citer la mesure de confirmation.", "Indiquer la cause probable et la traçabilité."],
+      correction:
+        "Démarche : constater (arrêt temporisé et répété), sécuriser (consignation quand un accès est nécessaire), analyser (le déclenchement du relais thermique oriente vers une surcharge), localiser à l'aide du schéma et de l'organigramme. Mesure de confirmation : mesurer le courant absorbé à la pince et le comparer au courant nominal ; un courant trop élevé confirme la surcharge. Cause probable : une charge mécanique excessive ou un point dur (roulement, entraînement). On traite la cause mécanique, on contrôle le bon fonctionnement, puis on trace le constat, les mesures (courant relevé) et l'action. On ne se contente pas de réarmer.",
+    },
+    memo: ["Même méthode que la théorie", "Schéma + organigramme + mesure", "Traiter la cause", "Sécuriser et tracer"],
+    resume:
+      "Une étude de cas transversale applique la démarche complète — méthode, schéma, organigramme, mesure, sécurité, traçabilité — pour traiter réellement la cause d'une panne.",
+    quizIds: ["els191", "els192", "els193", "els194", "els195"],
+    verification: {
+      question: "Sur un moteur qui déclenche son relais thermique de façon répétée, que fait-on plutôt que de simplement réarmer ?",
+      options: ["On monte le calibre", "On mesure le courant et on traite la cause de la surcharge", "On neutralise le relais", "On ignore le problème"],
+      correct: 1,
+      explanation: "On confirme la surcharge par la mesure du courant et on traite la cause (souvent mécanique) avant de réarmer, sans jamais dérégler ou neutraliser la protection.",
+    },
+    exercice: {
+      enonce:
+        "Traitez le cas suivant en appliquant la démarche complète : un moteur ne démarre pas et aucune protection n'a déclenché.",
+      consignes: [
+        "Applique les étapes de la démarche.",
+        "Utilise l'organigramme (protection ? bobine ?).",
+        "Indique la mesure de confirmation et la traçabilité.",
+      ],
+      criteres: [
+        "J'ai appliqué constater/sécuriser/analyser/localiser.",
+        "J'ai utilisé la logique de l'organigramme.",
+        "J'ai cité une mesure de confirmation et la trace.",
+      ],
+      correction:
+        "Constater (moteur ne démarre pas, aucune protection déclenchée) ; sécuriser avant tout accès. Analyser avec l'organigramme : pas de protection déclenchée → tester la commande : « la bobine est-elle alimentée ? ». Si non, suivre le circuit de commande (bouton, auto-maintien, contact du relais thermique) et confirmer par une mesure de continuité (hors tension, après consignation) ou de présence de tension (sous tension, avec habilitation) pour localiser l'interruption. Si oui, orienter vers un défaut de puissance (contacts, phases, moteur). On traite la cause, on contrôle le démarrage, puis on trace constat, mesures et action.",
+    },
+  },
+  {
+    id: "3-43",
+    title: "Synthèse du module 3 et passerelle vers l'automatisme",
+    durationMinutes: 28,
+    objectifs: [
+      "Relier les grandes notions du module d'électrotechnique.",
+      "Situer la frontière entre puissance (énergie) et commande (information) vers l'automatisme.",
+    ],
+    simple:
+      "Ce chapitre clôt le module : des grandeurs de base à la sécurité, la distribution, l'appareillage, les moteurs, les schémas et le diagnostic. Il ouvre aussi sur la suite : l'automatisme, où des capteurs et des automates (API) pilotent la partie puissance que tu connais maintenant.",
+    vocab: [
+      ["Chaîne d'énergie", "Partie puissance : elle alimente et fait agir (moteur, actionneur)."],
+      ["Chaîne d'information", "Partie commande : capteurs et automate qui décident et pilotent."],
+      ["Capteur", "Élément qui détecte une grandeur (présence, position, niveau) et informe la commande."],
+      ["Automate (API)", "Automate Programmable Industriel : il traite les informations et commande les actionneurs."],
+      ["Actionneur", "Élément qui agit (moteur, vérin) sous l'ordre de la commande."],
+    ],
+    example:
+      "Sur un convoyeur automatisé, un capteur détecte le colis (information), l'automate décide de démarrer (traitement), et le moteur entraîne la bande (énergie). L'électrotechnique de ce module correspond surtout à la chaîne d'énergie ; l'automatisme complète la chaîne d'information.",
+    schema: "diagnostic-flow",
+    ascii: "CHAINE D'INFORMATION : capteur → automate (API) → ordre\n                                   ↓ commande\nCHAINE D'ENERGIE     : alimentation → appareillage → moteur → action",
+    retenir: [
+      "Le module couvre : grandeurs, sécurité, distribution, appareillage, moteurs, schémas, diagnostic.",
+      "La chaîne d'énergie alimente et fait agir ; la chaîne d'information décide et pilote.",
+      "Capteurs et automate (API) forment la commande ; moteurs et actionneurs la puissance.",
+      "La sécurité et la méthode de diagnostic restent valables quel que soit le niveau.",
+    ],
+    erreurs: [
+      "Croire que l'automatisme remplace l'électrotechnique : il s'ajoute à elle.",
+      "Confondre capteur (informe) et actionneur (agit).",
+      "Oublier que la sécurité s'applique aussi aux installations automatisées.",
+    ],
+    astucesPro: [
+      "Sur une machine automatisée, on distingue toujours la partie commande de la partie puissance.",
+      "Une bonne base d'électrotechnique facilite l'apprentissage de l'automatisme.",
+    ],
+    diagnostic: [
+      "Situer un problème dans la chaîne d'énergie ou la chaîne d'information.",
+      "Vérifier la puissance (appareillage, moteur) avec les acquis du module.",
+      "Repérer le rôle éventuel d'un capteur ou d'un automate dans le symptôme.",
+    ],
+    depannage: [
+      "Appliquer la démarche de diagnostic apprise, quel que soit l'équipement.",
+      "Sécuriser avant tout contrôle nécessitant un accès.",
+      "Passer la main sur la partie automate si elle sort de son périmètre et de son habilitation.",
+    ],
+    securite: [
+      "Une installation automatisée peut redémarrer seule : la consignation reste indispensable.",
+      "On agit dans les limites de son habilitation, y compris sur les systèmes automatisés.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un convoyeur automatisé, la bande ne démarre pas alors que l'automate semble donner l'ordre de marche.",
+      mission: ["Distinguer les deux chaînes concernées.", "Situer où chercher avec les acquis du module.", "Indiquer la limite d'intervention."],
+      correction:
+        "Deux chaînes sont en jeu : la chaîne d'information (capteur → automate → ordre) et la chaîne d'énergie (appareillage → moteur → bande). Si l'automate donne l'ordre de marche, on vérifie d'abord la chaîne d'énergie avec les acquis du module : présence de l'ordre au contacteur, état du contacteur et du relais thermique, alimentation et couplage du moteur, après consignation. Si le problème vient de la partie automate ou des capteurs (chaîne d'information), on passe la main à une personne compétente et habilitée pour cette partie : on n'intervient pas au-delà de son périmètre et de son habilitation.",
+    },
+    memo: ["Énergie = puissance", "Information = commande", "Capteur informe / actionneur agit", "Sécurité même en automatisé"],
+    resume:
+      "Le module d'électrotechnique couvre la chaîne d'énergie et sa commande de base ; l'automatisme prolongera la chaîne d'information avec capteurs et automates, en gardant la même exigence de méthode et de sécurité.",
+    quizIds: ["els196", "els197", "els198", "els199", "els200"],
+    verification: {
+      question: "Dans un système automatisé, que forme l'ensemble capteur + automate (API) ?",
+      options: ["La chaîne d'énergie", "La chaîne d'information (commande)", "Le circuit de puissance", "Le moteur"],
+      correct: 1,
+      explanation: "Les capteurs et l'automate forment la chaîne d'information : ils détectent et décident. Les moteurs et actionneurs forment la chaîne d'énergie.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre chaîne d'énergie et chaîne d'information, et situez ce que couvre ce module.",
+      consignes: [
+        "Définis la chaîne d'énergie.",
+        "Définis la chaîne d'information.",
+        "Situe le module et sa suite (automatisme).",
+      ],
+      criteres: [
+        "J'ai défini la chaîne d'énergie (puissance).",
+        "J'ai défini la chaîne d'information (commande).",
+        "J'ai situé le module côté énergie et l'automatisme côté information.",
+      ],
+      correction:
+        "La chaîne d'énergie alimente et fait agir : alimentation, appareillage, moteur, actionneur. La chaîne d'information décide et pilote : capteurs qui détectent, automate (API) qui traite et commande. Ce module d'électrotechnique couvre surtout la chaîne d'énergie et sa commande de base (appareillage, départ moteur) ; l'automatisme, étape suivante, développe la chaîne d'information avec les capteurs et les automates, en conservant la même méthode de diagnostic et les mêmes exigences de sécurité.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
@@ -3435,8 +3687,12 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
     title: "Méthode de diagnostic électrique et synthèse",
     objective: "Structurer une recherche de panne électrique méthodique et tracée.",
     lessonIds: block7Lessons.map((lesson) => lesson.id),
-    chapterCount: 6,
-    status: "in_progress",
+    chapterCount: block7Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["els171", "els172", "els176", "els178", "els181", "els182", "els186", "els188", "els191", "els193", "els196", "els198"],
+      passPercent: 80,
+    },
   },
 ];
 

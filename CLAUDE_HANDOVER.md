@@ -101,6 +101,17 @@ aucune réécriture d'historique.)
 - **3-37 — Synthèse lecture de schémas et mise en situation** (références 3-32 à 3-36).
 - Examen du bloc 6 (12 questions) + badge `electro_block_6` (« Lecture de schémas »).
 
+**Étape 8 — module 3 terminé** — bloc 7 **complet (6 chapitres, statut `available` avec examen)** :
+- **3-38 — La démarche de diagnostic structurée** (constater, sécuriser, analyser, localiser, réparer, contrôler, tracer). Schéma statique `diagnostic-flow`.
+- **3-39 — Du symptôme aux hypothèses**.
+- **3-40 — L'organigramme de recherche de panne**. Intègre le **schéma interactif « assistant de diagnostic »** (`diagnostic-tree`, non noté, complémentaire du simulateur de pannes).
+- **3-41 — Mesures et tests de confirmation**.
+- **3-42 — Étude de cas transversale**.
+- **3-43 — Synthèse du module 3 et passerelle vers l'automatisme** (chaîne d'énergie vs chaîne d'information).
+- Examen du bloc 7 (12 questions) + badge `electro_block_7` (« Diagnostic électrique »).
+
+> **Le module 3 « Électrotechnique industrielle » est désormais entièrement développé : 7 blocs sur 7 disponibles, 43 chapitres, 8 schémas interactifs, 7 examens de bloc, 7 badges de bloc.**
+
 ## Fichiers créés
 
 **Étape 1**
@@ -163,9 +174,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après bloc 6 : **4 modules, 19 blocs, 91 leçons, 460 questions, 10 pannes, 17 badges.**
-- Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` isolé (budget 500 kB/fichier).
-- **Module 3 : blocs 1 à 6 disponibles (37 chapitres) ; bloc 7 restant à développer.**
+- Build réussi. Décomptes après le module 3 complet : **4 modules, 19 blocs, 97 leçons, 490 questions, 10 pannes, 18 badges.**
+- Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` isolé (budget 500 kB/fichier).
+- **Module 3 : entièrement développé (7 blocs sur 7, 43 chapitres). Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -177,9 +188,13 @@ aucune réécriture d'historique.)
 
 ## Éléments restant à faire
 
-- **Blocs 2, 3, 4, 5 et 6 de M3 : terminés** (examen + badge chacun).
-- Développer le **bloc 7 de M3** (méthode de diagnostic électrique et synthèse du module) —
-  dernier bloc pour terminer entièrement le module 3.
+- **Module 3 « Électrotechnique » : entièrement terminé** (7 blocs, 43 chapitres, 8 schémas interactifs,
+  7 examens de bloc, 7 badges de bloc + le badge `module_3` de fin de module).
+- Pistes pour la suite (à valider avec le propriétaire) : compléter le **module 4** (mécanique, 6 blocs
+  restants sur 12), ou démarrer un **module Automatisme** (capteurs, API, actionneurs, vérins) annoncé
+  en passerelle au chapitre 3-43. Réutiliser `InteractiveSchema` pour les nouveaux schémas.
+- Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
+  fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
 - Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
   de M3 harmonisés** (attention : 3-1/3-2/3-3 n'ont pas encore le parcours pro complet — ne pas activer
   la règle avant de les avoir enrichis, sinon le build échoue).
@@ -203,6 +218,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-3): complete le bloc 5 (3-28 a 3-31), examen et badge`
 - `feat(module-3): demarre le bloc 6 (lecture de schemas electriques)`
 - `feat(module-3): complete le bloc 6 (3-35 a 3-37), examen et badge`
+- `feat(module-3): demarre le bloc 7 (methode de diagnostic electrique)`
+- `feat(module-3): complete le bloc 7 (3-41 a 3-43), examen et badge — module 3 termine`
 
 ## Instructions pour reprendre le développement
 
