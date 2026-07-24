@@ -39,6 +39,7 @@ function checkBadges(progress: Progress) {
     "m3-b2": "electro_block_2",
     "m3-b3": "electro_block_3",
     "m3-b4": "electro_block_4",
+    "m3-b5": "electro_block_5",
     "m4-b1": "mechanics_block_1",
     "m4-b5": "mechanics_block_5",
     "m4-b6": "mechanics_block_6",

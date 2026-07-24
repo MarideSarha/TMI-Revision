@@ -646,6 +646,86 @@ function ContactorThermal({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 6 — SENS DE ROTATION D'UN MOTEUR TRIPHASÉ
+   Inverser deux phases inverse le sens de rotation.
+   --------------------------------------------------------------- */
+
+function RotationDirection({ dark }: { dark: boolean }) {
+  const [inverted, setInverted] = useState(false);
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+
+  // Correspondance phase réseau → borne moteur.
+  const mapping = inverted
+    ? [["L1", "U", 45], ["L2", "W", 115], ["L3", "V", 80]]
+    : [["L1", "U", 45], ["L2", "V", 80], ["L3", "W", 115]];
+
+  // Flèche de sens : horaire (normal) / anti-horaire (inversé).
+  const arrow = inverted
+    ? { d: "M240 54 A26 26 0 1 0 266 80", label: "sens anti-horaire" }
+    : { d: "M240 54 A26 26 0 1 1 214 80", label: "sens horaire" };
+
+  return (
+    <Figure
+      dark={dark}
+      title="Inverser le sens de rotation"
+      legend="L1/L2/L3 = phases du réseau · U/V/W = bornes du moteur · la flèche indique le sens de rotation."
+      explanation="Pour inverser le sens de rotation d'un moteur asynchrone triphasé, il suffit de croiser deux des trois phases (par exemple L2 et L3). Le champ tournant change de sens, donc le moteur tourne dans l'autre sens. On ne touche jamais aux trois phases à la fois : croiser deux phases suffit. La manœuvre se fait hors tension, après consignation."
+      controls={
+        <button
+          type="button"
+          aria-pressed={inverted}
+          onClick={() => setInverted((v) => !v)}
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-amber-400 px-4 py-2.5 text-sm font-bold text-slate-950"
+        >
+          <RotateCcw size={16} /> {inverted ? "Revenir au branchement normal (L1-L2-L3)" : "Croiser L2 et L3 (inverser)"}
+        </button>
+      }
+    >
+      <svg viewBox="0 0 320 165" className="h-auto w-full" role="img" aria-label={`Moteur en ${arrow.label}. Branchement : ${mapping.map(([l, b]) => `${l} vers ${b}`).join(", ")}.`}>
+        {/* Phases réseau */}
+        {(["L1", "L2", "L3"] as const).map((l, i) => (
+          <g key={l}>
+            <text x="24" y={49 + i * 35} textAnchor="middle" fontSize="10" fill={stroke} fontWeight="bold">{l}</text>
+            <circle cx="44" cy={45 + i * 35} r="3" fill={stroke} />
+          </g>
+        ))}
+
+        {/* Liaisons vers les bornes moteur (croisées si inversé) */}
+        {mapping.map(([l, , y]) => {
+          const startY = l === "L1" ? 45 : l === "L2" ? 80 : 115;
+          return <line key={l} x1="44" y1={startY} x2="150" y2={y as number} stroke={l === "L2" || l === "L3" ? (inverted ? "#f5b400" : stroke) : stroke} strokeWidth="2" />;
+        })}
+
+        {/* Bornes moteur U V W */}
+        {[["U", 45], ["V", 80], ["W", 115]].map(([b, y]) => (
+          <g key={b as string}>
+            <circle cx="150" cy={y as number} r="3" fill={stroke} />
+            <text x="164" y={(y as number) + 4} textAnchor="middle" fontSize="9" fill={stroke}>{b}</text>
+          </g>
+        ))}
+
+        {/* Moteur + flèche de sens */}
+        <line x1="176" y1="80" x2="212" y2="80" stroke={stroke} strokeWidth="2" />
+        <circle cx="240" cy="80" r="26" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="240" y="84" textAnchor="middle" fontSize="13" fill={stroke} fontWeight="bold">M</text>
+        <path d={arrow.d} fill="none" stroke="#f5b400" strokeWidth="3" markerEnd="url(#rot-arrow)" />
+        <defs>
+          <marker id="rot-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#f5b400" />
+          </marker>
+        </defs>
+        <text x="240" y="140" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">{arrow.label}</text>
+      </svg>
+
+      <div className="mt-1 flex items-center justify-center gap-2 pb-1 text-center text-xs font-semibold text-amber-500" role="status">
+        <RotateCcw size={14} /> {inverted ? "L2 et L3 croisées → rotation inversée" : "Branchement normal L1-L2-L3"}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -655,5 +735,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "habilitation-decoder") return <HabilitationDecoder dark={dark} />;
   if (type === "neutral-regimes") return <NeutralRegimes dark={dark} />;
   if (type === "contactor-thermal") return <ContactorThermal dark={dark} />;
+  if (type === "rotation-direction") return <RotationDirection dark={dark} />;
   return null;
 }

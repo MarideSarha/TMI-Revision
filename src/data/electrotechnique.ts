@@ -2237,6 +2237,343 @@ const block5Lessons: Lesson[] = [
         "Le démarrage direct applique la pleine tension d'un coup, ce qui provoque une pointe de courant de plusieurs fois le courant nominal et un à-coup mécanique. Sur un gros moteur, cela peut faire chuter la tension du réseau et malmener la mécanique. Pour les moteurs plus puissants, on utilise un démarrage à tension réduite : étoile-triangle, démarreur progressif ou variateur de vitesse.",
     },
   },
+  {
+    id: "3-28",
+    title: "Le démarrage étoile-triangle",
+    durationMinutes: 30,
+    objectifs: [
+      "Expliquer le principe du démarrage étoile-triangle.",
+      "Identifier ce qu'il apporte et ses conditions d'emploi.",
+    ],
+    simple:
+      "Le démarrage étoile-triangle réduit la pointe de courant au démarrage. On démarre le moteur en couplage étoile (tension réduite sur chaque enroulement), puis, une fois lancé, on bascule en triangle pour le fonctionnement normal. Le passage est géré par des contacteurs et un temporisateur.",
+    vocab: [
+      ["Démarrage étoile-triangle", "Démarrage en deux temps : étoile pour démarrer, triangle pour la marche."],
+      ["Phase étoile (démarrage)", "Chaque enroulement reçoit une tension réduite : courant et couple réduits (environ un tiers)."],
+      ["Phase triangle (marche)", "Chaque enroulement reçoit la pleine tension composée : fonctionnement nominal."],
+      ["Temporisation", "Réglage du temps passé en étoile avant le passage en triangle."],
+      ["Contacteurs", "Trois contacteurs pilotent le couplage étoile puis triangle."],
+    ],
+    example:
+      "Un moteur de pompe démarre en étoile : la pointe de courant est réduite à environ un tiers de celle d'un démarrage direct. Après quelques secondes (temporisation), le circuit bascule en triangle et le moteur atteint son régime normal.",
+    schema: "star-delta-coupling",
+    ascii: "1) ETOILE  → tension reduite → courant et couple ~1/3 (demarrage doux)\n2) (temporisation)\n3) TRIANGLE → pleine tension → marche normale",
+    retenir: [
+      "On démarre en étoile (tension réduite) puis on passe en triangle (marche normale).",
+      "L'étoile réduit la pointe de courant à environ un tiers du démarrage direct.",
+      "Le couple de démarrage est aussi réduit : le moteur doit pouvoir démarrer peu chargé.",
+      "Le passage étoile → triangle est géré par des contacteurs et un temporisateur.",
+    ],
+    erreurs: [
+      "Utiliser l'étoile-triangle sur un moteur qui doit démarrer en pleine charge (couple insuffisant).",
+      "Régler une temporisation inadaptée (passage en triangle trop tôt ou trop tard).",
+      "Oublier que le moteur doit être prévu pour fonctionner en triangle sur le réseau utilisé.",
+    ],
+    astucesPro: [
+      "Un passage en triangle trop précoce recrée une pointe de courant : on règle la temporisation sur la montée en vitesse.",
+      "L'étoile-triangle convient aux démarrages peu chargés (pompes, ventilateurs).",
+    ],
+    diagnostic: [
+      "Vérifier la séquence étoile puis triangle et la temporisation.",
+      "Contrôler les contacteurs impliqués dans le couplage.",
+      "S'assurer que la charge permet un démarrage à couple réduit.",
+    ],
+    depannage: [
+      "Ajuster la temporisation si le passage en triangle est mal placé.",
+      "Contrôler les contacteurs de couplage, hors tension après consignation.",
+      "Vérifier l'adéquation entre la charge et un démarrage à couple réduit.",
+    ],
+    securite: [
+      "Les interventions sur le circuit de couplage se font hors tension, après consignation.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur démarré en étoile-triangle « peine » et n'atteint pas sa vitesse avant le passage en triangle.",
+      mission: ["Formuler une hypothèse.", "Indiquer les vérifications.", "Préciser une condition d'emploi."],
+      correction:
+        "Le moteur peine probablement parce qu'il démarre trop chargé pour un couple d'étoile réduit, ou parce que la temporisation fait passer en triangle avant qu'il ait pris assez de vitesse. On vérifie la charge entraînée, le réglage de la temporisation et la séquence des contacteurs. Condition d'emploi : l'étoile-triangle convient surtout aux démarrages peu chargés, car le couple de démarrage y est réduit.",
+    },
+    memo: ["Étoile = démarrer", "Triangle = marche", "Courant ~1/3", "Couple réduit → charge faible"],
+    resume:
+      "Le démarrage étoile-triangle réduit la pointe de courant en démarrant à tension réduite, avant de passer en triangle ; il convient aux démarrages peu chargés.",
+    quizIds: ["els121", "els122", "els123", "els124", "els125"],
+    verification: {
+      question: "Que permet principalement le démarrage étoile-triangle ?",
+      options: ["Augmenter la pointe de courant", "Réduire la pointe de courant au démarrage", "Supprimer le rotor", "Inverser le sens"],
+      correct: 1,
+      explanation: "En démarrant en étoile (tension réduite), on réduit la pointe de courant à environ un tiers de celle d'un démarrage direct, avant de passer en triangle.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez les deux temps d'un démarrage étoile-triangle et pourquoi le couple de démarrage y est réduit.",
+      consignes: [
+        "Décris la phase étoile.",
+        "Décris la phase triangle.",
+        "Explique la conséquence sur le couple.",
+      ],
+      criteres: [
+        "J'ai décrit l'étoile comme phase de démarrage à tension réduite.",
+        "J'ai décrit le triangle comme phase de marche à pleine tension.",
+        "J'ai relié la tension réduite au couple réduit.",
+      ],
+      correction:
+        "En phase étoile, chaque enroulement reçoit une tension réduite : la pointe de courant et le couple de démarrage sont réduits (environ un tiers). Après une temporisation, on passe en triangle : chaque enroulement reçoit la pleine tension composée et le moteur fonctionne normalement. Comme la tension d'étoile est réduite, le couple de démarrage l'est aussi, d'où l'emploi sur des démarrages peu chargés.",
+    },
+  },
+  {
+    id: "3-29",
+    title: "Le sens de rotation et son inversion",
+    durationMinutes: 26,
+    objectifs: [
+      "Expliquer comment inverser le sens de rotation d'un moteur triphasé.",
+      "Comprendre le rôle de l'inverseur et de son verrouillage.",
+    ],
+    simple:
+      "Le sens de rotation d'un moteur asynchrone dépend de l'ordre des phases. Pour l'inverser, il suffit de croiser deux des trois phases : le champ tournant change de sens, donc le moteur aussi. En pratique, on utilise un inverseur à deux contacteurs, avec un verrouillage pour éviter tout court-circuit.",
+    vocab: [
+      ["Sens de rotation", "Sens dans lequel tourne l'arbre du moteur."],
+      ["Inversion", "Changement du sens de rotation, obtenu en croisant deux phases."],
+      ["Inverseur", "Dispositif à deux contacteurs qui permet de choisir le sens de rotation."],
+      ["Verrouillage", "Sécurité empêchant les deux contacteurs d'être fermés en même temps (risque de court-circuit)."],
+      ["Ordre des phases", "Succession des phases (L1, L2, L3) qui détermine le sens du champ tournant."],
+    ],
+    example:
+      "Sur un convoyeur réversible, deux contacteurs permettent de choisir le sens : l'un branche les phases dans l'ordre L1-L2-L3, l'autre croise deux phases (par exemple L2 et L3). Un verrouillage empêche les deux de se fermer ensemble.",
+    schema: "asynchronous-motor",
+    illustrations: ["rotation-direction"],
+    ascii: "L1-L2-L3 → sens 1\ncroiser 2 phases (ex : L2 et L3) → sens 2\nverrouillage : jamais les 2 contacteurs fermes ensemble",
+    retenir: [
+      "Le sens de rotation dépend de l'ordre des phases.",
+      "Croiser deux des trois phases inverse le sens de rotation.",
+      "On ne croise que deux phases : croiser les trois ne changerait rien.",
+      "Un verrouillage empêche les deux contacteurs de l'inverseur de se fermer ensemble.",
+    ],
+    erreurs: [
+      "Croiser les trois phases en pensant inverser le sens : cela ne change pas le sens.",
+      "Fermer les deux contacteurs de l'inverseur en même temps : court-circuit entre phases.",
+      "Inverser le sens sous tension sans précaution.",
+    ],
+    astucesPro: [
+      "Avant de brancher un moteur, on vérifie le sens de rotation attendu par la machine entraînée.",
+      "Le verrouillage (mécanique et/ou électrique) est indispensable sur un inverseur.",
+    ],
+    diagnostic: [
+      "Vérifier l'ordre des phases si le moteur tourne dans le mauvais sens.",
+      "Contrôler le verrouillage de l'inverseur.",
+      "S'assurer qu'aucun court-circuit n'est possible entre les deux contacteurs.",
+    ],
+    depannage: [
+      "Croiser deux phases (hors tension, après consignation) pour corriger un sens inversé.",
+      "Vérifier le câblage et le verrouillage de l'inverseur.",
+      "Contrôler le sens après remise en service.",
+    ],
+    securite: [
+      "Le changement de câblage des phases se fait hors tension, après consignation.",
+      "Le verrouillage protège contre un court-circuit dangereux entre phases.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur entraîne une pompe dans le mauvais sens après un remplacement.",
+      mission: ["Nommer la cause probable.", "Indiquer la correction.", "Préciser la précaution."],
+      correction:
+        "La cause probable est un ordre des phases inversé lors du rebranchement. La correction consiste à croiser deux des trois phases (par exemple L2 et L3) pour rétablir le bon sens. La manœuvre se fait hors tension, après consignation, puis on vérifie le sens de rotation à la remise en service. On ne croise que deux phases, jamais les trois.",
+    },
+    memo: ["Sens = ordre des phases", "Croiser 2 phases", "Pas les 3", "Inverseur verrouillé"],
+    resume:
+      "Inverser le sens de rotation d'un moteur triphasé se fait en croisant deux phases ; l'inverseur à deux contacteurs doit être verrouillé pour éviter tout court-circuit.",
+    quizIds: ["els126", "els127", "els128", "els129", "els130"],
+    verification: {
+      question: "Comment inverse-t-on le sens de rotation d'un moteur triphasé ?",
+      options: ["En croisant les trois phases", "En croisant deux des trois phases", "En coupant le neutre", "En changeant la fréquence uniquement"],
+      correct: 1,
+      explanation: "Croiser deux des trois phases inverse le sens du champ tournant, donc du moteur. Croiser les trois ne changerait rien.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment inverser le sens d'un moteur triphasé et pourquoi un inverseur doit être verrouillé.",
+      consignes: [
+        "Décris la manœuvre d'inversion.",
+        "Explique le rôle du verrouillage.",
+        "Rappelle la précaution de sécurité.",
+      ],
+      criteres: [
+        "J'ai indiqué qu'on croise deux phases.",
+        "J'ai expliqué que le verrouillage évite un court-circuit entre contacteurs.",
+        "J'ai rappelé le travail hors tension après consignation.",
+      ],
+      correction:
+        "Pour inverser le sens, on croise deux des trois phases (par exemple L2 et L3) : le champ tournant, et donc le moteur, change de sens. Un inverseur utilise deux contacteurs (un par sens) ; le verrouillage empêche qu'ils soient fermés en même temps, ce qui créerait un court-circuit entre phases. Toute modification du câblage se fait hors tension, après consignation.",
+    },
+  },
+  {
+    id: "3-30",
+    title: "Le variateur de vitesse",
+    durationMinutes: 30,
+    objectifs: [
+      "Expliquer le principe d'un variateur de fréquence.",
+      "Identifier les avantages de la variation de vitesse.",
+    ],
+    simple:
+      "Le variateur de vitesse fait varier la vitesse d'un moteur asynchrone en modifiant la fréquence de son alimentation. Il transforme d'abord le courant alternatif du réseau en courant continu, puis le reconvertit en alternatif à la fréquence voulue. En changeant la fréquence, on change la vitesse.",
+    vocab: [
+      ["Variateur de fréquence", "Appareil qui règle la vitesse du moteur en modifiant la fréquence (et la tension)."],
+      ["Fréquence", "Nombre de cycles par seconde (Hz) ; elle fixe la vitesse du champ tournant."],
+      ["Redresseur", "Étage qui transforme l'alternatif du réseau en continu."],
+      ["Onduleur", "Étage qui reconstruit un alternatif à la fréquence voulue."],
+      ["Rampe", "Réglage du temps d'accélération et de décélération du moteur."],
+    ],
+    example:
+      "Sur un convoyeur à vitesse réglable, un variateur alimente le moteur à une fréquence ajustable. En baissant la fréquence, la bande ralentit ; en l'augmentant, elle accélère. Le variateur gère aussi une accélération progressive (rampe), ce qui supprime l'à-coup de démarrage.",
+    schema: "vfd-blockdiagram",
+    ascii: "RESEAU (AC) → REDRESSEUR → BUS CONTINU (DC) → ONDULEUR → MOTEUR\n                                     frequence reglable → vitesse reglable",
+    retenir: [
+      "Le variateur règle la vitesse en modifiant la fréquence d'alimentation du moteur.",
+      "Il redresse l'alternatif en continu, puis reconstruit un alternatif à la fréquence voulue.",
+      "Il permet un démarrage progressif (rampe) sans pointe de courant ni à-coup.",
+      "Il offre une vitesse réglable et souvent des économies d'énergie.",
+    ],
+    erreurs: [
+      "Croire qu'un variateur ne sert qu'à démarrer : il règle la vitesse en continu.",
+      "Négliger les réglages de rampes (accélération/décélération).",
+      "Oublier que le variateur contient des composants pouvant rester sous tension après coupure.",
+    ],
+    astucesPro: [
+      "Les rampes se règlent selon la mécanique : trop rapides, elles provoquent des à-coups ou des défauts.",
+      "Un variateur permet souvent d'économiser de l'énergie sur les pompes et ventilateurs à charge variable.",
+    ],
+    diagnostic: [
+      "Vérifier les paramètres du variateur (fréquence, rampes) face à un comportement anormal.",
+      "Consulter les codes de défaut affichés par le variateur.",
+      "Distinguer un défaut moteur d'un défaut de paramétrage.",
+    ],
+    depannage: [
+      "Relever et interpréter le code de défaut du variateur.",
+      "Vérifier les rampes et les limites de fréquence.",
+      "Respecter les temps de décharge et la consignation avant d'intervenir.",
+    ],
+    securite: [
+      "Un variateur peut conserver une tension dangereuse après coupure : on respecte les temps de décharge indiqués.",
+      "Les interventions relèvent d'une personne habilitée, après consignation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un convoyeur piloté par variateur démarre par à-coups et déclenche parfois en défaut.",
+      mission: ["Formuler une hypothèse de paramétrage.", "Indiquer les vérifications.", "Préciser la précaution avant intervention."],
+      correction:
+        "Les à-coups et déclenchements évoquent une rampe d'accélération trop rapide ou des paramètres inadaptés à la charge. On consulte le code de défaut du variateur, on vérifie les rampes et les limites de fréquence, et on ajuste selon la mécanique. Avant toute intervention interne, on respecte le temps de décharge du variateur et la consignation, car des tensions dangereuses peuvent persister après la coupure.",
+    },
+    memo: ["Variateur = fréquence → vitesse", "Redresseur + onduleur", "Rampes réglables", "Décharge avant intervention"],
+    resume:
+      "Le variateur de vitesse règle la vitesse d'un moteur en modifiant la fréquence ; il permet un démarrage progressif et une vitesse ajustable, mais impose des précautions de décharge.",
+    quizIds: ["els131", "els132", "els133", "els134", "els135"],
+    verification: {
+      question: "Sur quoi agit principalement un variateur pour régler la vitesse d'un moteur asynchrone ?",
+      options: ["Sur la couleur des câbles", "Sur la fréquence de l'alimentation", "Sur la mise à la terre", "Sur le nombre de phases"],
+      correct: 1,
+      explanation: "Le variateur modifie la fréquence (et la tension) d'alimentation du moteur : la fréquence fixe la vitesse du champ tournant, donc la vitesse du moteur.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le principe d'un variateur de fréquence et citez deux avantages par rapport à un démarrage direct.",
+      consignes: [
+        "Décris les étapes redresseur → continu → onduleur.",
+        "Explique le lien fréquence-vitesse.",
+        "Cite deux avantages.",
+      ],
+      criteres: [
+        "J'ai décrit la conversion AC → DC → AC.",
+        "J'ai relié la fréquence à la vitesse.",
+        "J'ai cité deux avantages (démarrage progressif, vitesse réglable, économies).",
+      ],
+      correction:
+        "Le variateur redresse l'alternatif du réseau en continu (bus continu), puis un onduleur reconstruit un alternatif à la fréquence voulue. Comme la fréquence fixe la vitesse du champ tournant, régler la fréquence règle la vitesse. Avantages par rapport au démarrage direct : démarrage progressif sans pointe de courant ni à-coup, vitesse réglable en continu, et souvent des économies d'énergie sur les charges variables.",
+    },
+  },
+  {
+    id: "3-31",
+    title: "Synthèse moteurs et mise en situation",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier constitution, couplage, démarrage, sens et variation de vitesse d'un moteur.",
+      "Conduire un diagnostic méthodique face à un moteur défaillant.",
+    ],
+    simple:
+      "Ce chapitre rassemble le bloc : comprendre le moteur asynchrone, le coupler correctement, choisir son mode de démarrage, régler son sens et, si besoin, faire varier sa vitesse. Face à un problème moteur, on raisonne à partir de ces notions.",
+    vocab: [
+      ["Couplage", "Étoile ou triangle selon la tension du réseau (chapitre 3-26)."],
+      ["Mode de démarrage", "Direct, étoile-triangle ou variateur, selon la puissance et la charge."],
+      ["Sens de rotation", "Réglé par l'ordre des phases (chapitre 3-29)."],
+      ["Variation de vitesse", "Assurée par un variateur de fréquence (chapitre 3-30)."],
+      ["Diagnostic méthodique", "Recherche de panne fonction par fonction, du plus probable au moins probable."],
+    ],
+    example:
+      "Un moteur chauffe et manque de puissance : on vérifie le couplage (3-26), la présence des trois phases (3-12), la charge entraînée, et éventuellement les paramètres du variateur (3-30), le tout après consignation quand un accès est nécessaire.",
+    schema: "asynchronous-motor",
+    ascii: "COMPRENDRE (3-25) → COUPLER (3-26) → DEMARRER (3-27/3-28) → SENS (3-29) → VITESSE (3-30)\ndiagnostic fonction par fonction, apres consignation, puis tracer",
+    retenir: [
+      "Un moteur se comprend par sa constitution, son couplage, son démarrage, son sens et sa vitesse.",
+      "Un mauvais couplage ou une phase manquante expliquent beaucoup d'échauffements.",
+      "Le mode de démarrage se choisit selon la puissance et la charge.",
+      "La sécurité (consignation, VAT, habilitation) encadre toute l'intervention.",
+    ],
+    erreurs: [
+      "Diagnostiquer un moteur sans vérifier le couplage ni les phases.",
+      "Oublier la consignation avant les contrôles nécessitant un accès.",
+      "Ne pas tracer les constats et les mesures.",
+    ],
+    astucesPro: [
+      "On part du symptôme (chauffe, bruit, sens, vitesse) et on remonte aux causes probables dans l'ordre.",
+      "La plaque signalétique et les valeurs mesurées sont les premières références.",
+    ],
+    diagnostic: [
+      "Situer la fonction concernée (couplage, alimentation, démarrage, sens, vitesse).",
+      "Contrôler l'élément correspondant, du plus probable au moins probable.",
+      "Confirmer par la mesure avant de conclure.",
+    ],
+    depannage: [
+      "Consigner avant tout contrôle nécessitant un accès aux parties actives.",
+      "Corriger la cause (couplage, phase, charge, paramètre) avant remise en service.",
+      "Remettre en service de façon maîtrisée et tracer l'intervention.",
+    ],
+    securite: [
+      "Les règles de sécurité des blocs précédents restent valables sur un moteur.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur neuf, fraîchement installé, chauffe très vite et manque de couple.",
+      mission: ["Formuler l'hypothèse la plus probable.", "Décrire la vérification.", "Indiquer la conduite à tenir."],
+      correction:
+        "Sur un moteur fraîchement installé, une chauffe rapide avec manque de couple évoque en premier lieu une erreur de couplage (étoile/triangle inadapté à la tension du réseau) ou une phase manquante. On vérifie la plaque signalétique et la position des barrettes, puis la présence et l'équilibre des trois phases. Conduite à tenir : couper et consigner, ouvrir la boîte à bornes hors tension pour contrôler et corriger le couplage, vérifier les phases, puis contrôler avant remise en service et tracer l'intervention.",
+    },
+    memo: ["Comprendre → coupler → démarrer → sens → vitesse", "Couplage et phases d'abord", "Consigner puis tracer"],
+    resume:
+      "Diagnostiquer un moteur, c'est mobiliser sa constitution, son couplage, son démarrage, son sens et sa vitesse, en sécurité et avec traçabilité.",
+    quizIds: ["els136", "els137", "els138", "els139", "els140"],
+    verification: {
+      question: "Sur un moteur neuf qui chauffe vite et manque de couple, que vérifie-t-on en priorité ?",
+      options: ["La couleur du carter", "Le couplage (étoile/triangle) et la présence des phases", "La marque du variateur", "L'heure d'installation"],
+      correct: 1,
+      explanation: "Une chauffe rapide avec manque de couple sur un moteur récemment installé oriente d'abord vers une erreur de couplage ou une phase manquante.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez la démarche pour diagnostiquer un moteur qui chauffe et manque de puissance, en citant les notions du bloc.",
+      consignes: [
+        "Donne les vérifications dans l'ordre.",
+        "Relie chaque vérification à un chapitre (3-25 à 3-30).",
+        "Rappelle la sécurité et la traçabilité.",
+      ],
+      criteres: [
+        "Les vérifications sont ordonnées.",
+        "Chaque vérification est reliée à une notion.",
+        "J'ai rappelé la consignation et la traçabilité.",
+      ],
+      correction:
+        "Vérifier le couplage étoile/triangle par rapport à la tension du réseau (3-26), la présence et l'équilibre des trois phases (3-12/3-25), la charge entraînée, le sens de rotation (3-29) et, si le moteur est piloté par variateur, ses paramètres (3-30). On distingue la cause (couplage, phase, charge, paramètre), on confirme par la mesure, le tout après consignation pour les contrôles nécessitant un accès. On corrige la cause, on remet en service de façon maîtrisée et on trace l'intervention.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
@@ -2298,8 +2635,12 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
     title: "Moteurs asynchrones et variation de vitesse",
     objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.",
     lessonIds: block5Lessons.map((lesson) => lesson.id),
-    chapterCount: 7,
-    status: "in_progress",
+    chapterCount: block5Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["els106", "els108", "els111", "els113", "els116", "els117", "els121", "els123", "els126", "els128", "els131", "els133", "els136", "els138"],
+      passPercent: 80,
+    },
   },
   { id: "m3-b6", num: 6, title: "Lecture de schémas électriques industriels", objective: "Lire un schéma unifilaire ou développé pour localiser un organe ou une panne.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m3-b7", num: 7, title: "Méthode de diagnostic électrique et synthèse", objective: "Structurer une recherche de panne électrique méthodique et tracée.", lessonIds: [], chapterCount: 6, status: "planned" },

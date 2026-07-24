@@ -82,6 +82,16 @@ aucune réécriture d'historique.)
 - **3-24 — Synthèse appareillage et mise en situation** (diagnostic fonction par fonction, références 3-18 à 3-23).
 - Examen du bloc 4 (14 questions) + badge `electro_block_4` (« Commande & appareillage »).
 
+**Étape 6** — module 3, bloc 5 **complet (7 chapitres, statut `available` avec examen)** :
+- **3-25 — Le moteur asynchrone triphasé : constitution et principe** (stator, rotor, champ tournant, glissement). Schéma `asynchronous-motor`.
+- **3-26 — Plaque signalétique et couplage étoile / triangle**. Schéma `star-delta-coupling`.
+- **3-27 — Le démarrage direct** (pointe de courant, à-coup, cas d'usage).
+- **3-28 — Le démarrage étoile-triangle** (tension réduite au démarrage, temporisation).
+- **3-29 — Le sens de rotation et son inversion**. Intègre le **schéma interactif « inverser le sens de rotation »**.
+- **3-30 — Le variateur de vitesse** (redresseur → bus continu → onduleur, fréquence variable). Schéma `vfd-blockdiagram`.
+- **3-31 — Synthèse moteurs et mise en situation** (références 3-25 à 3-30).
+- Examen du bloc 5 (14 questions) + badge `electro_block_5` (« Moteurs & variation »).
+
 ## Fichiers créés
 
 **Étape 1**
@@ -144,9 +154,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après bloc 4 : **4 modules, 19 blocs, 78 leçons, 395 questions, 10 pannes, 15 badges.**
+- Build réussi. Décomptes après bloc 5 : **4 modules, 19 blocs, 85 leçons, 430 questions, 10 pannes, 16 badges.**
 - Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` isolé (budget 500 kB/fichier).
-- **Module 3 : blocs 1 à 4 disponibles (24 chapitres) ; blocs 5 à 7 restant à développer.**
+- **Module 3 : blocs 1 à 5 disponibles (31 chapitres) ; blocs 6 et 7 restant à développer.**
 
 ## Problèmes connus
 
@@ -158,9 +168,9 @@ aucune réécriture d'historique.)
 
 ## Éléments restant à faire
 
-- **Blocs 2, 3 et 4 de M3 : terminés** (7 chapitres chacun, examen, badge).
-- Développer les **blocs 5 à 7 de M3** (moteurs asynchrones et variation de vitesse,
-  lecture de schémas électriques, méthode de diagnostic électrique).
+- **Blocs 2, 3, 4 et 5 de M3 : terminés** (7 chapitres chacun, examen, badge).
+- Développer les **blocs 6 et 7 de M3** (lecture de schémas électriques industriels,
+  méthode de diagnostic électrique et synthèse).
 - Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
   de M3 harmonisés** (attention : 3-1/3-2/3-3 n'ont pas encore le parcours pro complet — ne pas activer
   la règle avant de les avoir enrichis, sinon le build échoue).
@@ -179,6 +189,9 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-3): demarre le bloc 4 (fonctions depart moteur, sectionneur, contacteur)`
 - `feat(module-3): complete le bloc 4 (3-21 a 3-24), examen et badge`
 - `ci(pages): publie aussi depuis la branche de travail pour reviser en ligne`
+- `ci(pages): revient au deploiement depuis main uniquement`
+- `feat(module-3): demarre le bloc 5 (moteur asynchrone, couplage, demarrage direct)`
+- `feat(module-3): complete le bloc 5 (3-28 a 3-31), examen et badge`
 
 ## Instructions pour reprendre le développement
 
