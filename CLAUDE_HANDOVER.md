@@ -46,11 +46,19 @@ aucune réécriture d'historique.)
 
 **Étape 1** — aucun (refactor structurel pur).
 
-**Étape 2** — module 3, bloc 2 (publication progressive, 2 chapitres sur 7) :
+**Étape 2 puis étape 3** — module 3, bloc 2 **complet (7 chapitres sur 7, statut `available` avec examen)** :
 - **3-4 — Comprendre le risque électrique** (contact direct/indirect, court-circuit, effets sur le corps,
   rôle de la terre et des protections). Intègre l'**animation interactive « circuit ouvert / fermé / court-circuit »**.
 - **3-5 — La consignation électrique étape par étape** (séparer, condamner, identifier, VAT).
   Intègre le **schéma interactif « consignation étape par étape »**.
+- **3-6 — Les EPI et l'outillage isolant** (gants isolants, écran facial, outils isolés ; contrôle avant usage).
+  Schéma statique `electrical-ppe`.
+- **3-7 — Les habilitations électriques (NF C 18-510)** (domaine, rôle, attributs ; BR vs BC).
+  Intègre le **schéma interactif « décodeur d'habilitation »**.
+- **3-8 — Mesurer en sécurité** (catégories CAT, calibre, cordons, sous/hors tension). Schéma `measurement-safety`.
+- **3-9 — Conduite à tenir face à un accident électrique** (protéger, alerter, secourir). Schéma `electrical-first-aid`.
+- **3-10 — Synthèse sécurité et mise en situation** (démarche complète, références aux chapitres 3-4 à 3-9).
+- Examen du bloc 2 (14 questions couvrant les 7 chapitres, seuil 80 %) + badge `electro_block_2` (« Sécurité électrique »).
 
 ## Fichiers créés
 
@@ -58,10 +66,10 @@ aucune réécriture d'historique.)
 - `src/data/electrotechnique.ts` — module M3 par blocs (leçons 3-1/3-2/3-3 déplacées + feuille de route blocs 2-7).
 - `CLAUDE_HANDOVER.md` — ce document.
 
-**Étape 2**
+**Étapes 2-3**
 - `src/features/courses/InteractiveSchema.tsx` — composant des schémas interactifs/animés
-  (2 prototypes : `consignation-interactive` et `circuit-states`), SVG + CSS + état React.
-- `src/data/electrotechniqueQuestions.ts` — banque de questions du bloc 2 (`els1`…`els10`).
+  (`consignation-interactive`, `circuit-states`, `habilitation-decoder`), SVG + CSS + état React.
+- `src/data/electrotechniqueQuestions.ts` — banque de questions du bloc 2 (`els1`…`els35`).
 
 ## Fichiers modifiés
 
@@ -69,14 +77,20 @@ aucune réécriture d'historique.)
 - `src/data/modules.ts` — retrait du module M3 (déplacé), retrait de l'import `Zap` devenu inutile.
 - `src/data/index.ts` — assemblage `[m1, m2, ELECTRO_MODULE (m3), MECHANICS_MODULE (m4)]` + réexports.
 
-**Étape 2**
-- `src/types/index.ts` — ajout de `InteractiveSchemaType` et du champ facultatif `Lesson.illustrations`.
+**Étapes 2-3**
+- `src/types/index.ts` — ajout de `InteractiveSchemaType`, du champ facultatif `Lesson.illustrations`,
+  et de trois `LessonSchemaType` statiques (`electrical-ppe`, `measurement-safety`, `electrical-first-aid`).
 - `src/index.css` — keyframes `tmi-flow` + classe `.tmi-current-flow`, animation active uniquement
   si `prefers-reduced-motion: no-preference`, mise en pause via `.is-paused`.
 - `src/features/courses/LessonView.tsx` — rendu des `illustrations` après le schéma statique.
 - `src/features/courses/index.ts` — export de `InteractiveSchema`.
-- `src/data/electrotechnique.ts` — ajout des chapitres 3-4 et 3-5, bloc `m3-b2` passé en `in_progress`.
+- `src/features/courses/LessonSchema.tsx` — 3 nouveaux schémas statiques (EPI, mesure en sécurité, secours).
+- `src/data/electrotechnique.ts` — chapitres 3-4 à 3-10, bloc `m3-b2` passé en `available` avec examen.
 - `src/data/index.ts` — fusion de `ELECTRO_QUESTIONS` dans la banque de questions.
+- `src/data/badges.ts` — badge `electro_block_2` (« Sécurité électrique »).
+- `src/hooks/useProgress.ts` — attribution du badge `electro_block_2` à la réussite de l'examen `m3-b2`
+  (constante renommée `blockExamBadges`).
+- `vite.config.ts` — chunk dédié `learning-electro` pour isoler les données du module 3.
 
 ## Décisions techniques
 
@@ -88,27 +102,28 @@ aucune réécriture d'historique.)
 - **Schémas visuels : SVG + CSS + état React, sans nouvelle dépendance** (aucune librairie d'animation).
   Chaque illustration a un titre, une légende et une explication ; reste lisible sans mouvement ;
   n'utilise jamais la couleur seule (texte + icônes) ; respecte `prefers-reduced-motion` au niveau CSS ;
-  propose Pause/Recommencer là où c'est pertinent. Impact bundle mesuré : `learning-data` 459 → 475 kB
-  (sous le budget de 500 kB), `index` (app) +13 kB.
-- Bloc 2 en statut `in_progress` : il s'affiche avec le badge « Publication progressive », propose ses
-  chapitres disponibles et **n'exige pas encore d'examen** (l'examen sera ajouté quand le bloc sera complété
-  et passé en `available`). Rappel : un bloc `in_progress` reste **verrouillé tant que l'examen du bloc
-  précédent (bloc 1) n'est pas réussi** — comportement de déblocage séquentiel hérité de M4.
+  propose Pause/Recommencer là où c'est pertinent.
+- **Chunk `learning-electro`** : quand `learning-data` a approché le budget de 500 kB/fichier, les données
+  du module 3 ont été isolées dans leur propre chunk via `vite.config.ts` (`learning-data` ~449 kB,
+  `learning-electro` ~63 kB) — le contenu peut continuer à grandir sans casser `check:bundle`.
+- Bloc 2 finalisé en statut `available` : 7 chapitres + examen (14 questions couvrant les 7 leçons, seuil 80 %)
+  + badge `electro_block_2`. Rappel : un bloc reste **verrouillé tant que l'examen du bloc précédent n'est pas
+  réussi** — déblocage séquentiel hérité de M4 (pour tester le bloc 2, réussir d'abord l'examen du bloc 1).
 
 ## Tests exécutés
 
 - `npm run check` (typecheck TypeScript + build de production + validateur pédagogique + budget bundle) : **OK**
-  après l'étape 1 et après l'étape 2.
-- Démarrage `npm run dev` : serveur opérationnel, app et nouveau composant servis (HTTP 200).
+  après chaque étape (1, 2, commit A, commit B).
+- Démarrage `npm run dev` : serveur opérationnel, app et composants servis (HTTP 200).
 - Vérification visuelle pixel non réalisée dans l'environnement distant (Playwright non installé,
   non ajouté volontairement). **À confirmer visuellement côté PC / Codex** : ouvrir M3 → réussir l'examen
-  du bloc 1 pour déverrouiller le bloc 2 → chapitres 3-4 et 3-5 → tester les schémas interactifs,
-  le mode clair/sombre et l'affichage mobile.
+  du bloc 1 pour déverrouiller le bloc 2 → parcourir les 7 chapitres → tester les 3 schémas interactifs
+  (circuit, consignation, décodeur d'habilitation), le mode clair/sombre et l'affichage mobile.
 
 ## Résultat du build
 
-- Build réussi. Décomptes après étape 2 : **4 modules, 19 blocs, 59 leçons, 300 questions, 10 pannes, 12 badges.**
-- Plus gros bundle : `learning-data` ≈ 475 kB (sous le budget de 500 kB).
+- Build réussi. Décomptes après commit B : **4 modules, 19 blocs, 64 leçons, 325 questions, 10 pannes, 13 badges.**
+- Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` ≈ 63 kB (budget 500 kB/fichier).
 
 ## Problèmes connus
 
@@ -116,25 +131,26 @@ aucune réécriture d'historique.)
   préexistant : les têtes de flèche des schémas statiques ne s'affichent pas). Non corrigé pour rester
   ciblé ; les nouveaux schémas interactifs définissent leurs propres marqueurs inline.
 - M4 reste incomplet (6 blocs sur 12), conformément à la décision de ne pas y toucher pour l'instant.
-- Vérification visuelle/mobile des 2 schémas interactifs restant à faire côté PC (voir « Tests exécutés »).
+- Vérification visuelle/mobile des schémas restant à faire côté PC (voir « Tests exécutés »).
 
 ## Éléments restant à faire
 
-- Compléter le **bloc 2 de M3** : chapitres 3-6 à 3-10 (EPI et outillage isolant, VAT et mesures en sécurité,
-  habilitations NF C 18-510, conduite à tenir en cas d'incident, synthèse), puis passer le bloc en `available`
-  avec son examen de validation.
-- Étendre progressivement les blocs 3 à 7 de M3.
-- Envisager d'étendre les règles de `validate.ts` aux nouvelles leçons `3-*` **une fois tous les chapitres
+- **Bloc 2 de M3 : terminé** (7 chapitres, examen, badge).
+- Développer les **blocs 3 à 7 de M3** (réseaux et régimes de neutre, appareillage approfondi,
+  moteurs et variation de vitesse, lecture de schémas, diagnostic électrique).
+- Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
   de M3 harmonisés** (attention : 3-1/3-2/3-3 n'ont pas encore le parcours pro complet — ne pas activer
   la règle avant de les avoir enrichis, sinon le build échoue).
-- Ajouter des badges de maîtrise par bloc pour M3 (sur le modèle `mechanics_block_*`).
 - Réutiliser `InteractiveSchema` pour les prochains schémas (contacteur/relais thermique, démarrage moteur,
-  sens de rotation, etc.) en ajoutant de nouveaux `InteractiveSchemaType`.
+  sens de rotation, capteurs, etc.) en ajoutant de nouveaux `InteractiveSchemaType`.
 
 ## Commits réalisés
 
-- `refactor(module-3): restructure l'electrotechnique en parcours par blocs` (poussé : `b0a0dfb`)
+Branche poussée sur GitHub (Pull Request #1) :
+- `refactor(module-3): restructure l'electrotechnique en parcours par blocs`
 - `feat(module-3): ajoute le bloc securite (chap. 3-4, 3-5) et 2 schemas interactifs`
+- `feat(module-3): chapitres 3-6 (EPI) et 3-7 (habilitations) + decodeur interactif`
+- `feat(module-3): complete le bloc securite (3-8, 3-9, 3-10), examen et badge`
 
 ## Instructions pour reprendre le développement
 

@@ -531,6 +531,258 @@ const block2Lessons: Lesson[] = [
         "(a) B0 = basse tension, travaux d'ordre non électrique : personne non-électricienne travaillant près d'installations BT. (b) B2 = basse tension, chargé de travaux : il dirige et réalise des travaux électriques. (c) BC = basse tension, chargé de consignation : c'est lui qui réalise la consignation. La consignation est donc du ressort du BC.",
     },
   },
+  {
+    id: "3-8",
+    title: "Mesurer en sécurité",
+    durationMinutes: 28,
+    objectifs: [
+      "Appliquer les précautions avant, pendant et après une mesure électrique.",
+      "Éviter les erreurs de mesure dangereuses pour la personne et l'appareil.",
+    ],
+    simple:
+      "Mesurer est utile pour diagnostiquer, mais une mesure mal préparée peut être dangereuse. On choisit le bon appareil, le bon calibre, on vérifie l'état des cordons et on distingue ce qui se mesure hors tension de ce qui se mesure sous tension.",
+    vocab: [
+      ["Catégorie de mesure (CAT)", "Classement (CAT II, III, IV) indiquant l'environnement électrique où l'appareil peut être utilisé en sécurité."],
+      ["Calibre", "Plage de mesure choisie sur l'appareil (tension, intensité, résistance)."],
+      ["Cordons de mesure", "Fils reliant l'appareil au circuit ; ils doivent être en bon état et adaptés (parfois à fusible)."],
+      ["Continuité", "Test qui vérifie qu'un circuit n'est pas coupé : se fait hors tension."],
+      ["Pince ampèremétrique", "Mesure l'intensité sans ouvrir le circuit, plus sûre pour ce contrôle."],
+    ],
+    example:
+      "Pour vérifier la présence des 3 phases sur un moteur, on utilise une pince ampèremétrique adaptée. Pour tester la continuité d'un enroulement, on consigne d'abord, puis on mesure hors tension au multimètre : jamais l'inverse.",
+    schema: "measurement-safety",
+    ascii: "AVANT   → appareil + cordons en bon etat, bonne categorie\nCHOISIR → fonction et calibre corrects\nMESURER → tension : sous tension autorisee | R et continuite : hors tension",
+    retenir: [
+      "La catégorie (CAT) de l'appareil doit correspondre à l'installation mesurée.",
+      "On choisit la fonction et le calibre AVANT de connecter, jamais pendant.",
+      "Résistance et continuité se mesurent hors tension ; tension et intensité peuvent se mesurer sous tension avec les précautions adaptées.",
+      "La pince ampèremétrique évite d'ouvrir le circuit pour mesurer l'intensité.",
+    ],
+    erreurs: [
+      "Mesurer une résistance ou une continuité sur un circuit encore sous tension.",
+      "Laisser l'appareil en position ampèremètre et l'utiliser comme voltmètre (risque de court-circuit).",
+      "Utiliser des cordons abîmés ou une catégorie de mesure inadaptée à l'installation.",
+    ],
+    astucesPro: [
+      "On vérifie le bon fonctionnement de l'appareil sur une valeur connue avant une mesure importante.",
+      "On garde une main éloignée des parties actives : on ne s'appuie pas sur le circuit pendant la mesure.",
+    ],
+    diagnostic: [
+      "Déterminer la grandeur à mesurer et donc l'appareil et la fonction adaptés.",
+      "Vérifier la catégorie de mesure et l'état des cordons.",
+      "Décider si la mesure se fait sous tension (tension, intensité) ou hors tension (résistance, continuité).",
+    ],
+    depannage: [
+      "Consigner avant toute mesure de résistance, de continuité ou d'isolement.",
+      "Contrôler l'absence de tension avant les mesures qui l'exigent.",
+      "Interpréter la mesure en la comparant à une valeur attendue, pas dans l'absolu.",
+    ],
+    securite: [
+      "Certaines mesures se font hors tension : elles imposent une consignation préalable.",
+      "Les mesures sous tension ne sont réalisées que par une personne habilitée, avec le matériel adapté.",
+      "Cette application est pédagogique et ne remplace pas la formation à l'usage des appareils de mesure.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien veut mesurer la continuité d'un contact, mais l'armoire est toujours sous tension.",
+      mission: ["Dire si la mesure est possible en l'état.", "Indiquer la préparation nécessaire.", "Préciser le bon réglage de l'appareil."],
+      correction:
+        "La mesure de continuité ne se fait pas sous tension : c'est dangereux et cela peut détruire l'appareil. Il faut d'abord consigner l'installation et vérifier l'absence de tension, puis régler le multimètre sur la fonction continuité (ou ohmmètre) et mesurer entre les bornes du contact. Une continuité inattendue révèle par exemple un contact collé.",
+    },
+    memo: ["Bonne catégorie CAT", "Calibre choisi avant", "R et continuité = hors tension", "Comparer à une valeur attendue"],
+    resume:
+      "Mesurer en sécurité, c'est choisir le bon appareil et le bon calibre, contrôler son état, et distinguer les mesures sous tension des mesures hors tension.",
+    quizIds: ["els21", "els22", "els23", "els24", "els25"],
+    verification: {
+      question: "Dans quel état doit être le circuit pour mesurer une résistance ou une continuité ?",
+      options: ["Sous tension", "Hors tension et consigné", "En surcharge", "Peu importe"],
+      correct: 1,
+      explanation: "Les mesures de résistance et de continuité se font toujours hors tension, après consignation : sinon on risque d'endommager l'appareil et de se mettre en danger.",
+    },
+    exercice: {
+      enonce:
+        "Classez ces mesures en « sous tension possible » ou « hors tension obligatoire » : (a) tension d'alimentation, (b) continuité d'un fusible, (c) intensité sur une phase, (d) résistance d'un enroulement.",
+      consignes: [
+        "Classe chaque mesure dans la bonne catégorie.",
+        "Justifie brièvement chaque classement.",
+        "Rappelle la précaution commune à toutes les mesures.",
+      ],
+      criteres: [
+        "(a) et (c) sous tension possible ; (b) et (d) hors tension obligatoire.",
+        "J'ai justifié chaque classement.",
+        "J'ai rappelé le contrôle de l'état de l'appareil et des cordons.",
+      ],
+      correction:
+        "(a) tension : sous tension (c'est le but). (c) intensité : sous tension, idéalement à la pince. (b) continuité et (d) résistance : hors tension obligatoire, après consignation. Dans tous les cas, on vérifie l'état de l'appareil, la catégorie de mesure et les cordons avant de commencer.",
+    },
+  },
+  {
+    id: "3-9",
+    title: "Conduite à tenir face à un accident électrique",
+    durationMinutes: 26,
+    objectifs: [
+      "Réagir dans le bon ordre face à une victime d'origine électrique.",
+      "Connaître les gestes qui protègent sans se mettre soi-même en danger.",
+    ],
+    simple:
+      "Face à un accident électrique, la précipitation est dangereuse. Il existe un ordre simple : protéger d'abord (couper le courant), alerter les secours, puis secourir selon sa formation. Se jeter sur la victime encore en contact avec le courant, c'est risquer une seconde victime.",
+    vocab: [
+      ["Électrisation", "Passage d'un courant électrique dans le corps."],
+      ["Coupure d'urgence", "Action de couper l'alimentation (arrêt d'urgence, disjoncteur) pour supprimer le danger."],
+      ["Dégagement d'urgence", "Écarter la victime de la source avec un objet isolant si l'on ne peut pas couper le courant."],
+      ["Alerter", "Prévenir les secours : 112 (Europe), 15 (SAMU), 18 (pompiers)."],
+      ["SST", "Sauveteur Secouriste du Travail : personne formée aux gestes de premiers secours en entreprise."],
+    ],
+    example:
+      "Un opérateur reste « collé » à une machine. Le premier réflexe n'est pas de le tirer à mains nues, mais de couper l'alimentation (arrêt d'urgence, disjoncteur). Une fois le danger supprimé, on alerte les secours et on applique les gestes de premiers secours selon sa formation.",
+    schema: "electrical-first-aid",
+    ascii: "PROTEGER → couper le courant / degager avec un isolant\nALERTER  → 112 / 15 / 18\nSECOURIR → gestes selon sa formation (SST)",
+    retenir: [
+      "Ordre : protéger, alerter, secourir.",
+      "Ne jamais toucher une victime encore en contact avec le courant à mains nues.",
+      "On coupe l'alimentation ou, à défaut, on dégage la victime avec un objet isolant et sec.",
+      "Un feu d'origine électrique ne s'éteint pas à l'eau : couper l'alimentation et utiliser un extincteur adapté (CO2 ou poudre).",
+    ],
+    erreurs: [
+      "Se précipiter et toucher la victime sans avoir coupé le courant.",
+      "Utiliser de l'eau sur un feu d'origine électrique encore sous tension.",
+      "Oublier d'alerter les secours ou donner une adresse imprécise.",
+    ],
+    astucesPro: [
+      "On repère à l'avance l'emplacement des arrêts d'urgence et des coupures générales de sa zone.",
+      "On connaît le numéro interne d'alerte de l'entreprise en plus des numéros publics.",
+    ],
+    diagnostic: [
+      "Évaluer si la victime est encore en contact avec la source.",
+      "Identifier le moyen de coupure le plus rapide et le plus sûr.",
+      "Repérer les dangers persistants (autres pièces sous tension, feu).",
+    ],
+    depannage: [
+      "Supprimer le danger avant tout contact (couper ou dégager avec un isolant).",
+      "Alerter les secours avec un message clair (lieu, nature, état de la victime).",
+      "Appliquer les gestes de premiers secours dans la limite de sa formation.",
+    ],
+    securite: [
+      "La priorité absolue est de ne pas devenir soi-même une victime.",
+      "Les gestes de secours doivent être réalisés selon une formation reconnue (SST).",
+      "Cette application est pédagogique : elle ne remplace pas une formation aux premiers secours.",
+    ],
+    etudeDeCas: {
+      situation: "Un collègue s'effondre près d'une armoire ouverte ; sa main touche encore un conducteur.",
+      mission: ["Donner le tout premier geste.", "Indiquer l'ordre complet des actions.", "Préciser l'erreur à ne surtout pas commettre."],
+      correction:
+        "Premier geste : couper l'alimentation (arrêt d'urgence ou disjoncteur) ou, si impossible, dégager la victime avec un objet isolant sec — jamais à mains nues. Ensuite : alerter les secours (112/15/18) avec un message précis, puis secourir selon sa formation SST. Erreur à ne pas commettre : toucher la victime encore sous tension, ce qui créerait une deuxième victime.",
+    },
+    memo: ["Protéger", "Alerter", "Secourir", "Jamais à mains nues", "Feu électrique : pas d'eau"],
+    resume:
+      "Face à un accident électrique, on protège en coupant le courant, on alerte les secours, puis on secourt selon sa formation, sans jamais se mettre en danger.",
+    quizIds: ["els26", "els27", "els28", "els29", "els30"],
+    verification: {
+      question: "Que faut-il faire en premier face à une personne encore en contact avec un conducteur sous tension ?",
+      options: ["La tirer par le bras immédiatement", "Couper l'alimentation ou la dégager avec un isolant", "Lui donner à boire", "Attendre les secours sans rien faire"],
+      correct: 1,
+      explanation: "On supprime d'abord le danger : couper le courant, ou dégager la victime avec un objet isolant sec. Toucher la victime sous tension à mains nues ferait une seconde victime.",
+    },
+    exercice: {
+      enonce:
+        "Un feu se déclare dans une armoire électrique encore sous tension. Décrivez la conduite à tenir.",
+      consignes: [
+        "Indique la première action sur l'alimentation.",
+        "Précise le type d'extincteur adapté.",
+        "Rappelle l'alerte et ce qu'il ne faut pas faire.",
+      ],
+      criteres: [
+        "J'ai indiqué de couper l'alimentation si possible.",
+        "J'ai choisi un extincteur CO2 ou poudre, pas d'eau.",
+        "J'ai prévu l'alerte des secours.",
+      ],
+      correction:
+        "On coupe l'alimentation si c'est possible sans risque, on attaque le feu avec un extincteur adapté (CO2 ou poudre) — jamais d'eau tant que l'installation peut être sous tension — et on alerte les secours (112/18). On n'ouvre pas inutilement l'armoire et on n'expose personne à l'arc ou aux fumées.",
+    },
+  },
+  {
+    id: "3-10",
+    title: "Synthèse sécurité et mise en situation",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier les notions du bloc dans une démarche d'intervention sûre.",
+      "Conduire une mise en situation complète, de la préparation à la traçabilité.",
+    ],
+    simple:
+      "Ce chapitre rassemble tout le bloc : comprendre le risque, consigner, se protéger, connaître ses limites d'habilitation, mesurer en sécurité et réagir en cas d'accident. La sécurité n'est pas une étape isolée, c'est un fil conducteur du début à la fin de l'intervention.",
+    vocab: [
+      ["Préparation", "Analyser le travail, les risques et les moyens avant d'agir."],
+      ["Consignation", "Mettre et maintenir l'ouvrage hors tension (chapitre 3-5)."],
+      ["Habilitation", "Cadre de ce que l'on a le droit de faire (chapitre 3-7)."],
+      ["Traçabilité", "Garder une trace écrite de l'intervention et de son résultat."],
+      ["Analyse de risque", "Identifier les dangers et définir les mesures de prévention avant l'intervention."],
+    ],
+    example:
+      "Avant de remplacer un contacteur : on analyse le travail, on fait consigner par un BC, on vérifie l'absence de tension, on porte les EPI adaptés, on intervient dans les limites de son habilitation, on mesure hors tension quand il le faut, puis on rend compte et on trace l'intervention.",
+    schema: "consignation-steps",
+    ascii: "PREPARER → CONSIGNER → SE PROTEGER → INTERVENIR → CONTROLER → TRACER\n analyse    hors tension   EPI          dans ses    remise en   compte rendu\n des risques + VAT         adaptes      limites     service",
+    retenir: [
+      "La sécurité est un fil conducteur, pas une case à cocher au début.",
+      "Consignation (3-5), EPI (3-6), habilitation (3-7) et mesures (3-8) se combinent dans une même intervention.",
+      "On agit toujours dans les limites de son habilitation et on demande la consignation à un BC quand elle est requise.",
+      "Une intervention se termine par une remise en service maîtrisée et une trace écrite.",
+    ],
+    erreurs: [
+      "Traiter la sécurité comme une formalité de départ et l'oublier ensuite.",
+      "Enchaîner les étapes sans vérifier l'absence de tension avant le travail.",
+      "Ne laisser aucune trace de l'intervention et de ses contrôles.",
+    ],
+    astucesPro: [
+      "Avant de commencer, on se pose trois questions : suis-je habilité, est-ce consigné, ai-je les bons EPI ?",
+      "Un bon compte rendu fait gagner du temps à la prochaine intervention.",
+    ],
+    diagnostic: [
+      "Reprendre la chaîne : risque, consignation, protection, habilitation, mesure, secours.",
+      "Repérer l'étape la plus risquée de l'intervention prévue.",
+      "Vérifier que rien n'a été sauté avant tout contact.",
+    ],
+    depannage: [
+      "En cas de doute sur une étape de sécurité, s'arrêter et reprendre depuis la consignation.",
+      "Ne remettre sous tension qu'après contrôle et information des personnes concernées.",
+      "Renseigner le compte rendu : ce qui a été fait, mesuré et vérifié.",
+    ],
+    securite: [
+      "Toutes les règles des chapitres 3-4 à 3-9 s'appliquent en même temps sur le terrain.",
+      "La sécurité prime toujours sur la vitesse ou la disponibilité de l'équipement.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur de convoyeur est en panne. On vous demande d'intervenir « vite fait » sans consignation ni EPI, car « la ligne doit repartir ».",
+      mission: ["Lister les manquements de sécurité.", "Proposer l'ordre correct de l'intervention.", "Indiquer ce que l'on trace à la fin."],
+      correction:
+        "Manquements : pas de consignation, pas de VAT, pas d'EPI, pression sur la vitesse au détriment de la sécurité, et éventuellement une opération hors habilitation. Ordre correct : analyser le travail et les risques, faire consigner par un BC, vérifier l'absence de tension, porter les EPI adaptés, intervenir dans ses limites d'habilitation, mesurer hors tension si nécessaire, remettre en service de façon maîtrisée, puis tracer l'intervention (cause, actions, contrôles). La pression de production ne justifie jamais de sauter la sécurité.",
+    },
+    memo: ["Préparer", "Consigner + VAT", "EPI", "Rester dans ses limites", "Contrôler", "Tracer"],
+    resume:
+      "Une intervention électrique sûre enchaîne préparation, consignation, protection, respect de l'habilitation, mesures adaptées et traçabilité : la sécurité relie toutes ces étapes.",
+    quizIds: ["els31", "els32", "els33", "els34", "els35"],
+    verification: {
+      question: "Sous la pression « la ligne doit repartir vite », que fait un technicien responsable ?",
+      options: ["Il saute la consignation pour gagner du temps", "Il respecte la démarche de sécurité, qui prime sur la vitesse", "Il intervient sans EPI mais rapidement", "Il ignore son niveau d'habilitation"],
+      correct: 1,
+      explanation: "La sécurité prime toujours : consignation, VAT, EPI et habilitation ne se négocient pas contre du temps de production.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez, dans l'ordre, les étapes d'une intervention électrique sûre sur un départ moteur, en citant pour chacune la notion du bloc concernée.",
+      consignes: [
+        "Donne les étapes de la préparation à la traçabilité.",
+        "Relie chaque étape à un chapitre du bloc (risque, consignation, EPI, habilitation, mesure).",
+        "Termine par la remise en service et le compte rendu.",
+      ],
+      criteres: [
+        "Les étapes sont dans l'ordre et complètes.",
+        "Chaque étape est reliée à une notion du bloc.",
+        "J'ai prévu la remise en service et la traçabilité.",
+      ],
+      correction:
+        "Préparer et analyser les risques (3-4), faire consigner et vérifier l'absence de tension (3-5), porter les EPI adaptés (3-6), agir dans les limites de son habilitation (3-7), réaliser les mesures utiles en sécurité (3-8), savoir réagir en cas d'incident (3-9), puis remettre en service de façon maîtrisée et tracer l'intervention. La sécurité relie l'ensemble de la démarche.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
@@ -553,8 +805,12 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
     title: "Sécurité électrique, consignation et habilitations",
     objective: "Appliquer une démarche de consignation et situer les habilitations avant toute intervention électrique.",
     lessonIds: block2Lessons.map((lesson) => lesson.id),
-    chapterCount: 7,
-    status: "in_progress",
+    chapterCount: block2Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["els1", "els5", "els6", "els9", "els11", "els13", "els17", "els19", "els21", "els23", "els26", "els28", "els31", "els33"],
+      passPercent: 80,
+    },
   },
   { id: "m3-b3", num: 3, title: "Réseaux, distribution et régimes de neutre", objective: "Distinguer monophasé et triphasé, comprendre la distribution et les régimes de neutre.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m3-b4", num: 4, title: "Appareillage de commande et de protection approfondi", objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.", lessonIds: [], chapterCount: 7, status: "planned" },

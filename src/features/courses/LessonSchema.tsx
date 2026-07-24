@@ -864,5 +864,54 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "measurement-safety") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Multimètre */}
+        <rect x="30" y="20" width="110" height="90" rx="10" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <rect x="44" y="30" width="82" height="24" rx="3" fill={dark ? "#0f172a" : "#e2e8f0"} stroke={stroke} />
+        <text x="85" y="47" textAnchor="middle" fontSize="11" fill={accent} fontFamily="monospace">0.0 V</text>
+        <circle cx="85" cy="80" r="18" fill="none" stroke={stroke} strokeWidth="1.5" />
+        <line x1="85" y1="80" x2="85" y2="66" stroke={accent} strokeWidth="2.5" />
+        <text x="85" y="103" textAnchor="middle" fontSize="7" fill={stroke}>sélecteur de calibre</text>
+        {/* Cordons */}
+        <circle cx="60" cy="110" r="3" fill={stroke} />
+        <circle cx="110" cy="110" r="3" fill={stroke} />
+        <text x="60" y="124" textAnchor="middle" fontSize="7" fill={stroke}>COM</text>
+        <text x="110" y="124" textAnchor="middle" fontSize="7" fill={stroke}>V/Ω</text>
+        {/* Règles de sécurité */}
+        <g>
+          <rect x="160" y="24" width="150" height="24" rx="4" fill="none" stroke={stroke} />
+          <text x="235" y="39" textAnchor="middle" fontSize="8" fill={stroke}>Catégorie adaptée (CAT II/III/IV)</text>
+          <rect x="160" y="54" width="150" height="24" rx="4" fill="none" stroke={stroke} />
+          <text x="235" y="69" textAnchor="middle" fontSize="8" fill={stroke}>Bon calibre avant de mesurer</text>
+          <rect x="160" y="84" width="150" height="24" rx="4" fill="none" stroke={accent} strokeWidth="2" />
+          <text x="235" y="99" textAnchor="middle" fontSize="8" fill={stroke}>R et continuité : hors tension</text>
+        </g>
+      </svg>
+    );
+  }
+  if (type === "electrical-first-aid") {
+    const steps: Array<[string, string]> = [
+      ["1", "Protéger : couper ou dégager avec un isolant"],
+      ["2", "Alerter : 112 / 15 / 18"],
+      ["3", "Secourir selon sa formation (SST)"],
+    ];
+    return (
+      <svg viewBox="0 0 320 120" className="w-full h-28">
+        {steps.map(([n, label], i) => {
+          const y = 22 + i * 34;
+          return (
+            <g key={n}>
+              <circle cx="30" cy={y} r="13" fill={i === 0 ? "#ef4444" : accent} />
+              <text x="30" y={y + 4} textAnchor="middle" fontSize="11" fill="#1f1300" fontWeight="bold">{n}</text>
+              <text x="52" y={y + 4} fontSize="10" fill={stroke}>{label}</text>
+              {i < steps.length - 1 && <line x1="30" y1={y + 13} x2="30" y2={y + 21} stroke={stroke} />}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
   return null;
 }

@@ -35,12 +35,13 @@ function checkBadges(progress: Progress) {
     }
   });
 
-  const mechanicsExamBadges: Record<string, string> = {
+  const blockExamBadges: Record<string, string> = {
+    "m3-b2": "electro_block_2",
     "m4-b1": "mechanics_block_1",
     "m4-b5": "mechanics_block_5",
     "m4-b6": "mechanics_block_6",
   };
-  for (const [blockId, badgeId] of Object.entries(mechanicsExamBadges)) {
+  for (const [blockId, badgeId] of Object.entries(blockExamBadges)) {
     const result = progress.blockExamScores[blockId];
     if (result && (result.correctCount / result.total) * 100 >= 80) badges.add(badgeId);
   }
