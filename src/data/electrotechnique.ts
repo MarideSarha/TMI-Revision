@@ -1044,6 +1044,342 @@ const block3Lessons: Lesson[] = [
         "(a) TT : le différentiel (DDR) coupe le courant de fuite vers la terre. (b) TN : le défaut devient un court-circuit phase-PE, coupé par la protection contre les surintensités (disjoncteur, fusible). (c) IT : le premier défaut ne coupe pas et est signalé par le CPI, ce qui préserve la continuité ; il doit être réparé avant l'apparition d'un second défaut. Dans tous les cas, la mise à la terre protège les personnes contre les contacts indirects.",
     },
   },
+  {
+    id: "3-14",
+    title: "La protection différentielle et la protection des personnes",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer le principe de fonctionnement d'un dispositif différentiel.",
+      "Distinguer la protection des personnes (différentiel) de la protection des circuits (surintensité).",
+    ],
+    simple:
+      "Le dispositif différentiel (DDR) compare le courant qui part et celui qui revient. En fonctionnement normal, ils sont égaux. Si une partie du courant s'échappe vers la terre (fuite), le différentiel le détecte et coupe : c'est ainsi qu'il protège les personnes.",
+    vocab: [
+      ["Différentiel (DDR)", "Dispositif qui coupe le circuit quand le courant aller et le courant retour ne sont plus égaux."],
+      ["Courant de fuite", "Partie du courant qui s'échappe du circuit normal, par exemple vers la terre à travers un corps."],
+      ["Sensibilité", "Valeur de fuite à partir de laquelle le différentiel coupe, exprimée en mA (ex : 30 mA)."],
+      ["Bouton test", "Bouton qui simule un défaut pour vérifier que le différentiel fonctionne."],
+      ["Protection des personnes", "Rôle du différentiel : éviter l'électrisation en cas de défaut."],
+    ],
+    example:
+      "Un différentiel de 30 mA protège les personnes sur les circuits de prises : si un courant de plus de 30 mA fuit vers la terre (par exemple à travers un corps), il coupe en une fraction de seconde. Le bouton test doit être vérifié régulièrement.",
+    schema: "control-circuit",
+    ascii: "courant aller = courant retour  → normal, pas de coupure\ncourant aller ≠ courant retour  → fuite → le DIFFERENTIEL coupe\n30 mA = protection des personnes",
+    retenir: [
+      "Le différentiel compare courant aller et courant retour ; une différence = fuite = coupure.",
+      "Un différentiel de 30 mA protège les personnes contre l'électrisation.",
+      "Le différentiel ne protège PAS contre la surcharge ou le court-circuit : c'est le rôle du disjoncteur.",
+      "Le bouton test permet de vérifier que le différentiel fonctionne.",
+    ],
+    erreurs: [
+      "Croire qu'un différentiel protège contre les surcharges : il protège contre les fuites à la terre.",
+      "Ne jamais tester un différentiel et supposer qu'il fonctionne.",
+      "Réarmer un différentiel qui déclenche sans rechercher la fuite.",
+    ],
+    astucesPro: [
+      "Un différentiel qui déclenche signale un vrai défaut d'isolement à localiser, pas un caprice.",
+      "On teste le différentiel avec son bouton test périodiquement, selon les consignes.",
+    ],
+    diagnostic: [
+      "Vérifier si le déclenchement vient d'une fuite (différentiel) ou d'une surintensité (disjoncteur).",
+      "Isoler les circuits pour localiser celui qui provoque la fuite.",
+      "Contrôler l'état d'isolement des récepteurs suspectés.",
+    ],
+    depannage: [
+      "Rechercher le défaut d'isolement avant de réarmer.",
+      "Débrancher les récepteurs un à un pour identifier la fuite.",
+      "Respecter la consignation avant tout contrôle nécessitant un accès.",
+    ],
+    securite: [
+      "Le différentiel est une protection des personnes : on ne le neutralise jamais.",
+      "Un différentiel qui déclenche à répétition doit conduire à rechercher la cause.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un différentiel de 30 mA déclenche dès qu'on branche une machine précise.",
+      mission: ["Formuler l'hypothèse la plus probable.", "Proposer la méthode de recherche.", "Indiquer la précaution avant intervention."],
+      correction:
+        "Le déclenchement lié à une machine précise évoque un défaut d'isolement de cette machine (fuite vers la terre). On confirme en débranchant les récepteurs un à un : si le différentiel tient sans cette machine, le défaut vient d'elle. On consigne ensuite pour contrôler l'isolement de la machine (hors tension) avant réparation. On ne neutralise jamais le différentiel pour « faire marcher » la machine.",
+    },
+    memo: ["Aller = retour → OK", "Fuite → coupe", "30 mA = personnes", "≠ protection surcharge"],
+    resume:
+      "Le différentiel protège les personnes en coupant dès qu'un courant de fuite vers la terre apparaît ; il ne remplace pas la protection contre les surintensités.",
+    quizIds: ["els51", "els52", "els53", "els54", "els55"],
+    verification: {
+      question: "Que détecte un dispositif différentiel pour couper le circuit ?",
+      options: ["Une surcharge du moteur", "Une différence entre courant aller et courant retour (fuite)", "Une baisse de tension", "Une hausse de température ambiante"],
+      correct: 1,
+      explanation: "Le différentiel coupe quand le courant aller et le courant retour ne sont plus égaux, signe d'une fuite vers la terre : il protège les personnes.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence de rôle entre un différentiel (DDR) et un disjoncteur de surintensité, avec un exemple pour chacun.",
+      consignes: [
+        "Décris ce que protège chaque dispositif.",
+        "Donne un exemple de situation traitée par chacun.",
+        "Conclus sur leur complémentarité.",
+      ],
+      criteres: [
+        "J'ai relié le différentiel à la protection des personnes (fuite).",
+        "J'ai relié le disjoncteur à la protection des circuits (surcharge, court-circuit).",
+        "J'ai conclu qu'ils sont complémentaires.",
+      ],
+      correction:
+        "Le différentiel protège les personnes : il coupe en cas de fuite vers la terre (ex : défaut d'isolement d'une machine touchée par un opérateur). Le disjoncteur protège les circuits : il coupe en cas de surcharge ou de court-circuit (ex : trop de récepteurs ou un court-circuit). Les deux sont complémentaires : l'un veille sur les personnes, l'autre sur les conducteurs et le matériel.",
+    },
+  },
+  {
+    id: "3-15",
+    title: "Protéger les circuits : disjoncteurs, calibres et sélectivité",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier le calibre d'une protection à la section du câble à protéger.",
+      "Expliquer la sélectivité entre une protection amont et une protection aval.",
+    ],
+    simple:
+      "Chaque circuit est protégé contre deux dangers : la surcharge (trop de courant longtemps) et le court-circuit (courant très élevé d'un coup). Bien choisir la protection et l'organiser pour que seule la partie en défaut soit coupée, c'est le rôle du calibre et de la sélectivité.",
+    vocab: [
+      ["Calibre", "Courant nominal d'une protection : il doit être adapté au câble et aux récepteurs."],
+      ["Surcharge", "Courant un peu trop élevé pendant un certain temps (déclenchement thermique)."],
+      ["Court-circuit", "Courant très élevé et brutal (déclenchement magnétique)."],
+      ["Courbe (B, C, D)", "Comportement du disjoncteur face aux pointes de courant (ex : C pour usage général)."],
+      ["Sélectivité", "Organisation des protections pour que seule la protection la plus proche du défaut coupe."],
+    ],
+    example:
+      "Un défaut sur une seule machine ne doit pas éteindre tout l'atelier. Si la protection du départ de la machine coupe avant celle du tableau (sélectivité), seule la machine est isolée et le reste continue de fonctionner.",
+    schema: "power-distribution",
+    ascii: "SURCHARGE  → declenchement thermique (lent)\nCOURT-CIRCUIT → declenchement magnetique (rapide)\nSELECTIVITE : la protection la plus PROCHE du defaut coupe en premier",
+    retenir: [
+      "Une protection agit contre la surcharge (thermique) et le court-circuit (magnétique).",
+      "Le calibre doit être adapté au câble : trop élevé, le câble n'est pas protégé.",
+      "La courbe (B, C, D) est choisie selon les pointes de courant du récepteur.",
+      "La sélectivité assure que seule la protection la plus proche du défaut coupe.",
+    ],
+    erreurs: [
+      "Remplacer une protection par un calibre supérieur pour « qu'elle ne déclenche plus » : le câble n'est alors plus protégé.",
+      "Confondre déclenchement thermique (surcharge) et magnétique (court-circuit).",
+      "Négliger la sélectivité : un défaut local coupe alors toute l'installation.",
+    ],
+    astucesPro: [
+      "On ne monte jamais en calibre pour masquer un défaut : on cherche la cause du déclenchement.",
+      "La sélectivité se vérifie sur le schéma : la protection amont doit être plus « lente » ou plus élevée que l'aval.",
+    ],
+    diagnostic: [
+      "Déterminer si le déclenchement vient d'une surcharge (lente) ou d'un court-circuit (brutal).",
+      "Vérifier que le calibre correspond au câble et aux récepteurs.",
+      "Contrôler la cohérence amont/aval pour la sélectivité.",
+    ],
+    depannage: [
+      "Rechercher la cause d'une surcharge (récepteur, réglage) avant de réarmer.",
+      "En cas de court-circuit, localiser et réparer le défaut avant remise en service.",
+      "Ne jamais augmenter un calibre pour contourner un déclenchement.",
+    ],
+    securite: [
+      "Un calibre inadapté peut laisser un câble surchauffer : risque d'incendie.",
+      "Le choix des protections relève d'une étude par une personne qualifiée.",
+      "Cette application est pédagogique et ne remplace pas la conception normalisée.",
+    ],
+    etudeDeCas: {
+      situation: "Un court-circuit sur une machine coupe tout l'atelier au lieu de la seule machine.",
+      mission: ["Nommer le principe non respecté.", "Expliquer le comportement attendu.", "Proposer la piste de correction."],
+      correction:
+        "Le principe non respecté est la sélectivité : idéalement, la protection du départ de la machine aurait dû couper avant celle du tableau, isolant la seule machine. Le comportement attendu est que la protection la plus proche du défaut agisse en premier. La piste de correction est de revoir la coordination des protections (calibres, courbes, temporisations) avec une personne qualifiée, pour rétablir la sélectivité.",
+    },
+    memo: ["Calibre adapté au câble", "Thermique = surcharge", "Magnétique = court-circuit", "Sélectivité : le plus proche coupe"],
+    resume:
+      "Protéger un circuit, c'est choisir un calibre adapté au câble et organiser la sélectivité pour n'isoler que la partie réellement en défaut.",
+    quizIds: ["els56", "els57", "els58", "els59", "els60"],
+    verification: {
+      question: "Que garantit la sélectivité des protections ?",
+      options: ["Que toute l'installation coupe à chaque défaut", "Que seule la protection la plus proche du défaut coupe", "Que les câbles chauffent moins", "Que la tension augmente"],
+      correct: 1,
+      explanation: "La sélectivité fait en sorte que seule la protection la plus proche du défaut agisse, pour n'isoler que la partie concernée et préserver le reste de l'installation.",
+    },
+    exercice: {
+      enonce:
+        "Un technicien remplace un disjoncteur qui « déclenche trop souvent » par un modèle de calibre nettement supérieur. Expliquez le danger.",
+      consignes: [
+        "Explique ce que protège le calibre.",
+        "Décris le risque créé par un calibre trop élevé.",
+        "Propose la bonne démarche.",
+      ],
+      criteres: [
+        "J'ai relié le calibre à la protection du câble.",
+        "J'ai identifié le risque de surchauffe/incendie.",
+        "J'ai proposé de chercher la cause du déclenchement.",
+      ],
+      correction:
+        "Le calibre protège le câble contre les surcharges. En montant fortement le calibre, le câble peut désormais être parcouru par un courant qu'il ne supporte pas sans la protection agir : risque de surchauffe et d'incendie. La bonne démarche est de rechercher la cause des déclenchements (surcharge réelle, récepteur défectueux) et de dimensionner la protection selon le câble, avec une personne qualifiée.",
+    },
+  },
+  {
+    id: "3-16",
+    title: "Puissances en triphasé : active, réactive, apparente",
+    durationMinutes: 30,
+    objectifs: [
+      "Distinguer puissance active, réactive et apparente.",
+      "Expliquer le facteur de puissance (cos φ) et l'intérêt de le corriger.",
+    ],
+    simple:
+      "Toute la puissance fournie à une machine ne se transforme pas en travail utile. La puissance active fait le travail, la puissance réactive sert à magnétiser les moteurs, et la puissance apparente est la combinaison des deux. Le facteur de puissance mesure la part réellement utile.",
+    vocab: [
+      ["Puissance active (P)", "Puissance qui produit le travail utile, en watts (W) ou kilowatts (kW)."],
+      ["Puissance réactive (Q)", "Puissance nécessaire pour magnétiser les moteurs et transformateurs, en var."],
+      ["Puissance apparente (S)", "Combinaison de l'active et de la réactive, en voltampères (VA)."],
+      ["Facteur de puissance (cos φ)", "Rapport P/S : part de la puissance réellement utile."],
+      ["Compensation", "Ajout de condensateurs pour réduire la puissance réactive appelée."],
+    ],
+    example:
+      "Un moteur consomme de la puissance active pour entraîner sa charge, mais aussi de la puissance réactive pour créer son champ magnétique. Si le cos φ est faible, l'installation appelle plus de courant pour le même travail : on installe des condensateurs pour compenser.",
+    schema: "energy-flow",
+    ascii: "        S (apparente, VA)\n       /|\n      / | Q (reactive, var)\n     /  |\n    /___|\n     P (active, W)      cos φ = P / S",
+    retenir: [
+      "P (active, W) fait le travail ; Q (réactive, var) magnétise ; S (apparente, VA) combine les deux.",
+      "Facteur de puissance cos φ = P / S : plus il est proche de 1, mieux c'est.",
+      "Un cos φ faible fait appeler plus de courant pour le même travail utile.",
+      "La compensation par condensateurs réduit la puissance réactive appelée au réseau.",
+    ],
+    erreurs: [
+      "Confondre puissance active (utile) et puissance apparente (totale appelée).",
+      "Croire qu'un cos φ faible n'a pas de conséquence : il augmente le courant et les pertes.",
+      "Oublier que les moteurs sont une source importante de puissance réactive.",
+    ],
+    astucesPro: [
+      "Un cos φ qui se dégrade peut signaler une installation mal compensée ou des moteurs peu chargés.",
+      "La compensation se dimensionne selon la charge : trop ou trop peu n'est pas optimal.",
+    ],
+    diagnostic: [
+      "Comparer la puissance appelée (S) à la puissance utile (P) pour estimer le cos φ.",
+      "Repérer les gros consommateurs de réactif (moteurs peu chargés).",
+      "Vérifier l'état d'une éventuelle batterie de condensateurs.",
+    ],
+    depannage: [
+      "Signaler un cos φ dégradé aux personnes en charge de l'installation.",
+      "Contrôler la batterie de condensateurs de compensation si elle existe.",
+      "Éviter de faire tourner à vide des moteurs qui appellent du réactif inutilement.",
+    ],
+    securite: [
+      "Les condensateurs peuvent rester chargés : ils se manipulent hors tension et après décharge.",
+      "Les interventions sur la compensation relèvent d'une personne habilitée.",
+      "Cette application est pédagogique et ne remplace pas la formation.",
+    ],
+    etudeDeCas: {
+      situation: "Une installation appelle beaucoup de courant alors que le travail utile fourni reste modéré.",
+      mission: ["Nommer la grandeur qui explique l'écart.", "Proposer une cause fréquente.", "Indiquer une solution courante."],
+      correction:
+        "L'écart entre le courant appelé et le travail utile s'explique par un facteur de puissance (cos φ) faible : l'installation appelle beaucoup de puissance apparente (S) pour une puissance active (P) modérée. Une cause fréquente est la présence de moteurs peu chargés qui consomment du réactif. La solution courante est la compensation par condensateurs, dimensionnée par une personne qualifiée, qui réduit la puissance réactive appelée au réseau.",
+    },
+    memo: ["P = utile (W)", "Q = magnétisation (var)", "S = total (VA)", "cos φ = P/S", "Compenser avec des condensateurs"],
+    resume:
+      "La puissance appelée se décompose en active (utile), réactive (magnétisation) et apparente (total) ; améliorer le cos φ réduit le courant et les pertes.",
+    quizIds: ["els61", "els62", "els63", "els64", "els65"],
+    verification: {
+      question: "Que représente le facteur de puissance cos φ ?",
+      options: ["La fréquence du réseau", "Le rapport entre puissance active et puissance apparente", "La tension entre phases", "La température du moteur"],
+      correct: 1,
+      explanation: "cos φ = P / S : il mesure la part de puissance réellement utile par rapport à la puissance apparente totale appelée.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi un faible cos φ est pénalisant pour une installation, et citez la solution courante.",
+      consignes: [
+        "Rappelle le lien entre cos φ, courant et travail utile.",
+        "Décris une conséquence concrète d'un cos φ faible.",
+        "Cite la solution de compensation.",
+      ],
+      criteres: [
+        "J'ai relié un cos φ faible à un courant appelé plus élevé.",
+        "J'ai cité une conséquence (pertes, surdimensionnement).",
+        "J'ai cité la compensation par condensateurs.",
+      ],
+      correction:
+        "Un faible cos φ signifie que l'installation appelle beaucoup de puissance apparente (et donc de courant) pour une puissance active utile modérée. Conséquences : pertes plus importantes dans les câbles, besoin de conducteurs et de protections plus gros, et parfois pénalités du fournisseur. La solution courante est la compensation par condensateurs, qui réduit la puissance réactive appelée et rapproche le cos φ de 1.",
+    },
+  },
+  {
+    id: "3-17",
+    title: "Synthèse distribution et mise en situation",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier distribution, tensions, régime de neutre et protections dans une même installation.",
+      "Conduire un raisonnement complet face à un défaut sur une installation.",
+    ],
+    simple:
+      "Ce chapitre rassemble le bloc : comment l'énergie est distribuée, quelles tensions on rencontre, comment la terre et le régime de neutre protègent, comment les protections isolent un défaut, et ce que représente la puissance appelée. Face à une panne, on mobilise toutes ces notions.",
+    vocab: [
+      ["Schéma unifilaire", "Représentation simplifiée de l'installation, du réseau aux départs."],
+      ["Sélectivité", "Coordination des protections pour n'isoler que la partie en défaut (chapitre 3-15)."],
+      ["Régime de neutre", "Manière dont neutre et masses sont reliés à la terre (chapitre 3-13)."],
+      ["Facteur de puissance", "Part de puissance utile appelée par l'installation (chapitre 3-16)."],
+      ["Traçabilité", "Trace écrite des constats, mesures et actions réalisés."],
+    ],
+    example:
+      "Une machine ne démarre plus et sa protection a déclenché. On situe le départ sur le schéma (3-11), on vérifie les phases (3-12), on tient compte du régime de neutre et du différentiel (3-13, 3-14), on distingue surcharge et court-circuit (3-15), le tout après consignation, puis on trace l'intervention.",
+    schema: "power-distribution",
+    ascii: "SITUER le depart (3-11) → CONTROLER phases (3-12) → TERRE/regime (3-13)\n→ DIFFERENTIEL vs SURINTENSITE (3-14/3-15) → apres CONSIGNATION → TRACER",
+    retenir: [
+      "Une installation se lit du réseau vers la machine ; le schéma unifilaire est la carte.",
+      "Le type de déclenchement (différentiel ou surintensité) oriente le diagnostic.",
+      "Le régime de neutre conditionne le comportement d'un défaut.",
+      "La sécurité (consignation, VAT, habilitation) s'applique du début à la fin.",
+    ],
+    erreurs: [
+      "Raisonner sur un défaut sans connaître le régime de neutre ni le type de protection.",
+      "Oublier la consignation avant les contrôles nécessitant un accès.",
+      "Ne laisser aucune trace du diagnostic et des mesures.",
+    ],
+    astucesPro: [
+      "On commence toujours par lire le schéma et le repérage avant de démonter.",
+      "On note les valeurs mesurées : elles servent de référence pour la prochaine fois.",
+    ],
+    diagnostic: [
+      "Situer le circuit en défaut sur le schéma de distribution.",
+      "Identifier le type de protection qui a agi (différentiel ou surintensité).",
+      "Tenir compte du régime de neutre pour interpréter le défaut.",
+    ],
+    depannage: [
+      "Consigner avant tout contrôle nécessitant un accès aux parties actives.",
+      "Rechercher la cause (fuite, surcharge, court-circuit) avant de réarmer.",
+      "Remettre en service de façon maîtrisée et tracer l'intervention.",
+    ],
+    securite: [
+      "Toutes les règles de sécurité du bloc 2 restent valables sur une installation de distribution.",
+      "Les mesures et interventions se font dans le cadre de son habilitation.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Sur une ligne, une machine s'arrête et sa protection a déclenché ; le reste de la ligne fonctionne.",
+      mission: ["Décrire la démarche de diagnostic.", "Citer les notions du bloc mobilisées.", "Indiquer ce que l'on trace à la fin."],
+      correction:
+        "Démarche : situer le départ de la machine sur le schéma (3-11), vérifier la présence des phases (3-12), tenir compte du régime de neutre (3-13), déterminer si le déclenchement vient du différentiel (fuite, 3-14) ou d'une protection de surintensité (surcharge/court-circuit, 3-15), le tout après consignation. On recherche la cause avant de réarmer, on remet en service de façon maîtrisée, puis on trace le constat, les mesures et l'action réalisée. La sélectivité explique que seule la machine ait été isolée.",
+    },
+    memo: ["Lire le schéma", "Type de déclenchement = piste", "Régime de neutre en tête", "Consigner puis tracer"],
+    resume:
+      "Diagnostiquer une installation, c'est combiner distribution, tensions, régime de neutre et protections, dans le respect de la sécurité et de la traçabilité.",
+    quizIds: ["els66", "els67", "els68", "els69", "els70"],
+    verification: {
+      question: "Face à un défaut, quelle information oriente fortement le diagnostic ?",
+      options: ["La couleur de la machine", "Le type de protection qui a déclenché (différentiel ou surintensité)", "La marque du tableau", "L'heure de la journée"],
+      correct: 1,
+      explanation: "Savoir si c'est le différentiel (fuite à la terre) ou une protection de surintensité (surcharge/court-circuit) qui a agi oriente directement la recherche de la cause.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez, dans l'ordre, la démarche pour diagnostiquer une machine dont la protection a déclenché, en citant les notions du bloc.",
+      consignes: [
+        "Donne les étapes de la localisation à la traçabilité.",
+        "Relie chaque étape à un chapitre du bloc.",
+        "Rappelle la place de la sécurité.",
+      ],
+      criteres: [
+        "Les étapes sont ordonnées et complètes.",
+        "Chaque étape est reliée à une notion (3-11 à 3-16).",
+        "J'ai rappelé la consignation et la traçabilité.",
+      ],
+      correction:
+        "Situer le départ sur le schéma (3-11), vérifier les phases (3-12), tenir compte de la terre et du régime de neutre (3-13), déterminer le type de protection ayant agi — différentiel (3-14) ou surintensité et sélectivité (3-15) —, éventuellement estimer la charge/puissance (3-16), le tout après consignation et vérification d'absence de tension. On recherche la cause, on remet en service de façon maîtrisée et on trace l'intervention. La sécurité encadre toute la démarche.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [
@@ -1079,8 +1415,12 @@ export const ELECTRO_BLOCKS: TrainingBlock[] = [
     title: "Réseaux, distribution et régimes de neutre",
     objective: "Distinguer monophasé et triphasé, comprendre la distribution et les régimes de neutre.",
     lessonIds: block3Lessons.map((lesson) => lesson.id),
-    chapterCount: 7,
-    status: "in_progress",
+    chapterCount: block3Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["els36", "els38", "els41", "els43", "els47", "els49", "els51", "els53", "els56", "els58", "els61", "els63", "els66", "els68"],
+      passPercent: 80,
+    },
   },
   { id: "m3-b4", num: 4, title: "Appareillage de commande et de protection approfondi", objective: "Maîtriser sectionneurs, contacteurs, relais et dispositifs de protection.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m3-b5", num: 5, title: "Moteurs asynchrones et variation de vitesse", objective: "Comprendre le démarrage, le sens de rotation et la variation de vitesse d'un moteur triphasé.", lessonIds: [], chapterCount: 8, status: "planned" },

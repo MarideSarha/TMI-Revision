@@ -60,6 +60,18 @@ aucune réécriture d'historique.)
 - **3-10 — Synthèse sécurité et mise en situation** (démarche complète, références aux chapitres 3-4 à 3-9).
 - Examen du bloc 2 (14 questions couvrant les 7 chapitres, seuil 80 %) + badge `electro_block_2` (« Sécurité électrique »).
 
+**Étape 4** — module 3, bloc 3 **complet (7 chapitres, statut `available` avec examen)** :
+- **3-11 — Du réseau à la machine : la distribution électrique** (TGBT, tableaux divisionnaires, départs).
+  Schéma statique `power-distribution`.
+- **3-12 — Monophasé et triphasé approfondis** (tension simple 230 V, composée 400 V, √3, équilibrage).
+  Schéma statique `three-phase-voltages`.
+- **3-13 — La terre et les régimes de neutre (TT, TN, IT)**. Intègre le **schéma interactif « régimes de neutre »**.
+- **3-14 — La protection différentielle** (DDR, protection des personnes vs protection des circuits).
+- **3-15 — Protéger les circuits : disjoncteurs, calibres et sélectivité**.
+- **3-16 — Puissances en triphasé** (active, réactive, apparente, cos φ, compensation).
+- **3-17 — Synthèse distribution et mise en situation** (références aux chapitres 3-11 à 3-16).
+- Examen du bloc 3 (14 questions couvrant les 7 chapitres, seuil 80 %) + badge `electro_block_3` (« Distribution & protections »).
+
 ## Fichiers créés
 
 **Étape 1**
@@ -122,8 +134,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après commit B : **4 modules, 19 blocs, 64 leçons, 325 questions, 10 pannes, 13 badges.**
-- Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` ≈ 63 kB (budget 500 kB/fichier).
+- Build réussi. Décomptes après bloc 3 : **4 modules, 19 blocs, 71 leçons, 360 questions, 10 pannes, 14 badges.**
+- Bundles sous budget : `learning-data` ≈ 449 kB, `learning-electro` ≈ 84 kB (budget 500 kB/fichier).
+- **Module 3 : blocs 1, 2 et 3 disponibles (17 chapitres) ; blocs 4 à 7 restant à développer.**
 
 ## Problèmes connus
 
@@ -135,9 +148,9 @@ aucune réécriture d'historique.)
 
 ## Éléments restant à faire
 
-- **Bloc 2 de M3 : terminé** (7 chapitres, examen, badge).
-- Développer les **blocs 3 à 7 de M3** (réseaux et régimes de neutre, appareillage approfondi,
-  moteurs et variation de vitesse, lecture de schémas, diagnostic électrique).
+- **Blocs 2 et 3 de M3 : terminés** (7 chapitres chacun, examen, badge).
+- Développer les **blocs 4 à 7 de M3** (appareillage de commande et de protection approfondi,
+  moteurs et variation de vitesse, lecture de schémas électriques, méthode de diagnostic électrique).
 - Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
   de M3 harmonisés** (attention : 3-1/3-2/3-3 n'ont pas encore le parcours pro complet — ne pas activer
   la règle avant de les avoir enrichis, sinon le build échoue).
@@ -151,6 +164,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-3): ajoute le bloc securite (chap. 3-4, 3-5) et 2 schemas interactifs`
 - `feat(module-3): chapitres 3-6 (EPI) et 3-7 (habilitations) + decodeur interactif`
 - `feat(module-3): complete le bloc securite (3-8, 3-9, 3-10), examen et badge`
+- `feat(module-3): demarre le bloc 3 (distribution, triphase, regimes de neutre)`
+- `feat(module-3): complete le bloc 3 (3-14 a 3-17), examen et badge`
 
 ## Instructions pour reprendre le développement
 
