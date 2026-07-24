@@ -1,4 +1,4 @@
-import { Award, BookOpen, Flame, Gauge, HardHat, ShieldAlert, ShieldCheck, Target, Wrench, Zap } from "lucide-react";
+import { Award, BookOpen, Cpu, Flame, Gauge, HardHat, ShieldAlert, ShieldCheck, Target, Wrench, Zap } from "lucide-react";
 import type { BadgeDefinition } from "../types";
 
 /* ---------------------------- BADGES ---------------------------- */
@@ -14,6 +14,7 @@ export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "electro_block_5", label: "Moteurs & variation", desc: "Maîtriser les moteurs asynchrones et la variation de vitesse avec au moins 80 %", icon: Zap },
   { id: "electro_block_6", label: "Lecture de schémas", desc: "Savoir lire un schéma électrique pour localiser un organe ou une panne avec au moins 80 %", icon: BookOpen },
   { id: "electro_block_7", label: "Diagnostic électrique", desc: "Structurer une recherche de panne électrique méthodique avec au moins 80 %", icon: Target },
+  { id: "auto_block_1", label: "Bases de l'automatisme", desc: "Comprendre la structure d'un système automatisé avec au moins 80 %", icon: Cpu },
   { id: "mechanics_block_1", label: "Observateur mécanique", desc: "Maîtriser le bloc 1 de mécanique avec au moins 80 %", icon: ShieldCheck },
   { id: "mechanics_block_5", label: "Assembleur fiable", desc: "Maîtriser assemblages, fixations et étanchéité avec au moins 80 %", icon: Wrench },
   { id: "mechanics_block_6", label: "Aligneur de précision", desc: "Maîtriser arbres, accouplements, alignement et vibrations avec au moins 80 %", icon: Target },

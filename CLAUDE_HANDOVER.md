@@ -38,9 +38,11 @@ aucune réécriture d'historique.)
 
 ## Modules développés
 
-- **Module 3 — Électrotechnique industrielle** : restructuration en 7 blocs de maîtrise.
-  - Bloc 1 « Fondamentaux électriques » : **disponible** (3 chapitres existants, conservés à l'identique).
-  - Blocs 2 à 7 : **planifiés** (feuille de route affichée, contenu à venir bloc par bloc).
+- **Module 3 — Électrotechnique industrielle** : restructuré en 7 blocs de maîtrise et
+  **entièrement développé** (7 blocs sur 7, 43 chapitres). Voir le détail des étapes ci-dessous.
+- **Module 5 — Automatisme industriel** : **nouveau module créé** (décision validée par le propriétaire
+  après achèvement du module 3). Bloc 1 « Découvrir l'automatisme » **disponible** (6 chapitres) ;
+  blocs 2 à 7 planifiés (capteurs, actionneurs, pneumatique, API, GRAFCET, diagnostic).
 
 ## Chapitres ajoutés
 
@@ -112,6 +114,17 @@ aucune réécriture d'historique.)
 
 > **Le module 3 « Électrotechnique industrielle » est désormais entièrement développé : 7 blocs sur 7 disponibles, 43 chapitres, 8 schémas interactifs, 7 examens de bloc, 7 badges de bloc.**
 
+**Étape 9 — nouveau module 5 « Automatisme industriel »** — bloc 1 **complet (6 chapitres, `available` avec examen)** :
+- **5-1 — Qu'est-ce qu'un système automatisé ?** Intègre le **schéma interactif « boucle d'un système automatisé »** (`automated-system`).
+- **5-2 — Partie opérative et partie commande** (ordres / comptes rendus). Schéma `po-pc-structure`.
+- **5-3 — Chaîne d'énergie et chaîne d'information**. Schéma `energy-info-chains`.
+- **5-4 — Le cycle d'un système automatisé** (cycle machine vs cycle automate).
+- **5-5 — Sécurité des systèmes automatisés** (redémarrage automatique, consignation de toutes les énergies).
+- **5-6 — Repérer les sous-ensembles d'un système** (situer une panne : information ou énergie).
+- Examen du bloc 1 (12 questions) + badge `auto_block_1` (« Bases de l'automatisme »).
+- Nouveaux fichiers : `src/data/automatisme.ts`, `src/data/automatismeQuestions.ts` (`aut1`…`aut30`).
+- `index.ts` : module m5 ajouté aux `MODULES` et `QUESTIONS`. `vite.config.ts` : chunk dédié `learning-auto`.
+
 ## Fichiers créés
 
 **Étape 1**
@@ -174,9 +187,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le module 3 complet : **4 modules, 19 blocs, 97 leçons, 490 questions, 10 pannes, 18 badges.**
-- Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` isolé (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs sur 7, 43 chapitres). Module 4 : inchangé (6 blocs sur 12).**
+- Build réussi. Décomptes après le bloc 1 du module 5 : **5 modules, 26 blocs, 103 leçons, 520 questions, 10 pannes, 19 badges.**
+- Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : bloc 1 sur 7 disponible. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -190,9 +203,10 @@ aucune réécriture d'historique.)
 
 - **Module 3 « Électrotechnique » : entièrement terminé** (7 blocs, 43 chapitres, 8 schémas interactifs,
   7 examens de bloc, 7 badges de bloc + le badge `module_3` de fin de module).
-- Pistes pour la suite (à valider avec le propriétaire) : compléter le **module 4** (mécanique, 6 blocs
-  restants sur 12), ou démarrer un **module Automatisme** (capteurs, API, actionneurs, vérins) annoncé
-  en passerelle au chapitre 3-43. Réutiliser `InteractiveSchema` pour les nouveaux schémas.
+- **Module 5 « Automatisme » : bloc 1 terminé**, blocs 2 à 7 à développer (capteurs, actionneurs,
+  pneumatique, API, GRAFCET, diagnostic). Réutiliser `InteractiveSchema` pour les nouveaux schémas
+  (capteur inductif/photoélectrique, vérin pneumatique, cycle GRAFCET…).
+- Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
 - Envisager d'étendre les règles de `validate.ts` aux leçons `3-*` **une fois tous les chapitres
@@ -220,6 +234,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-3): complete le bloc 6 (3-35 a 3-37), examen et badge`
 - `feat(module-3): demarre le bloc 7 (methode de diagnostic electrique)`
 - `feat(module-3): complete le bloc 7 (3-41 a 3-43), examen et badge — module 3 termine`
+- `feat(module-5): cree le module Automatisme industriel + bloc 1 (5-1 a 5-3)`
+- `feat(module-5): complete le bloc 1 (5-4 a 5-6), examen et badge`
 
 ## Instructions pour reprendre le développement
 

@@ -265,6 +265,259 @@ const block1Lessons: Lesson[] = [
         "Capteur de présence et automate appartiennent à la chaîne d'information (acquérir, traiter). Le contacteur (distribuer) et le moteur (convertir/agir) appartiennent à la chaîne d'énergie. L'information commande l'énergie : l'automate, à partir de l'information du capteur, pilote le contacteur qui alimente le moteur.",
     },
   },
+  {
+    id: "5-4",
+    title: "Le cycle d'un système automatisé",
+    durationMinutes: 28,
+    objectifs: [
+      "Décrire le cycle répétitif d'un système automatisé.",
+      "Distinguer le cycle de la machine et le cycle de l'automate.",
+    ],
+    simple:
+      "Un système automatisé répète une suite d'étapes : c'est son cycle. La machine enchaîne des opérations (avancer, serrer, percer, reculer…), pendant que l'automate, lui, répète en boucle : lire les entrées, traiter le programme, mettre à jour les sorties.",
+    vocab: [
+      ["Cycle", "Suite d'étapes que le système répète automatiquement."],
+      ["État initial", "Position de départ, sûre et connue, avant le lancement du cycle."],
+      ["Départ cycle", "Ordre qui lance le déroulement des étapes."],
+      ["Cycle automate", "Boucle interne de l'automate : lire les entrées, traiter, mettre à jour les sorties."],
+      ["Mode de marche", "Façon d'utiliser le système : automatique, manuel, pas à pas…"],
+    ],
+    example:
+      "Une perceuse automatisée : à l'état initial, foret en haut. Au départ cycle, la pièce est bridée, le foret descend, perce, remonte, la pièce est libérée, et le système revient à l'état initial, prêt pour la pièce suivante. Pendant ce temps, l'automate lit ses entrées, exécute son programme et actualise ses sorties, en boucle.",
+    schema: "energy-info-chains",
+    ascii: "CYCLE MACHINE : etat initial → operations → retour etat initial\nCYCLE AUTOMATE : lire entrees → traiter → mettre a jour sorties (en boucle)",
+    retenir: [
+      "Le cycle est la suite d'étapes répétée par le système.",
+      "On part d'un état initial sûr et connu.",
+      "Le cycle automate répète : lire les entrées, traiter, mettre à jour les sorties.",
+      "Les modes de marche (auto, manuel, pas à pas) adaptent l'utilisation.",
+    ],
+    erreurs: [
+      "Lancer un cycle sans que le système soit à l'état initial.",
+      "Confondre le cycle de la machine et le cycle interne de l'automate.",
+      "Oublier qu'un cycle peut se relancer automatiquement.",
+    ],
+    astucesPro: [
+      "On vérifie toujours l'état initial avant de relancer un cycle.",
+      "Observer où le cycle se bloque indique l'étape et l'organe concernés.",
+    ],
+    diagnostic: [
+      "Vérifier que le système est bien à l'état initial.",
+      "Repérer l'étape du cycle où le déroulement s'interrompt.",
+      "Relier cette étape à l'organe concerné (capteur ou actionneur).",
+    ],
+    depannage: [
+      "Identifier l'étape bloquante et l'organe associé.",
+      "Contrôler le capteur de compte rendu ou l'actionneur de cette étape.",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "Un cycle peut se relancer automatiquement : on consigne avant d'intervenir.",
+      "On ne remet pas un système en cycle sans l'avoir remis à l'état initial en sécurité.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine automatisée se bloque toujours à la même étape du cycle : le foret descend mais ne remonte jamais.",
+      mission: ["Situer l'étape bloquante.", "Citer les organes à contrôler.", "Indiquer la précaution."],
+      correction:
+        "L'étape bloquante est la remontée du foret : soit l'ordre de remontée n'est pas donné (compte rendu de fin de descente manquant, capteur bas défaillant), soit l'actionneur de remontée n'agit pas. On contrôle donc le capteur de position basse et l'actionneur (vérin/moteur) de remontée. Avant tout accès, on consigne les énergies, car le cycle peut se relancer.",
+    },
+    memo: ["Cycle = étapes répétées", "État initial sûr", "Automate : lire → traiter → sorties", "Repérer l'étape bloquante"],
+    resume:
+      "Un système automatisé répète un cycle depuis un état initial ; l'automate, en parallèle, boucle sur lire-traiter-écrire pour piloter ces étapes.",
+    quizIds: ["aut16", "aut17", "aut18", "aut19", "aut20"],
+    verification: {
+      question: "Quelle est la boucle interne répétée par l'automate ?",
+      options: ["Serrer, percer, desserrer", "Lire les entrées, traiter, mettre à jour les sorties", "Alimenter, distribuer, agir", "Ouvrir, fermer"],
+      correct: 1,
+      explanation: "Le cycle automate répète en permanence : lire les entrées (capteurs), traiter le programme, puis mettre à jour les sorties (préactionneurs).",
+    },
+    exercice: {
+      enonce:
+        "Décrivez le cycle d'une machine automatisée simple, depuis l'état initial jusqu'au retour à cet état.",
+      consignes: [
+        "Décris l'état initial.",
+        "Énumère les étapes dans l'ordre.",
+        "Explique le retour à l'état initial.",
+      ],
+      criteres: [
+        "J'ai défini un état initial sûr.",
+        "J'ai énuméré les étapes dans l'ordre.",
+        "J'ai expliqué le retour à l'état initial et la répétition.",
+      ],
+      correction:
+        "Exemple d'une perceuse : état initial, foret en haut et pièce absente. Étapes : arrivée et bridage de la pièce, descente du foret, perçage, remontée du foret, libération de la pièce. Le système revient alors à l'état initial, prêt pour la pièce suivante : le cycle se répète. Chaque étape est confirmée par un compte rendu (capteur) avant de passer à la suivante.",
+    },
+  },
+  {
+    id: "5-5",
+    title: "Sécurité des systèmes automatisés",
+    durationMinutes: 28,
+    objectifs: [
+      "Identifier les risques propres aux systèmes automatisés.",
+      "Appliquer les principes de sécurité avant d'intervenir.",
+    ],
+    simple:
+      "Un système automatisé présente un risque particulier : il peut démarrer ou redémarrer tout seul, sans prévenir. Avant toute intervention, on met le système en sécurité : arrêt, consignation des énergies, et vérification qu'aucun mouvement ne peut se produire.",
+    vocab: [
+      ["Redémarrage automatique", "Relance du système par l'automate, sans action humaine."],
+      ["Arrêt d'urgence", "Dispositif qui stoppe immédiatement les mouvements dangereux."],
+      ["Protecteur", "Carter, barrière ou grille qui empêche l'accès à une zone dangereuse."],
+      ["Consignation", "Mise et maintien hors énergie de toutes les sources avant intervention."],
+      ["Énergies multiples", "Un système peut cumuler énergie électrique, pneumatique, hydraulique."],
+    ],
+    example:
+      "Un robot de palettisation est à l'arrêt, immobile. Sans consignation, l'automate peut le relancer à tout moment (temporisation, ordre distant). Avant d'entrer dans sa zone, on consigne l'électricité ET l'air comprimé, et on vérifie qu'aucun mouvement n'est possible.",
+    schema: "consignation-steps",
+    ascii: "RISQUE : redemarrage automatique sans prevenir\nAVANT INTERVENTION : arreter → consigner TOUTES les energies → verifier\n(electrique ET pneumatique ET hydraulique)",
+    retenir: [
+      "Un système automatisé peut démarrer ou redémarrer seul : danger majeur.",
+      "On consigne TOUTES les énergies (électrique, pneumatique, hydraulique), pas une seule.",
+      "L'arrêt d'urgence stoppe le mouvement, mais ne remplace pas la consignation.",
+      "On ne retire jamais un protecteur sur une machine en fonctionnement.",
+    ],
+    erreurs: [
+      "Croire qu'un système à l'arrêt est sûr : il peut redémarrer automatiquement.",
+      "Ne consigner que l'électricité en oubliant l'air comprimé ou l'hydraulique.",
+      "Confondre arrêt d'urgence et consignation : l'arrêt d'urgence ne suffit pas pour intervenir.",
+    ],
+    astucesPro: [
+      "On repère toutes les sources d'énergie du système avant d'intervenir.",
+      "Un vérin peut rester sous pression même après coupure : on purge selon la procédure.",
+    ],
+    diagnostic: [
+      "Identifier toutes les énergies présentes sur le système.",
+      "Vérifier l'absence de mouvement possible après consignation.",
+      "Repérer les zones dangereuses et leurs protecteurs.",
+    ],
+    depannage: [
+      "Arrêter, consigner toutes les énergies, purger les pressions résiduelles.",
+      "Vérifier l'absence d'énergie avant tout accès.",
+      "Remettre en énergie de façon maîtrisée, protecteurs en place.",
+    ],
+    securite: [
+      "La consignation de toutes les énergies est indispensable avant d'entrer dans une zone automatisée.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien coupe l'électricité d'un poste automatisé et entre dans la zone ; un vérin sort brusquement.",
+      mission: ["Expliquer ce qui a été oublié.", "Indiquer la bonne démarche.", "Rappeler le rôle de l'arrêt d'urgence."],
+      correction:
+        "Le technicien a oublié une énergie : l'air comprimé. Couper l'électricité ne suffit pas si le circuit pneumatique reste sous pression, un vérin peut alors sortir. La bonne démarche est de consigner TOUTES les énergies (électrique et pneumatique), puis de purger les pressions résiduelles et de vérifier l'absence de mouvement possible avant d'entrer. L'arrêt d'urgence stoppe les mouvements sur le moment, mais il ne remplace pas la consignation : il ne garantit pas l'absence durable d'énergie.",
+    },
+    memo: ["Peut redémarrer seul", "Consigner TOUTES les énergies", "Purger les pressions", "Arrêt d'urgence ≠ consignation"],
+    resume:
+      "La sécurité d'un système automatisé impose de consigner toutes ses énergies avant intervention, car il peut redémarrer seul ; l'arrêt d'urgence ne suffit pas.",
+    quizIds: ["aut21", "aut22", "aut23", "aut24", "aut25"],
+    verification: {
+      question: "Pourquoi un système automatisé à l'arrêt reste-t-il dangereux sans consignation ?",
+      options: ["Il ne l'est pas", "Il peut démarrer ou redémarrer automatiquement", "Il consomme trop", "Il fait du bruit"],
+      correct: 1,
+      explanation: "Un automate peut relancer le système à tout moment (temporisation, ordre) : sans consignation de toutes les énergies, un mouvement dangereux reste possible.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi il faut consigner toutes les énergies d'un système automatisé, et pourquoi l'arrêt d'urgence ne suffit pas.",
+      consignes: [
+        "Explique le risque de redémarrage automatique.",
+        "Justifie la consignation de toutes les énergies.",
+        "Précise la différence avec l'arrêt d'urgence.",
+      ],
+      criteres: [
+        "J'ai expliqué le redémarrage automatique.",
+        "J'ai justifié la consignation de toutes les énergies (électrique, pneumatique, hydraulique).",
+        "J'ai distingué arrêt d'urgence et consignation.",
+      ],
+      correction:
+        "Un système automatisé peut redémarrer seul, sans action humaine : intervenir sans consignation expose à un mouvement soudain. On consigne toutes les énergies car un système en cumule souvent plusieurs (électrique, pneumatique, hydraulique) ; en oublier une laisse un danger (par exemple un vérin sous pression). L'arrêt d'urgence stoppe les mouvements à l'instant, mais ne garantit pas l'absence durable d'énergie : seule la consignation, suivie d'une vérification, autorise l'intervention.",
+    },
+  },
+  {
+    id: "5-6",
+    title: "Synthèse : repérer les sous-ensembles d'un système",
+    durationMinutes: 28,
+    objectifs: [
+      "Repérer, sur un système réel, la PO, la PC, les capteurs et les actionneurs.",
+      "Situer une panne dans la chaîne d'information ou d'énergie.",
+    ],
+    simple:
+      "Ce chapitre met en pratique le bloc : devant un système automatisé, on identifie la partie commande, la partie opérative, les capteurs, les préactionneurs et les actionneurs. Ce repérage permet de comprendre le fonctionnement et de situer rapidement une panne.",
+    vocab: [
+      ["Sous-ensemble", "Partie identifiable du système (commande, capteurs, actionneurs…)."],
+      ["Repérage", "Identification des éléments et de leur rôle sur le système réel."],
+      ["Chaîne d'information", "Capteurs et automate (chapitre 5-3)."],
+      ["Chaîne d'énergie", "Préactionneurs et actionneurs (chapitre 5-3)."],
+      ["Localisation de panne", "Situer le défaut dans l'information ou l'énergie."],
+    ],
+    example:
+      "Sur un convoyeur automatisé : la partie commande est l'armoire avec l'automate ; les capteurs (présence, fin de course) forment l'acquisition ; le contacteur est le préactionneur ; le moteur est l'actionneur. En repérant ces sous-ensembles, on situe vite un défaut : détection ou action.",
+    schema: "po-pc-structure",
+    illustrations: ["automated-system"],
+    ascii: "REPERER : PC (automate) · capteurs · preactionneurs · actionneurs\n→ situer la panne : INFORMATION (capteur/commande) ou ENERGIE (preact./act.)",
+    retenir: [
+      "On repère d'abord la partie commande et la partie opérative.",
+      "On identifie les capteurs (information) et les actionneurs (énergie).",
+      "Situer une panne, c'est la placer dans la chaîne d'information ou d'énergie.",
+      "Ce repérage est la base du diagnostic d'un système automatisé.",
+    ],
+    erreurs: [
+      "Confondre capteur et actionneur lors du repérage.",
+      "Chercher une panne sans avoir repéré les sous-ensembles.",
+      "Oublier les préactionneurs entre la commande et les actionneurs.",
+    ],
+    astucesPro: [
+      "On suit le flux : information des capteurs vers l'automate, ordres vers les actionneurs.",
+      "Un défaut de détection et un défaut d'action se traitent différemment.",
+    ],
+    diagnostic: [
+      "Repérer PC, PO, capteurs et actionneurs sur le système.",
+      "Situer le symptôme dans l'information ou l'énergie.",
+      "Cibler l'organe correspondant pour la suite du diagnostic.",
+    ],
+    depannage: [
+      "Contrôler les capteurs si la commande ne réagit pas.",
+      "Contrôler préactionneurs et actionneurs si l'action ne se produit pas.",
+      "Respecter la consignation de toutes les énergies avant tout accès.",
+    ],
+    securite: [
+      "Le repérage se fait sans intervenir sur les parties actives tant que le système n'est pas consigné.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un poste automatisé, une action n'a pas lieu ; on doit d'abord comprendre le système.",
+      mission: ["Lister les sous-ensembles à repérer.", "Expliquer comment situer la panne.", "Indiquer la précaution."],
+      correction:
+        "On repère : la partie commande (automate), les capteurs (acquisition d'information), les préactionneurs (distribution de l'énergie) et les actionneurs (action). Pour situer la panne, on détermine si l'automate reçoit bien l'information des capteurs et donne l'ordre (chaîne d'information), puis si l'ordre est distribué et l'actionneur alimenté (chaîne d'énergie) : le maillon où cela s'interrompt localise la panne. Avant tout accès aux parties actives, on consigne toutes les énergies, car le système peut redémarrer seul.",
+    },
+    memo: ["Repérer PC / PO", "Capteurs = info / actionneurs = énergie", "Situer : information ou énergie", "Consigner avant d'accéder"],
+    resume:
+      "Repérer les sous-ensembles (commande, capteurs, préactionneurs, actionneurs) permet de comprendre un système automatisé et de situer une panne dans l'information ou l'énergie.",
+    quizIds: ["aut26", "aut27", "aut28", "aut29", "aut30"],
+    verification: {
+      question: "Pour situer une panne sur un système automatisé, on la place dans :",
+      options: ["La couleur des câbles", "La chaîne d'information ou la chaîne d'énergie", "Le prix de la machine", "Le carnet de commandes"],
+      correct: 1,
+      explanation: "On situe la panne dans la chaîne d'information (capteurs, commande) ou la chaîne d'énergie (préactionneurs, actionneurs) : cela cible l'organe à contrôler.",
+    },
+    exercice: {
+      enonce:
+        "Sur un convoyeur automatisé, repérez la partie commande, un capteur, un préactionneur et un actionneur, puis expliquez comment situer une panne.",
+      consignes: [
+        "Nomme chaque sous-ensemble.",
+        "Associe-le à sa chaîne (information ou énergie).",
+        "Explique la localisation d'une panne.",
+      ],
+      criteres: [
+        "J'ai repéré PC, capteur, préactionneur, actionneur.",
+        "J'ai associé chacun à sa chaîne.",
+        "J'ai expliqué comment situer la panne.",
+      ],
+      correction:
+        "Partie commande : l'automate dans l'armoire. Capteur : détecteur de présence ou fin de course (chaîne d'information). Préactionneur : le contacteur qui distribue l'énergie (chaîne d'énergie). Actionneur : le moteur du convoyeur (chaîne d'énergie). Pour situer une panne : vérifier si l'automate reçoit l'information et donne l'ordre (information), puis si le contacteur transmet et le moteur est alimenté (énergie). Le maillon défaillant localise la panne. On consigne toutes les énergies avant d'accéder aux parties actives.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -274,8 +527,12 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     title: "Découvrir l'automatisme et la structure d'un système automatisé",
     objective: "Comprendre ce qu'est un système automatisé, sa structure (PO/PC) et ses chaînes d'énergie et d'information.",
     lessonIds: block1Lessons.map((lesson) => lesson.id),
-    chapterCount: 6,
-    status: "in_progress",
+    chapterCount: block1Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["aut1", "aut2", "aut6", "aut8", "aut11", "aut13", "aut16", "aut18", "aut21", "aut23", "aut26", "aut28"],
+      passPercent: 80,
+    },
   },
   { id: "m5-b2", num: 2, title: "Les capteurs industriels", objective: "Reconnaître et choisir les capteurs TOR et analogiques (inductif, capacitif, photoélectrique…).", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m5-b3", num: 3, title: "Actionneurs et préactionneurs", objective: "Comprendre les actionneurs et les préactionneurs qui les commandent.", lessonIds: [], chapterCount: 6, status: "planned" },
