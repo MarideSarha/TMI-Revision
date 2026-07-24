@@ -840,5 +840,29 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "electrical-ppe") {
+    const items: Array<[string, string]> = [
+      ["Gants", "isolants"],
+      ["Écran", "facial"],
+      ["Chaussures", "de sécurité"],
+      ["Tapis", "isolant"],
+      ["Outils", "isolés"],
+    ];
+    return (
+      <svg viewBox="0 0 320 110" className="w-full h-28">
+        {items.map(([l1, l2], i) => {
+          const x = 18 + i * 60;
+          return (
+            <g key={l1}>
+              <rect x={x} y="18" width="46" height="46" rx="8" fill={box} stroke={accent} strokeWidth="2" />
+              <text x={x + 23} y="44" textAnchor="middle" fontSize="14" fill={stroke}>{i + 1}</text>
+              <text x={x + 23} y="80" textAnchor="middle" fontSize="8" fill={stroke}>{l1}</text>
+              <text x={x + 23} y="92" textAnchor="middle" fontSize="8" fill={stroke}>{l2}</text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
   return null;
 }

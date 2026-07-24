@@ -360,6 +360,177 @@ const block2Lessons: Lesson[] = [
         "Ordre correct : (c) ouvrir le sectionneur pour séparer, (b) cadenasser pour condamner, (d) repérer pour identifier, (a) vérifier l'absence de tension. La VAT vient en dernier car elle valide, au point de travail, que toutes les étapes précédentes ont bien mis l'ouvrage hors tension : c'est le contrôle qui autorise l'intervention.",
     },
   },
+  {
+    id: "3-6",
+    title: "Les EPI et l'outillage isolant en électricité",
+    durationMinutes: 28,
+    objectifs: [
+      "Associer chaque équipement de protection au risque électrique qu'il réduit.",
+      "Contrôler l'état d'un EPI et d'un outil isolant avant utilisation.",
+    ],
+    simple:
+      "Même en travaillant avec méthode, on garde des protections adaptées au risque électrique. Les équipements de protection individuelle (EPI) et l'outillage isolant sont une barrière supplémentaire : ils ne remplacent pas la consignation, ils s'y ajoutent.",
+    vocab: [
+      ["EPI", "Équipement de Protection Individuelle : ce que porte la personne (gants, écran, chaussures…)."],
+      ["Gants isolants", "Gants classés pour une tension donnée, qui protègent contre le contact électrique."],
+      ["Écran facial", "Protection du visage contre l'arc électrique et les projections de matière."],
+      ["Tapis / tabouret isolant", "Support isolant qui limite le passage du courant vers la terre à travers le corps."],
+      ["Outils isolés", "Outils dont le manche est isolé et testé pour limiter le risque près de pièces sous tension."],
+      ["VAT", "Vérificateur d'Absence de Tension : ce n'est pas un EPI, mais un instrument de contrôle indispensable."],
+    ],
+    example:
+      "Pour une intervention BT autorisée, l'électricien porte des gants isolants adaptés à la tension, un écran facial, se tient sur un tapis isolant et utilise un tournevis à manche isolé. Avant de commencer, il gonfle ses gants pour vérifier qu'ils ne sont pas percés.",
+    schema: "electrical-ppe",
+    ascii: "RISQUE                 PROTECTION\ncontact / choc     →   gants isolants\narc / projection   →   écran facial\nfuite vers la terre →  tapis isolant\ncontact via l'outil →  outils isolés",
+    retenir: [
+      "Les EPI et l'outillage isolant complètent la consignation, ils ne la remplacent jamais.",
+      "Les gants isolants et les outils sont classés pour une tension : il faut choisir la bonne classe.",
+      "Un EPI se contrôle avant chaque usage : gant percé, écran fissuré, manche fendu = rebut.",
+      "Le VAT est un instrument de contrôle, pas un EPI, mais il fait partie de la panoplie de sécurité.",
+    ],
+    erreurs: [
+      "Utiliser des gants isolants percés, humides ou d'une classe de tension inadaptée.",
+      "Croire que les EPI dispensent de consigner : ils sont une protection complémentaire.",
+      "Ranger un écran facial rayé au point de gêner la vision et continuer à l'utiliser.",
+    ],
+    astucesPro: [
+      "On teste l'étanchéité des gants isolants (test de gonflage) avant chaque intervention.",
+      "On range les EPI à l'abri de la lumière, de la chaleur et des produits agressifs pour préserver l'isolation.",
+    ],
+    diagnostic: [
+      "Identifier le risque dominant (contact, arc, fuite) pour choisir les EPI adaptés.",
+      "Vérifier la classe de tension marquée sur les gants et les outils.",
+      "Contrôler visuellement l'état de chaque équipement avant usage.",
+    ],
+    depannage: [
+      "Écarter immédiatement tout EPI douteux et le remplacer.",
+      "Refuser une intervention si les protections adaptées ne sont pas disponibles.",
+      "Signaler un EPI détérioré pour qu'il soit remplacé et non réutilisé.",
+    ],
+    securite: [
+      "Les EPI ne remplacent ni la consignation ni la vérification d'absence de tension.",
+      "La classe des gants et des outils doit correspondre à la tension de travail.",
+      "Cette application est pédagogique : le choix réel des EPI suit la procédure de l'entreprise et la réglementation.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien s'apprête à intervenir avec des gants isolants qu'il trouve « un peu collants et raides ».",
+      mission: ["Dire s'il peut les utiliser.", "Indiquer le contrôle à faire.", "Proposer la bonne conduite."],
+      correction:
+        "Des gants raides ou collants peuvent avoir perdu leurs propriétés isolantes. Il ne doit pas les utiliser sans contrôle : il faut vérifier leur état (test de gonflage, absence de fissure) et leur date de vérification. En cas de doute, on les met au rebut et on utilise une paire conforme. La sécurité prime sur la disponibilité de l'équipement.",
+    },
+    memo: ["EPI = barrière complémentaire", "Bonne classe de tension", "Contrôle avant chaque usage", "Doute = rebut"],
+    resume:
+      "Les EPI et l'outillage isolant réduisent le risque électrique mais ne remplacent pas la consignation ; leur classe et leur état doivent être vérifiés avant chaque usage.",
+    quizIds: ["els11", "els12", "els13", "els14", "els15"],
+    verification: {
+      question: "Que doit-on faire d'un gant isolant présentant une petite déchirure ?",
+      options: ["L'utiliser quand même si l'intervention est courte", "Le réparer avec du ruban adhésif", "Le mettre au rebut et en prendre un conforme", "L'utiliser en doublant avec un second gant percé"],
+      correct: 2,
+      explanation: "Un gant isolant endommagé ne protège plus : il doit être écarté et remplacé par un équipement conforme.",
+    },
+    exercice: {
+      enonce:
+        "Associez chaque risque à la protection adaptée : (1) contact avec une pièce sous tension, (2) arc électrique et projections, (3) contact via l'outil utilisé.",
+      consignes: [
+        "Associe chaque risque à un EPI ou un équipement.",
+        "Justifie brièvement chaque association.",
+        "Rappelle ce que les EPI ne remplacent pas.",
+      ],
+      criteres: [
+        "(1) gants isolants, (2) écran facial, (3) outils isolés.",
+        "J'ai justifié chaque association par le risque concerné.",
+        "J'ai rappelé que les EPI ne remplacent pas la consignation.",
+      ],
+      correction:
+        "(1) gants isolants contre le contact électrique, (2) écran facial contre l'arc et les projections, (3) outils isolés contre le contact par l'outil. Ces protections s'ajoutent à la consignation et à la vérification d'absence de tension : elles ne les remplacent pas.",
+    },
+  },
+  {
+    id: "3-7",
+    title: "Les habilitations électriques (NF C 18-510)",
+    durationMinutes: 30,
+    objectifs: [
+      "Expliquer ce qu'est une habilitation électrique et qui la délivre.",
+      "Décoder un symbole d'habilitation caractère par caractère.",
+    ],
+    simple:
+      "Toutes les opérations électriques ne sont pas permises à tout le monde. L'habilitation est une reconnaissance, donnée par l'employeur après formation, du fait qu'une personne sait réaliser certaines opérations en sécurité. Chaque symbole se lit comme un petit code.",
+    vocab: [
+      ["Habilitation", "Reconnaissance par l'employeur qu'une personne est formée pour des opérations électriques précises."],
+      ["NF C 18-510", "Norme française qui encadre les opérations sur les ouvrages électriques et les habilitations."],
+      ["Domaine de tension", "Première lettre : B pour basse tension, H pour haute tension."],
+      ["Indice de rôle", "Chiffre : 0 non-électricien, 1 exécutant électricien, 2 chargé de travaux."],
+      ["Attribut", "Lettre complémentaire : R (intervention générale), C (consignation), V (voisinage)…"],
+      ["Chargé de consignation (BC)", "Personne habilitée à réaliser la consignation d'un ouvrage."],
+    ],
+    example:
+      "Un « B1V » se décode ainsi : B (basse tension), 1 (exécutant électricien), V (autorisé à travailler au voisinage de pièces sous tension). Un « BC » est le chargé de consignation : c'est lui qui réalise la consignation étudiée au chapitre précédent.",
+    schema: "control-circuit",
+    illustrations: ["habilitation-decoder"],
+    ascii: "B      1      V\n│      │      └─ attribut : voisinage\n│      └──────── rôle : exécutant\n└─────────────── domaine : basse tension",
+    retenir: [
+      "L'habilitation est délivrée par l'employeur après formation, pas par un diplôme seul.",
+      "1re lettre = domaine (B basse tension, H haute tension).",
+      "Chiffre = rôle (0 non-électricien, 1 exécutant, 2 chargé de travaux).",
+      "Lettres = attributs (R intervention générale, C consignation, V voisinage).",
+    ],
+    erreurs: [
+      "Intervenir sur un ouvrage électrique sans posséder l'habilitation correspondante.",
+      "Confondre BR (intervention/dépannage) et BC (consignation) : ce ne sont pas les mêmes prérogatives.",
+      "Croire qu'une habilitation est acquise à vie : elle est révisée et renouvelée périodiquement.",
+    ],
+    astucesPro: [
+      "Avant une intervention, on vérifie que son habilitation couvre bien l'opération et le domaine de tension.",
+      "Le titre d'habilitation précise aussi les limites : on ne va pas au-delà de ce qui est écrit.",
+    ],
+    diagnostic: [
+      "Identifier le domaine de tension de l'ouvrage (BT ou HT).",
+      "Déterminer le rôle attendu (exécuter, diriger, consigner, dépanner).",
+      "Vérifier que le symbole d'habilitation correspond à l'opération prévue.",
+    ],
+    depannage: [
+      "En l'absence d'habilitation adaptée, ne pas intervenir et faire appel à une personne habilitée.",
+      "Demander la consignation à un chargé de consignation (BC) quand elle est requise.",
+      "Signaler tout écart entre l'opération demandée et son niveau d'habilitation.",
+    ],
+    securite: [
+      "Aucune opération électrique ne se fait sans l'habilitation correspondante.",
+      "L'habilitation fixe des limites : on ne les dépasse jamais, même sous pression.",
+      "Cette application est pédagogique : elle ne délivre aucune habilitation et ne remplace pas la formation réglementaire.",
+    ],
+    etudeDeCas: {
+      situation: "On demande à un « B1 » de réaliser seul la consignation d'une armoire avant une intervention.",
+      mission: ["Dire si c'est conforme.", "Identifier qui doit consigner.", "Proposer la bonne organisation."],
+      correction:
+        "Ce n'est pas conforme : la consignation relève d'un chargé de consignation (BC), pas d'un simple exécutant B1. Il faut faire réaliser la consignation par une personne habilitée BC, puis l'exécutant B1 (ou B1V si voisinage) peut travailler dans le cadre défini par le chargé de travaux. Chacun agit dans les limites de son habilitation.",
+    },
+    memo: ["B/H = domaine", "0/1/2 = rôle", "R/C/V = attributs", "BC = consignation", "Jamais au-delà de son titre"],
+    resume:
+      "Une habilitation, délivrée par l'employeur, autorise des opérations précises ; elle se lit domaine + rôle + attributs et fixe des limites à respecter.",
+    quizIds: ["els16", "els17", "els18", "els19", "els20"],
+    verification: {
+      question: "Dans le symbole « BR », que signifie la lettre R ?",
+      options: ["Réparation interdite", "Intervention BT générale (dépannage, mesurage)", "Réseau haute tension", "Rôle de non-électricien"],
+      correct: 1,
+      explanation: "BR = chargé d'intervention BT générale : dépannage, mesurage, essais, raccordement, dans les limites fixées par la norme et l'employeur.",
+    },
+    exercice: {
+      enonce:
+        "Décodez et expliquez les symboles suivants : (a) B0, (b) B2, (c) BC.",
+      consignes: [
+        "Donne la signification de chaque caractère.",
+        "Explique ce que la personne est autorisée à faire, en une phrase.",
+        "Précise qui, parmi eux, réalise la consignation.",
+      ],
+      criteres: [
+        "J'ai décodé le domaine, le rôle et les attributs de chaque symbole.",
+        "J'ai relié chaque symbole à une autorisation concrète.",
+        "J'ai identifié BC comme le chargé de consignation.",
+      ],
+      correction:
+        "(a) B0 = basse tension, travaux d'ordre non électrique : personne non-électricienne travaillant près d'installations BT. (b) B2 = basse tension, chargé de travaux : il dirige et réalise des travaux électriques. (c) BC = basse tension, chargé de consignation : c'est lui qui réalise la consignation. La consignation est donc du ressort du BC.",
+    },
+  },
 ];
 
 export const ELECTRO_BLOCKS: TrainingBlock[] = [

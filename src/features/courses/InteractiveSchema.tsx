@@ -324,11 +324,88 @@ function CircuitStates({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 3 — DÉCODEUR D'HABILITATION ÉLECTRIQUE (NF C 18-510)
+   Tape un symbole pour comprendre chacun de ses caractères.
+   --------------------------------------------------------------- */
+
+interface Habilitation {
+  code: string;
+  role: string;
+  parts: Array<[string, string]>;
+}
+
+const HABILITATIONS: Habilitation[] = [
+  { code: "B0", role: "Personne non-électricienne qui travaille près d'installations basse tension (ex : peintre, maçon).", parts: [["B", "Basse tension"], ["0", "Travaux d'ordre non électrique"]] },
+  { code: "H0", role: "Personne non-électricienne travaillant près d'installations haute tension.", parts: [["H", "Haute tension"], ["0", "Travaux d'ordre non électrique"]] },
+  { code: "B1", role: "Exécutant électricien en basse tension, qui travaille sous la conduite d'un chargé de travaux.", parts: [["B", "Basse tension"], ["1", "Exécutant électricien"]] },
+  { code: "B1V", role: "Exécutant électricien BT autorisé à travailler au voisinage de pièces sous tension.", parts: [["B", "Basse tension"], ["1", "Exécutant électricien"], ["V", "Travail au voisinage"]] },
+  { code: "B2", role: "Chargé de travaux électriques en basse tension : il dirige et réalise des travaux.", parts: [["B", "Basse tension"], ["2", "Chargé de travaux"]] },
+  { code: "BR", role: "Chargé d'intervention BT générale : dépannage, mesurage, essais, raccordement.", parts: [["B", "Basse tension"], ["R", "Intervention générale (dépannage, mesures)"]] },
+  { code: "BC", role: "Chargé de consignation en basse tension : c'est lui qui réalise la consignation.", parts: [["B", "Basse tension"], ["C", "Chargé de consignation"]] },
+];
+
+function HabilitationDecoder({ dark }: { dark: boolean }) {
+  const [index, setIndex] = useState(5); // BR par défaut
+  const current = HABILITATIONS[index];
+
+  return (
+    <Figure
+      dark={dark}
+      title="Décoder un symbole d'habilitation"
+      legend="1re lettre = domaine de tension (B basse / H haute) · chiffre = rôle (0 non-électricien, 1 exécutant, 2 chargé de travaux) · lettres = attributs (R intervention générale, C consignation, V voisinage)."
+      explanation="Une habilitation électrique se lit caractère par caractère. Elle est délivrée par l'employeur après formation et précise ce qu'une personne a le droit de faire. Les libellés ci-dessous sont simplifiés pour un premier repérage : les prérogatives exactes sont définies par la norme NF C 18-510 et par l'entreprise."
+      controls={
+        <div role="group" aria-label="Choisir un symbole d'habilitation" className="flex flex-wrap gap-2">
+          {HABILITATIONS.map((habilitation, i) => {
+            const active = i === index;
+            return (
+              <button
+                key={habilitation.code}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setIndex(i)}
+                className={`rounded-lg border-2 px-3 py-1.5 font-mono text-sm font-bold transition ${active ? "border-amber-400 bg-amber-400 text-slate-950" : dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}
+              >
+                {habilitation.code}
+              </button>
+            );
+          })}
+        </div>
+      }
+    >
+      <div className="p-2">
+        {/* Décomposition caractère par caractère */}
+        <div className="flex flex-wrap items-stretch justify-center gap-2" aria-hidden="true">
+          {current.parts.map(([char], i) => (
+            <div key={i} className={`flex h-14 w-14 items-center justify-center rounded-xl border-2 font-mono text-2xl font-bold ${dark ? "border-sky-500/50 bg-slate-900 text-sky-300" : "border-sky-300 bg-white text-sky-700"}`}>
+              {char}
+            </div>
+          ))}
+        </div>
+        {/* Signification (texte, jamais la couleur seule) */}
+        <dl className="mt-3 space-y-2">
+          {current.parts.map(([char, meaning], i) => (
+            <div key={i} className={`flex items-baseline gap-3 rounded-lg border p-2 text-sm ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+              <dt className={`font-mono text-base font-bold ${dark ? "text-sky-300" : "text-sky-700"}`}>{char}</dt>
+              <dd className={dark ? "text-slate-200" : "text-slate-700"}>{meaning}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className={`mt-3 rounded-lg p-3 text-sm ${dark ? "bg-amber-400/10 text-slate-200" : "bg-amber-50 text-slate-700"}`}>
+          <span className="font-semibold">Ce que ça désigne : </span>{current.role}
+        </p>
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
 export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType; dark: boolean }) {
   if (type === "consignation-interactive") return <ConsignationInteractive dark={dark} />;
   if (type === "circuit-states") return <CircuitStates dark={dark} />;
+  if (type === "habilitation-decoder") return <HabilitationDecoder dark={dark} />;
   return null;
 }

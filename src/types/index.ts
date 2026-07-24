@@ -55,7 +55,10 @@ export type LessonSchemaType =
   | "balance-vibration"
   | "ohm-triangle"
   | "control-circuit"
-  | "measurement-tools";
+  | "measurement-tools"
+  | "electrical-ppe"
+  | "measurement-safety"
+  | "electrical-first-aid";
 
 /**
  * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
@@ -66,7 +69,8 @@ export type LessonSchemaType =
  */
 export type InteractiveSchemaType =
   | "consignation-interactive"
-  | "circuit-states";
+  | "circuit-states"
+  | "habilitation-decoder";
 
 export interface LessonExercise {
   enonce: string;
