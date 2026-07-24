@@ -1123,5 +1123,66 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "po-pc-structure") {
+    return (
+      <svg viewBox="0 0 320 150" className="w-full h-40">
+        <defs>
+          <marker id="popc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Partie commande */}
+        <rect x="90" y="14" width="140" height="40" rx="8" fill={accent} stroke={stroke} strokeWidth="1.5" />
+        <text x="160" y="32" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">Partie commande (PC)</text>
+        <text x="160" y="46" textAnchor="middle" fontSize="8" fill="#14151a">décide, traite, pilote</text>
+        {/* Partie opérative */}
+        <rect x="90" y="96" width="140" height="40" rx="8" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="160" y="114" textAnchor="middle" fontSize="10" fill={stroke} fontWeight="bold">Partie opérative (PO)</text>
+        <text x="160" y="128" textAnchor="middle" fontSize="8" fill={stroke}>agit : moteurs, vérins…</text>
+        {/* Ordres (PC → PO) */}
+        <line x1="130" y1="54" x2="130" y2="96" stroke={stroke} strokeWidth="1.5" markerEnd="url(#popc-arrow)" />
+        <text x="104" y="78" textAnchor="middle" fontSize="7.5" fill={stroke}>ordres</text>
+        {/* Comptes rendus (PO → PC) */}
+        <line x1="190" y1="96" x2="190" y2="54" stroke={stroke} strokeWidth="1.5" markerEnd="url(#popc-arrow)" />
+        <text x="214" y="78" textAnchor="middle" fontSize="7.5" fill={stroke}>comptes rendus</text>
+      </svg>
+    );
+  }
+  if (type === "energy-info-chains") {
+    return (
+      <svg viewBox="0 0 320 150" className="w-full h-40">
+        <defs>
+          <marker id="eic-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Chaîne d'information */}
+        <text x="10" y="20" fontSize="9" fill={stroke} fontWeight="bold">Chaîne d'information</text>
+        {["Acquérir", "Traiter", "Communiquer"].map((l, i) => {
+          const x = 12 + i * 100;
+          return (
+            <g key={l}>
+              <rect x={x} y="28" width="82" height="26" rx="5" fill={box} stroke="#38bdf8" strokeWidth="1.5" />
+              <text x={x + 41} y="45" textAnchor="middle" fontSize="8.5" fill={stroke}>{l}</text>
+              {i < 2 && <line x1={x + 82} y1="41" x2={x + 100} y2="41" stroke={stroke} strokeWidth="1.5" markerEnd="url(#eic-arrow)" />}
+            </g>
+          );
+        })}
+        {/* Chaîne d'énergie */}
+        <text x="10" y="88" fontSize="9" fill={stroke} fontWeight="bold">Chaîne d'énergie</text>
+        {["Alimenter", "Distribuer", "Convertir", "Agir"].map((l, i) => {
+          const x = 8 + i * 76;
+          return (
+            <g key={l}>
+              <rect x={x} y="96" width="60" height="26" rx="5" fill={i === 3 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 30} y="113" textAnchor="middle" fontSize="8" fill={i === 3 ? "#14151a" : stroke}>{l}</text>
+              {i < 3 && <line x1={x + 60} y1="109" x2={x + 76} y2="109" stroke={stroke} strokeWidth="1.5" markerEnd="url(#eic-arrow)" />}
+            </g>
+          );
+        })}
+        <text x="160" y="140" textAnchor="middle" fontSize="7.5" fill={stroke}>l'information commande l'énergie</text>
+      </svg>
+    );
+  }
   return null;
 }

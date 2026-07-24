@@ -66,7 +66,9 @@ export type LessonSchemaType =
   | "star-delta-coupling"
   | "vfd-blockdiagram"
   | "schematic-comparison"
-  | "diagnostic-flow";
+  | "diagnostic-flow"
+  | "po-pc-structure"
+  | "energy-info-chains";
 
 /**
  * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
@@ -83,7 +85,8 @@ export type InteractiveSchemaType =
   | "contactor-thermal"
   | "rotation-direction"
   | "symbol-decoder"
-  | "diagnostic-tree";
+  | "diagnostic-tree"
+  | "automated-system";
 
 export interface LessonExercise {
   enonce: string;

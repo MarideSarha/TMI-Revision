@@ -1,3 +1,5 @@
+import { AUTOMATISME_MODULE } from "./automatisme";
+import { AUTOMATISME_QUESTIONS } from "./automatismeQuestions";
 import { ELECTRO_MODULE } from "./electrotechnique";
 import { ELECTRO_QUESTIONS } from "./electrotechniqueQuestions";
 import { MECHANICS_MODULE } from "./mechanics";
@@ -5,8 +7,10 @@ import { MECHANICS_QUESTIONS } from "./mechanicsQuestions";
 import { MODULES as FOUNDATION_MODULES } from "./modules";
 import { QUESTIONS as FOUNDATION_QUESTIONS } from "./questions";
 
-export const MODULES = [...FOUNDATION_MODULES, ELECTRO_MODULE, MECHANICS_MODULE];
-export const QUESTIONS = { ...FOUNDATION_QUESTIONS, ...ELECTRO_QUESTIONS, ...MECHANICS_QUESTIONS };
+export const MODULES = [...FOUNDATION_MODULES, ELECTRO_MODULE, MECHANICS_MODULE, AUTOMATISME_MODULE];
+export const QUESTIONS = { ...FOUNDATION_QUESTIONS, ...ELECTRO_QUESTIONS, ...MECHANICS_QUESTIONS, ...AUTOMATISME_QUESTIONS };
+export { AUTOMATISME_BLOCKS, AUTOMATISME_MODULE } from "./automatisme";
+export { AUTOMATISME_QUESTIONS } from "./automatismeQuestions";
 export { ELECTRO_BLOCKS, ELECTRO_MODULE } from "./electrotechnique";
 export { ELECTRO_QUESTIONS } from "./electrotechniqueQuestions";
 export { MECHANICS_BLOCKS, MECHANICS_MODULE } from "./mechanics";

@@ -921,6 +921,90 @@ function DiagnosticTree({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 9 — LA BOUCLE D'UN SYSTÈME AUTOMATISÉ
+   Capteur → partie commande → préactionneur → actionneur → effet.
+   --------------------------------------------------------------- */
+
+const SYSTEM_STEPS: Array<{ title: string; text: string }> = [
+  { title: "Capteurs", text: "Les capteurs acquièrent l'information (présence, position, niveau…) et l'envoient à la partie commande." },
+  { title: "Partie commande (API)", text: "La partie commande (souvent un automate) traite les informations reçues et décide des ordres à envoyer." },
+  { title: "Préactionneurs", text: "Les préactionneurs (distributeurs, contacteurs) relaient l'ordre et distribuent l'énergie vers les actionneurs." },
+  { title: "Actionneurs", text: "Les actionneurs (vérins, moteurs) agissent sur la matière ou le produit. L'effet obtenu est à nouveau détecté par les capteurs : la boucle recommence." },
+];
+
+function AutomatedSystem({ dark }: { dark: boolean }) {
+  const [step, setStep] = useState(0);
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const active = "#f5b400";
+
+  const boxes = [
+    { x: 18, y: 18, label: "Capteurs" },
+    { x: 192, y: 18, label: "Partie commande" },
+    { x: 192, y: 112, label: "Préactionneurs" },
+    { x: 18, y: 112, label: "Actionneurs" },
+  ];
+
+  return (
+    <Figure
+      dark={dark}
+      title="La boucle d'un système automatisé"
+      legend="Capteurs (information) → partie commande (décision) → préactionneurs → actionneurs (énergie/action) → l'effet est de nouveau détecté."
+      explanation="Un système automatisé fonctionne en boucle : les capteurs informent, la partie commande décide, les préactionneurs distribuent l'énergie et les actionneurs agissent. L'effet produit est à son tour détecté, ce qui referme la boucle. Comprendre cet enchaînement aide à situer une panne : information (capteur, commande) ou énergie (préactionneur, actionneur)."
+      controls={
+        <div>
+          <div className="mb-2 text-center text-xs font-semibold uppercase tracking-widest text-slate-400">Étape {step + 1}/4</div>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <button type="button" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold disabled:opacity-40 ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+              <ArrowLeft size={16} /> Précédent
+            </button>
+            {step < 3 ? (
+              <button type="button" onClick={() => setStep((s) => Math.min(3, s + 1))} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-amber-400 px-4 py-2.5 text-sm font-bold text-slate-950">
+                Étape suivante <ArrowRight size={16} />
+              </button>
+            ) : (
+              <button type="button" onClick={() => setStep(0)} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+                <RotateCcw size={16} /> Recommencer
+              </button>
+            )}
+          </div>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 320 170" className="h-auto w-full" role="img" aria-label={`Étape ${step + 1} : ${SYSTEM_STEPS[step].title}`}>
+        <defs>
+          <marker id="as-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Flèches de la boucle (sens horaire) */}
+        <line x1="128" y1="38" x2="192" y2="38" stroke={stroke} strokeWidth="1.5" markerEnd="url(#as-arrow)" />
+        <line x1="247" y1="58" x2="247" y2="112" stroke={stroke} strokeWidth="1.5" markerEnd="url(#as-arrow)" />
+        <line x1="192" y1="132" x2="128" y2="132" stroke={stroke} strokeWidth="1.5" markerEnd="url(#as-arrow)" />
+        <line x1="73" y1="112" x2="73" y2="58" stroke={stroke} strokeWidth="1.5" markerEnd="url(#as-arrow)" />
+        <text x="160" y="32" textAnchor="middle" fontSize="7" fill={stroke}>informe</text>
+        <text x="160" y="146" textAnchor="middle" fontSize="7" fill={stroke}>agit</text>
+        <text x="46" y="88" textAnchor="middle" fontSize="7" fill={stroke}>effet</text>
+        {/* Boîtes */}
+        {boxes.map((b, i) => {
+          const on = i === step;
+          return (
+            <g key={b.label}>
+              <rect x={b.x} y={b.y} width="110" height="40" rx="8" fill={on ? active : box} stroke={stroke} strokeWidth={on ? "2" : "1.5"} />
+              <text x={b.x + 55} y={b.y + 24} textAnchor="middle" fontSize="9.5" fill={on ? "#14151a" : stroke} fontWeight="bold">{b.label}</text>
+            </g>
+          );
+        })}
+      </svg>
+      <div className={`mt-2 rounded-lg border p-3 text-sm ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+        <p className={`font-bold ${dark ? "text-white" : "text-slate-900"}`}>{step + 1}. {SYSTEM_STEPS[step].title}</p>
+        <p className={`mt-1 ${dark ? "text-slate-300" : "text-slate-700"}`}>{SYSTEM_STEPS[step].text}</p>
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -933,5 +1017,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "rotation-direction") return <RotationDirection dark={dark} />;
   if (type === "symbol-decoder") return <SymbolDecoder dark={dark} />;
   if (type === "diagnostic-tree") return <DiagnosticTree dark={dark} />;
+  if (type === "automated-system") return <AutomatedSystem dark={dark} />;
   return null;
 }

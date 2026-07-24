@@ -38,6 +38,11 @@ export default defineConfig({
               test: /[\\/]src[\\/]data[\\/]electrotechnique/,
             },
             {
+              // Données du module 5 (automatisme) isolées de la même façon.
+              name: "learning-auto",
+              test: /[\\/]src[\\/]data[\\/]automatisme/,
+            },
+            {
               name: "learning-data",
               test: /[\\/]src[\\/]data[\\/]/,
             },
