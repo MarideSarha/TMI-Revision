@@ -2487,6 +2487,264 @@ const block7Lessons: Lesson[] = [
         "Si le voyant de sortie est allumé mais que rien ne bouge, l'automate commande bien : le défaut est en aval (préactionneur, énergie de puissance, actionneur). Si le voyant de sortie est éteint, on regarde les entrées : une entrée manquante conduit à remonter vers le capteur — s'il détecte mais que l'entrée reste éteinte, le défaut est dans la liaison ; s'il ne détecte pas, c'est un défaut de détection. Si toutes les entrées sont correctes mais la sortie reste inactive, c'est une condition du programme qui n'est pas remplie (autre condition, sécurité active, mode). On agit ensuite en sécurité, après consignation, sans contourner de sécurité.",
     },
   },
+  {
+    id: "5-30",
+    title: "La maintenance préventive d'un système automatisé",
+    durationMinutes: 30,
+    objectifs: [
+      "Distinguer maintenance préventive et maintenance corrective.",
+      "Citer les gestes d'entretien courants d'un système automatisé.",
+    ],
+    simple:
+      "La maintenance préventive consiste à entretenir régulièrement le système pour éviter les pannes, au lieu d'attendre qu'elles surviennent (maintenance corrective). Sur un système automatisé, cela va du nettoyage des capteurs au contrôle des connexions, en passant par la vérification des sécurités et la propreté de l'air comprimé.",
+    vocab: [
+      ["Maintenance préventive", "Entretien planifié pour éviter les pannes avant qu'elles n'arrivent."],
+      ["Maintenance corrective", "Réparation après l'apparition d'une panne."],
+      ["Maintenance conditionnelle", "Entretien déclenché par une mesure (usure, température, vibration)."],
+      ["Gamme de maintenance", "Liste ordonnée des opérations d'entretien à réaliser et de leur périodicité."],
+      ["Traçabilité", "Enregistrement des interventions réalisées (date, opération, observations)."],
+    ],
+    example:
+      "Sur une machine, on nettoie régulièrement la face des capteurs optiques (la poussière fausse la détection), on resserre les borniers, on purge le filtre d'air comprimé et on teste les arrêts d'urgence. Ces gestes simples évitent des arrêts coûteux.",
+    schema: "maintenance-types",
+    ascii: "PREVENTIVE (avant la panne) : nettoyer capteurs, serrer connexions, purger air, tester securites\nCORRECTIVE (apres la panne) : reparer/remplacer\nCONDITIONNELLE : declenchee par une mesure (usure, temperature)",
+    retenir: [
+      "Préventive = avant la panne ; corrective = après la panne.",
+      "Nettoyer les capteurs : la saleté fausse la détection.",
+      "Contrôler les connexions et le repérage : une borne desserrée crée des défauts intermittents.",
+      "Vérifier les sécurités (arrêts d'urgence, protecteurs) et la qualité de l'air comprimé.",
+    ],
+    erreurs: [
+      "N'intervenir qu'en corrective et subir les pannes.",
+      "Négliger le nettoyage des capteurs, source fréquente de défauts.",
+      "Oublier de tester les organes de sécurité lors de l'entretien.",
+      "Ne rien tracer : on perd l'historique utile au diagnostic.",
+    ],
+    astucesPro: [
+      "Un défaut intermittent oriente souvent vers une connexion desserrée ou un capteur encrassé.",
+      "On suit une gamme de maintenance : mêmes gestes, même périodicité, tracés.",
+      "L'air comprimé propre et sec prolonge la vie des distributeurs et vérins.",
+    ],
+    diagnostic: [
+      "Repérer les points sensibles : capteurs exposés, connexions, filtres d'air.",
+      "Comparer l'état constaté à l'état attendu (propreté, serrage, réglage).",
+      "Consigner les observations pour suivre l'évolution dans le temps.",
+    ],
+    depannage: [
+      "Traiter en priorité les causes récurrentes révélées par l'historique.",
+      "Remplacer un consommable (filtre, joint) selon la périodicité prévue.",
+      "Faire remonter à une personne compétente tout écart touchant la sécurité.",
+    ],
+    securite: [
+      "Les opérations de maintenance sur les parties actives se font après consignation des énergies et vérification d'absence de tension/pression.",
+      "On teste les organes de sécurité selon la procédure, sans jamais les neutraliser.",
+      "Cette application est pédagogique et ne remplace ni la formation ni la gamme de maintenance de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Une cellule automatisée présente des arrêts aléatoires plusieurs fois par jour, sans message clair.",
+      mission: ["Proposer des gestes de maintenance préventive utiles.", "Citer une cause fréquente de défaut intermittent.", "Rappeler la précaution de sécurité."],
+      correction:
+        "Des arrêts aléatoires évoquent souvent un défaut intermittent : on nettoie la face des capteurs (poussière), on resserre les borniers et connecteurs, on vérifie le repérage, on purge et contrôle le filtre d'air comprimé, et on teste les sécurités. Une cause fréquente est une connexion desserrée ou un capteur encrassé. Toutes ces opérations sur les parties actives se font après consignation et vérification d'absence de tension/pression, sans neutraliser aucune sécurité, et sont tracées pour suivre l'évolution.",
+    },
+    memo: ["Préventive avant la panne", "Nettoyer capteurs · serrer connexions", "Tester les sécurités · tracer"],
+    resume:
+      "La maintenance préventive entretient le système (capteurs, connexions, air, sécurités) pour éviter les pannes, contrairement à la corrective qui répare après ; elle se fait en sécurité et se trace.",
+    quizIds: ["aut146", "aut147", "aut148", "aut149", "aut150"],
+    verification: {
+      question: "Quelle est la différence entre maintenance préventive et corrective ?",
+      options: ["Aucune", "La préventive entretient avant la panne, la corrective répare après", "La corrective est planifiée, la préventive est subie", "La préventive ne concerne que l'automate"],
+      correct: 1,
+      explanation: "La maintenance préventive entretient régulièrement pour éviter la panne ; la corrective intervient une fois la panne survenue.",
+    },
+    exercice: {
+      enonce:
+        "Proposez un petit plan de maintenance préventive pour un système automatisé, avec au moins quatre gestes.",
+      consignes: [
+        "Cite au moins quatre gestes d'entretien.",
+        "Explique pourquoi chacun est utile.",
+        "Rappelle la règle de sécurité.",
+      ],
+      criteres: [
+        "J'ai cité au moins quatre gestes pertinents.",
+        "J'ai justifié leur utilité.",
+        "J'ai rappelé la consignation avant intervention.",
+      ],
+      correction:
+        "Plan de maintenance préventive : nettoyer la face des capteurs (la saleté fausse la détection) ; resserrer les borniers et connecteurs (une borne desserrée crée des défauts intermittents) ; purger et contrôler le filtre d'air comprimé (protège distributeurs et vérins) ; tester les organes de sécurité (arrêts d'urgence, protecteurs) selon la procédure ; vérifier le repérage et tracer les interventions. Chacun de ces gestes réduit le risque de panne. Toutes les opérations sur les parties actives se font après consignation des énergies et vérification d'absence de tension/pression, sans neutraliser de sécurité.",
+    },
+  },
+  {
+    id: "5-31",
+    title: "Sécurité et consignation multi-énergies",
+    durationMinutes: 32,
+    objectifs: [
+      "Comprendre qu'un système automatisé cumule plusieurs énergies à maîtriser.",
+      "Appliquer les principes de consignation avant intervention.",
+    ],
+    simple:
+      "Un système automatisé combine souvent plusieurs énergies : électrique, pneumatique (air comprimé) et parfois hydraulique. Avant d'intervenir, il faut toutes les maîtriser : on consigne chaque énergie, on vérifie l'absence de tension et de pression, et on tient compte des énergies résiduelles (air emprisonné, charges suspendues, condensateurs) qui peuvent provoquer un mouvement dangereux.",
+    vocab: [
+      ["Consignation", "Procédure qui met et maintient une installation hors énergie de façon sûre."],
+      ["Multi-énergies", "Présence simultanée de plusieurs énergies (électrique, pneumatique, hydraulique)."],
+      ["Énergie résiduelle", "Énergie encore présente après coupure (air sous pression, charge suspendue, condensateur)."],
+      ["VAT", "Vérification d'Absence de Tension, réalisée après coupure et avant de travailler."],
+      ["Purge", "Évacuation de l'air ou du fluide sous pression pour supprimer l'énergie résiduelle."],
+    ],
+    example:
+      "Pour intervenir sur une station à vérins, couper l'électricité ne suffit pas : un vérin peut rester sous pression et bouger brutalement. On coupe aussi l'air, on purge le circuit, et on s'assure qu'aucune charge n'est en équilibre instable avant d'approcher les mains.",
+    schema: "consignation-steps",
+    ascii: "SYSTEME = ELECTRIQUE + PNEUMATIQUE (+ HYDRAULIQUE)\nconsigner CHAQUE energie → VAT (electrique) + PURGE (air/fluide)\nattention aux ENERGIES RESIDUELLES (air emprisonne, charge suspendue)",
+    retenir: [
+      "Un système automatisé cumule souvent plusieurs énergies à consigner.",
+      "Couper l'électricité ne supprime pas l'air sous pression : il faut aussi consigner et purger.",
+      "On vérifie l'absence de tension (VAT) ET l'absence de pression.",
+      "Les énergies résiduelles (air, charges, condensateurs) peuvent créer un mouvement dangereux.",
+    ],
+    erreurs: [
+      "Ne consigner que l'électricité en oubliant l'air comprimé.",
+      "Oublier la purge : un vérin peut se déplacer brutalement.",
+      "Négliger une charge suspendue ou en équilibre instable.",
+      "Intervenir sans vérifier réellement l'absence de tension et de pression.",
+    ],
+    astucesPro: [
+      "On identifie toutes les sources d'énergie du système avant d'intervenir.",
+      "On purge et on met à l'atmosphère les circuits pneumatiques avant d'approcher les actionneurs.",
+      "On sécurise les charges (calage) qui pourraient tomber une fois l'énergie coupée.",
+    ],
+    diagnostic: [
+      "Recenser les énergies présentes (électrique, pneumatique, hydraulique).",
+      "Vérifier que chaque énergie est bien consignée avant intervention.",
+      "Identifier les énergies résiduelles possibles et les neutraliser.",
+    ],
+    depannage: [
+      "Ne jamais travailler sur un circuit encore sous pression ou sous tension.",
+      "Purger l'air et décharger les circuits avant tout démontage.",
+      "Faire appel à une personne habilitée pour les opérations qui l'exigent.",
+    ],
+    securite: [
+      "La consignation multi-énergies et la vérification d'absence de tension/pression sont réalisées par des personnes habilitées, selon la procédure.",
+      "On ne neutralise jamais une sécurité et on tient compte de toutes les énergies résiduelles.",
+      "Cette application est pédagogique et ne remplace ni la formation, ni les habilitations, ni les procédures de consignation de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Un opérateur veut dégager une pièce coincée entre deux vérins. Il coupe l'armoire électrique et veut passer la main.",
+      mission: ["Dire si la coupure électrique suffit.", "Indiquer les précautions supplémentaires.", "Nommer les vérifications à faire."],
+      correction:
+        "Couper l'électricité ne suffit pas : les vérins peuvent rester sous pression et se déplacer brutalement. Il faut aussi consigner l'air comprimé (et l'hydraulique s'il y en a), purger les circuits pour supprimer l'énergie résiduelle, et sécuriser toute charge en équilibre. Vérifications : absence de tension (VAT) sur la partie électrique et absence de pression sur les circuits pneumatiques/hydrauliques avant d'approcher les mains. Ces opérations relèvent des personnes habilitées et suivent la procédure de consignation ; on ne neutralise jamais une sécurité.",
+    },
+    memo: ["Plusieurs énergies = plusieurs consignations", "VAT + purge", "Attention aux énergies résiduelles"],
+    resume:
+      "Un système automatisé cumule électricité, air comprimé et parfois hydraulique : avant d'intervenir on consigne chaque énergie, on vérifie l'absence de tension et de pression et on neutralise les énergies résiduelles.",
+    quizIds: ["aut151", "aut152", "aut153", "aut154", "aut155"],
+    verification: {
+      question: "Sur un système à vérins pneumatiques, couper l'électricité suffit-il avant d'intervenir ?",
+      options: ["Oui, tout est coupé", "Non : il faut aussi consigner et purger l'air comprimé", "Oui, si on va vite", "Non, mais seulement la nuit"],
+      correct: 1,
+      explanation: "L'air comprimé reste une énergie dangereuse : un vérin sous pression peut bouger. Il faut consigner l'air et purger avant d'intervenir." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi et comment on maîtrise les différentes énergies avant d'intervenir sur un système automatisé.",
+      consignes: [
+        "Cite les énergies possibles.",
+        "Explique pourquoi couper l'électricité ne suffit pas.",
+        "Décris les vérifications avant intervention.",
+      ],
+      criteres: [
+        "J'ai cité électrique, pneumatique (et hydraulique).",
+        "J'ai expliqué le risque de l'air sous pression / énergie résiduelle.",
+        "J'ai décrit la VAT et le contrôle d'absence de pression.",
+      ],
+      correction:
+        "Un système automatisé combine souvent l'énergie électrique, l'air comprimé et parfois l'hydraulique. Couper l'électricité ne suffit pas : un vérin peut rester sous pression et se déplacer brutalement (énergie résiduelle). On consigne donc chaque énergie, on purge les circuits sous pression, et on sécurise les charges en équilibre. Avant d'intervenir, on vérifie l'absence de tension (VAT) sur la partie électrique et l'absence de pression sur les circuits pneumatiques/hydrauliques. Ces opérations sont réalisées par des personnes habilitées, selon la procédure, sans neutraliser aucune sécurité.",
+    },
+  },
+  {
+    id: "5-32",
+    title: "Synthèse du module et mise en situation",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier les notions du module : structure, capteurs, actionneurs, automate, diagnostic.",
+      "Appliquer une démarche complète à une mise en situation.",
+    ],
+    simple:
+      "Ce chapitre relie tout le module. Un système automatisé s'organise en partie opérative et partie commande, reliées par une chaîne d'information (capteurs → entrées) et une chaîne d'énergie (sorties → préactionneurs → actionneurs). L'automate exécute un programme en cycle. Pour diagnostiquer, on observe les voyants et l'IHM, on remonte la chaîne, et on intervient en sécurité après consignation.",
+    vocab: [
+      ["Partie opérative", "Ce qui agit sur la matière : actionneurs, effecteurs (PO)."],
+      ["Partie commande", "Ce qui décide et pilote : l'automate et sa logique (PC)."],
+      ["Chaîne d'information", "Capteurs → entrées : ce que le système perçoit."],
+      ["Chaîne d'énergie", "Sorties → préactionneurs → actionneurs : ce que le système fait."],
+      ["Démarche de diagnostic", "Observer, remonter la chaîne, localiser, intervenir en sécurité."],
+    ],
+    example:
+      "Sur un poste de tri : un capteur détecte la pièce (information), l'automate décide (programme), une sortie commande un distributeur (préactionneur) qui alimente un vérin (actionneur) éjectant la pièce. Si le tri échoue, on observe les voyants pour situer le maillon en cause.",
+    schema: "po-pc-structure",
+    ascii: "PO (agit) <-> PC (decide)\ninfo : capteurs → entrees      energie : sorties → preactionneurs → actionneurs\nAUTOMATE = programme en cycle · DIAGNOSTIC = observer, remonter, localiser, securite",
+    retenir: [
+      "PO (agit) et PC (décide) forment le système automatisé.",
+      "Chaîne d'information : capteurs → entrées ; chaîne d'énergie : sorties → préactionneurs → actionneurs.",
+      "L'automate exécute un programme en cycle (lecture entrées, traitement, écriture sorties).",
+      "Diagnostiquer = observer (voyants, IHM), remonter la chaîne, localiser, intervenir en sécurité.",
+    ],
+    erreurs: [
+      "Confondre partie opérative (agit) et partie commande (décide).",
+      "Confondre chaîne d'information (capteurs) et chaîne d'énergie (actionneurs).",
+      "Oublier que le diagnostic commence par l'observation, pas par le démontage.",
+      "Négliger la consignation multi-énergies avant d'intervenir.",
+    ],
+    astucesPro: [
+      "Situer chaque élément dans PO/PC et dans sa chaîne aide à raisonner vite.",
+      "Les voyants d'E/S sont la boussole du diagnostic.",
+      "Toujours conclure une intervention par un contrôle des sécurités et une traçabilité.",
+    ],
+    diagnostic: [
+      "Identifier le maillon concerné : information, décision ou action.",
+      "Utiliser les voyants et l'IHM pour situer sans démonter.",
+      "Vérifier les conditions du cycle et l'état des sécurités.",
+    ],
+    depannage: [
+      "Traiter le maillon localisé (capteur, câblage, préactionneur, énergie, actionneur).",
+      "Distinguer défaut matériel et condition de programme.",
+      "Intervenir après consignation, sans contourner de sécurité, puis tracer.",
+    ],
+    securite: [
+      "Toute intervention sur les parties actives suit la consignation multi-énergies et la vérification d'absence de tension/pression.",
+      "Une modification de programme relève d'une personne compétente ; on ne neutralise jamais une sécurité.",
+      "Cette application est pédagogique et ne remplace ni la formation, ni les habilitations, ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un poste de tri automatisé, les pièces ne sont plus éjectées depuis ce matin. Vous êtes chargé du diagnostic.",
+      mission: ["Situer les éléments dans PO/PC et leurs chaînes.", "Décrire votre démarche de diagnostic.", "Préciser les précautions de sécurité."],
+      correction:
+        "Le capteur de présence et l'IHM appartiennent à la chaîne d'information (vers la PC) ; le distributeur (préactionneur) et le vérin (actionneur) forment la chaîne d'énergie de la PO ; l'automate est la PC. Démarche : observer le voyant de la sortie « éjecteur » — s'il est allumé sans action, chercher en aval (air, distributeur, vérin) ; s'il est éteint, vérifier l'entrée « pièce présente », donc le capteur (le tester avec son voyant) ou une condition du programme. On localise ainsi le maillon en défaut. Précautions : consigner les énergies électrique et pneumatique, vérifier l'absence de tension et de pression, ne pas contourner les sécurités, et tracer l'intervention.",
+    },
+    memo: ["PO agit · PC décide", "Info : capteurs · Énergie : actionneurs", "Diagnostic : observer → localiser → sécurité"],
+    resume:
+      "Le module se synthétise ainsi : PO/PC, chaîne d'information (capteurs) et chaîne d'énergie (actionneurs), automate en cycle, et une démarche de diagnostic qui observe, remonte la chaîne, localise et intervient en sécurité.",
+    quizIds: ["aut156", "aut157", "aut158", "aut159", "aut160"],
+    verification: {
+      question: "Dans un système automatisé, la chaîne d'information correspond à :",
+      options: ["sorties → préactionneurs → actionneurs", "capteurs → entrées (ce que le système perçoit)", "l'alimentation de l'automate", "l'IHM uniquement"],
+      correct: 1,
+      explanation: "La chaîne d'information va des capteurs vers les entrées de l'automate : c'est ce que le système perçoit ; la chaîne d'énergie, elle, va des sorties vers les actionneurs.",
+    },
+    exercice: {
+      enonce:
+        "Sur un système automatisé de votre choix, situez les éléments dans PO/PC et les deux chaînes, puis décrivez une démarche de diagnostic complète.",
+      consignes: [
+        "Place au moins un élément dans la PO et un dans la PC.",
+        "Distingue chaîne d'information et chaîne d'énergie.",
+        "Décris la démarche de diagnostic et la sécurité.",
+      ],
+      criteres: [
+        "J'ai réparti des éléments entre PO et PC.",
+        "J'ai distingué les deux chaînes.",
+        "J'ai décrit une démarche de diagnostic en sécurité.",
+      ],
+      correction:
+        "Exemple d'un poste de tri : la partie opérative comprend le vérin (actionneur) et le distributeur (préactionneur) ; la partie commande est l'automate et sa logique. La chaîne d'information va du capteur de présence vers l'entrée de l'automate ; la chaîne d'énergie va de la sortie vers le distributeur puis le vérin. Démarche de diagnostic : observer les voyants et l'IHM, remonter la chaîne (sortie commandée ou non, entrées présentes ou non, capteur qui détecte ou non) pour localiser le maillon en défaut, puis intervenir après consignation des énergies (électrique et pneumatique), vérification d'absence de tension/pression, sans contourner de sécurité, et tracer l'intervention.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -2551,7 +2809,11 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     objective: "Diagnostiquer méthodiquement un système automatisé en sécurité.",
     lessonIds: block7Lessons.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["aut131", "aut133", "aut136", "aut139", "aut141", "aut144", "aut146", "aut148", "aut151", "aut153", "aut156", "aut159"],
+      passPercent: 80,
+    },
   },
 ];
 

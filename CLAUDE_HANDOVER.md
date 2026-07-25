@@ -217,9 +217,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 5 du module 5 : **5 modules, 26 blocs, 123 leçons, 620 questions, 10 pannes, 22 badges.**
-- Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1, 2, 3 et 5 disponibles (bloc 4 planifié). Module 4 : inchangé (6 blocs sur 12).**
+- Build réussi. Décomptes après le bloc 7 du module 5 : **5 modules, 26 blocs, 129 leçons, 650 questions, 10 pannes, 23 badges.**
+- Bundles sous budget : `learning-data` ≈ 451 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1, 2, 3, 5 et 7 disponibles (blocs 4 et 6 planifiés). Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -233,9 +233,10 @@ aucune réécriture d'historique.)
 
 - **Module 3 « Électrotechnique » : entièrement terminé** (7 blocs, 43 chapitres, 8 schémas interactifs,
   7 examens de bloc, 7 badges de bloc + le badge `module_3` de fin de module).
-- **Module 5 « Automatisme » : blocs 1, 2, 3 et 5 terminés** ; restent le **bloc 4 (Pneumatique industriel)**
-  et les **blocs 6 (GRAFCET) et 7 (Diagnostic)**. Réutiliser `InteractiveSchema` pour les nouveaux schémas
-  (cycle GRAFCET, traitement de l'air…).
+- **Module 5 « Automatisme » : blocs 1, 2, 3, 5 et 7 terminés** ; restent le **bloc 4 (Pneumatique industriel)**
+  et le **bloc 6 (Cycle / GRAFCET)**. Réutiliser `InteractiveSchema` pour les nouveaux schémas
+  (cycle GRAFCET, traitement de l'air…). Le bloc 7 ajoute l'assistant interactif `auto-diagnostic-tree`
+  (démarche capteur → entrée → automate → sortie → préactionneur → actionneur guidée par les voyants).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -272,6 +273,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-5): complete le bloc 3 (5-17 a 5-19), examen et badge`
 - `feat(module-5): demarre le bloc 5 (automate programmable API)`
 - `feat(module-5): complete le bloc 5 (5-23 a 5-26), examen et badge`
+- `feat(module-5): demarre le bloc 7 (diagnostic, 5-27 a 5-29) + assistant auto`
+- `feat(module-5): complete le bloc 7 (5-30 a 5-32), examen et badge`
 
 ## Instructions pour reprendre le développement
 
