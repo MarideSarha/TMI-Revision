@@ -779,6 +779,342 @@ const block2Lessons: Lesson[] = [
         "Le détecteur inductif détecte uniquement les objets métalliques (ex : présence d'une pièce métallique dans un montage). Le détecteur capacitif détecte presque tous les matériaux (ex : niveau de granulés ou de liquide, même à travers une paroi fine). Les deux fonctionnent sans contact. Point d'attention du capacitif : sa sensibilité doit être réglée selon l'objet et l'environnement pour éviter les détections intempestives.",
     },
   },
+  {
+    id: "5-10",
+    title: "Le détecteur photoélectrique",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer le principe d'un détecteur photoélectrique.",
+      "Distinguer les modes barrage, reflex et proximité.",
+    ],
+    simple:
+      "Le détecteur photoélectrique utilise un faisceau lumineux pour détecter un objet, souvent à grande distance. Selon le montage, l'objet coupe le faisceau ou le renvoie. Il détecte la plupart des objets, quelle que soit leur matière, tant qu'ils arrêtent ou renvoient la lumière.",
+    vocab: [
+      ["Détecteur photoélectrique", "Capteur qui détecte un objet à l'aide d'un faisceau lumineux."],
+      ["Mode barrage", "Émetteur et récepteur séparés ; l'objet est détecté quand il coupe le faisceau."],
+      ["Mode reflex", "Émetteur et récepteur côte à côte, avec un réflecteur ; l'objet coupe le faisceau réfléchi."],
+      ["Mode proximité", "L'objet lui-même renvoie la lumière vers le récepteur."],
+      ["Portée", "Distance de détection, souvent bien plus grande que l'inductif ou le capacitif."],
+    ],
+    example:
+      "À l'entrée d'un convoyeur, un détecteur photoélectrique en mode barrage détecte le passage des cartons : quand un carton coupe le faisceau entre l'émetteur et le récepteur, la sortie change d'état. La portée peut atteindre plusieurs mètres.",
+    schema: "sensor-types-compare",
+    ascii: "BARRAGE : emetteur --faisceau--> recepteur ; objet coupe → detecte\nREFLEX : emetteur/recepteur + reflecteur ; objet coupe le faisceau reflechi\nPROXIMITE : l'objet renvoie la lumiere vers le recepteur",
+    retenir: [
+      "Le détecteur photoélectrique détecte grâce à un faisceau lumineux.",
+      "Mode barrage : émetteur et récepteur séparés, l'objet coupe le faisceau.",
+      "Mode reflex : un réflecteur renvoie le faisceau, l'objet le coupe.",
+      "Mode proximité : l'objet lui-même renvoie la lumière. La portée est souvent grande.",
+    ],
+    erreurs: [
+      "Choisir un mode inadapté (ex : proximité sur un objet noir peu réfléchissant).",
+      "Négliger l'encrassement de la lentille, qui fausse la détection.",
+      "Oublier l'alignement émetteur/récepteur ou réflecteur en mode barrage/reflex.",
+    ],
+    astucesPro: [
+      "On nettoie régulièrement la lentille : la poussière réduit la portée.",
+      "On choisit le mode selon la distance, l'objet et la place disponible.",
+    ],
+    diagnostic: [
+      "Vérifier l'alignement et la propreté de l'optique.",
+      "Contrôler le mode utilisé par rapport à l'objet à détecter.",
+      "Vérifier l'alimentation et le raccordement.",
+    ],
+    depannage: [
+      "Nettoyer la lentille et réaligner l'émetteur/récepteur ou le réflecteur.",
+      "Contrôler le signal reçu par l'entrée automate.",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "On ne modifie pas un capteur de sécurité (barrière immatérielle) sans procédure.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un détecteur photoélectrique en mode barrage ne détecte plus les cartons de façon fiable.",
+      mission: ["Citer deux causes probables.", "Indiquer les vérifications.", "Rappeler une précaution."],
+      correction:
+        "Deux causes probables : un désalignement entre l'émetteur et le récepteur, ou un encrassement de la lentille qui affaiblit le faisceau. Vérifications : contrôler l'alignement, nettoyer les optiques, vérifier l'alimentation et le raccordement, puis contrôler le signal reçu par l'automate. S'il s'agit d'une barrière de sécurité, toute intervention suit une procédure et se fait dans les limites de son habilitation.",
+    },
+    memo: ["Faisceau lumineux", "Barrage / reflex / proximité", "Grande portée", "Nettoyer et aligner l'optique"],
+    resume:
+      "Le détecteur photoélectrique détecte un objet par un faisceau lumineux (barrage, reflex ou proximité), souvent à grande distance et quelle que soit la matière.",
+    quizIds: ["aut46", "aut47", "aut48", "aut49", "aut50"],
+    verification: {
+      question: "Dans le mode barrage d'un détecteur photoélectrique, comment l'objet est-il détecté ?",
+      options: ["Il renvoie la lumière", "Il coupe le faisceau entre émetteur et récepteur", "Il chauffe le capteur", "Il touche le capteur"],
+      correct: 1,
+      explanation: "En mode barrage, l'émetteur et le récepteur sont séparés : l'objet est détecté lorsqu'il coupe le faisceau entre les deux.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez les trois modes du détecteur photoélectrique (barrage, reflex, proximité) en une phrase chacun.",
+      consignes: [
+        "Décris le mode barrage.",
+        "Décris le mode reflex.",
+        "Décris le mode proximité.",
+      ],
+      criteres: [
+        "Barrage : émetteur et récepteur séparés, l'objet coupe le faisceau.",
+        "Reflex : réflecteur qui renvoie le faisceau, l'objet le coupe.",
+        "Proximité : l'objet renvoie lui-même la lumière.",
+      ],
+      correction:
+        "Barrage : l'émetteur et le récepteur sont séparés ; l'objet est détecté quand il coupe le faisceau entre les deux (grande portée). Reflex : l'émetteur et le récepteur sont côte à côte avec un réflecteur en face ; l'objet est détecté quand il coupe le faisceau réfléchi. Proximité : l'objet lui-même renvoie la lumière vers le récepteur ; pratique quand on ne peut placer qu'un seul boîtier.",
+    },
+  },
+  {
+    id: "5-11",
+    title: "Détecteurs de position et fins de course",
+    durationMinutes: 26,
+    objectifs: [
+      "Expliquer le rôle d'un capteur de position et d'un fin de course.",
+      "Distinguer détection mécanique (avec contact) et détection sans contact.",
+    ],
+    simple:
+      "Un capteur de position indique où se trouve un élément mobile. Le fin de course est un capteur mécanique : quand la pièce arrive en butée, elle appuie sur un galet ou un levier qui bascule un contact. C'est simple, robuste, mais avec contact, donc soumis à l'usure.",
+    vocab: [
+      ["Fin de course", "Capteur mécanique actionné par le contact de l'élément mobile en fin de déplacement."],
+      ["Détecteur de position", "Capteur qui indique la position d'un élément (haute, basse, sortie…)."],
+      ["Galet / levier", "Pièce du fin de course actionnée par l'objet."],
+      ["Contact mécanique", "Détection par appui physique, sujette à l'usure."],
+      ["Compte rendu de position", "Information « position atteinte » renvoyée à la commande."],
+    ],
+    example:
+      "Sur un vérin, un fin de course en position sortie renvoie le compte rendu « vérin sorti » à l'automate. Quand la tige arrive en butée, elle appuie sur le galet du fin de course, dont le contact bascule.",
+    schema: "po-pc-structure",
+    ascii: "element mobile arrive en butee → appuie sur le galet → CONTACT bascule\n→ compte rendu « position atteinte » a la commande",
+    retenir: [
+      "Le fin de course détecte une position par contact mécanique.",
+      "Il fournit un compte rendu « position atteinte » à la commande.",
+      "Simple et robuste, mais soumis à l'usure car avec contact.",
+      "Pour éviter l'usure, on peut utiliser des détecteurs de position sans contact.",
+    ],
+    erreurs: [
+      "Régler un fin de course de sorte qu'il soit heurté violemment : usure rapide.",
+      "Confondre détection avec contact (fin de course) et sans contact (inductif, etc.).",
+      "Oublier qu'un fin de course encrassé ou usé peut ne plus commuter.",
+    ],
+    astucesPro: [
+      "On règle la position du fin de course pour un appui franc mais sans choc.",
+      "Un fin de course qui ne commute plus bloque souvent le cycle : on le vérifie tôt.",
+    ],
+    diagnostic: [
+      "Vérifier que l'élément mobile actionne bien le galet/levier.",
+      "Contrôler la commutation du contact (continuité) hors tension.",
+      "Vérifier l'usure et le réglage du fin de course.",
+    ],
+    depannage: [
+      "Ajuster ou remplacer un fin de course usé.",
+      "Contrôler le compte rendu reçu par l'automate.",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "Certains fins de course participent à la sécurité (position sûre) : on ne les shunte pas.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un cycle se bloque : l'automate attend le compte rendu « vérin sorti » qui n'arrive jamais.",
+      mission: ["Nommer le capteur concerné.", "Citer les causes probables.", "Indiquer les contrôles."],
+      correction:
+        "Le capteur concerné est le fin de course « vérin sorti ». Causes probables : le vérin ne sort pas complètement (défaut d'action) et n'actionne pas le galet, ou le fin de course est usé/déréglé et ne commute plus. Contrôles : vérifier que la tige atteint bien le galet, contrôler la commutation du contact (continuité, hors tension après consignation), et vérifier le réglage et l'usure du fin de course.",
+    },
+    memo: ["Fin de course = contact", "Compte rendu de position", "Robuste mais s'use", "Sans contact = pas d'usure"],
+    resume:
+      "Le fin de course détecte une position par contact mécanique et renvoie un compte rendu à la commande ; robuste mais sujet à l'usure, il peut être remplacé par un détecteur sans contact.",
+    quizIds: ["aut51", "aut52", "aut53", "aut54", "aut55"],
+    verification: {
+      question: "Comment un fin de course détecte-t-il une position ?",
+      options: ["Sans contact, par un faisceau", "Par contact mécanique (galet/levier actionné)", "Par la température", "Par la couleur"],
+      correct: 1,
+      explanation: "Le fin de course est actionné par le contact physique de l'élément mobile (galet ou levier), qui fait basculer un contact.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le fonctionnement d'un fin de course et donnez un avantage et un inconvénient par rapport à un détecteur sans contact.",
+      consignes: [
+        "Décris le fonctionnement.",
+        "Donne un avantage.",
+        "Donne un inconvénient.",
+      ],
+      criteres: [
+        "J'ai décrit l'appui mécanique qui bascule le contact.",
+        "J'ai donné un avantage (simple, robuste).",
+        "J'ai donné un inconvénient (usure car avec contact).",
+      ],
+      correction:
+        "Le fin de course est actionné par l'élément mobile : en fin de déplacement, la pièce appuie sur un galet ou un levier qui fait basculer un contact, renvoyant le compte rendu « position atteinte ». Avantage : simple, robuste et peu coûteux. Inconvénient : la détection se fait par contact, donc le capteur s'use avec le temps, contrairement à un détecteur sans contact (inductif, photoélectrique).",
+    },
+  },
+  {
+    id: "5-12",
+    title: "Capteurs analogiques et grandeurs mesurées",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer ce que fournit un capteur analogique.",
+      "Citer des grandeurs mesurées et des signaux normalisés (4-20 mA, 0-10 V).",
+    ],
+    simple:
+      "Un capteur analogique ne dit pas seulement « présent ou absent » : il fournit une valeur qui varie continûment avec la grandeur mesurée (température, pression, niveau, débit). Cette valeur est transmise sous forme de signal normalisé, par exemple 4-20 mA ou 0-10 V.",
+    vocab: [
+      ["Capteur analogique", "Capteur qui fournit une valeur continue proportionnelle à la grandeur."],
+      ["Signal normalisé", "Signal standard compris par les automates : 4-20 mA (courant) ou 0-10 V (tension)."],
+      ["Grandeur mesurée", "Ce que l'on mesure : température, pression, niveau, débit…"],
+      ["Étendue de mesure", "Plage de valeurs que le capteur peut mesurer (ex : 0 à 100 °C)."],
+      ["Entrée analogique", "Entrée de l'automate qui reçoit et convertit le signal analogique."],
+    ],
+    example:
+      "Un capteur de pression 4-20 mA associé à une plage 0-10 bar envoie 4 mA pour 0 bar et 20 mA pour 10 bar. L'automate lit ce courant et en déduit la pression, qu'il peut afficher ou utiliser pour réguler.",
+    schema: "energy-info-chains",
+    ascii: "grandeur (temperature, pression, niveau) → CAPTEUR ANALOGIQUE\n→ signal normalise (4-20 mA ou 0-10 V) → entree analogique de l'automate",
+    retenir: [
+      "Un capteur analogique fournit une valeur continue, pas seulement deux états.",
+      "Les signaux normalisés courants sont 4-20 mA et 0-10 V.",
+      "Grandeurs typiques : température, pression, niveau, débit.",
+      "Le signal est reçu par une entrée analogique de l'automate.",
+    ],
+    erreurs: [
+      "Confondre capteur analogique (valeur continue) et capteur TOR (deux états).",
+      "Ignorer l'étendue de mesure et interpréter une valeur hors plage.",
+      "Oublier que le 4-20 mA démarre à 4 mA (0 correspond souvent à un défaut de ligne).",
+    ],
+    astucesPro: [
+      "Le 4-20 mA permet de détecter une coupure de ligne : 0 mA signale un défaut, pas la valeur minimale.",
+      "On vérifie la correspondance signal/valeur (échelle) avant d'interpréter une mesure.",
+    ],
+    diagnostic: [
+      "Identifier la grandeur mesurée et le type de signal (4-20 mA, 0-10 V).",
+      "Vérifier la cohérence de la valeur avec l'étendue de mesure.",
+      "Contrôler le signal reçu par l'entrée analogique.",
+    ],
+    depannage: [
+      "Vérifier l'alimentation, le câblage et l'échelle du capteur.",
+      "Comparer la valeur lue à une référence.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Les mesures sous tension se font avec l'habilitation et le matériel adaptés.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un capteur de niveau 4-20 mA affiche 0 mA sur l'automate.",
+      mission: ["Interpréter la valeur 0 mA.", "Citer une cause probable.", "Indiquer la vérification."],
+      correction:
+        "Sur une boucle 4-20 mA, la valeur minimale utile est 4 mA (niveau bas), pas 0. Un signal à 0 mA indique généralement un défaut de la ligne : coupure du câble, capteur non alimenté ou débranché. Cause probable : rupture ou desserrage du câble, ou capteur hors tension. Vérification : contrôler l'alimentation et la continuité de la boucle, le raccordement du capteur, puis le signal reçu par l'entrée analogique, en respectant les précautions et l'habilitation.",
+    },
+    memo: ["Valeur continue", "4-20 mA / 0-10 V", "Température, pression, niveau", "0 mA = défaut de ligne"],
+    resume:
+      "Un capteur analogique fournit une valeur continue de la grandeur mesurée, via un signal normalisé (4-20 mA, 0-10 V) lu par une entrée analogique de l'automate.",
+    quizIds: ["aut56", "aut57", "aut58", "aut59", "aut60"],
+    verification: {
+      question: "Quel est un signal analogique normalisé courant en industrie ?",
+      options: ["4-20 mA", "0 ou 1 seulement", "230 V alternatif", "50 Hz"],
+      correct: 0,
+      explanation: "Le 4-20 mA (courant) et le 0-10 V (tension) sont des signaux analogiques normalisés courants ; 0/1 correspond au tout ou rien.",
+    },
+    exercice: {
+      enonce:
+        "Un capteur de température 4-20 mA a une étendue de 0 à 100 °C. Que représentent 4 mA et 20 mA, et pourquoi le 4-20 mA est-il pratique ?",
+      consignes: [
+        "Indique la valeur correspondant à 4 mA et à 20 mA.",
+        "Explique le lien entre signal et grandeur.",
+        "Donne un avantage du 4-20 mA.",
+      ],
+      criteres: [
+        "4 mA = 0 °C, 20 mA = 100 °C.",
+        "J'ai expliqué la proportionnalité signal/valeur.",
+        "J'ai cité la détection de coupure de ligne.",
+      ],
+      correction:
+        "Avec une étendue 0-100 °C, 4 mA correspond à 0 °C et 20 mA à 100 °C ; le courant varie proportionnellement à la température entre ces deux bornes. Le 4-20 mA est pratique car il ne démarre pas à 0 : un signal à 0 mA indique alors un défaut de ligne (coupure, capteur non alimenté), ce qui permet de distinguer une vraie valeur basse d'une panne.",
+    },
+  },
+  {
+    id: "5-13",
+    title: "Raccordement des capteurs et synthèse",
+    durationMinutes: 28,
+    objectifs: [
+      "Comprendre le raccordement d'un capteur (nombre de fils, type de sortie).",
+      "Choisir un capteur adapté et situer une panne de détection.",
+    ],
+    simple:
+      "Un capteur se raccorde à l'automate par des fils : alimentation et signal. Selon le capteur, on parle de montage 2 fils ou 3 fils, avec une sortie de type PNP ou NPN. Ce chapitre fait aussi la synthèse : choisir le bon capteur et diagnostiquer une détection.",
+    vocab: [
+      ["Montage 3 fils", "Raccordement avec alimentation (+ et −) et un fil de signal séparé."],
+      ["Montage 2 fils", "Raccordement où le signal passe par les fils d'alimentation."],
+      ["Sortie PNP", "La sortie commute vers le + de l'alimentation (courant sortant)."],
+      ["Sortie NPN", "La sortie commute vers le − de l'alimentation (courant entrant)."],
+      ["Entrée automate", "Doit être compatible avec le type de sortie du capteur (PNP/NPN)."],
+    ],
+    example:
+      "Un détecteur inductif 3 fils à sortie PNP se raccorde au +, au − et à une entrée automate compatible PNP. Si l'entrée attend du NPN, le capteur ne sera pas vu correctement : la compatibilité est essentielle.",
+    schema: "sensor-types-compare",
+    ascii: "3 FILS : + / - / signal ; sortie PNP ou NPN\nl'ENTREE automate doit etre compatible avec le type de sortie du capteur",
+    retenir: [
+      "Un capteur se raccorde par des fils d'alimentation et de signal.",
+      "Montage 3 fils : alimentation + signal séparé ; 2 fils : signal par l'alimentation.",
+      "La sortie est de type PNP ou NPN : l'entrée automate doit être compatible.",
+      "Choisir un capteur, c'est adapter type, portée, matière détectée et raccordement.",
+    ],
+    erreurs: [
+      "Raccorder un capteur PNP sur une entrée prévue pour du NPN (ou l'inverse).",
+      "Inverser l'alimentation (+ et −) et endommager le capteur.",
+      "Choisir un capteur sans vérifier la matière de l'objet et la portée.",
+    ],
+    astucesPro: [
+      "On vérifie toujours PNP/NPN et le schéma de raccordement du capteur avant de câbler.",
+      "Un voyant sur le capteur aide à confirmer la détection lors du diagnostic.",
+    ],
+    diagnostic: [
+      "Vérifier l'alimentation et le raccordement (fils, polarité).",
+      "Contrôler la compatibilité PNP/NPN avec l'entrée automate.",
+      "Confirmer la détection avec le voyant et l'état de l'entrée.",
+    ],
+    depannage: [
+      "Corriger un raccordement ou une incompatibilité PNP/NPN.",
+      "Remplacer un capteur défaillant par un modèle équivalent.",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "Le câblage se fait hors tension, après consignation.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un détecteur neuf, bien alimenté et dont le voyant s'allume à la détection, n'est pourtant pas « vu » par l'automate.",
+      mission: ["Formuler l'hypothèse la plus probable.", "Indiquer la vérification.", "Rappeler la précaution."],
+      correction:
+        "Le voyant s'allume à la détection : le capteur fonctionne et détecte bien l'objet. S'il n'est pas vu par l'automate, l'hypothèse la plus probable est une incompatibilité de type de sortie (PNP/NPN) avec l'entrée, ou une erreur de raccordement du fil de signal. Vérification : contrôler le type de sortie du capteur et la compatibilité de l'entrée automate, ainsi que le câblage du signal. Le câblage se corrige hors tension, après consignation, dans les limites de son habilitation.",
+    },
+    memo: ["3 fils : + / − / signal", "PNP ou NPN", "Entrée compatible", "Câbler hors tension"],
+    resume:
+      "Un capteur se raccorde par ses fils d'alimentation et de signal, avec une sortie PNP ou NPN à rendre compatible avec l'entrée automate ; le bon choix combine type, portée, matière et raccordement.",
+    quizIds: ["aut61", "aut62", "aut63", "aut64", "aut65"],
+    verification: {
+      question: "Pourquoi doit-on vérifier le type de sortie (PNP/NPN) d'un capteur ?",
+      options: ["Pour la couleur du boîtier", "Pour qu'il soit compatible avec l'entrée de l'automate", "Pour mesurer la température", "Cela n'a aucune importance"],
+      correct: 1,
+      explanation: "L'entrée de l'automate doit être compatible avec le type de sortie du capteur (PNP ou NPN), sinon le signal n'est pas correctement lu.",
+    },
+    exercice: {
+      enonce:
+        "On doit détecter sans contact la présence de bouteilles en plastique sur un convoyeur, à environ 30 cm. Choisissez un capteur et précisez un point de raccordement à vérifier.",
+      consignes: [
+        "Choisis un type de capteur adapté.",
+        "Justifie par la matière et la distance.",
+        "Cite un point de raccordement à vérifier.",
+      ],
+      criteres: [
+        "J'ai choisi un capteur adapté (photoélectrique).",
+        "J'ai justifié par le plastique et la distance de 30 cm.",
+        "J'ai cité la compatibilité PNP/NPN ou le câblage.",
+      ],
+      correction:
+        "Le plastique n'est pas détecté par un inductif, et 30 cm dépasse la portée usuelle d'un capacitif : on choisit un détecteur photoélectrique, qui détecte la plupart des objets à grande distance. Au raccordement, on vérifie la compatibilité du type de sortie (PNP/NPN) avec l'entrée de l'automate et le bon câblage (alimentation et signal), le tout réalisé hors tension après consignation.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -801,8 +1137,12 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     title: "Les capteurs industriels",
     objective: "Reconnaître et choisir les capteurs TOR et analogiques (inductif, capacitif, photoélectrique…).",
     lessonIds: block2Lessons.map((lesson) => lesson.id),
-    chapterCount: 7,
-    status: "in_progress",
+    chapterCount: block2Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["aut31", "aut33", "aut36", "aut39", "aut41", "aut43", "aut46", "aut48", "aut51", "aut53", "aut56", "aut58", "aut61", "aut63"],
+      passPercent: 80,
+    },
   },
   { id: "m5-b3", num: 3, title: "Actionneurs et préactionneurs", objective: "Comprendre les actionneurs et les préactionneurs qui les commandent.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m5-b4", num: 4, title: "Le pneumatique industriel", objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.", lessonIds: [], chapterCount: 7, status: "planned" },

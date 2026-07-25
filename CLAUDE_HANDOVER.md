@@ -125,6 +125,16 @@ aucune réécriture d'historique.)
 - Nouveaux fichiers : `src/data/automatisme.ts`, `src/data/automatismeQuestions.ts` (`aut1`…`aut30`).
 - `index.ts` : module m5 ajouté aux `MODULES` et `QUESTIONS`. `vite.config.ts` : chunk dédié `learning-auto`.
 
+**Étape 10 — module 5, bloc 2 « Les capteurs industriels »** — **complet (7 chapitres, `available` avec examen)** :
+- **5-7 — À quoi sert un capteur ?** (TOR vs analogique). Schéma `sensor-types-compare`.
+- **5-8 — Le détecteur inductif** (métal, sans contact). Intègre le **schéma interactif « détection sans contact »** (`sensor-detection`).
+- **5-9 — Le détecteur capacitif** (presque tous matériaux, niveau).
+- **5-10 — Le détecteur photoélectrique** (barrage, reflex, proximité).
+- **5-11 — Détecteurs de position et fins de course** (détection avec contact).
+- **5-12 — Capteurs analogiques et grandeurs mesurées** (4-20 mA, 0-10 V).
+- **5-13 — Raccordement des capteurs et synthèse** (2/3 fils, PNP/NPN).
+- Questions `aut31`…`aut65`. Examen (14 questions) + badge `auto_block_2` (« Les capteurs »).
+
 ## Fichiers créés
 
 **Étape 1**
@@ -187,9 +197,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 1 du module 5 : **5 modules, 26 blocs, 103 leçons, 520 questions, 10 pannes, 19 badges.**
+- Build réussi. Décomptes après le bloc 2 du module 5 : **5 modules, 26 blocs, 110 leçons, 555 questions, 10 pannes, 20 badges.**
 - Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : bloc 1 sur 7 disponible. Module 4 : inchangé (6 blocs sur 12).**
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1 et 2 sur 7 disponibles. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -203,9 +213,9 @@ aucune réécriture d'historique.)
 
 - **Module 3 « Électrotechnique » : entièrement terminé** (7 blocs, 43 chapitres, 8 schémas interactifs,
   7 examens de bloc, 7 badges de bloc + le badge `module_3` de fin de module).
-- **Module 5 « Automatisme » : bloc 1 terminé**, blocs 2 à 7 à développer (capteurs, actionneurs,
-  pneumatique, API, GRAFCET, diagnostic). Réutiliser `InteractiveSchema` pour les nouveaux schémas
-  (capteur inductif/photoélectrique, vérin pneumatique, cycle GRAFCET…).
+- **Module 5 « Automatisme » : blocs 1 et 2 terminés**, blocs 3 à 7 à développer (actionneurs et
+  préactionneurs, pneumatique, API, GRAFCET, diagnostic). Réutiliser `InteractiveSchema` pour les
+  nouveaux schémas (vérin pneumatique, distributeur, cycle GRAFCET…).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -236,6 +246,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-3): complete le bloc 7 (3-41 a 3-43), examen et badge — module 3 termine`
 - `feat(module-5): cree le module Automatisme industriel + bloc 1 (5-1 a 5-3)`
 - `feat(module-5): complete le bloc 1 (5-4 a 5-6), examen et badge`
+- `feat(module-5): demarre le bloc 2 (capteurs : role, inductif, capacitif)`
+- `feat(module-5): complete le bloc 2 (5-10 a 5-13), examen et badge`
 
 ## Instructions pour reprendre le développement
 
