@@ -1117,6 +1117,266 @@ const block2Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 3 — ACTIONNEURS ET PRÉACTIONNEURS
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block3Lessons: Lesson[] = [
+  {
+    id: "5-14",
+    title: "Qu'est-ce qu'un actionneur ?",
+    durationMinutes: 26,
+    objectifs: [
+      "Définir un actionneur et son rôle dans la chaîne d'énergie.",
+      "Citer les grandes familles d'actionneurs et l'énergie qu'ils utilisent.",
+    ],
+    simple:
+      "Un actionneur est l'organe qui agit : il transforme une énergie reçue (électrique, pneumatique, hydraulique) en une action utile, le plus souvent un mouvement. Le moteur fait tourner, le vérin pousse ou tire, la résistance chauffe.",
+    vocab: [
+      ["Actionneur", "Organe qui transforme une énergie en action (mouvement, chaleur…)."],
+      ["Énergie électrique", "Énergie utilisée par les moteurs, résistances, électro-aimants."],
+      ["Énergie pneumatique", "Air comprimé utilisé par les vérins et moteurs pneumatiques."],
+      ["Énergie hydraulique", "Huile sous pression utilisée pour de gros efforts (vérins hydrauliques)."],
+      ["Effecteur", "Élément en bout de chaîne qui réalise le travail final (pince, tapis…)."],
+    ],
+    example:
+      "Sur un poste automatisé, un moteur (actionneur électrique) entraîne un tapis, un vérin (actionneur pneumatique) pousse les pièces, et une résistance (actionneur électrique) chauffe une colle. Chacun transforme une énergie en action.",
+    schema: "energy-info-chains",
+    ascii: "ENERGIE (elec / pneu / hydro) → ACTIONNEUR → ACTION\nmoteur = rotation · verin = translation · resistance = chaleur",
+    retenir: [
+      "L'actionneur transforme une énergie reçue en action utile.",
+      "Familles : électrique (moteur, résistance), pneumatique (vérin), hydraulique (vérin de forte puissance).",
+      "L'actionneur est le maillon « agir » de la chaîne d'énergie.",
+      "L'effecteur, en bout de chaîne, réalise le travail final.",
+    ],
+    erreurs: [
+      "Confondre actionneur (agit) et capteur (informe).",
+      "Confondre actionneur (agit) et préactionneur (distribue l'énergie).",
+      "Oublier que l'énergie de l'actionneur doit être adaptée au besoin (effort, vitesse).",
+    ],
+    astucesPro: [
+      "On identifie l'énergie de chaque actionneur pour savoir quoi consigner.",
+      "Le choix de l'énergie dépend de l'effort, de la vitesse et de l'environnement.",
+    ],
+    diagnostic: [
+      "Identifier l'actionneur concerné et son énergie.",
+      "Vérifier que l'énergie arrive bien à l'actionneur.",
+      "Distinguer un défaut d'énergie d'un défaut de l'actionneur lui-même.",
+    ],
+    depannage: [
+      "Contrôler l'arrivée d'énergie (électrique, pneumatique) à l'actionneur.",
+      "Vérifier l'actionneur lui-même si l'énergie est présente.",
+      "Respecter la consignation de toutes les énergies avant tout accès.",
+    ],
+    securite: [
+      "Chaque énergie d'actionneur (électrique, pneumatique, hydraulique) doit être consignée avant intervention.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur une machine, une pièce n'est plus poussée par le vérin, alors que le tapis avance normalement.",
+      mission: ["Identifier l'actionneur en cause.", "Nommer son énergie.", "Indiquer une première vérification."],
+      correction:
+        "L'actionneur en cause est le vérin (le tapis, entraîné par un moteur, fonctionne). Son énergie est pneumatique (air comprimé). Première vérification : contrôler l'arrivée d'air comprimé au vérin et son préactionneur (distributeur), puis, si l'air est présent, le vérin lui-même. Avant tout accès, on consigne les énergies concernées, car un vérin peut se déplacer brusquement.",
+    },
+    memo: ["Actionneur = agit", "Transforme une énergie", "Moteur / vérin / résistance", "≠ capteur, ≠ préactionneur"],
+    resume:
+      "L'actionneur transforme une énergie (électrique, pneumatique, hydraulique) en action utile ; c'est le maillon « agir » de la chaîne d'énergie.",
+    quizIds: ["aut66", "aut67", "aut68", "aut69", "aut70"],
+    verification: {
+      question: "Quel est le rôle d'un actionneur ?",
+      options: ["Détecter une information", "Transformer une énergie en action", "Distribuer l'énergie", "Programmer le cycle"],
+      correct: 1,
+      explanation: "L'actionneur transforme une énergie reçue en action utile (mouvement, chaleur). Le capteur informe, le préactionneur distribue.",
+    },
+    exercice: {
+      enonce:
+        "Associez chaque actionneur à son énergie et à son action : (a) moteur, (b) vérin pneumatique, (c) résistance chauffante.",
+      consignes: [
+        "Indique l'énergie de chacun.",
+        "Indique l'action produite.",
+        "Rappelle la différence avec un préactionneur.",
+      ],
+      criteres: [
+        "(a) électrique → rotation, (b) pneumatique → translation, (c) électrique → chaleur.",
+        "J'ai indiqué énergie et action.",
+        "J'ai rappelé que le préactionneur distribue, l'actionneur agit.",
+      ],
+      correction:
+        "(a) moteur : énergie électrique, action = rotation. (b) vérin pneumatique : énergie pneumatique (air comprimé), action = translation (pousser/tirer). (c) résistance chauffante : énergie électrique, action = production de chaleur. L'actionneur agit, tandis que le préactionneur (contacteur, distributeur) se contente de lui distribuer l'énergie sur ordre de la commande.",
+    },
+  },
+  {
+    id: "5-15",
+    title: "Le préactionneur",
+    durationMinutes: 26,
+    objectifs: [
+      "Expliquer le rôle d'un préactionneur entre la commande et l'actionneur.",
+      "Citer les préactionneurs courants selon l'énergie.",
+    ],
+    simple:
+      "Entre la partie commande et l'actionneur, il y a le préactionneur. La commande envoie un petit signal (faible puissance) ; le préactionneur, lui, distribue la forte énergie vers l'actionneur. Le contacteur le fait pour l'électricité, le distributeur pour l'air comprimé.",
+    vocab: [
+      ["Préactionneur", "Organe qui distribue l'énergie de puissance vers l'actionneur sur ordre de la commande."],
+      ["Contacteur", "Préactionneur électrique : il alimente le moteur (vu au module 3)."],
+      ["Distributeur", "Préactionneur pneumatique : il envoie l'air comprimé vers le vérin."],
+      ["Relais", "Préactionneur pour de faibles puissances, ou relais de commande."],
+      ["Distribuer", "Autoriser, couper ou orienter l'énergie vers l'actionneur."],
+    ],
+    example:
+      "La commande envoie un signal 24 V à la bobine d'un contacteur : le contacteur (préactionneur) ferme alors le circuit de puissance et alimente le moteur (actionneur). Pour un vérin, c'est un distributeur qui joue ce rôle avec l'air comprimé.",
+    schema: "command-power-circuit",
+    ascii: "COMMANDE (petit signal) → PREACTIONNEUR (distribue la puissance) → ACTIONNEUR\ncontacteur (elec) · distributeur (pneu) · relais (faible puissance)",
+    retenir: [
+      "Le préactionneur distribue la puissance vers l'actionneur sur ordre de la commande.",
+      "La commande fournit un petit signal ; le préactionneur commute la forte énergie.",
+      "Contacteur = préactionneur électrique ; distributeur = préactionneur pneumatique.",
+      "Sans préactionneur, la commande ne pourrait pas piloter de gros actionneurs.",
+    ],
+    erreurs: [
+      "Confondre préactionneur (distribue) et actionneur (agit).",
+      "Croire que la commande alimente directement le moteur ou le vérin.",
+      "Oublier le préactionneur lors du diagnostic d'un défaut d'action.",
+    ],
+    astucesPro: [
+      "On vérifie toujours le préactionneur entre la commande et l'actionneur lors d'un défaut d'action.",
+      "Un préactionneur reçoit un ordre : on contrôle d'abord la présence de cet ordre.",
+    ],
+    diagnostic: [
+      "Vérifier que la commande envoie bien l'ordre au préactionneur.",
+      "Contrôler que le préactionneur distribue l'énergie vers l'actionneur.",
+      "Distinguer un défaut d'ordre, de préactionneur ou d'actionneur.",
+    ],
+    depannage: [
+      "Contrôler l'ordre reçu par le préactionneur (bobine, pilote).",
+      "Vérifier que le préactionneur commute (contacts, tiroir du distributeur).",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "Le préactionneur commute une énergie de puissance : on consigne avant d'intervenir.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "La commande envoie l'ordre de démarrer un moteur, mais le moteur ne tourne pas.",
+      mission: ["Nommer le préactionneur concerné.", "Indiquer l'ordre des contrôles.", "Rappeler la précaution."],
+      correction:
+        "Le préactionneur concerné est le contacteur. Ordre des contrôles : vérifier que la commande envoie bien l'ordre à la bobine du contacteur, puis que le contacteur commute (contacts principaux fermés), et enfin que le moteur (actionneur) est alimenté et fonctionne. On distingue ainsi un défaut d'ordre (commande), de préactionneur (contacteur) ou d'actionneur (moteur). Les contrôles nécessitant un accès se font après consignation, dans les limites de son habilitation.",
+    },
+    memo: ["Préactionneur = distribue", "Commande = petit signal", "Contacteur (élec) / distributeur (pneu)", "Contrôler l'ordre reçu"],
+    resume:
+      "Le préactionneur distribue la puissance vers l'actionneur sur ordre de la commande ; contacteur pour l'électricité, distributeur pour l'air comprimé.",
+    quizIds: ["aut71", "aut72", "aut73", "aut74", "aut75"],
+    verification: {
+      question: "Quel est le rôle du préactionneur ?",
+      options: ["Détecter une information", "Distribuer la puissance vers l'actionneur sur ordre de la commande", "Programmer le cycle", "Réaliser le travail final"],
+      correct: 1,
+      explanation: "Le préactionneur (contacteur, distributeur) distribue l'énergie de puissance vers l'actionneur, à partir du petit signal de la commande.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la chaîne commande → préactionneur → actionneur pour un moteur, puis pour un vérin.",
+      consignes: [
+        "Décris la chaîne pour un moteur.",
+        "Décris la chaîne pour un vérin.",
+        "Nomme le préactionneur dans chaque cas.",
+      ],
+      criteres: [
+        "Moteur : commande → contacteur → moteur.",
+        "Vérin : commande → distributeur → vérin.",
+        "J'ai bien identifié le préactionneur.",
+      ],
+      correction:
+        "Pour un moteur : la commande envoie un petit signal à la bobine du contacteur (préactionneur), qui ferme le circuit de puissance et alimente le moteur (actionneur). Pour un vérin : la commande envoie un signal au distributeur (préactionneur), qui envoie l'air comprimé vers le vérin (actionneur) pour le faire sortir ou rentrer. Dans les deux cas, le préactionneur distribue la puissance sur ordre de la commande.",
+    },
+  },
+  {
+    id: "5-16",
+    title: "Les actionneurs électriques",
+    durationMinutes: 26,
+    objectifs: [
+      "Citer les principaux actionneurs électriques et leur action.",
+      "Relier ces actionneurs aux notions du module 3.",
+    ],
+    simple:
+      "Les actionneurs électriques transforment l'électricité en action. Le moteur produit un mouvement de rotation, la résistance chauffante produit de la chaleur, l'électro-aimant produit une force ou un mouvement court (comme la bobine d'un contacteur ou d'un distributeur).",
+    vocab: [
+      ["Moteur", "Actionneur électrique qui produit une rotation (vu au module 3)."],
+      ["Résistance chauffante", "Actionneur qui transforme l'électricité en chaleur (effet Joule)."],
+      ["Électro-aimant", "Bobine qui, alimentée, crée une force magnétique (mouvement court)."],
+      ["Effet Joule", "Production de chaleur par le passage du courant dans une résistance."],
+      ["Rotation", "Mouvement produit par un moteur."],
+    ],
+    example:
+      "Dans un four automatisé : un moteur (actionneur) entraîne un ventilateur, des résistances chauffantes (actionneurs) montent en température, et l'électro-aimant du distributeur pilote un vérin de porte. Tous sont des actionneurs électriques ou pilotés électriquement.",
+    schema: "control-circuit",
+    ascii: "ELECTRICITE → MOTEUR (rotation)\n            → RESISTANCE (chaleur, effet Joule)\n            → ELECTRO-AIMANT (force / mouvement court)",
+    retenir: [
+      "Le moteur produit une rotation (détaillé au module 3).",
+      "La résistance chauffante produit de la chaleur par effet Joule.",
+      "L'électro-aimant crée une force magnétique (bobine de contacteur, de distributeur).",
+      "Ces actionneurs sont pilotés par des préactionneurs (contacteur, relais).",
+    ],
+    erreurs: [
+      "Oublier que la bobine d'un contacteur ou d'un distributeur est un électro-aimant.",
+      "Confondre l'actionneur électrique et son préactionneur.",
+      "Négliger l'échauffement normal de certains actionneurs (résistances).",
+    ],
+    astucesPro: [
+      "Les notions du module 3 (moteurs, protections) s'appliquent directement aux actionneurs électriques.",
+      "Une résistance chauffante se contrôle aussi par sa continuité (hors tension).",
+    ],
+    diagnostic: [
+      "Identifier le type d'actionneur électrique et son action attendue.",
+      "Vérifier son alimentation via son préactionneur.",
+      "Contrôler l'actionneur lui-même (continuité d'une résistance, état d'un moteur).",
+    ],
+    depannage: [
+      "Vérifier l'alimentation et le préactionneur.",
+      "Contrôler l'actionneur (moteur, résistance) hors tension après consignation.",
+      "Appliquer les méthodes du module 3 pour les moteurs.",
+    ],
+    securite: [
+      "Les actionneurs électriques relèvent des règles de sécurité électrique du module 3.",
+      "On consigne avant tout contrôle nécessitant un accès.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Dans un four automatisé, la température ne monte plus alors que le ventilateur tourne.",
+      mission: ["Identifier l'actionneur en cause.", "Indiquer un contrôle simple.", "Rappeler la précaution."],
+      correction:
+        "L'actionneur en cause est la résistance chauffante (le moteur du ventilateur, lui, fonctionne). Contrôle simple : après consignation, vérifier la continuité de la résistance (une résistance coupée ne chauffe plus) et son alimentation via son préactionneur (contacteur). On applique les règles de sécurité électrique du module 3 : consignation et vérification d'absence de tension avant le contrôle, dans les limites de son habilitation.",
+    },
+    memo: ["Moteur = rotation", "Résistance = chaleur (Joule)", "Électro-aimant = force", "Voir module 3 pour les moteurs"],
+    resume:
+      "Les actionneurs électriques transforment l'électricité en rotation (moteur), en chaleur (résistance) ou en force (électro-aimant) ; ils prolongent les notions du module 3.",
+    quizIds: ["aut76", "aut77", "aut78", "aut79", "aut80"],
+    verification: {
+      question: "Quel actionneur électrique produit de la chaleur ?",
+      options: ["Le moteur", "La résistance chauffante", "L'électro-aimant", "Le capteur"],
+      correct: 1,
+      explanation: "La résistance chauffante transforme l'électricité en chaleur par effet Joule. Le moteur produit une rotation, l'électro-aimant une force.",
+    },
+    exercice: {
+      enonce:
+        "Citez trois actionneurs électriques et l'action de chacun, puis indiquez lequel relève directement du module 3.",
+      consignes: [
+        "Cite trois actionneurs électriques.",
+        "Donne l'action de chacun.",
+        "Indique celui détaillé au module 3.",
+      ],
+      criteres: [
+        "J'ai cité moteur, résistance, électro-aimant.",
+        "J'ai donné l'action de chacun.",
+        "J'ai indiqué le moteur (module 3).",
+      ],
+      correction:
+        "Trois actionneurs électriques : le moteur (produit une rotation), la résistance chauffante (produit de la chaleur par effet Joule) et l'électro-aimant (produit une force ou un mouvement court, comme la bobine d'un contacteur ou d'un distributeur). Le moteur est détaillé au module 3 (constitution, couplage, démarrage, protection), dont les notions s'appliquent directement ici.",
+    },
+  },
+];
+
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
   {
     id: "m5-b1",
@@ -1144,7 +1404,15 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m5-b3", num: 3, title: "Actionneurs et préactionneurs", objective: "Comprendre les actionneurs et les préactionneurs qui les commandent.", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m5-b3",
+    num: 3,
+    title: "Actionneurs et préactionneurs",
+    objective: "Comprendre les actionneurs et les préactionneurs qui les commandent.",
+    lessonIds: block3Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
   { id: "m5-b4", num: 4, title: "Le pneumatique industriel", objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m5-b5", num: 5, title: "L'automate programmable industriel (API)", objective: "Comprendre le rôle de l'automate, ses entrées/sorties et son cycle.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m5-b6", num: 6, title: "Cycle, séquence et logique de commande", objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).", lessonIds: [], chapterCount: 6, status: "planned" },
@@ -1158,6 +1426,6 @@ export const AUTOMATISME_MODULE: TrainingModule = {
   icon: Cpu,
   color: "sky",
   source: "[TMI] Parcours progressif débutant → opérationnel · capteurs, actionneurs, API · passerelle depuis le module 3",
-  lessons: [...block1Lessons, ...block2Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
   blocks: AUTOMATISME_BLOCKS,
 };
