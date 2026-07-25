@@ -16,6 +16,7 @@ export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "electro_block_7", label: "Diagnostic électrique", desc: "Structurer une recherche de panne électrique méthodique avec au moins 80 %", icon: Target },
   { id: "auto_block_1", label: "Bases de l'automatisme", desc: "Comprendre la structure d'un système automatisé avec au moins 80 %", icon: Cpu },
   { id: "auto_block_2", label: "Les capteurs", desc: "Reconnaître et choisir les capteurs industriels avec au moins 80 %", icon: Cpu },
+  { id: "auto_block_3", label: "Actionneurs & vérins", desc: "Comprendre actionneurs, préactionneurs et vérins avec au moins 80 %", icon: Cpu },
   { id: "mechanics_block_1", label: "Observateur mécanique", desc: "Maîtriser le bloc 1 de mécanique avec au moins 80 %", icon: ShieldCheck },
   { id: "mechanics_block_5", label: "Assembleur fiable", desc: "Maîtriser assemblages, fixations et étanchéité avec au moins 80 %", icon: Wrench },
   { id: "mechanics_block_6", label: "Aligneur de précision", desc: "Maîtriser arbres, accouplements, alignement et vibrations avec au moins 80 %", icon: Target },

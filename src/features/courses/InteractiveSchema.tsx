@@ -1058,6 +1058,67 @@ function SensorDetection({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 11 — VÉRIN PNEUMATIQUE DOUBLE EFFET
+   Le distributeur envoie l'air d'un côté : la tige sort ou rentre.
+   --------------------------------------------------------------- */
+
+function PneumaticCylinder({ dark }: { dark: boolean }) {
+  const [out, setOut] = useState(false); // false = tige rentrée
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const air = "#38bdf8";
+
+  const pistonX = out ? 168 : 92;
+  const rodTip = pistonX + 118;
+
+  return (
+    <Figure
+      dark={dark}
+      title="Vérin double effet : sortir et rentrer la tige"
+      legend="La chambre alimentée (air comprimé) pousse le piston ; l'autre chambre est à l'échappement. Inverser l'alimentation inverse le mouvement."
+      explanation="Un vérin double effet reçoit l'air comprimé alternativement d'un côté puis de l'autre, via un distributeur. Quand l'air entre du côté gauche, il pousse le piston et la tige sort ; quand il entre du côté droit, la tige rentre. Le côté opposé est alors à l'échappement. C'est ce que commande le préactionneur (distributeur) sur ordre de la partie commande."
+      controls={
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" onClick={() => setOut(false)} aria-pressed={!out} className={`flex-1 rounded-lg border-2 px-4 py-2.5 text-sm font-bold ${!out ? "border-amber-400 bg-amber-400 text-slate-950" : dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            Rentrer la tige
+          </button>
+          <button type="button" onClick={() => setOut(true)} aria-pressed={out} className={`flex-1 rounded-lg border-2 px-4 py-2.5 text-sm font-bold ${out ? "border-amber-400 bg-amber-400 text-slate-950" : dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            Sortir la tige
+          </button>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 320 130" className="h-auto w-full" role="img" aria-label={`Tige ${out ? "sortie" : "rentrée"}.`}>
+        {/* Corps du vérin */}
+        <rect x="60" y="44" width="140" height="42" rx="4" fill={box} stroke={stroke} strokeWidth="1.5" />
+        {/* Chambre gauche */}
+        <rect x="61" y="45" width={pistonX - 61} height="40" fill={out ? "rgba(56,189,248,0.25)" : "rgba(148,163,184,0.1)"} />
+        {/* Chambre droite */}
+        <rect x={pistonX + 6} y="45" width={199 - (pistonX + 6)} height="40" fill={!out ? "rgba(56,189,248,0.25)" : "rgba(148,163,184,0.1)"} />
+        {/* Piston */}
+        <rect x={pistonX} y="46" width="6" height="38" fill={stroke} />
+        {/* Tige */}
+        <line x1={pistonX + 6} y1="65" x2={rodTip} y2="65" stroke={stroke} strokeWidth="4" />
+        <circle cx={rodTip} cy="65" r="3" fill={stroke} />
+
+        {/* Orifices / distributeur */}
+        <line x1="80" y1="86" x2="80" y2="108" stroke={out ? air : stroke} strokeWidth={out ? "2.5" : "1.5"} />
+        <line x1="180" y1="86" x2="180" y2="108" stroke={!out ? air : stroke} strokeWidth={!out ? "2.5" : "1.5"} />
+        <rect x="70" y="108" width="120" height="16" rx="3" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="130" y="119" textAnchor="middle" fontSize="7.5" fill={stroke}>distributeur</text>
+
+        {/* Étiquettes des chambres */}
+        <text x={80} y="40" textAnchor="middle" fontSize="7" fill={out ? air : stroke}>{out ? "air comprimé" : "échappement"}</text>
+        <text x={180} y="40" textAnchor="middle" fontSize="7" fill={!out ? air : stroke}>{!out ? "air comprimé" : "échappement"}</text>
+      </svg>
+      <div className="mt-1 flex items-center justify-center gap-2 pb-1 text-center text-xs font-semibold text-amber-500" role="status">
+        {out ? "Air à gauche → la tige sort" : "Air à droite → la tige rentre"}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -1072,5 +1133,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "diagnostic-tree") return <DiagnosticTree dark={dark} />;
   if (type === "automated-system") return <AutomatedSystem dark={dark} />;
   if (type === "sensor-detection") return <SensorDetection dark={dark} />;
+  if (type === "pneumatic-cylinder") return <PneumaticCylinder dark={dark} />;
   return null;
 }

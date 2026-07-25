@@ -1375,6 +1375,259 @@ const block3Lessons: Lesson[] = [
         "Trois actionneurs électriques : le moteur (produit une rotation), la résistance chauffante (produit de la chaleur par effet Joule) et l'électro-aimant (produit une force ou un mouvement court, comme la bobine d'un contacteur ou d'un distributeur). Le moteur est détaillé au module 3 (constitution, couplage, démarrage, protection), dont les notions s'appliquent directement ici.",
     },
   },
+  {
+    id: "5-17",
+    title: "Le vérin pneumatique",
+    durationMinutes: 30,
+    objectifs: [
+      "Distinguer un vérin simple effet d'un vérin double effet.",
+      "Expliquer comment l'air comprimé fait sortir et rentrer la tige.",
+    ],
+    simple:
+      "Le vérin pneumatique transforme l'air comprimé en un mouvement de translation : la tige sort ou rentre. Le vérin simple effet n'a qu'une entrée d'air et revient grâce à un ressort. Le vérin double effet reçoit l'air des deux côtés : l'air pousse d'un côté pour sortir, de l'autre pour rentrer.",
+    vocab: [
+      ["Vérin", "Actionneur pneumatique qui produit un mouvement de translation (tige)."],
+      ["Simple effet", "Une seule entrée d'air ; le retour se fait par un ressort."],
+      ["Double effet", "Deux entrées d'air : l'air fait sortir puis rentrer la tige."],
+      ["Tige", "Partie mobile du vérin qui sort et rentre pour agir."],
+      ["Chambre", "Volume de chaque côté du piston, alimenté ou mis à l'échappement."],
+    ],
+    example:
+      "Un vérin double effet pousse des cartons sur un convoyeur : quand le distributeur envoie l'air dans la chambre arrière, la tige sort et pousse le carton ; quand il envoie l'air dans la chambre avant, la tige rentre. L'autre chambre est alors à l'échappement.",
+    schema: "pneumatic-symbols",
+    illustrations: ["pneumatic-cylinder"],
+    ascii: "SIMPLE EFFET : 1 entree d'air → sort ; ressort → rentre\nDOUBLE EFFET : air cote arriere → SORT ; air cote avant → RENTRE\n(l'autre chambre est a l'echappement)",
+    retenir: [
+      "Le vérin transforme l'air comprimé en mouvement de translation.",
+      "Simple effet : une entrée d'air, retour par ressort.",
+      "Double effet : air des deux côtés, pour sortir et pour rentrer.",
+      "La chambre alimentée pousse le piston ; l'autre est à l'échappement.",
+    ],
+    erreurs: [
+      "Confondre simple effet (ressort de rappel) et double effet (air des deux côtés).",
+      "Intervenir sur un vérin sans purger la pression résiduelle.",
+      "Oublier qu'un vérin peut sortir brusquement à la remise en pression.",
+    ],
+    astucesPro: [
+      "On repère quelle chambre est alimentée pour comprendre le sens du mouvement.",
+      "Avant intervention, on consigne l'air ET on purge la pression résiduelle.",
+    ],
+    diagnostic: [
+      "Vérifier l'alimentation en air et le distributeur qui pilote le vérin.",
+      "Contrôler que la bonne chambre est alimentée selon le mouvement attendu.",
+      "Rechercher une fuite ou un grippage si le mouvement est lent ou absent.",
+    ],
+    depannage: [
+      "Contrôler l'arrivée d'air et le distributeur.",
+      "Rechercher les fuites et l'état des joints du vérin.",
+      "Consigner l'air et purger la pression avant tout démontage.",
+    ],
+    securite: [
+      "L'air comprimé reste dangereux : un vérin peut se déplacer brusquement.",
+      "On consigne l'énergie pneumatique et on purge la pression avant d'intervenir.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un vérin double effet sort normalement mais rentre très lentement.",
+      mission: ["Formuler deux hypothèses.", "Indiquer les contrôles.", "Rappeler la précaution."],
+      correction:
+        "Deux hypothèses : un échappement de la chambre avant qui se fait mal (silencieux/échappement encrassé ou réglage de débit trop fermé), ou une fuite/un grippage qui freine le retour. Contrôles : vérifier le réglage des débits (limiteurs), l'état de l'échappement du distributeur, et rechercher une fuite ou un point dur. Avant tout démontage, on consigne l'air comprimé et on purge la pression résiduelle, car le vérin peut bouger brusquement.",
+    },
+    memo: ["Air comprimé → translation", "Simple effet = ressort", "Double effet = air 2 côtés", "Purger avant d'intervenir"],
+    resume:
+      "Le vérin pneumatique transforme l'air comprimé en translation ; simple effet (retour par ressort) ou double effet (air des deux côtés), la chambre alimentée pousse la tige.",
+    quizIds: ["aut81", "aut82", "aut83", "aut84", "aut85"],
+    verification: {
+      question: "Comment un vérin double effet fait-il rentrer sa tige ?",
+      options: ["Grâce à un ressort", "En envoyant l'air comprimé dans la chambre opposée", "En coupant l'électricité", "Il ne rentre jamais"],
+      correct: 1,
+      explanation: "Le vérin double effet reçoit l'air des deux côtés : pour rentrer, l'air est envoyé dans la chambre avant, l'arrière étant à l'échappement.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre un vérin simple effet et un vérin double effet, et comment chacun fait rentrer la tige.",
+      consignes: [
+        "Décris le vérin simple effet.",
+        "Décris le vérin double effet.",
+        "Explique le retour de la tige dans chaque cas.",
+      ],
+      criteres: [
+        "Simple effet : une entrée d'air, retour par ressort.",
+        "Double effet : air des deux côtés.",
+        "J'ai expliqué le retour dans chaque cas.",
+      ],
+      correction:
+        "Le vérin simple effet n'a qu'une entrée d'air : l'air fait sortir la tige, et le retour se fait grâce à un ressort de rappel quand on coupe l'air. Le vérin double effet a deux entrées d'air : l'air envoyé d'un côté fait sortir la tige, l'air envoyé de l'autre côté la fait rentrer (l'autre chambre étant à l'échappement). Le double effet permet donc de commander activement les deux sens.",
+    },
+  },
+  {
+    id: "5-18",
+    title: "Le distributeur pneumatique",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer le rôle du distributeur comme préactionneur du vérin.",
+      "Lire une désignation simple (nombre d'orifices / de positions) et le mode de pilotage.",
+    ],
+    simple:
+      "Le distributeur est le préactionneur du vérin : il oriente l'air comprimé vers l'une ou l'autre chambre. On le désigne par son nombre d'orifices et de positions (par exemple 5/2). Il est piloté par la commande, souvent par un électro-aimant (électrodistributeur).",
+    vocab: [
+      ["Distributeur", "Préactionneur qui oriente l'air comprimé vers le vérin."],
+      ["Orifice", "Voie de raccordement du distributeur (alimentation, utilisation, échappement)."],
+      ["Position", "État du distributeur ; un 5/2 a 2 positions (tige sort / tige rentre)."],
+      ["Électrodistributeur", "Distributeur piloté par un électro-aimant (signal électrique de la commande)."],
+      ["Pilotage", "Moyen d'actionner le distributeur : électrique, manuel, pneumatique."],
+    ],
+    example:
+      "Un distributeur 5/2 pilote un vérin double effet : dans une position, il envoie l'air dans la chambre arrière (tige sort) ; dans l'autre, dans la chambre avant (tige rentre). Piloté par un électro-aimant, il obéit au signal de la commande.",
+    schema: "pneumatic-symbols",
+    ascii: "DISTRIBUTEUR 5/2 : 5 orifices, 2 positions\nposition 1 → air chambre arriere (tige sort)\nposition 2 → air chambre avant (tige rentre)\npilotage : electro-aimant (electrodistributeur)",
+    retenir: [
+      "Le distributeur oriente l'air vers l'une ou l'autre chambre du vérin.",
+      "La désignation (ex : 5/2) indique le nombre d'orifices et de positions.",
+      "Un 5/2 pilote un vérin double effet (sortir / rentrer).",
+      "L'électrodistributeur est piloté par un électro-aimant, sur signal de la commande.",
+    ],
+    erreurs: [
+      "Confondre distributeur (préactionneur) et vérin (actionneur).",
+      "Oublier que le distributeur reçoit un ordre : on contrôle d'abord ce signal.",
+      "Mal interpréter la désignation (orifices / positions).",
+    ],
+    astucesPro: [
+      "Un électrodistributeur a souvent une commande manuelle auxiliaire : pratique pour tester sans automate.",
+      "On vérifie le signal de pilotage avant de suspecter le distributeur lui-même.",
+    ],
+    diagnostic: [
+      "Vérifier que la commande envoie bien le signal de pilotage.",
+      "Contrôler que le distributeur commute (tiroir) et oriente l'air.",
+      "Distinguer un défaut de signal, de distributeur ou de vérin.",
+    ],
+    depannage: [
+      "Tester le pilotage (électro-aimant, commande manuelle auxiliaire).",
+      "Contrôler l'alimentation en air et l'état du distributeur.",
+      "Consigner l'air et purger la pression avant tout démontage.",
+    ],
+    securite: [
+      "Agir sur la commande manuelle d'un distributeur peut déplacer le vérin : on s'assure que la zone est sûre.",
+      "On consigne l'air et on purge la pression avant intervention.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un vérin ne bouge plus ; l'air comprimé est bien présent à l'entrée du distributeur.",
+      mission: ["Indiquer ce que l'on teste d'abord.", "Citer une astuce de test.", "Rappeler la précaution."],
+      correction:
+        "L'air étant présent, on teste d'abord le pilotage du distributeur : la commande envoie-t-elle bien le signal à l'électro-aimant ? Astuce : beaucoup d'électrodistributeurs ont une commande manuelle auxiliaire qui permet de forcer la commutation pour vérifier si le vérin bouge, indépendamment de l'automate. On distingue ainsi un défaut de signal (commande) d'un défaut du distributeur ou du vérin. Attention : forcer la commande déplace le vérin ; on s'assure que la zone est dégagée et on respecte les précautions.",
+    },
+    memo: ["Distributeur = préactionneur du vérin", "5/2 = 5 orifices, 2 positions", "Électrodistributeur = piloté élec.", "Tester le signal de pilotage"],
+    resume:
+      "Le distributeur oriente l'air comprimé vers les chambres du vérin ; désigné par ses orifices et positions (ex : 5/2), il est souvent piloté électriquement par la commande.",
+    quizIds: ["aut86", "aut87", "aut88", "aut89", "aut90"],
+    verification: {
+      question: "Quel est le rôle du distributeur pneumatique ?",
+      options: ["Détecter la position de la tige", "Orienter l'air comprimé vers les chambres du vérin", "Produire l'air comprimé", "Chauffer l'air"],
+      correct: 1,
+      explanation: "Le distributeur est le préactionneur du vérin : il oriente l'air comprimé vers l'une ou l'autre chambre selon l'ordre de la commande.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez ce que signifie « distributeur 5/2 » et comment il pilote un vérin double effet.",
+      consignes: [
+        "Explique le « 5 » et le « 2 ».",
+        "Décris les deux positions.",
+        "Indique le mode de pilotage courant.",
+      ],
+      criteres: [
+        "5 = orifices, 2 = positions.",
+        "J'ai décrit les deux positions (sortir / rentrer).",
+        "J'ai cité le pilotage par électro-aimant.",
+      ],
+      correction:
+        "« 5/2 » signifie 5 orifices et 2 positions. Dans une position, le distributeur envoie l'air dans la chambre arrière du vérin (la tige sort) tandis que l'autre chambre est à l'échappement ; dans l'autre position, il envoie l'air dans la chambre avant (la tige rentre). Il est souvent piloté par un électro-aimant (électrodistributeur), qui commute sur signal de la partie commande.",
+    },
+  },
+  {
+    id: "5-19",
+    title: "Synthèse actionneurs, préactionneurs et diagnostic",
+    durationMinutes: 28,
+    objectifs: [
+      "Relier commande, préactionneur et actionneur dans la chaîne d'énergie.",
+      "Diagnostiquer méthodiquement un défaut d'action.",
+    ],
+    simple:
+      "Ce chapitre rassemble le bloc : la commande donne un ordre, le préactionneur distribue l'énergie, l'actionneur agit. Face à un défaut d'action, on remonte cette chaîne : l'ordre est-il présent ? le préactionneur commute-t-il ? l'énergie arrive-t-elle ? l'actionneur est-il bon ?",
+    vocab: [
+      ["Chaîne commande-action", "Commande → préactionneur → actionneur → action."],
+      ["Défaut d'action", "L'action attendue ne se produit pas (moteur, vérin qui ne bouge pas)."],
+      ["Ordre", "Signal de la commande vers le préactionneur."],
+      ["Distribution", "Rôle du préactionneur qui envoie l'énergie à l'actionneur."],
+      ["Localisation", "Situer le défaut : ordre, préactionneur, énergie ou actionneur."],
+    ],
+    example:
+      "Un vérin ne sort pas : on vérifie l'ordre de la commande au distributeur, la commutation du distributeur, la présence d'air, puis l'état du vérin. La même logique s'applique à un moteur avec son contacteur.",
+    schema: "command-power-circuit",
+    ascii: "COMMANDE (ordre) → PREACTIONNEUR (distribue) → ACTIONNEUR (agit)\ndiagnostic : ordre ? commutation ? energie ? actionneur ?",
+    retenir: [
+      "La chaîne : commande → préactionneur → actionneur → action.",
+      "Face à un défaut d'action, on remonte cette chaîne dans l'ordre.",
+      "On vérifie : l'ordre, la commutation du préactionneur, l'énergie, puis l'actionneur.",
+      "La même logique s'applique en électrique (contacteur) et en pneumatique (distributeur).",
+    ],
+    erreurs: [
+      "Accuser directement l'actionneur sans vérifier l'ordre et le préactionneur.",
+      "Oublier de contrôler la présence de l'énergie (électrique ou pneumatique).",
+      "Intervenir sans consigner toutes les énergies concernées.",
+    ],
+    astucesPro: [
+      "On teste le préactionneur (commande manuelle du distributeur, contrôle de la bobine) pour isoler le défaut.",
+      "On note le dernier maillon correct et le premier défaillant.",
+    ],
+    diagnostic: [
+      "Vérifier l'ordre de la commande vers le préactionneur.",
+      "Contrôler la commutation du préactionneur et l'arrivée d'énergie.",
+      "Contrôler l'actionneur si tout le reste est correct.",
+    ],
+    depannage: [
+      "Localiser le maillon défaillant (ordre, préactionneur, énergie, actionneur).",
+      "Corriger la cause, puis contrôler l'action.",
+      "Consigner toutes les énergies et purger les pressions avant tout accès.",
+    ],
+    securite: [
+      "Un actionneur peut se déplacer brusquement : on consigne et on purge avant d'intervenir.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un moteur d'un poste automatisé ne démarre pas ; un vérin voisin, lui, fonctionne.",
+      mission: ["Décrire la démarche pour le moteur.", "Citer les maillons à contrôler.", "Rappeler la précaution."],
+      correction:
+        "Le vérin fonctionne, donc la commande et l'air sont a priori corrects sur cette partie. Pour le moteur, on remonte la chaîne : la commande envoie-t-elle l'ordre à la bobine du contacteur (préactionneur) ? le contacteur commute-t-il ? le moteur est-il alimenté ? le moteur lui-même est-il bon (voir module 3) ? On localise ainsi le maillon défaillant. Les contrôles nécessitant un accès se font après consignation de toutes les énergies, dans les limites de son habilitation.",
+    },
+    memo: ["Commande → préactionneur → actionneur", "Remonter la chaîne", "Ordre ? commutation ? énergie ? actionneur ?", "Consigner et purger"],
+    resume:
+      "Diagnostiquer un défaut d'action, c'est remonter la chaîne commande → préactionneur → actionneur, en vérifiant à chaque maillon l'ordre, la commutation, l'énergie et l'actionneur.",
+    quizIds: ["aut91", "aut92", "aut93", "aut94", "aut95"],
+    verification: {
+      question: "Face à un défaut d'action, dans quel ordre remonte-t-on la chaîne ?",
+      options: ["Actionneur, puis rien d'autre", "Ordre de la commande, préactionneur, énergie, actionneur", "Au hasard", "Uniquement l'énergie"],
+      correct: 1,
+      explanation: "On vérifie successivement l'ordre de la commande, la commutation du préactionneur, l'arrivée d'énergie, puis l'actionneur.",
+    },
+    exercice: {
+      enonce:
+        "Un vérin ne sort pas alors que l'automate donne l'ordre. Décrivez la démarche de diagnostic en remontant la chaîne.",
+      consignes: [
+        "Donne les maillons à vérifier dans l'ordre.",
+        "Indique un test possible sur le préactionneur.",
+        "Rappelle la précaution de sécurité.",
+      ],
+      criteres: [
+        "J'ai vérifié ordre, distributeur, air, vérin.",
+        "J'ai cité un test (commande manuelle du distributeur).",
+        "J'ai rappelé la consignation et la purge.",
+      ],
+      correction:
+        "On remonte la chaîne : l'automate envoie-t-il bien l'ordre à l'électro-aimant du distributeur ? le distributeur commute-t-il (on peut tester avec sa commande manuelle auxiliaire) ? l'air comprimé arrive-t-il ? le vérin est-il libre (pas de grippage ni de fuite) ? On localise ainsi le maillon défaillant. Avant tout démontage, on consigne l'air comprimé et on purge la pression résiduelle, car le vérin peut se déplacer brusquement.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -1410,8 +1663,12 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     title: "Actionneurs et préactionneurs",
     objective: "Comprendre les actionneurs et les préactionneurs qui les commandent.",
     lessonIds: block3Lessons.map((lesson) => lesson.id),
-    chapterCount: 6,
-    status: "in_progress",
+    chapterCount: block3Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["aut66", "aut68", "aut71", "aut73", "aut76", "aut78", "aut81", "aut83", "aut86", "aut88", "aut91", "aut93"],
+      passPercent: 80,
+    },
   },
   { id: "m5-b4", num: 4, title: "Le pneumatique industriel", objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m5-b5", num: 5, title: "L'automate programmable industriel (API)", objective: "Comprendre le rôle de l'automate, ses entrées/sorties et son cycle.", lessonIds: [], chapterCount: 7, status: "planned" },

@@ -135,6 +135,15 @@ aucune réécriture d'historique.)
 - **5-13 — Raccordement des capteurs et synthèse** (2/3 fils, PNP/NPN).
 - Questions `aut31`…`aut65`. Examen (14 questions) + badge `auto_block_2` (« Les capteurs »).
 
+**Étape 11 — module 5, bloc 3 « Actionneurs et préactionneurs »** — **complet (6 chapitres, `available` avec examen)** :
+- **5-14 — Qu'est-ce qu'un actionneur ?** (électrique, pneumatique, hydraulique).
+- **5-15 — Le préactionneur** (contacteur, distributeur, relais).
+- **5-16 — Les actionneurs électriques** (moteur, résistance, électro-aimant ; passerelle module 3).
+- **5-17 — Le vérin pneumatique**. Intègre le **schéma interactif « vérin double effet »** (`pneumatic-cylinder`, sortir/rentrer) + schéma statique `pneumatic-symbols`.
+- **5-18 — Le distributeur pneumatique** (5/2, électrodistributeur).
+- **5-19 — Synthèse actionneurs/préactionneurs et diagnostic**.
+- Questions `aut66`…`aut95`. Examen (12 questions) + badge `auto_block_3` (« Actionneurs & vérins »).
+
 ## Fichiers créés
 
 **Étape 1**
@@ -197,9 +206,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 2 du module 5 : **5 modules, 26 blocs, 110 leçons, 555 questions, 10 pannes, 20 badges.**
+- Build réussi. Décomptes après le bloc 3 du module 5 : **5 modules, 26 blocs, 116 leçons, 585 questions, 10 pannes, 21 badges.**
 - Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1 et 2 sur 7 disponibles. Module 4 : inchangé (6 blocs sur 12).**
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1 à 3 sur 7 disponibles. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -213,9 +222,9 @@ aucune réécriture d'historique.)
 
 - **Module 3 « Électrotechnique » : entièrement terminé** (7 blocs, 43 chapitres, 8 schémas interactifs,
   7 examens de bloc, 7 badges de bloc + le badge `module_3` de fin de module).
-- **Module 5 « Automatisme » : blocs 1 et 2 terminés**, blocs 3 à 7 à développer (actionneurs et
-  préactionneurs, pneumatique, API, GRAFCET, diagnostic). Réutiliser `InteractiveSchema` pour les
-  nouveaux schémas (vérin pneumatique, distributeur, cycle GRAFCET…).
+- **Module 5 « Automatisme » : blocs 1 à 3 terminés**, blocs 4 à 7 à développer (pneumatique approfondi,
+  API, GRAFCET, diagnostic). Réutiliser `InteractiveSchema` pour les nouveaux schémas (cycle GRAFCET,
+  entrées/sorties API…).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -248,6 +257,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-5): complete le bloc 1 (5-4 a 5-6), examen et badge`
 - `feat(module-5): demarre le bloc 2 (capteurs : role, inductif, capacitif)`
 - `feat(module-5): complete le bloc 2 (5-10 a 5-13), examen et badge`
+- `feat(module-5): demarre le bloc 3 (actionneurs et preactionneurs)`
+- `feat(module-5): complete le bloc 3 (5-17 a 5-19), examen et badge`
 
 ## Instructions pour reprendre le développement
 

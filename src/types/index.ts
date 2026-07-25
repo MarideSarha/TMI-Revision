@@ -69,7 +69,8 @@ export type LessonSchemaType =
   | "diagnostic-flow"
   | "po-pc-structure"
   | "energy-info-chains"
-  | "sensor-types-compare";
+  | "sensor-types-compare"
+  | "pneumatic-symbols";
 
 /**
  * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
@@ -88,7 +89,8 @@ export type InteractiveSchemaType =
   | "symbol-decoder"
   | "diagnostic-tree"
   | "automated-system"
-  | "sensor-detection";
+  | "sensor-detection"
+  | "pneumatic-cylinder";
 
 export interface LessonExercise {
   enonce: string;

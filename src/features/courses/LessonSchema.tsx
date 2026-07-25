@@ -1208,5 +1208,34 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "pneumatic-symbols") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Vérin simple effet */}
+        <text x="80" y="16" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Vérin simple effet</text>
+        <rect x="24" y="26" width="80" height="26" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <line x1="52" y1="26" x2="52" y2="52" stroke={stroke} strokeWidth="2.5" />
+        <line x1="104" y1="39" x2="128" y2="39" stroke={stroke} strokeWidth="2.5" />
+        <path d="M28 52 l6 -6 m-6 0 l6 6" stroke={accent} strokeWidth="1.5" />
+        <text x="80" y="66" textAnchor="middle" fontSize="6.8" fill={stroke}>1 entrée d'air + ressort de rappel</text>
+        {/* Vérin double effet */}
+        <text x="80" y="86" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Vérin double effet</text>
+        <rect x="24" y="94" width="80" height="24" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <line x1="60" y1="94" x2="60" y2="118" stroke={stroke} strokeWidth="2.5" />
+        <line x1="104" y1="106" x2="128" y2="106" stroke={stroke} strokeWidth="2.5" />
+        <line x1="34" y1="118" x2="34" y2="124" stroke={accent} strokeWidth="1.5" />
+        <line x1="86" y1="118" x2="86" y2="124" stroke={accent} strokeWidth="1.5" />
+        <text x="70" y="128" textAnchor="middle" fontSize="6.5" fill={stroke}>air des 2 côtés</text>
+        {/* Distributeur 5/2 (2 cases) */}
+        <text x="230" y="16" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Distributeur 5/2</text>
+        <rect x="176" y="30" width="52" height="34" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <rect x="228" y="30" width="52" height="34" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <path d="M186 56 l14 -18 M214 56 l-14 -18" stroke={accent} strokeWidth="1.5" fill="none" />
+        <path d="M240 47 h28 M240 47 l6 -4 M240 47 l6 4" stroke={accent} strokeWidth="1.5" fill="none" />
+        <text x="230" y="80" textAnchor="middle" fontSize="6.8" fill={stroke}>5 orifices · 2 positions</text>
+        <text x="230" y="92" textAnchor="middle" fontSize="6.8" fill={stroke}>pilote le vérin double effet</text>
+      </svg>
+    );
+  }
   return null;
 }
