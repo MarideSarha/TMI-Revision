@@ -2747,6 +2747,265 @@ const block7Lessons: Lesson[] = [
   },
 ];
 
+const block4Lessons: Lesson[] = [
+  {
+    id: "5-33",
+    title: "L'air comprimé : production et intérêt en industrie",
+    durationMinutes: 28,
+    objectifs: [
+      "Comprendre pourquoi l'air comprimé est très utilisé en automatisme.",
+      "Décrire la chaîne de production et de distribution de l'air comprimé.",
+    ],
+    simple:
+      "L'air comprimé est une énergie très courante en industrie : un compresseur aspire l'air ambiant et le comprime, un réservoir le stocke, puis un réseau le distribue jusqu'aux machines. On l'apprécie car il est simple, robuste, sans risque électrique côté actionneur et facile à évacuer (il retourne à l'atmosphère).",
+    vocab: [
+      ["Compresseur", "Machine qui aspire l'air et augmente sa pression."],
+      ["Réservoir (cuve)", "Réserve d'air comprimé qui amortit les variations de débit."],
+      ["Réseau d'air", "Tuyauteries qui distribuent l'air comprimé aux machines."],
+      ["Pression", "Force exercée par l'air par unité de surface (souvent en bar)."],
+      ["Pneumatique", "Qui utilise l'air comprimé comme énergie."],
+    ],
+    example:
+      "Dans un atelier, un compresseur alimente une cuve, puis une tuyauterie parcourt les postes de travail. Chaque machine se raccorde au réseau pour actionner ses vérins. Une pression de service typique se situe autour de 6 à 7 bar.",
+    schema: "energy-flow",
+    ascii: "AIR ambiant → COMPRESSEUR → RESERVOIR → RESEAU → MACHINES (verins)\nenergie simple, robuste, sans risque electrique cote actionneur",
+    retenir: [
+      "Le compresseur comprime l'air ; le réservoir le stocke ; le réseau le distribue.",
+      "L'air comprimé est simple, robuste et facile à évacuer.",
+      "Côté actionneur, il n'y a pas de risque électrique.",
+      "La pression de service usuelle est de l'ordre de 6 à 7 bar.",
+    ],
+    erreurs: [
+      "Croire que l'air comprimé est sans danger : sous pression, il l'est.",
+      "Oublier que l'air contient de l'eau et des impuretés à traiter.",
+      "Confondre débit (quantité d'air) et pression (force de l'air).",
+    ],
+    astucesPro: [
+      "Une chute de pression au poste signale souvent une fuite ou un sous-dimensionnement.",
+      "L'air comprimé coûte cher à produire : les fuites sont une perte d'énergie.",
+      "On purge régulièrement les points bas du réseau (condensats).",
+    ],
+    diagnostic: [
+      "Vérifier la pression disponible au poste par rapport à la pression de service.",
+      "Repérer les fuites (sifflement, chute de pression) sur le réseau.",
+      "Contrôler l'état du réservoir et des purges.",
+    ],
+    depannage: [
+      "Traiter les fuites en priorité : elles dégradent la pression et gaspillent l'énergie.",
+      "Vérifier le compresseur et la régulation en cas de manque de pression général.",
+      "Purger les condensats accumulés dans le réseau.",
+    ],
+    securite: [
+      "L'air comprimé est une énergie dangereuse : ne jamais diriger un jet vers soi ou autrui, ni s'en servir pour se dépoussiérer.",
+      "Avant intervention, on consigne le réseau et on purge la pression résiduelle.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur une ligne, plusieurs vérins deviennent lents et manquent de force en fin de journée.",
+      mission: ["Proposer une cause probable.", "Indiquer comment la vérifier.", "Rappeler une précaution de sécurité."],
+      correction:
+        "Une baisse de force et de vitesse simultanée sur plusieurs vérins évoque un manque de pression général : fuite importante sur le réseau, compresseur qui n'arrive plus à suivre la demande, ou réservoir insuffisant en pointe. On vérifie la pression disponible au poste (manomètre) par rapport à la pression de service, on recherche les fuites (sifflement, contrôle) et on contrôle le compresseur. Toute intervention sur le réseau se fait après consignation et purge de la pression résiduelle ; on ne dirige jamais un jet d'air vers une personne.",
+    },
+    memo: ["Compresseur → réservoir → réseau → machines", "Air : simple, robuste, à traiter", "Sous pression = dangereux"],
+    resume:
+      "L'air comprimé est produit par un compresseur, stocké dans un réservoir et distribué par un réseau jusqu'aux machines ; simple et robuste, il reste une énergie sous pression à maîtriser.",
+    quizIds: ["aut161", "aut162", "aut163", "aut164", "aut165"],
+    verification: {
+      question: "Dans quel ordre l'air comprimé arrive-t-il jusqu'à une machine ?",
+      options: ["Machine → réseau → compresseur", "Compresseur → réservoir → réseau → machine", "Réseau → compresseur → réservoir", "Réservoir → compresseur → machine"],
+      correct: 1,
+      explanation: "Le compresseur comprime l'air, le réservoir le stocke, puis le réseau le distribue jusqu'à la machine." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez la chaîne de production et de distribution de l'air comprimé, et citez deux qualités de cette énergie.",
+      consignes: [
+        "Cite les éléments dans l'ordre.",
+        "Donne deux avantages de l'air comprimé.",
+        "Rappelle une précaution de sécurité.",
+      ],
+      criteres: [
+        "J'ai cité compresseur → réservoir → réseau → machine.",
+        "J'ai donné deux avantages.",
+        "J'ai rappelé une précaution (air sous pression).",
+      ],
+      correction:
+        "La chaîne est : le compresseur aspire et comprime l'air ambiant, le réservoir le stocke et amortit les variations, le réseau de tuyauteries le distribue jusqu'aux machines qui actionnent leurs vérins. Deux avantages : c'est une énergie simple et robuste, sans risque électrique côté actionneur, et facile à évacuer (retour à l'atmosphère). Précaution : l'air comprimé reste dangereux sous pression ; on ne dirige jamais un jet vers une personne et on consigne/purge avant intervention.",
+    },
+  },
+  {
+    id: "5-34",
+    title: "Le traitement de l'air comprimé (FRL)",
+    durationMinutes: 28,
+    objectifs: [
+      "Comprendre pourquoi l'air comprimé doit être traité avant usage.",
+      "Identifier le rôle du filtre, du régulateur et du lubrificateur.",
+    ],
+    simple:
+      "L'air sortant du compresseur contient de l'eau et des impuretés, et sa pression varie. Avant d'alimenter une machine, on le conditionne avec une unité FRL : un Filtre retient l'eau et les poussières, un Régulateur fixe et stabilise la pression, et un Lubrificateur (facultatif) ajoute un peu d'huile pour les composants qui le demandent.",
+    vocab: [
+      ["FRL", "Filtre-Régulateur-Lubrificateur : unité de conditionnement de l'air comprimé."],
+      ["Filtre", "Retient l'eau (condensats) et les impuretés de l'air."],
+      ["Régulateur", "Fixe une pression de service stable, réglable au manomètre."],
+      ["Lubrificateur", "Ajoute un fin brouillard d'huile pour certains composants (souvent facultatif)."],
+      ["Condensats", "Eau qui se forme dans l'air comprimé et qu'il faut évacuer."],
+    ],
+    example:
+      "À l'entrée d'une machine, on trouve souvent un bloc compact : d'abord le filtre avec sa cuve où l'eau s'accumule, puis le régulateur avec son bouton et son manomètre réglé sur la pression voulue, et parfois un lubrificateur. C'est le premier élément à contrôler quand la machine « manque d'air ».",
+    schema: "air-treatment-frl",
+    ascii: "RESEAU → [ FILTRE ] → [ REGULATEUR ] → [ LUBRIFICATEUR (option) ] → MACHINE\n retient eau/impuretes   fixe la pression        huile fine",
+    retenir: [
+      "F = Filtre : retient l'eau et les impuretés.",
+      "R = Régulateur : fixe et stabilise la pression de service.",
+      "L = Lubrificateur : ajoute un peu d'huile (souvent facultatif).",
+      "Le FRL se place à l'entrée de la machine ; on le contrôle en premier en cas de manque d'air.",
+    ],
+    erreurs: [
+      "Négliger la purge du filtre : l'eau finit par passer et endommager les composants.",
+      "Confondre le rôle du filtre (propreté) et du régulateur (pression).",
+      "Croire que le lubrificateur est toujours nécessaire : beaucoup de composants sont « non lubrifiés ».",
+    ],
+    astucesPro: [
+      "Un manque d'air à la machine s'explique souvent par un filtre encrassé ou un régulateur mal réglé.",
+      "On vérifie le niveau de la cuve du filtre et on la purge régulièrement.",
+      "On règle le régulateur sur la pression prescrite, ni plus ni moins.",
+    ],
+    diagnostic: [
+      "Contrôler la pression affichée au régulateur par rapport à la valeur prescrite.",
+      "Vérifier l'état du filtre (encrassement, eau dans la cuve).",
+      "Contrôler le lubrificateur si le composant en aval en a besoin.",
+    ],
+    depannage: [
+      "Nettoyer ou remplacer un filtre encrassé ; purger la cuve.",
+      "Régler correctement le régulateur si la pression est trop basse ou trop haute.",
+      "Ajuster le lubrificateur selon les préconisations.",
+    ],
+    securite: [
+      "Le réglage du FRL et l'entretien se font sur un circuit consigné et purgé de sa pression résiduelle.",
+      "On ne démonte jamais une cuve de filtre sous pression.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine « manque d'air » : les vérins sont lents alors que le réseau de l'atelier est normal.",
+      mission: ["Indiquer le premier élément à contrôler.", "Citer deux vérifications.", "Rappeler la précaution avant démontage."],
+      correction:
+        "Si le réseau de l'atelier est correct mais que la machine seule manque d'air, on contrôle d'abord son unité FRL, à l'entrée de la machine. Deux vérifications : la pression affichée au régulateur (réglée à la valeur prescrite ?) et l'état du filtre (encrassé, cuve pleine d'eau ?). Un filtre colmaté ou un régulateur mal réglé explique souvent le symptôme. Avant tout démontage (par exemple de la cuve du filtre), on consigne et on purge la pression résiduelle : on ne démonte jamais une cuve sous pression.",
+    },
+    memo: ["F filtre · R régulateur · L lubrificateur", "FRL = entrée de la machine", "Purger le filtre régulièrement"],
+    resume:
+      "L'unité FRL conditionne l'air comprimé avant la machine : le filtre le nettoie, le régulateur fixe la pression, le lubrificateur ajoute au besoin un peu d'huile ; c'est le premier élément à contrôler en cas de manque d'air.",
+    quizIds: ["aut166", "aut167", "aut168", "aut169", "aut170"],
+    verification: {
+      question: "Dans une unité FRL, quel élément fixe et stabilise la pression de service ?",
+      options: ["Le filtre", "Le régulateur", "Le lubrificateur", "Le compresseur"],
+      correct: 1,
+      explanation: "Le régulateur fixe une pression de service stable, réglable et lisible au manomètre ; le filtre nettoie et le lubrificateur ajoute de l'huile." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez le rôle de chaque élément d'une unité FRL et pourquoi on la contrôle en premier en cas de manque d'air.",
+      consignes: [
+        "Explique le rôle du filtre.",
+        "Explique le rôle du régulateur.",
+        "Explique le rôle du lubrificateur et la précaution.",
+      ],
+      criteres: [
+        "J'ai relié le filtre à la propreté (eau, impuretés).",
+        "J'ai relié le régulateur à la pression.",
+        "J'ai indiqué le rôle du lubrificateur et la consignation avant démontage.",
+      ],
+      correction:
+        "Dans une unité FRL : le filtre retient l'eau (condensats) et les impuretés pour protéger les composants ; le régulateur fixe et stabilise la pression de service, réglable au manomètre ; le lubrificateur ajoute un fin brouillard d'huile pour les composants qui l'exigent (souvent facultatif). On la contrôle en premier car un filtre encrassé ou un régulateur mal réglé explique fréquemment un manque d'air à la machine. Avant tout démontage (cuve du filtre par exemple), on consigne le circuit et on purge la pression résiduelle.",
+    },
+  },
+  {
+    id: "5-35",
+    title: "Le vérin pneumatique : simple et double effet",
+    durationMinutes: 30,
+    objectifs: [
+      "Décrire un vérin pneumatique et son rôle d'actionneur.",
+      "Distinguer vérin simple effet et vérin double effet.",
+    ],
+    simple:
+      "Le vérin est l'actionneur pneumatique le plus courant : l'air comprimé pousse un piston, ce qui fait sortir ou rentrer une tige. Dans un vérin simple effet, l'air agit dans un seul sens et un ressort assure le retour ; dans un vérin double effet, l'air agit des deux côtés, ce qui donne de la force à l'aller comme au retour.",
+    vocab: [
+      ["Vérin", "Actionneur qui transforme la pression de l'air en mouvement linéaire (tige)."],
+      ["Piston", "Pièce mobile poussée par l'air à l'intérieur du vérin."],
+      ["Simple effet", "L'air agit dans un seul sens ; le retour est assuré par un ressort."],
+      ["Double effet", "L'air agit alternativement des deux côtés (force à l'aller et au retour)."],
+      ["Échappement", "Sortie de l'air de la chambre non alimentée."],
+    ],
+    example:
+      "Un vérin double effet qui pousse une pièce : l'air entre du côté arrière, le piston avance, la tige sort et pousse la pièce ; pour revenir, l'air entre de l'autre côté et la tige rentre. Un vérin simple effet, lui, sort sous pression et revient tout seul grâce à son ressort dès qu'on coupe l'air.",
+    schema: "pneumatic-symbols",
+    illustrations: ["pneumatic-cylinder"],
+    ascii: "SIMPLE EFFET : air d'un cote → sort ; ressort → rentre\nDOUBLE EFFET : air cote 1 → sort ; air cote 2 → rentre (force aux 2 sens)\nchambre non alimentee = echappement",
+    retenir: [
+      "Le vérin transforme la pression de l'air en mouvement linéaire.",
+      "Simple effet : air dans un sens, retour par ressort.",
+      "Double effet : air des deux côtés, force à l'aller et au retour.",
+      "La chambre non alimentée est à l'échappement.",
+    ],
+    erreurs: [
+      "Croire qu'un vérin simple effet a de la force au retour (c'est le ressort, faible).",
+      "Oublier que la chambre opposée doit être à l'échappement pour que le piston bouge.",
+      "Confondre le vérin (actionneur) et le distributeur (préactionneur qui l'alimente).",
+    ],
+    astucesPro: [
+      "On choisit le double effet quand on a besoin de force dans les deux sens.",
+      "Un vérin qui n'avance pas malgré l'air peut avoir sa chambre opposée mal mise à l'échappement (contre-pression).",
+      "Le repère de position (capteur sur le vérin) confirme fin de course sortie/rentrée.",
+    ],
+    diagnostic: [
+      "Vérifier que l'air arrive bien à la chambre à alimenter.",
+      "Vérifier que la chambre opposée est à l'échappement.",
+      "Contrôler l'étanchéité du piston (fuite interne) si le mouvement est mou.",
+    ],
+    depannage: [
+      "Rechercher une contre-pression ou un échappement bouché si le vérin peine.",
+      "Contrôler les joints du piston en cas de fuite interne.",
+      "Vérifier le distributeur qui alimente le vérin avant de suspecter le vérin lui-même.",
+    ],
+    securite: [
+      "Un vérin peut se déplacer brutalement : avant intervention, on consigne l'air et on purge la pression des deux chambres.",
+      "On tient compte de l'énergie résiduelle (air emprisonné) et des charges portées par la tige.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un vérin double effet sort correctement mais rentre très lentement et sans force.",
+      mission: ["Citer deux causes possibles.", "Indiquer comment orienter le diagnostic.", "Rappeler la précaution de sécurité."],
+      correction:
+        "Un vérin qui sort bien mais rentre mal a un problème du côté « rentrée » : l'air n'arrive pas correctement à la chambre de retour (distributeur, raccord, réglage de vitesse trop fermé) ou l'échappement de la chambre de sortie est gêné (contre-pression). Une fuite interne au piston peut aussi affaiblir le mouvement. On oriente le diagnostic en vérifiant d'abord l'alimentation et l'échappement de chaque chambre, puis le distributeur, avant de suspecter le vérin. Avant toute intervention, on consigne l'air et on purge la pression des deux chambres, en tenant compte de la charge portée par la tige.",
+    },
+    memo: ["Vérin = air → mouvement", "Simple effet : ressort au retour", "Double effet : force aux 2 sens"],
+    resume:
+      "Le vérin transforme la pression de l'air en mouvement de tige : simple effet (retour par ressort) ou double effet (air des deux côtés, force à l'aller et au retour), la chambre opposée étant à l'échappement.",
+    quizIds: ["aut171", "aut172", "aut173", "aut174", "aut175"],
+    verification: {
+      question: "Quelle est la différence entre un vérin simple effet et un vérin double effet ?",
+      options: ["Aucune", "Le simple effet revient par ressort ; le double effet est poussé par l'air dans les deux sens", "Le double effet n'a pas de piston", "Le simple effet n'utilise pas d'air"],
+      correct: 1,
+      explanation: "En simple effet, l'air agit dans un sens et un ressort assure le retour ; en double effet, l'air agit des deux côtés." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez le fonctionnement d'un vérin double effet et ce qui le distingue d'un vérin simple effet.",
+      consignes: [
+        "Décris comment sort et rentre la tige d'un double effet.",
+        "Explique le rôle de l'échappement.",
+        "Indique la différence avec un simple effet.",
+      ],
+      criteres: [
+        "J'ai décrit l'alimentation alternée des deux chambres.",
+        "J'ai expliqué l'échappement de la chambre opposée.",
+        "J'ai distingué le retour par ressort du simple effet.",
+      ],
+      correction:
+        "Dans un vérin double effet, l'air comprimé entre d'abord d'un côté du piston : il le pousse et la tige sort, tandis que la chambre opposée est à l'échappement. Pour rentrer, l'air entre de l'autre côté et la première chambre passe à l'échappement. Le vérin a donc de la force à l'aller comme au retour. Un vérin simple effet, lui, n'est alimenté que d'un seul côté : il sort sous pression et revient grâce à un ressort de rappel dès que l'air est coupé, avec une force de retour faible. Le mouvement est commandé par le distributeur (préactionneur).",
+    },
+  },
+];
+
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
   {
     id: "m5-b1",
@@ -2787,7 +3046,15 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m5-b4", num: 4, title: "Le pneumatique industriel", objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.", lessonIds: [], chapterCount: 7, status: "planned" },
+  {
+    id: "m5-b4",
+    num: 4,
+    title: "Le pneumatique industriel",
+    objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.",
+    lessonIds: block4Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   {
     id: "m5-b5",
     num: 5,
@@ -2824,6 +3091,6 @@ export const AUTOMATISME_MODULE: TrainingModule = {
   icon: Cpu,
   color: "sky",
   source: "[TMI] Parcours progressif débutant → opérationnel · capteurs, actionneurs, API · passerelle depuis le module 3",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block5Lessons, ...block7Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons, ...block7Lessons],
   blocks: AUTOMATISME_BLOCKS,
 };

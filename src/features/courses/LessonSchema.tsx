@@ -1275,5 +1275,47 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "air-treatment-frl") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        <defs>
+          <marker id="frl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8" />
+          </marker>
+        </defs>
+        <text x="160" y="14" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Unité de conditionnement de l'air (FRL)</text>
+        {/* Arrivée réseau */}
+        <text x="20" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Réseau</text>
+        <line x1="20" y1="64" x2="52" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        {/* Filtre */}
+        <rect x="52" y="42" width="60" height="44" rx="3" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <path d="M62 52 h40 M62 62 h40 M72 66 l10 12 l10 -12 z" stroke={stroke} strokeWidth="1.2" fill="none" />
+        <text x="82" y="98" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Filtre</text>
+        <text x="82" y="108" textAnchor="middle" fontSize="6.3" fill={stroke}>retient eau</text>
+        <text x="82" y="116" textAnchor="middle" fontSize="6.3" fill={stroke}>et impuretés</text>
+        <line x1="112" y1="64" x2="124" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        {/* Régulateur */}
+        <rect x="124" y="42" width="60" height="44" rx="3" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <circle cx="154" cy="60" r="11" fill="none" stroke={stroke} strokeWidth="1.2" />
+        <line x1="154" y1="60" x2="161" y2="53" stroke={accent} strokeWidth="1.5" />
+        <line x1="154" y1="70" x2="154" y2="78" stroke={stroke} strokeWidth="1.2" />
+        <text x="154" y="98" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Régulateur</text>
+        <text x="154" y="108" textAnchor="middle" fontSize="6.3" fill={stroke}>fixe et stabilise</text>
+        <text x="154" y="116" textAnchor="middle" fontSize="6.3" fill={stroke}>la pression</text>
+        <line x1="184" y1="64" x2="196" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        {/* Lubrificateur */}
+        <rect x="196" y="42" width="60" height="44" rx="3" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <circle cx="226" cy="54" r="2.2" fill="#38bdf8" />
+        <path d="M226 58 v10" stroke="#38bdf8" strokeWidth="1.2" />
+        <path d="M218 74 q8 -6 16 0" stroke={stroke} strokeWidth="1.2" fill="none" />
+        <text x="226" y="98" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Lubrificateur</text>
+        <text x="226" y="108" textAnchor="middle" fontSize="6.3" fill={stroke}>ajoute un peu</text>
+        <text x="226" y="116" textAnchor="middle" fontSize="6.3" fill={stroke}>d'huile (option)</text>
+        {/* Sortie vers machine */}
+        <line x1="256" y1="64" x2="292" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        <text x="300" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Machine</text>
+      </svg>
+    );
+  }
   return null;
 }

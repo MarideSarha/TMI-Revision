@@ -71,7 +71,8 @@ export type LessonSchemaType =
   | "energy-info-chains"
   | "sensor-types-compare"
   | "pneumatic-symbols"
-  | "plc-structure";
+  | "plc-structure"
+  | "air-treatment-frl";
 
 /**
  * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
