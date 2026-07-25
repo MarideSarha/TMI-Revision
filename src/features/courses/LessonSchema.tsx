@@ -1184,5 +1184,29 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "sensor-types-compare") {
+    const sensors: Array<[string, string]> = [
+      ["Inductif", "objets métalliques"],
+      ["Capacitif", "presque tous matériaux"],
+      ["Photoélectrique", "objets qui coupent la lumière"],
+    ];
+    return (
+      <svg viewBox="0 0 320 120" className="w-full h-28">
+        {sensors.map(([name, detects], i) => {
+          const x = 10 + i * 103;
+          return (
+            <g key={name}>
+              <rect x={x} y="20" width="92" height="34" rx="6" fill={box} stroke={accent} strokeWidth="2" />
+              <text x={x + 46} y="41" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">{name}</text>
+              {/* zone de détection */}
+              <path d={`M${x + 46} 54 q 0 14 -14 18 M${x + 46} 54 q 0 14 14 18`} fill="none" stroke={stroke} strokeDasharray="2 2" />
+              <text x={x + 46} y="92" textAnchor="middle" fontSize="7" fill={stroke}>détecte :</text>
+              <text x={x + 46} y="103" textAnchor="middle" fontSize="6.8" fill={stroke}>{detects}</text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
   return null;
 }

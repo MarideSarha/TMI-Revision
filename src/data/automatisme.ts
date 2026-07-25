@@ -520,6 +520,267 @@ const block1Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 2 — LES CAPTEURS INDUSTRIELS
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block2Lessons: Lesson[] = [
+  {
+    id: "5-7",
+    title: "À quoi sert un capteur ?",
+    durationMinutes: 26,
+    objectifs: [
+      "Expliquer le rôle d'un capteur dans un système automatisé.",
+      "Distinguer un capteur tout ou rien (TOR) d'un capteur analogique.",
+    ],
+    simple:
+      "Un capteur est l'organe des sens du système automatisé : il détecte une grandeur (présence, position, niveau, température) et transforme cette information en un signal électrique compris par l'automate. Sans capteurs, la partie commande travaillerait à l'aveugle.",
+    vocab: [
+      ["Capteur", "Élément qui détecte une grandeur et la transforme en signal pour la commande."],
+      ["Tout ou rien (TOR)", "Signal à deux états seulement : présent/absent, 0 ou 1."],
+      ["Analogique", "Signal qui varie de façon continue (ex : 4-20 mA, 0-10 V) selon la grandeur."],
+      ["Portée", "Distance à laquelle un capteur détecte l'objet."],
+      ["Entrée automate", "Borne de l'automate qui reçoit le signal d'un capteur."],
+    ],
+    example:
+      "Sur une ligne, un détecteur de présence est un capteur TOR : la bouteille est là (1) ou pas (0). Un capteur de température, lui, est analogique : il fournit une valeur qui varie continûment avec la température mesurée.",
+    schema: "sensor-types-compare",
+    ascii: "CAPTEUR = organe des sens du systeme\nTOR : deux etats (0 / 1) — presence, position\nANALOGIQUE : valeur continue — temperature, pression, niveau",
+    retenir: [
+      "Le capteur détecte une grandeur et l'envoie à la commande sous forme de signal.",
+      "Un capteur TOR ne donne que deux états : 0 ou 1.",
+      "Un capteur analogique fournit une valeur qui varie continûment.",
+      "Les capteurs sont raccordés aux entrées de l'automate.",
+    ],
+    erreurs: [
+      "Confondre capteur TOR (deux états) et capteur analogique (valeur continue).",
+      "Confondre capteur (qui informe) et actionneur (qui agit).",
+      "Choisir un capteur sans tenir compte de la grandeur à détecter.",
+    ],
+    astucesPro: [
+      "On choisit le type de capteur selon la grandeur à détecter et l'objet.",
+      "Un signal analogique se lit avec une valeur ; un signal TOR, avec un état 0/1.",
+    ],
+    diagnostic: [
+      "Identifier la grandeur détectée et le type de capteur (TOR ou analogique).",
+      "Vérifier que le capteur fournit bien un signal à la commande.",
+      "Contrôler l'état d'une entrée automate face à la présence de l'objet.",
+    ],
+    depannage: [
+      "Vérifier l'alimentation et le raccordement du capteur.",
+      "Contrôler le signal reçu par l'entrée automate.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Un capteur défaillant peut fausser le fonctionnement : on ne le shunte pas pour « faire marcher ».",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine doit mesurer le niveau d'un réservoir et déclencher une pompe à un seuil.",
+      mission: ["Indiquer le type de capteur pour le niveau.", "Indiquer le type pour le seuil de déclenchement.", "Justifier."],
+      correction:
+        "Pour connaître le niveau exact et le suivre en continu, on utilise un capteur analogique de niveau (valeur qui varie continûment). Pour simplement déclencher la pompe à un seuil (plein/vide), un capteur tout ou rien (détecteur de niveau) suffit : il donne deux états. Le choix dépend du besoin : suivre une valeur (analogique) ou détecter un franchissement de seuil (TOR).",
+    },
+    memo: ["Capteur = sens du système", "TOR = 0/1", "Analogique = valeur continue", "Raccordé aux entrées automate"],
+    resume:
+      "Le capteur détecte une grandeur et la transmet à la commande ; il est tout ou rien (deux états) ou analogique (valeur continue).",
+    quizIds: ["aut31", "aut32", "aut33", "aut34", "aut35"],
+    verification: {
+      question: "Un détecteur de présence qui indique seulement « objet là / pas là » est un capteur :",
+      options: ["Analogique", "Tout ou rien (TOR)", "De température", "De pression"],
+      correct: 1,
+      explanation: "Deux états seulement (présent/absent, 0/1) : c'est un capteur tout ou rien (TOR). Un capteur analogique fournirait une valeur continue.",
+    },
+    exercice: {
+      enonce:
+        "Classez ces capteurs en TOR ou analogique : (a) détecteur de présence, (b) capteur de température, (c) fin de course, (d) capteur de pression.",
+      consignes: [
+        "Classe chaque capteur.",
+        "Justifie par le type de signal.",
+        "Rappelle la différence TOR / analogique.",
+      ],
+      criteres: [
+        "(a) TOR, (b) analogique, (c) TOR, (d) analogique.",
+        "J'ai justifié par deux états ou valeur continue.",
+        "J'ai rappelé la différence.",
+      ],
+      correction:
+        "(a) détecteur de présence = TOR (présent/absent). (b) capteur de température = analogique (valeur continue). (c) fin de course = TOR (atteint/pas atteint). (d) capteur de pression = analogique (valeur continue). Un capteur TOR ne donne que deux états ; un capteur analogique fournit une valeur qui varie continûment avec la grandeur mesurée.",
+    },
+  },
+  {
+    id: "5-8",
+    title: "Le détecteur inductif",
+    durationMinutes: 28,
+    objectifs: [
+      "Expliquer le principe et l'usage d'un détecteur inductif.",
+      "Comprendre la détection sans contact et ses limites.",
+    ],
+    simple:
+      "Le détecteur inductif détecte les objets métalliques sans les toucher. Quand un métal entre dans sa zone, il modifie un champ magnétique et la sortie du détecteur change d'état. Il est robuste et très répandu, mais il ne détecte que les métaux.",
+    vocab: [
+      ["Détecteur inductif", "Capteur de proximité qui détecte les objets métalliques sans contact."],
+      ["Sans contact", "Détection à distance, sans toucher l'objet : pas d'usure mécanique."],
+      ["Zone de détection", "Espace devant le capteur où l'objet est détecté (portée courte, quelques mm)."],
+      ["Sortie TOR", "État 0 ou 1 selon la présence de l'objet métallique."],
+      ["Champ magnétique", "Champ modifié par l'approche d'un métal, à l'origine de la détection."],
+    ],
+    example:
+      "Sur un poste d'usinage, un détecteur inductif confirme la présence d'une pièce métallique dans le montage avant d'autoriser l'usinage. Il détecte le métal à quelques millimètres, sans contact, ce qui évite l'usure.",
+    schema: "sensor-types-compare",
+    illustrations: ["sensor-detection"],
+    ascii: "objet METALLIQUE dans la zone → champ modifie → SORTIE = 1\nobjet hors zone ou non metallique → SORTIE = 0\n(detection SANS CONTACT, portee courte)",
+    retenir: [
+      "Le détecteur inductif détecte uniquement les objets métalliques.",
+      "La détection est sans contact : pas d'usure mécanique.",
+      "La portée est courte (quelques millimètres).",
+      "La sortie est tout ou rien : 0 (pas de métal) ou 1 (métal détecté).",
+    ],
+    erreurs: [
+      "Attendre d'un détecteur inductif qu'il détecte du plastique ou du carton : il ne détecte que le métal.",
+      "Placer l'objet hors de la portée (trop loin) et croire le capteur défaillant.",
+      "Négliger l'environnement métallique autour du capteur, qui peut perturber la détection.",
+    ],
+    astucesPro: [
+      "On respecte la distance de détection indiquée par le constructeur.",
+      "Un voyant sur le détecteur indique souvent l'état de la sortie : pratique pour diagnostiquer.",
+    ],
+    diagnostic: [
+      "Vérifier que l'objet à détecter est bien métallique et dans la portée.",
+      "Contrôler le voyant d'état du détecteur.",
+      "Vérifier l'alimentation et le raccordement.",
+    ],
+    depannage: [
+      "Ajuster la distance capteur-objet si la détection est incertaine.",
+      "Contrôler le signal reçu par l'entrée automate.",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "On ne modifie pas le réglage ou la position d'un capteur de sécurité sans procédure.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un détecteur inductif ne détecte jamais une pièce en plastique posée devant lui.",
+      mission: ["Expliquer pourquoi.", "Proposer le bon type de capteur.", "Rappeler une vérification."],
+      correction:
+        "Le détecteur inductif ne détecte que les objets métalliques : une pièce en plastique ne modifie pas son champ magnétique, la sortie reste donc à 0. Pour détecter du plastique, il faut un autre type de capteur, par exemple un détecteur capacitif ou photoélectrique. On vérifie aussi que l'objet est bien dans la portée du capteur et que celui-ci est alimenté et raccordé correctement.",
+    },
+    memo: ["Détecte le métal", "Sans contact", "Portée courte", "Sortie 0/1"],
+    resume:
+      "Le détecteur inductif détecte sans contact les objets métalliques à courte distance et fournit une sortie tout ou rien ; il ne détecte pas les matériaux non métalliques.",
+    quizIds: ["aut36", "aut37", "aut38", "aut39", "aut40"],
+    verification: {
+      question: "Que détecte un détecteur inductif ?",
+      options: ["Tous les matériaux", "Uniquement les objets métalliques", "Uniquement le verre", "La température"],
+      correct: 1,
+      explanation: "Le détecteur inductif détecte uniquement les objets métalliques, sans contact, à courte distance.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le principe du détecteur inductif et donnez un avantage et une limite.",
+      consignes: [
+        "Explique ce qu'il détecte et comment (sans contact).",
+        "Donne un avantage.",
+        "Donne une limite.",
+      ],
+      criteres: [
+        "J'ai indiqué qu'il détecte le métal sans contact.",
+        "J'ai donné un avantage (pas d'usure, robuste).",
+        "J'ai donné une limite (métal uniquement, portée courte).",
+      ],
+      correction:
+        "Le détecteur inductif détecte les objets métalliques sans contact : l'approche d'un métal modifie son champ magnétique et fait basculer sa sortie tout ou rien. Avantage : détection sans contact, donc pas d'usure mécanique, et grande robustesse. Limite : il ne détecte que les métaux et sa portée est courte (quelques millimètres).",
+    },
+  },
+  {
+    id: "5-9",
+    title: "Le détecteur capacitif",
+    durationMinutes: 26,
+    objectifs: [
+      "Expliquer le principe et l'usage d'un détecteur capacitif.",
+      "Comparer le détecteur capacitif au détecteur inductif.",
+    ],
+    simple:
+      "Le détecteur capacitif détecte presque tous les matériaux : métal, plastique, bois, verre, liquides. L'approche d'un objet modifie une capacité électrique et fait basculer la sortie. Il peut même détecter un niveau de liquide à travers une paroi fine.",
+    vocab: [
+      ["Détecteur capacitif", "Capteur de proximité qui détecte presque tous les matériaux sans contact."],
+      ["Capacité", "Grandeur électrique modifiée par l'approche d'un objet."],
+      ["Détection de niveau", "Usage courant : détecter la présence d'un liquide ou d'un solide, parfois à travers une paroi."],
+      ["Sensibilité", "Réglage qui adapte le capteur à l'objet et à l'environnement."],
+      ["Sortie TOR", "État 0 ou 1 selon la présence de l'objet."],
+    ],
+    example:
+      "Sur une trémie, un détecteur capacitif signale quand le niveau de granulés atteint le capteur, même à travers la paroi. Contrairement à l'inductif, il détecte aussi bien le plastique que le métal.",
+    schema: "sensor-types-compare",
+    ascii: "objet (metal, plastique, bois, liquide...) dans la zone → SORTIE = 1\ndetection SANS CONTACT · peut detecter un NIVEAU a travers une paroi fine",
+    retenir: [
+      "Le détecteur capacitif détecte presque tous les matériaux, pas seulement le métal.",
+      "La détection est sans contact, comme l'inductif.",
+      "Il sert souvent à détecter un niveau (liquide, granulés), parfois à travers une paroi.",
+      "Il est plus sensible à l'environnement : un réglage de sensibilité est souvent nécessaire.",
+    ],
+    erreurs: [
+      "Confondre inductif (métal seulement) et capacitif (presque tous matériaux).",
+      "Régler une sensibilité inadaptée qui provoque des détections intempestives.",
+      "Négliger l'influence de l'humidité ou des dépôts sur la détection.",
+    ],
+    astucesPro: [
+      "On règle la sensibilité selon l'objet et l'environnement pour éviter les faux déclenchements.",
+      "Pour détecter un niveau à travers une paroi, on vérifie l'épaisseur et le matériau de la paroi.",
+    ],
+    diagnostic: [
+      "Vérifier que l'objet est dans la portée et le réglage de sensibilité adapté.",
+      "Contrôler l'influence de dépôts, d'humidité ou de la paroi.",
+      "Vérifier l'alimentation et le raccordement.",
+    ],
+    depannage: [
+      "Ajuster la sensibilité si la détection est intempestive ou absente.",
+      "Nettoyer la face de détection si nécessaire.",
+      "Respecter la consignation avant tout accès.",
+    ],
+    securite: [
+      "On ne modifie pas un capteur de sécurité sans procédure.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "On doit détecter le niveau de granulés plastiques dans une trémie fermée.",
+      mission: ["Choisir le type de capteur.", "Expliquer pourquoi pas l'inductif.", "Citer un point de réglage."],
+      correction:
+        "On choisit un détecteur capacitif : il détecte presque tous les matériaux, y compris le plastique, et peut détecter un niveau à travers une paroi fine. Le détecteur inductif ne conviendrait pas car il ne détecte que le métal. Point de réglage : la sensibilité, à ajuster selon le matériau, la paroi et l'environnement, pour éviter les détections intempestives.",
+    },
+    memo: ["Détecte presque tout", "Sans contact", "Détection de niveau", "Régler la sensibilité"],
+    resume:
+      "Le détecteur capacitif détecte sans contact presque tous les matériaux et sert souvent à détecter un niveau ; il demande un réglage de sensibilité adapté.",
+    quizIds: ["aut41", "aut42", "aut43", "aut44", "aut45"],
+    verification: {
+      question: "Quelle est la principale différence entre détecteur capacitif et détecteur inductif ?",
+      options: ["Le capacitif détecte presque tous les matériaux, l'inductif seulement le métal", "Le capacitif ne détecte rien", "L'inductif détecte le plastique", "Il n'y a aucune différence"],
+      correct: 0,
+      explanation: "Le détecteur inductif ne détecte que le métal, tandis que le capacitif détecte presque tous les matériaux (métal, plastique, liquide…).",
+    },
+    exercice: {
+      enonce:
+        "Comparez détecteur inductif et détecteur capacitif : ce qu'ils détectent, un usage typique de chacun.",
+      consignes: [
+        "Indique ce que détecte chacun.",
+        "Donne un usage typique de chacun.",
+        "Rappelle un point d'attention du capacitif.",
+      ],
+      criteres: [
+        "Inductif = métal ; capacitif = presque tous matériaux.",
+        "J'ai donné un usage pour chacun.",
+        "J'ai cité le réglage de sensibilité du capacitif.",
+      ],
+      correction:
+        "Le détecteur inductif détecte uniquement les objets métalliques (ex : présence d'une pièce métallique dans un montage). Le détecteur capacitif détecte presque tous les matériaux (ex : niveau de granulés ou de liquide, même à travers une paroi fine). Les deux fonctionnent sans contact. Point d'attention du capacitif : sa sensibilité doit être réglée selon l'objet et l'environnement pour éviter les détections intempestives.",
+    },
+  },
+];
+
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
   {
     id: "m5-b1",
@@ -534,7 +795,15 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m5-b2", num: 2, title: "Les capteurs industriels", objective: "Reconnaître et choisir les capteurs TOR et analogiques (inductif, capacitif, photoélectrique…).", lessonIds: [], chapterCount: 7, status: "planned" },
+  {
+    id: "m5-b2",
+    num: 2,
+    title: "Les capteurs industriels",
+    objective: "Reconnaître et choisir les capteurs TOR et analogiques (inductif, capacitif, photoélectrique…).",
+    lessonIds: block2Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   { id: "m5-b3", num: 3, title: "Actionneurs et préactionneurs", objective: "Comprendre les actionneurs et les préactionneurs qui les commandent.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m5-b4", num: 4, title: "Le pneumatique industriel", objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.", lessonIds: [], chapterCount: 7, status: "planned" },
   { id: "m5-b5", num: 5, title: "L'automate programmable industriel (API)", objective: "Comprendre le rôle de l'automate, ses entrées/sorties et son cycle.", lessonIds: [], chapterCount: 7, status: "planned" },
@@ -549,6 +818,6 @@ export const AUTOMATISME_MODULE: TrainingModule = {
   icon: Cpu,
   color: "sky",
   source: "[TMI] Parcours progressif débutant → opérationnel · capteurs, actionneurs, API · passerelle depuis le module 3",
-  lessons: [...block1Lessons],
+  lessons: [...block1Lessons, ...block2Lessons],
   blocks: AUTOMATISME_BLOCKS,
 };

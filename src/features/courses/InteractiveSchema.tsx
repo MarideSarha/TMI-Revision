@@ -1005,6 +1005,59 @@ function AutomatedSystem({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 10 — DÉTECTION SANS CONTACT (capteur de proximité)
+   L'objet s'approche ; la sortie passe à 1 quand il entre dans la zone.
+   --------------------------------------------------------------- */
+
+function SensorDetection({ dark }: { dark: boolean }) {
+  const [distance, setDistance] = useState(0); // 0 loin · 1 proche · 2 dans la zone
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const detected = distance === 2;
+
+  const objectX = [250, 210, 150][distance];
+  const stateLabel = ["Objet loin", "Objet proche", "Objet détecté"][distance];
+
+  return (
+    <Figure
+      dark={dark}
+      title="Détection sans contact : la sortie du capteur"
+      legend="Zone en pointillés = portée du capteur · voyant = sortie du capteur (0 ou 1)."
+      explanation="Un détecteur de proximité change l'état de sa sortie quand un objet entre dans sa zone de détection, sans contact physique. Tant que l'objet est hors de portée, la sortie vaut 0 ; dès qu'il entre dans la zone, elle passe à 1. C'est cette information binaire (0/1, dite « tout ou rien ») que reçoit l'automate."
+      controls={
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" onClick={() => setDistance((d) => Math.max(0, d - 1))} disabled={distance === 0} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold disabled:opacity-40 ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <ArrowRight size={16} className="rotate-180" /> Éloigner
+          </button>
+          <button type="button" onClick={() => setDistance((d) => Math.min(2, d + 1))} disabled={distance === 2} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-amber-400 px-4 py-2.5 text-sm font-bold text-slate-950 disabled:opacity-40">
+            Rapprocher l'objet <ArrowLeft size={16} />
+          </button>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 320 120" className="h-auto w-full" role="img" aria-label={`${stateLabel}. Sortie du capteur : ${detected ? "1" : "0"}.`}>
+        {/* Capteur */}
+        <rect x="20" y="42" width="46" height="34" rx="4" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="43" y="63" textAnchor="middle" fontSize="8" fill={stroke}>capteur</text>
+        {/* Zone de détection */}
+        <path d="M66 48 L120 34 L120 84 L66 70 Z" fill={detected ? "rgba(16,185,129,0.18)" : "rgba(148,163,184,0.12)"} stroke={detected ? "#10b981" : stroke} strokeDasharray="3 3" />
+        <text x="96" y="98" textAnchor="middle" fontSize="7" fill={stroke}>zone</text>
+        {/* Objet */}
+        <rect x={objectX} y="48" width="26" height="22" rx="2" fill={detected ? "#10b981" : box} stroke={stroke} strokeWidth="1.5" />
+        <text x={objectX + 13} y="63" textAnchor="middle" fontSize="7" fill={detected ? "#fff" : stroke}>objet</text>
+        {/* Sortie (voyant) */}
+        <circle cx="290" cy="30" r="11" fill={detected ? "#10b981" : box} stroke={stroke} strokeWidth="1.5" />
+        <text x="290" y="34" textAnchor="middle" fontSize="10" fill={detected ? "#fff" : stroke} fontWeight="bold">{detected ? "1" : "0"}</text>
+        <text x="290" y="54" textAnchor="middle" fontSize="7" fill={stroke}>sortie</text>
+      </svg>
+      <div className="mt-1 flex items-center justify-center gap-2 pb-1 text-center text-xs font-semibold" role="status">
+        <span className={detected ? "text-emerald-500" : "text-slate-400"}>{stateLabel} — sortie {detected ? "1 (activée)" : "0 (au repos)"}</span>
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -1018,5 +1071,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "symbol-decoder") return <SymbolDecoder dark={dark} />;
   if (type === "diagnostic-tree") return <DiagnosticTree dark={dark} />;
   if (type === "automated-system") return <AutomatedSystem dark={dark} />;
+  if (type === "sensor-detection") return <SensorDetection dark={dark} />;
   return null;
 }
