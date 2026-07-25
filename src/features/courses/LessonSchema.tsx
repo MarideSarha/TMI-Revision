@@ -1237,5 +1237,43 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "plc-structure") {
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        <defs>
+          <marker id="plc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Automate (cadre) */}
+        <rect x="70" y="30" width="180" height="70" rx="8" fill="none" stroke={stroke} strokeDasharray="4 3" />
+        <text x="160" y="26" textAnchor="middle" fontSize="8" fill={stroke}>Automate (API)</text>
+        {/* Module entrées */}
+        <rect x="78" y="52" width="44" height="30" rx="4" fill={box} stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="100" y="66" textAnchor="middle" fontSize="7.5" fill={stroke}>Entrées</text>
+        <text x="100" y="76" textAnchor="middle" fontSize="6.5" fill={stroke}>(E)</text>
+        {/* CPU + mémoire */}
+        <rect x="134" y="46" width="52" height="42" rx="4" fill={accent} stroke={stroke} strokeWidth="1.5" />
+        <text x="160" y="62" textAnchor="middle" fontSize="7.5" fill="#14151a" fontWeight="bold">Processeur</text>
+        <text x="160" y="74" textAnchor="middle" fontSize="6.5" fill="#14151a">+ mémoire</text>
+        {/* Module sorties */}
+        <rect x="198" y="52" width="44" height="30" rx="4" fill={box} stroke="#10b981" strokeWidth="1.5" />
+        <text x="220" y="66" textAnchor="middle" fontSize="7.5" fill={stroke}>Sorties</text>
+        <text x="220" y="76" textAnchor="middle" fontSize="6.5" fill={stroke}>(S)</text>
+        {/* Liaisons internes */}
+        <line x1="122" y1="67" x2="134" y2="67" stroke={stroke} strokeWidth="1.2" markerEnd="url(#plc-arrow)" />
+        <line x1="186" y1="67" x2="198" y2="67" stroke={stroke} strokeWidth="1.2" markerEnd="url(#plc-arrow)" />
+        {/* Alimentation */}
+        <rect x="134" y="104" width="52" height="16" rx="3" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="160" y="115" textAnchor="middle" fontSize="6.8" fill={stroke}>Alimentation</text>
+        <line x1="160" y1="88" x2="160" y2="104" stroke={stroke} strokeWidth="1" />
+        {/* Capteurs / préactionneurs */}
+        <text x="30" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Capteurs</text>
+        <line x1="52" y1="67" x2="78" y2="67" stroke={stroke} strokeWidth="1.5" markerEnd="url(#plc-arrow)" />
+        <text x="290" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Préact.</text>
+        <line x1="242" y1="67" x2="268" y2="67" stroke={stroke} strokeWidth="1.5" markerEnd="url(#plc-arrow)" />
+      </svg>
+    );
+  }
   return null;
 }

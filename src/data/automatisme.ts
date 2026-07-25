@@ -1630,6 +1630,266 @@ const block3Lessons: Lesson[] = [
   },
 ];
 
+/* ---------------------------------------------------------------
+   BLOC 5 — L'AUTOMATE PROGRAMMABLE INDUSTRIEL (API)
+   Publication progressive : chapitres ajoutés et validés un par un.
+   --------------------------------------------------------------- */
+
+const block5Lessons: Lesson[] = [
+  {
+    id: "5-20",
+    title: "Qu'est-ce qu'un automate programmable (API) ?",
+    durationMinutes: 28,
+    objectifs: [
+      "Définir l'automate programmable et son rôle dans la partie commande.",
+      "Comprendre l'apport de la logique programmée par rapport à la logique câblée.",
+    ],
+    simple:
+      "L'automate programmable industriel (API) est le cerveau de la partie commande. Il lit les informations des capteurs, exécute un programme, et commande les préactionneurs. Son grand avantage : on modifie son comportement en changeant le programme, sans recâbler l'installation.",
+    vocab: [
+      ["API", "Automate Programmable Industriel : appareil programmable qui pilote un système automatisé."],
+      ["Programme", "Suite d'instructions qui définit le comportement de l'automate."],
+      ["Logique câblée", "Comportement défini uniquement par le câblage (relais) : figé, difficile à modifier."],
+      ["Logique programmée", "Comportement défini par un programme : modifiable sans recâbler."],
+      ["Partie commande", "Ensemble qui décide et pilote ; l'API en est le cœur."],
+    ],
+    example:
+      "Sur une machine, pour changer une temporisation ou une condition de marche, on modifie le programme de l'API depuis un ordinateur, au lieu de rajouter ou déplacer des relais et des fils. Le même automate peut piloter des machines très différentes selon son programme.",
+    schema: "po-pc-structure",
+    ascii: "API = cerveau de la partie commande\nlit CAPTEURS → execute un PROGRAMME → commande PREACTIONNEURS\navantage : on modifie le PROGRAMME, pas le cablage",
+    retenir: [
+      "L'API est le cœur programmable de la partie commande.",
+      "Il lit les capteurs, exécute un programme, commande les préactionneurs.",
+      "La logique programmée se modifie sans recâbler (contrairement à la logique câblée).",
+      "Un même automate peut piloter des systèmes différents selon son programme.",
+    ],
+    erreurs: [
+      "Croire qu'il faut recâbler pour changer le comportement : on modifie le programme.",
+      "Confondre l'API (décide) avec les actionneurs (agissent).",
+      "Penser que l'API alimente directement la puissance : il commande des préactionneurs.",
+    ],
+    astucesPro: [
+      "Un changement de comportement passe d'abord par le programme, pas par le câblage.",
+      "On distingue toujours ce qui relève du programme de ce qui relève du matériel.",
+    ],
+    diagnostic: [
+      "Déterminer si un dysfonctionnement vient du programme ou du matériel (E/S, câblage).",
+      "Vérifier que l'API reçoit bien les informations des capteurs.",
+      "Contrôler que l'API commande bien les sorties attendues.",
+    ],
+    depannage: [
+      "Distinguer un problème de programme d'un problème de câblage ou d'E/S.",
+      "Faire appel à une personne compétente pour toute modification de programme.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Une modification de programme peut changer le comportement de la machine : elle relève d'une personne compétente et suit une procédure.",
+      "On consigne avant toute intervention matérielle sur l'installation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "On veut allonger le temps de séchage d'une machine automatisée de 10 à 15 secondes.",
+      mission: ["Dire si un recâblage est nécessaire.", "Indiquer où se fait la modification.", "Préciser la précaution."],
+      correction:
+        "Aucun recâblage n'est nécessaire : la temporisation est gérée par le programme de l'API. La modification se fait dans le programme (changer la valeur de temporisation), à l'aide de l'outil de programmation, par une personne compétente. C'est justement l'avantage de la logique programmée. Toute modification suit une procédure et est validée avant remise en service, la sécurité de la machine étant vérifiée.",
+    },
+    memo: ["API = cerveau programmable", "Capteurs → programme → préactionneurs", "Modifier le programme, pas le câblage"],
+    resume:
+      "L'API est le cœur programmable de la partie commande : il lit les capteurs, exécute un programme et commande les préactionneurs ; son comportement se modifie par le programme.",
+    quizIds: ["aut96", "aut97", "aut98", "aut99", "aut100"],
+    verification: {
+      question: "Quel est le grand avantage de l'automate programmable par rapport à la logique câblée ?",
+      options: ["Il est moins cher à l'achat", "On modifie son comportement en changeant le programme, sans recâbler", "Il n'a pas besoin de capteurs", "Il agit directement sur la matière"],
+      correct: 1,
+      explanation: "Avec un API, on change le comportement en modifiant le programme, sans recâbler l'installation comme il le faudrait en logique câblée.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez la différence entre logique câblée et logique programmée, avec un exemple d'avantage de l'API.",
+      consignes: [
+        "Définis la logique câblée.",
+        "Définis la logique programmée.",
+        "Donne un avantage concret de l'API.",
+      ],
+      criteres: [
+        "J'ai défini la logique câblée (figée par le câblage).",
+        "J'ai défini la logique programmée (par programme).",
+        "J'ai donné un avantage (modification sans recâblage).",
+      ],
+      correction:
+        "En logique câblée, le comportement est défini uniquement par le câblage (relais) : le modifier demande de recâbler. En logique programmée, le comportement est défini par un programme dans l'API : on le modifie en changeant le programme, sans toucher au câblage. Avantage concret : pour changer une temporisation ou une condition de marche, on modifie le programme depuis un ordinateur, ce qui est rapide et flexible.",
+    },
+  },
+  {
+    id: "5-21",
+    title: "La structure d'un automate",
+    durationMinutes: 28,
+    objectifs: [
+      "Identifier les grandes parties d'un automate programmable.",
+      "Expliquer le rôle de chaque partie.",
+    ],
+    simple:
+      "Un automate se compose de plusieurs parties : une alimentation qui le fait fonctionner, un processeur (l'unité de calcul) associé à une mémoire qui contient le programme, et des modules d'entrées et de sorties qui le relient aux capteurs et aux préactionneurs.",
+    vocab: [
+      ["Processeur (CPU)", "Unité de calcul qui exécute le programme."],
+      ["Mémoire", "Zone qui contient le programme et les données (états, valeurs)."],
+      ["Module d'entrées", "Interface qui reçoit les signaux des capteurs."],
+      ["Module de sorties", "Interface qui commande les préactionneurs."],
+      ["Alimentation", "Fournit l'énergie de fonctionnement à l'automate."],
+    ],
+    example:
+      "Dans une armoire, l'automate se présente souvent en modules côte à côte : le bloc d'alimentation, le processeur au centre, puis les cartes d'entrées (reliées aux capteurs) et de sorties (reliées aux préactionneurs).",
+    schema: "plc-structure",
+    ascii: "ALIMENTATION | ENTREES (E) → PROCESSEUR + MEMOIRE → SORTIES (S)\ncapteurs → E                              S → preactionneurs",
+    retenir: [
+      "Alimentation : fournit l'énergie à l'automate.",
+      "Processeur (CPU) + mémoire : exécutent et contiennent le programme.",
+      "Modules d'entrées : reçoivent les signaux des capteurs.",
+      "Modules de sorties : commandent les préactionneurs.",
+    ],
+    erreurs: [
+      "Confondre entrées (venant des capteurs) et sorties (vers les préactionneurs).",
+      "Oublier que le programme est dans la mémoire, exécuté par le processeur.",
+      "Négliger l'alimentation, dont un défaut arrête tout l'automate.",
+    ],
+    astucesPro: [
+      "On repère les cartes d'entrées et de sorties par leur repérage et leurs voyants.",
+      "Un défaut d'alimentation met tout l'automate hors service : on le vérifie en premier.",
+    ],
+    diagnostic: [
+      "Vérifier l'alimentation et l'état général de l'automate.",
+      "Localiser la carte d'entrées ou de sorties concernée.",
+      "Distinguer un défaut de module d'un défaut de programme.",
+    ],
+    depannage: [
+      "Contrôler l'alimentation de l'automate.",
+      "Vérifier la carte E/S concernée et son raccordement.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Les interventions sur l'automate se font hors tension, après consignation.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un automate est totalement éteint, aucun voyant allumé.",
+      mission: ["Nommer la partie à contrôler en premier.", "Justifier.", "Rappeler la précaution."],
+      correction:
+        "La partie à contrôler en premier est l'alimentation : si l'automate est totalement éteint, sans aucun voyant, c'est souvent qu'il n'est plus alimenté (alimentation en défaut, protection déclenchée, câblage). On vérifie donc l'alimentation avant de suspecter le processeur ou les modules. Les contrôles se font hors tension après consignation, dans les limites de son habilitation.",
+    },
+    memo: ["Alimentation", "Processeur + mémoire", "Entrées (capteurs)", "Sorties (préactionneurs)"],
+    resume:
+      "Un automate comprend une alimentation, un processeur avec sa mémoire (le programme), et des modules d'entrées (capteurs) et de sorties (préactionneurs).",
+    quizIds: ["aut101", "aut102", "aut103", "aut104", "aut105"],
+    verification: {
+      question: "Quelle partie de l'automate exécute le programme ?",
+      options: ["L'alimentation", "Le processeur (CPU)", "Le module de sorties", "Le capteur"],
+      correct: 1,
+      explanation: "Le processeur (CPU) exécute le programme contenu dans la mémoire. L'alimentation fournit l'énergie ; les modules E/S relient l'automate au terrain.",
+    },
+    exercice: {
+      enonce:
+        "Citez les quatre grandes parties d'un automate et le rôle de chacune.",
+      consignes: [
+        "Cite les quatre parties.",
+        "Donne le rôle de chacune.",
+        "Précise ce qui relie l'automate au terrain.",
+      ],
+      criteres: [
+        "J'ai cité alimentation, processeur+mémoire, entrées, sorties.",
+        "J'ai donné le rôle de chacune.",
+        "J'ai indiqué que les modules E/S relient au terrain.",
+      ],
+      correction:
+        "Les quatre grandes parties : l'alimentation (fournit l'énergie à l'automate), le processeur (CPU) associé à la mémoire (exécute et contient le programme), le module d'entrées (reçoit les signaux des capteurs) et le module de sorties (commande les préactionneurs). Ce sont les modules d'entrées et de sorties qui relient l'automate au terrain (capteurs et préactionneurs).",
+    },
+  },
+  {
+    id: "5-22",
+    title: "Les entrées et les sorties (E/S)",
+    durationMinutes: 28,
+    objectifs: [
+      "Distinguer les entrées et les sorties d'un automate.",
+      "Comprendre le repérage des E/S et l'usage des voyants d'état.",
+    ],
+    simple:
+      "Les entrées de l'automate reçoivent les informations des capteurs ; les sorties commandent les préactionneurs. Chaque entrée et chaque sortie porte un repère (une adresse), et un voyant indique souvent son état : c'est très pratique pour diagnostiquer.",
+    vocab: [
+      ["Entrée (E)", "Borne qui reçoit le signal d'un capteur (ex : détecteur, bouton)."],
+      ["Sortie (S)", "Borne qui commande un préactionneur (ex : bobine de contacteur, d'électrodistributeur)."],
+      ["Repère / adresse", "Identifiant d'une entrée ou d'une sortie dans l'automate et le programme."],
+      ["Voyant d'état", "Témoin lumineux qui indique si une E/S est active (1) ou non (0)."],
+      ["E/S TOR / analogique", "Entrées et sorties tout ou rien (0/1) ou analogiques (valeur continue)."],
+    ],
+    example:
+      "Un détecteur de présence est raccordé à l'entrée de l'automate : quand il détecte, le voyant de cette entrée s'allume. Le programme lit cet état et, s'il le décide, active une sortie dont le voyant s'allume aussi, commandant un préactionneur.",
+    schema: "plc-structure",
+    ascii: "CAPTEURS → ENTREES (E) : voyant 1 = actif\nSORTIES (S) → PREACTIONNEURS : voyant 1 = commande active\nchaque E/S a un REPERE (adresse)",
+    retenir: [
+      "Les entrées reçoivent les capteurs ; les sorties commandent les préactionneurs.",
+      "Chaque E/S a un repère (adresse) utilisé dans le programme.",
+      "Un voyant d'état indique si l'E/S est à 1 (actif) ou 0.",
+      "Les voyants d'état sont un outil précieux pour diagnostiquer.",
+    ],
+    erreurs: [
+      "Confondre une entrée (venant d'un capteur) et une sortie (vers un préactionneur).",
+      "Ignorer les voyants d'état, qui renseignent immédiatement sur l'E/S.",
+      "Se tromper de repère entre le programme et le câblage.",
+    ],
+    astucesPro: [
+      "Comparer l'état réel (capteur activé) au voyant d'entrée localise vite un défaut de détection ou de câblage.",
+      "Si le voyant de sortie est allumé mais l'actionneur inactif, le défaut est en aval de l'automate.",
+    ],
+    diagnostic: [
+      "Comparer la présence de l'objet au voyant de l'entrée correspondante.",
+      "Vérifier si la sortie attendue s'active (voyant) selon le programme.",
+      "Situer le défaut en amont (capteur) ou en aval (préactionneur) de l'automate.",
+    ],
+    depannage: [
+      "Contrôler le capteur et son câblage si l'entrée ne s'active pas alors qu'elle le devrait.",
+      "Contrôler le préactionneur si la sortie est active mais l'action absente.",
+      "Respecter la consignation avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "Forcer une sortie peut déclencher un mouvement : on s'assure que la zone est sûre et on suit la procédure.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un capteur détecte bien un objet (son propre voyant est allumé), mais le voyant de l'entrée correspondante de l'automate reste éteint.",
+      mission: ["Situer le défaut.", "Indiquer la vérification.", "Rappeler la précaution."],
+      correction:
+        "Le capteur fonctionne (son voyant est allumé), mais l'information n'arrive pas à l'automate (voyant d'entrée éteint) : le défaut se situe entre le capteur et l'entrée, c'est-à-dire dans le câblage ou le raccordement (fil coupé, borne desserrée, mauvaise entrée). Vérification : contrôler le câblage du signal jusqu'à la bonne entrée, et la compatibilité électrique. Les contrôles nécessitant un accès se font après consignation, dans les limites de son habilitation.",
+    },
+    memo: ["Entrées = capteurs", "Sorties = préactionneurs", "Repère + voyant d'état", "Voyants = aide au diagnostic"],
+    resume:
+      "Les entrées de l'automate reçoivent les capteurs et les sorties commandent les préactionneurs ; repères et voyants d'état facilitent la lecture et le diagnostic.",
+    quizIds: ["aut106", "aut107", "aut108", "aut109", "aut110"],
+    verification: {
+      question: "À quoi sert une sortie d'automate ?",
+      options: ["À recevoir un capteur", "À commander un préactionneur", "À alimenter l'automate", "À stocker le programme"],
+      correct: 1,
+      explanation: "Une sortie commande un préactionneur (bobine de contacteur, d'électrodistributeur). Ce sont les entrées qui reçoivent les capteurs.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment les voyants d'état des entrées et sorties aident à diagnostiquer, avec un exemple.",
+      consignes: [
+        "Explique ce qu'indique un voyant d'entrée.",
+        "Explique ce qu'indique un voyant de sortie.",
+        "Donne un exemple de diagnostic à partir des voyants.",
+      ],
+      criteres: [
+        "J'ai relié le voyant d'entrée à l'état du capteur.",
+        "J'ai relié le voyant de sortie à la commande.",
+        "J'ai donné un exemple de localisation de défaut.",
+      ],
+      correction:
+        "Un voyant d'entrée allumé signifie que l'automate reçoit bien le signal du capteur (entrée à 1). Un voyant de sortie allumé signifie que l'automate commande le préactionneur (sortie à 1). Exemple : si un objet est présent mais que le voyant d'entrée reste éteint, le défaut est entre le capteur et l'automate (câblage). Si le voyant de sortie est allumé mais l'actionneur inactif, le défaut est en aval (préactionneur, énergie). Les voyants localisent donc rapidement le maillon en cause.",
+    },
+  },
+];
+
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
   {
     id: "m5-b1",
@@ -1671,7 +1931,15 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     },
   },
   { id: "m5-b4", num: 4, title: "Le pneumatique industriel", objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.", lessonIds: [], chapterCount: 7, status: "planned" },
-  { id: "m5-b5", num: 5, title: "L'automate programmable industriel (API)", objective: "Comprendre le rôle de l'automate, ses entrées/sorties et son cycle.", lessonIds: [], chapterCount: 7, status: "planned" },
+  {
+    id: "m5-b5",
+    num: 5,
+    title: "L'automate programmable industriel (API)",
+    objective: "Comprendre le rôle de l'automate, ses entrées/sorties et son cycle.",
+    lessonIds: block5Lessons.map((lesson) => lesson.id),
+    chapterCount: 7,
+    status: "in_progress",
+  },
   { id: "m5-b6", num: 6, title: "Cycle, séquence et logique de commande", objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m5-b7", num: 7, title: "Diagnostic et maintenance des systèmes automatisés", objective: "Diagnostiquer méthodiquement un système automatisé en sécurité.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];
@@ -1683,6 +1951,6 @@ export const AUTOMATISME_MODULE: TrainingModule = {
   icon: Cpu,
   color: "sky",
   source: "[TMI] Parcours progressif débutant → opérationnel · capteurs, actionneurs, API · passerelle depuis le module 3",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block5Lessons],
   blocks: AUTOMATISME_BLOCKS,
 };
