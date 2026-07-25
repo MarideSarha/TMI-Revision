@@ -1888,6 +1888,343 @@ const block5Lessons: Lesson[] = [
         "Un voyant d'entrée allumé signifie que l'automate reçoit bien le signal du capteur (entrée à 1). Un voyant de sortie allumé signifie que l'automate commande le préactionneur (sortie à 1). Exemple : si un objet est présent mais que le voyant d'entrée reste éteint, le défaut est entre le capteur et l'automate (câblage). Si le voyant de sortie est allumé mais l'actionneur inactif, le défaut est en aval (préactionneur, énergie). Les voyants localisent donc rapidement le maillon en cause.",
     },
   },
+  {
+    id: "5-23",
+    title: "Le cycle de l'automate (scrutation)",
+    durationMinutes: 28,
+    objectifs: [
+      "Décrire le cycle de scrutation d'un automate.",
+      "Comprendre l'image des entrées et le temps de cycle.",
+    ],
+    simple:
+      "L'automate travaille par cycles très rapides appelés scrutation. À chaque cycle, il lit d'un coup l'état de toutes ses entrées, exécute son programme, puis met à jour ses sorties, et recommence. Ce cycle dure quelques millisecondes.",
+    vocab: [
+      ["Scrutation", "Cycle répété : lire les entrées, traiter le programme, écrire les sorties."],
+      ["Image des entrées", "État des entrées lu au début du cycle et figé pendant le traitement."],
+      ["Traitement", "Exécution du programme à partir de l'image des entrées."],
+      ["Mise à jour des sorties", "Écriture des sorties selon le résultat du programme."],
+      ["Temps de cycle", "Durée d'un cycle de scrutation, généralement quelques millisecondes."],
+    ],
+    example:
+      "Un automate lit l'état d'un détecteur au début du cycle, exécute son programme (par exemple : si détecteur = 1, alors sortie moteur = 1), puis met à jour la sortie. Même si le détecteur change juste après la lecture, ce changement ne sera pris en compte qu'au cycle suivant.",
+    schema: "plc-structure",
+    illustrations: ["plc-scan-cycle"],
+    ascii: "SCRUTATION (en boucle, quelques ms) :\n1. LIRE les entrees (image figee)\n2. TRAITER le programme\n3. ECRIRE les sorties → on recommence",
+    retenir: [
+      "L'automate fonctionne par cycles de scrutation très rapides.",
+      "Il lit d'abord l'image des entrées, figée pour tout le cycle.",
+      "Il exécute ensuite le programme, puis met à jour les sorties.",
+      "Un changement d'entrée pendant le cycle est pris au cycle suivant.",
+    ],
+    erreurs: [
+      "Croire que l'automate réagit « en continu » : il travaille par cycles.",
+      "Oublier que l'image des entrées est figée au début du cycle.",
+      "Ignorer le très léger délai lié au temps de cycle.",
+    ],
+    astucesPro: [
+      "Le temps de cycle explique un très léger retard entre une entrée et la sortie correspondante.",
+      "Pour des événements très brefs, on vérifie que leur durée dépasse le temps de cycle.",
+    ],
+    diagnostic: [
+      "Tenir compte du cycle pour interpréter le comportement de l'automate.",
+      "Vérifier l'état des entrées au moment de leur lecture (voyants).",
+      "Distinguer un problème de cycle/programme d'un problème matériel.",
+    ],
+    depannage: [
+      "Vérifier que les signaux d'entrée sont assez longs pour être vus.",
+      "Contrôler les voyants d'E/S pour suivre le cheminement de l'information.",
+      "Faire appel à une personne compétente pour l'analyse du programme.",
+    ],
+    securite: [
+      "On n'intervient pas sur le programme d'une machine en fonctionnement sans procédure.",
+      "On consigne avant toute intervention matérielle.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un capteur détecte un objet très bref, mais l'automate ne réagit jamais.",
+      mission: ["Relier le problème au cycle.", "Expliquer la cause probable.", "Proposer une piste."],
+      correction:
+        "L'automate lit ses entrées une fois par cycle : si l'objet est détecté pendant un temps plus court que le temps de cycle, il peut passer « entre deux lectures » et ne jamais être vu. La cause probable est un signal trop bref par rapport au temps de cycle. Piste : allonger la durée du signal (temporisation matérielle, mémorisation) ou utiliser une entrée rapide prévue pour capter les impulsions courtes. L'analyse fine relève d'une personne compétente.",
+    },
+    memo: ["Scrutation = lire → traiter → écrire", "Image des entrées figée", "Boucle en quelques ms", "Léger délai normal"],
+    resume:
+      "L'automate exécute un cycle de scrutation rapide : lire l'image des entrées, traiter le programme, écrire les sorties, puis recommencer.",
+    quizIds: ["aut111", "aut112", "aut113", "aut114", "aut115"],
+    verification: {
+      question: "Dans quel ordre se déroule le cycle de scrutation ?",
+      options: ["Écrire les sorties, lire les entrées, traiter", "Lire les entrées, traiter le programme, écrire les sorties", "Traiter, écrire, lire", "Au hasard"],
+      correct: 1,
+      explanation: "Le cycle de scrutation enchaîne : lire les entrées (image figée), traiter le programme, écrire les sorties, puis recommence.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le cycle de scrutation d'un automate et ce qu'est l'image des entrées.",
+      consignes: [
+        "Donne les trois étapes du cycle.",
+        "Explique l'image des entrées.",
+        "Indique la conséquence sur la réactivité.",
+      ],
+      criteres: [
+        "J'ai donné lire → traiter → écrire.",
+        "J'ai expliqué l'image figée des entrées.",
+        "J'ai indiqué le léger délai lié au temps de cycle.",
+      ],
+      correction:
+        "Le cycle de scrutation comprend trois étapes répétées en boucle : lire les entrées (l'automate en fait une image figée), traiter le programme à partir de cette image, puis écrire les sorties. L'image des entrées est prise au début du cycle et ne change pas pendant le traitement : un changement d'entrée survenu ensuite n'est vu qu'au cycle suivant. Conséquence : l'automate réagit avec un très léger délai, de l'ordre du temps de cycle (quelques millisecondes).",
+    },
+  },
+  {
+    id: "5-24",
+    title: "Le programme et la logique de commande",
+    durationMinutes: 28,
+    objectifs: [
+      "Comprendre qu'un programme lie des entrées à des sorties par des conditions.",
+      "Reconnaître les fonctions logiques de base ET, OU, NON.",
+    ],
+    simple:
+      "Le programme de l'automate définit des conditions : selon l'état des entrées, il décide de l'état des sorties. Ces conditions utilisent des fonctions logiques simples : ET (toutes les conditions), OU (au moins une), NON (l'inverse).",
+    vocab: [
+      ["Instruction", "Élément du programme qui teste des entrées et agit sur des sorties."],
+      ["Fonction ET", "La sortie est active seulement si toutes les conditions sont vraies."],
+      ["Fonction OU", "La sortie est active si au moins une condition est vraie."],
+      ["Fonction NON", "Inverse l'état d'une condition (vrai devient faux)."],
+      ["Bit interne", "Mémoire du programme qui garde un état (ex : mémoriser une position)."],
+    ],
+    example:
+      "Programme d'une presse : la sortie « descendre » est active si le bouton marche est appuyé ET la sécurité est fermée ET la pièce est présente. Si une seule condition manque, la presse ne descend pas. C'est une fonction ET.",
+    schema: "plc-structure",
+    ascii: "ET : sortie = 1 si TOUTES les conditions = 1\nOU : sortie = 1 si AU MOINS UNE condition = 1\nNON : inverse l'etat (1 devient 0)",
+    retenir: [
+      "Le programme relie des entrées à des sorties par des conditions.",
+      "ET : toutes les conditions doivent être vraies.",
+      "OU : au moins une condition doit être vraie.",
+      "NON : inverse une condition. Des bits internes mémorisent des états.",
+    ],
+    erreurs: [
+      "Confondre ET (toutes) et OU (au moins une).",
+      "Oublier une condition de sécurité dans une fonction ET.",
+      "Négliger les bits internes qui mémorisent un état entre deux cycles.",
+    ],
+    astucesPro: [
+      "On lit une condition de sortie comme une phrase : « active si … ET … ».",
+      "Une sécurité se place souvent en condition ET obligatoire d'une sortie de mouvement.",
+    ],
+    diagnostic: [
+      "Identifier les conditions d'une sortie qui ne s'active pas.",
+      "Vérifier l'état réel de chaque condition (entrées, sécurités).",
+      "Repérer la condition manquante qui bloque la sortie.",
+    ],
+    depannage: [
+      "Contrôler chaque entrée intervenant dans la condition d'une sortie.",
+      "Vérifier les sécurités incluses dans la logique.",
+      "Faire analyser le programme par une personne compétente si nécessaire.",
+    ],
+    securite: [
+      "On ne supprime jamais une condition de sécurité d'un programme pour « faire marcher ».",
+      "Toute modification de programme suit une procédure et une validation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une presse ne descend pas ; le bouton marche est bien appuyé et la pièce est présente.",
+      mission: ["Nommer la logique concernée.", "Indiquer la condition à vérifier.", "Rappeler la précaution."],
+      correction:
+        "La sortie « descendre » dépend d'une fonction ET de plusieurs conditions. Deux conditions sont réunies (bouton marche et pièce présente), mais la presse ne descend pas : il manque probablement la troisième condition, par exemple la sécurité fermée (protecteur, barrière). On vérifie donc l'état de cette sécurité et son entrée sur l'automate (voyant). On ne supprime jamais une condition de sécurité pour forcer le mouvement : la précaution prime.",
+    },
+    memo: ["ET = toutes", "OU = au moins une", "NON = inverse", "Sécurité en condition ET"],
+    resume:
+      "Le programme définit des conditions logiques (ET, OU, NON) qui relient les entrées aux sorties ; des bits internes mémorisent des états.",
+    quizIds: ["aut116", "aut117", "aut118", "aut119", "aut120"],
+    verification: {
+      question: "Avec une fonction ET, quand la sortie est-elle active ?",
+      options: ["Si au moins une condition est vraie", "Seulement si toutes les conditions sont vraies", "Jamais", "Toujours"],
+      correct: 1,
+      explanation: "La fonction ET n'active la sortie que si toutes les conditions sont vraies en même temps.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez les fonctions ET et OU avec un exemple de condition de sortie pour chacune.",
+      consignes: [
+        "Explique la fonction ET avec un exemple.",
+        "Explique la fonction OU avec un exemple.",
+        "Précise l'intérêt d'une sécurité en condition ET.",
+      ],
+      criteres: [
+        "J'ai expliqué ET (toutes les conditions).",
+        "J'ai expliqué OU (au moins une).",
+        "J'ai relié la sécurité à une condition ET.",
+      ],
+      correction:
+        "Fonction ET : la sortie est active seulement si toutes les conditions sont vraies. Exemple : « descendre » active si marche ET sécurité fermée ET pièce présente. Fonction OU : la sortie est active si au moins une condition est vraie. Exemple : « alarme » active si défaut1 OU défaut2. Placer une sécurité en condition ET obligatoire garantit que le mouvement ne peut pas se produire tant que la sécurité n'est pas satisfaite.",
+    },
+  },
+  {
+    id: "5-25",
+    title: "Dialogue homme-machine et communication",
+    durationMinutes: 26,
+    objectifs: [
+      "Comprendre le rôle d'un pupitre / d'une interface homme-machine (IHM).",
+      "Situer la communication entre automates et supervision.",
+    ],
+    simple:
+      "Pour utiliser une machine automatisée, l'opérateur a besoin de dialoguer avec l'automate : lancer un cycle, régler une valeur, voir un défaut. C'est le rôle du pupitre ou de l'interface homme-machine (IHM). Les automates peuvent aussi communiquer entre eux et avec une supervision par des réseaux.",
+    vocab: [
+      ["IHM / pupitre", "Interface Homme-Machine : écran et boutons pour dialoguer avec l'automate."],
+      ["Dialogue", "Échange entre l'opérateur et la machine (ordres, affichages, réglages)."],
+      ["Réseau", "Liaison qui permet aux automates et équipements d'échanger des données."],
+      ["Supervision", "Système qui surveille et pilote plusieurs machines à distance."],
+      ["Voyant / bouton", "Éléments simples de dialogue : signaler un état, donner un ordre."],
+    ],
+    example:
+      "Sur une ligne, un pupitre à écran permet à l'opérateur de choisir un mode de marche, de régler une cadence et de voir les défauts. Les automates de la ligne échangent des informations par un réseau, et une supervision affiche l'état de toute la ligne dans le bureau des méthodes.",
+    schema: "po-pc-structure",
+    ascii: "OPERATEUR ↔ IHM/pupitre ↔ AUTOMATE\nAUTOMATES ↔ RESEAU ↔ SUPERVISION (surveillance a distance)",
+    retenir: [
+      "L'IHM (pupitre) permet à l'opérateur de dialoguer avec l'automate.",
+      "Le dialogue sert à lancer, régler, et voir les défauts.",
+      "Les réseaux relient automates, IHM et supervision pour échanger des données.",
+      "La supervision surveille et pilote plusieurs machines à distance.",
+    ],
+    erreurs: [
+      "Confondre l'IHM (dialogue) avec l'automate (traitement).",
+      "Négliger les messages de défaut affichés par l'IHM lors d'un diagnostic.",
+      "Oublier qu'un défaut réseau peut couper la communication sans panne « machine ».",
+    ],
+    astucesPro: [
+      "Les messages et codes de défaut de l'IHM sont une première source d'information en diagnostic.",
+      "On distingue un défaut de la machine d'un défaut de communication (réseau).",
+    ],
+    diagnostic: [
+      "Lire les messages et défauts affichés par l'IHM.",
+      "Vérifier la communication (réseau) entre les équipements.",
+      "Distinguer un défaut machine d'un défaut de dialogue ou de réseau.",
+    ],
+    depannage: [
+      "Exploiter les informations de l'IHM pour cibler la recherche.",
+      "Contrôler les liaisons de communication si les données ne circulent plus.",
+      "Faire appel à une personne compétente pour les réseaux et la supervision.",
+    ],
+    securite: [
+      "Un ordre donné depuis l'IHM ou la supervision peut déclencher un mouvement : on s'assure que la zone est sûre.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique et ne remplace pas la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "L'IHM affiche « défaut communication » alors que la machine elle-même semble en bon état.",
+      mission: ["Interpréter le message.", "Indiquer où chercher.", "Rappeler une distinction utile."],
+      correction:
+        "Le message « défaut communication » indique un problème d'échange de données, pas forcément une panne mécanique ou électrique de la machine. On cherche du côté des liaisons de communication (câble réseau, connecteur, équipement réseau) entre l'IHM, l'automate ou la supervision. Distinction utile : un défaut de communication n'est pas un défaut « machine » ; la partie opérative peut être saine alors que le dialogue est interrompu. Les réseaux relèvent souvent d'une personne compétente dédiée.",
+    },
+    memo: ["IHM = dialogue", "Lancer / régler / voir défauts", "Réseau = échange de données", "Supervision = à distance"],
+    resume:
+      "L'IHM permet à l'opérateur de dialoguer avec l'automate ; les réseaux relient automates et supervision pour échanger des données et surveiller à distance.",
+    quizIds: ["aut121", "aut122", "aut123", "aut124", "aut125"],
+    verification: {
+      question: "À quoi sert une interface homme-machine (IHM / pupitre) ?",
+      options: ["À exécuter le programme", "À permettre à l'opérateur de dialoguer avec l'automate", "À alimenter la machine", "À détecter les objets"],
+      correct: 1,
+      explanation: "L'IHM permet à l'opérateur de dialoguer avec l'automate : lancer un cycle, régler une valeur, voir les défauts.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez le rôle d'un pupitre (IHM) et donnez deux exemples de ce qu'un opérateur peut y faire.",
+      consignes: [
+        "Explique le rôle de l'IHM.",
+        "Donne deux actions possibles pour l'opérateur.",
+        "Cite l'intérêt des messages de défaut.",
+      ],
+      criteres: [
+        "J'ai expliqué le rôle de dialogue de l'IHM.",
+        "J'ai donné deux actions (lancer, régler, voir).",
+        "J'ai cité l'utilité des défauts affichés.",
+      ],
+      correction:
+        "Le pupitre (IHM) est l'interface qui permet à l'opérateur de dialoguer avec l'automate. L'opérateur peut par exemple choisir un mode de marche et lancer un cycle, régler une valeur (cadence, temporisation), ou consulter l'état et les défauts de la machine. Les messages de défaut affichés sont précieux en diagnostic : ils orientent directement la recherche de la panne.",
+    },
+  },
+  {
+    id: "5-26",
+    title: "Synthèse API et diagnostic",
+    durationMinutes: 28,
+    objectifs: [
+      "Mobiliser les notions du bloc pour diagnostiquer un système à automate.",
+      "Distinguer un problème de programme d'un problème matériel.",
+    ],
+    simple:
+      "Ce chapitre rassemble le bloc : l'automate lit ses entrées, exécute un programme et commande ses sorties, dans un cycle rapide. Pour diagnostiquer, on utilise les voyants d'E/S et les messages de l'IHM, et on distingue toujours un problème de programme d'un problème matériel.",
+    vocab: [
+      ["Voyant d'E/S", "Témoin qui montre l'état réel d'une entrée ou d'une sortie."],
+      ["Problème matériel", "Défaut de capteur, de câblage, de préactionneur ou d'alimentation."],
+      ["Problème de programme", "Comportement lié à la logique du programme (conditions, temporisations)."],
+      ["Image des entrées", "État lu au début du cycle (chapitre 5-23)."],
+      ["Diagnostic méthodique", "Recherche ordonnée : entrées, programme, sorties, terrain."],
+    ],
+    example:
+      "Une sortie ne s'active pas : on regarde le voyant de la sortie. S'il est éteint, la condition du programme n'est pas remplie (vérifier les entrées et sécurités) ou il y a un défaut interne ; s'il est allumé mais l'actionneur inactif, le défaut est en aval (préactionneur, énergie).",
+    schema: "plc-structure",
+    ascii: "VOYANT SORTIE eteint → condition programme non remplie (voir entrees/securites)\nVOYANT SORTIE allume mais pas d'action → defaut EN AVAL (preactionneur, energie)",
+    retenir: [
+      "L'automate : lire les entrées, traiter le programme, écrire les sorties (cycle).",
+      "Les voyants d'E/S et l'IHM sont les premiers outils de diagnostic.",
+      "Voyant de sortie éteint : condition du programme non remplie ou défaut interne.",
+      "Voyant de sortie allumé mais pas d'action : défaut en aval de l'automate.",
+    ],
+    erreurs: [
+      "Accuser le programme sans vérifier les entrées et les sorties réelles.",
+      "Oublier de comparer l'état du terrain aux voyants d'E/S.",
+      "Modifier un programme sans compétence ni procédure.",
+    ],
+    astucesPro: [
+      "On part toujours des voyants d'E/S : ils montrent ce que l'automate « voit » et « commande » réellement.",
+      "On sépare nettement le matériel (capteurs, câblage, préactionneurs) du programme.",
+    ],
+    diagnostic: [
+      "Comparer l'état du terrain aux voyants d'entrées.",
+      "Vérifier si la sortie attendue s'active (voyant) selon les conditions.",
+      "Situer le défaut : entrée, programme, sortie ou aval (terrain).",
+    ],
+    depannage: [
+      "Traiter un défaut matériel (capteur, câblage, préactionneur) selon les méthodes des blocs précédents.",
+      "Faire analyser le programme par une personne compétente si le matériel est sain.",
+      "Consigner avant tout accès aux parties actives.",
+    ],
+    securite: [
+      "On ne force pas une sortie ni ne modifie un programme sans procédure et sans s'assurer que la zone est sûre.",
+      "On agit dans les limites de son habilitation.",
+      "Cette application est pédagogique : elle prépare à la formation, elle ne la remplace pas.",
+    ],
+    etudeDeCas: {
+      situation: "Une sortie « avancer tapis » a son voyant allumé sur l'automate, mais le tapis ne bouge pas.",
+      mission: ["Situer le défaut.", "Citer les organes à contrôler.", "Rappeler la précaution."],
+      correction:
+        "Le voyant de la sortie est allumé : l'automate commande bien l'avance. Le défaut est donc en aval de l'automate. On contrôle le préactionneur (contacteur qui alimente le moteur), l'arrivée d'énergie et le moteur lui-même, en appliquant les méthodes des blocs précédents. Le programme et l'automate ne sont pas en cause ici, puisque la commande est présente. Les contrôles nécessitant un accès se font après consignation, dans les limites de son habilitation.",
+    },
+    memo: ["Voyants d'E/S d'abord", "Sortie éteinte → programme/entrées", "Sortie allumée sans action → aval", "Matériel ≠ programme"],
+    resume:
+      "Diagnostiquer un système à automate, c'est utiliser les voyants d'E/S et l'IHM pour situer le défaut, en distinguant toujours un problème de programme d'un problème matériel.",
+    quizIds: ["aut126", "aut127", "aut128", "aut129", "aut130"],
+    verification: {
+      question: "Le voyant d'une sortie est allumé mais l'actionneur ne bouge pas. Où est le défaut ?",
+      options: ["Dans le programme", "En aval de l'automate (préactionneur, énergie, actionneur)", "Dans l'alimentation de l'automate", "Dans le capteur d'entrée"],
+      correct: 1,
+      explanation: "La sortie est bien commandée (voyant allumé) : le défaut est en aval de l'automate, côté préactionneur, énergie ou actionneur.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment utiliser les voyants d'entrées et de sorties pour distinguer un problème matériel d'un problème de programme.",
+      consignes: [
+        "Explique ce qu'indique un voyant d'entrée.",
+        "Explique ce qu'indique un voyant de sortie.",
+        "Décris comment on distingue matériel et programme.",
+      ],
+      criteres: [
+        "J'ai relié le voyant d'entrée à l'information reçue.",
+        "J'ai relié le voyant de sortie à la commande.",
+        "J'ai décrit la distinction matériel / programme.",
+      ],
+      correction:
+        "Le voyant d'entrée montre si l'automate reçoit bien l'information d'un capteur ; le voyant de sortie montre si l'automate commande bien un préactionneur. Si un capteur détecte mais que l'entrée reste éteinte, le défaut est matériel (câblage, capteur). Si les entrées sont correctes mais la sortie attendue ne s'active pas, la condition du programme n'est pas remplie (problème de logique ou entrée manquante). Si la sortie est allumée mais rien ne bouge, le défaut est matériel en aval (préactionneur, énergie, actionneur). Les voyants permettent ainsi de situer le défaut et de distinguer matériel et programme.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -1937,8 +2274,12 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     title: "L'automate programmable industriel (API)",
     objective: "Comprendre le rôle de l'automate, ses entrées/sorties et son cycle.",
     lessonIds: block5Lessons.map((lesson) => lesson.id),
-    chapterCount: 7,
-    status: "in_progress",
+    chapterCount: block5Lessons.length,
+    status: "available",
+    exam: {
+      questionIds: ["aut96", "aut98", "aut101", "aut103", "aut106", "aut107", "aut111", "aut113", "aut116", "aut118", "aut121", "aut123", "aut126", "aut128"],
+      passPercent: 80,
+    },
   },
   { id: "m5-b6", num: 6, title: "Cycle, séquence et logique de commande", objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m5-b7", num: 7, title: "Diagnostic et maintenance des systèmes automatisés", objective: "Diagnostiquer méthodiquement un système automatisé en sécurité.", lessonIds: [], chapterCount: 6, status: "planned" },

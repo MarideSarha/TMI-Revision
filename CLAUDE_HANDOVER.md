@@ -144,6 +144,17 @@ aucune réécriture d'historique.)
 - **5-19 — Synthèse actionneurs/préactionneurs et diagnostic**.
 - Questions `aut66`…`aut95`. Examen (12 questions) + badge `auto_block_3` (« Actionneurs & vérins »).
 
+**Étape 12 — module 5, bloc 5 « L'automate programmable (API) »** — **complet (7 chapitres, `available` avec examen)** :
+- **5-20 — Qu'est-ce qu'un API ?** (logique programmée vs câblée).
+- **5-21 — La structure d'un automate**. Schéma statique `plc-structure`.
+- **5-22 — Les entrées et les sorties (E/S)** (repères, voyants d'état).
+- **5-23 — Le cycle de l'automate (scrutation)**. Intègre le **schéma interactif « cycle de scrutation »** (`plc-scan-cycle`).
+- **5-24 — Le programme et la logique de commande** (ET, OU, NON).
+- **5-25 — Dialogue homme-machine et communication** (IHM, réseau, supervision).
+- **5-26 — Synthèse API et diagnostic** (voyants d'E/S, matériel vs programme).
+- Questions `aut96`…`aut130`. Examen (14 questions) + badge `auto_block_5` (« L'automate (API) »).
+- **Note** : le bloc 4 (Pneumatique industriel) reste planifié ; il a été volontairement sauté pour aller directement à l'API (choix du propriétaire). À développer ensuite.
+
 ## Fichiers créés
 
 **Étape 1**
@@ -206,9 +217,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 3 du module 5 : **5 modules, 26 blocs, 116 leçons, 585 questions, 10 pannes, 21 badges.**
+- Build réussi. Décomptes après le bloc 5 du module 5 : **5 modules, 26 blocs, 123 leçons, 620 questions, 10 pannes, 22 badges.**
 - Bundles sous budget : `learning-data` ≈ 450 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1 à 3 sur 7 disponibles. Module 4 : inchangé (6 blocs sur 12).**
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : blocs 1, 2, 3 et 5 disponibles (bloc 4 planifié). Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -222,9 +233,9 @@ aucune réécriture d'historique.)
 
 - **Module 3 « Électrotechnique » : entièrement terminé** (7 blocs, 43 chapitres, 8 schémas interactifs,
   7 examens de bloc, 7 badges de bloc + le badge `module_3` de fin de module).
-- **Module 5 « Automatisme » : blocs 1 à 3 terminés**, blocs 4 à 7 à développer (pneumatique approfondi,
-  API, GRAFCET, diagnostic). Réutiliser `InteractiveSchema` pour les nouveaux schémas (cycle GRAFCET,
-  entrées/sorties API…).
+- **Module 5 « Automatisme » : blocs 1, 2, 3 et 5 terminés** ; restent le **bloc 4 (Pneumatique industriel)**
+  et les **blocs 6 (GRAFCET) et 7 (Diagnostic)**. Réutiliser `InteractiveSchema` pour les nouveaux schémas
+  (cycle GRAFCET, traitement de l'air…).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -259,6 +270,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-5): complete le bloc 2 (5-10 a 5-13), examen et badge`
 - `feat(module-5): demarre le bloc 3 (actionneurs et preactionneurs)`
 - `feat(module-5): complete le bloc 3 (5-17 a 5-19), examen et badge`
+- `feat(module-5): demarre le bloc 5 (automate programmable API)`
+- `feat(module-5): complete le bloc 5 (5-23 a 5-26), examen et badge`
 
 ## Instructions pour reprendre le développement
 

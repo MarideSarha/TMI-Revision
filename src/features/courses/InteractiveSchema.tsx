@@ -1119,6 +1119,84 @@ function PneumaticCylinder({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SCHÉMA 12 — LE CYCLE DE SCRUTATION DE L'AUTOMATE
+   Lire les entrées → traiter le programme → écrire les sorties (en boucle).
+   --------------------------------------------------------------- */
+
+const SCAN_STEPS: Array<{ title: string; text: string }> = [
+  { title: "Lire les entrées", text: "L'automate lit l'état de toutes ses entrées (capteurs) et en fait une « image » figée pour le reste du cycle." },
+  { title: "Traiter le programme", text: "L'automate exécute son programme à partir de l'image des entrées et décide de l'état des sorties." },
+  { title: "Écrire les sorties", text: "L'automate met à jour ses sorties (préactionneurs) selon le résultat du programme, puis recommence : le cycle est très rapide (quelques millisecondes)." },
+];
+
+function PLCScanCycle({ dark }: { dark: boolean }) {
+  const [step, setStep] = useState(0);
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const active = "#f5b400";
+
+  const boxes = [
+    { x: 12, y: 40, label: "Lire les entrées" },
+    { x: 116, y: 40, label: "Traiter le programme" },
+    { x: 224, y: 40, label: "Écrire les sorties" },
+  ];
+
+  return (
+    <Figure
+      dark={dark}
+      title="Le cycle de scrutation de l'automate"
+      legend="L'automate répète en boucle : lire les entrées, traiter le programme, écrire les sorties — en quelques millisecondes."
+      explanation="L'automate ne réagit pas « en continu » : il travaille par cycles très rapides. À chaque cycle, il lit d'abord l'état de toutes ses entrées (une image figée), exécute son programme, puis met à jour ses sorties. Il recommence ensuite immédiatement. Comprendre ce cycle explique pourquoi l'automate réagit avec un très léger délai et pourquoi l'image des entrées est prise en début de cycle."
+      controls={
+        <div>
+          <div className="mb-2 text-center text-xs font-semibold uppercase tracking-widest text-slate-400">Étape {step + 1}/3</div>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <button type="button" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold disabled:opacity-40 ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+              <ArrowLeft size={16} /> Précédent
+            </button>
+            {step < 2 ? (
+              <button type="button" onClick={() => setStep((s) => Math.min(2, s + 1))} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-amber-400 px-4 py-2.5 text-sm font-bold text-slate-950">
+                Étape suivante <ArrowRight size={16} />
+              </button>
+            ) : (
+              <button type="button" onClick={() => setStep(0)} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+                <RotateCcw size={16} /> Recommencer le cycle
+              </button>
+            )}
+          </div>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 320 120" className="h-auto w-full" role="img" aria-label={`Étape ${step + 1} : ${SCAN_STEPS[step].title}`}>
+        <defs>
+          <marker id="scan-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {boxes.map((b, i) => {
+          const on = i === step;
+          return (
+            <g key={b.label}>
+              <rect x={b.x} y={b.y} width="84" height="40" rx="7" fill={on ? active : box} stroke={stroke} strokeWidth={on ? "2" : "1.5"} />
+              <text x={b.x + 42} y={b.y + 18} textAnchor="middle" fontSize="8" fill={on ? "#14151a" : stroke} fontWeight="bold">{b.label.split(" ")[0]}</text>
+              <text x={b.x + 42} y={b.y + 30} textAnchor="middle" fontSize="7" fill={on ? "#14151a" : stroke}>{b.label.split(" ").slice(1).join(" ")}</text>
+              {i < 2 && <line x1={b.x + 84} y1={b.y + 20} x2={b.x + 116} y2={b.y + 20} stroke={stroke} strokeWidth="1.5" markerEnd="url(#scan-arrow)" />}
+            </g>
+          );
+        })}
+        {/* Flèche de bouclage */}
+        <path d="M266 80 L266 100 L54 100 L54 80" fill="none" stroke={stroke} strokeWidth="1.5" markerEnd="url(#scan-arrow)" />
+        <text x="160" y="114" textAnchor="middle" fontSize="7" fill={stroke}>puis on recommence (boucle)</text>
+      </svg>
+      <div className={`mt-2 rounded-lg border p-3 text-sm ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+        <p className={`font-bold ${dark ? "text-white" : "text-slate-900"}`}>{step + 1}. {SCAN_STEPS[step].title}</p>
+        <p className={`mt-1 ${dark ? "text-slate-300" : "text-slate-700"}`}>{SCAN_STEPS[step].text}</p>
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    Aiguillage
    --------------------------------------------------------------- */
 
@@ -1134,5 +1212,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "automated-system") return <AutomatedSystem dark={dark} />;
   if (type === "sensor-detection") return <SensorDetection dark={dark} />;
   if (type === "pneumatic-cylinder") return <PneumaticCylinder dark={dark} />;
+  if (type === "plc-scan-cycle") return <PLCScanCycle dark={dark} />;
   return null;
 }
