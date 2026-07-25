@@ -3004,6 +3004,346 @@ const block4Lessons: Lesson[] = [
         "Dans un vérin double effet, l'air comprimé entre d'abord d'un côté du piston : il le pousse et la tige sort, tandis que la chambre opposée est à l'échappement. Pour rentrer, l'air entre de l'autre côté et la première chambre passe à l'échappement. Le vérin a donc de la force à l'aller comme au retour. Un vérin simple effet, lui, n'est alimenté que d'un seul côté : il sort sous pression et revient grâce à un ressort de rappel dès que l'air est coupé, avec une force de retour faible. Le mouvement est commandé par le distributeur (préactionneur).",
     },
   },
+  {
+    id: "5-36",
+    title: "Les distributeurs pneumatiques (préactionneurs)",
+    durationMinutes: 30,
+    objectifs: [
+      "Comprendre le rôle du distributeur comme préactionneur du vérin.",
+      "Lire un distributeur par son nombre d'orifices et de positions (ex. 5/2).",
+    ],
+    simple:
+      "Le distributeur est le préactionneur du vérin : il reçoit un ordre (électrique ou pneumatique) de la partie commande et distribue l'air comprimé vers la bonne chambre du vérin. On le désigne par deux chiffres : le nombre d'orifices et le nombre de positions. Un 5/2 (5 orifices, 2 positions) pilote un vérin double effet.",
+    vocab: [
+      ["Distributeur", "Préactionneur qui oriente l'air comprimé vers le vérin sur ordre de la PC."],
+      ["Orifice", "Raccordement du distributeur (alimentation, utilisations, échappements)."],
+      ["Position", "État du distributeur : chaque position établit un chemin d'air différent."],
+      ["Pilotage", "Commande qui fait changer le distributeur de position (électrovanne, air, ressort)."],
+      ["Monostable / bistable", "Monostable : revient seul (ressort) ; bistable : garde sa position."],
+    ],
+    example:
+      "Un distributeur 5/2 commandé par une électrovanne : à l'état repos, il envoie l'air pour rentrer la tige ; quand l'automate active la sortie, l'électrovanne fait basculer le distributeur qui envoie l'air pour sortir la tige. Les deux échappements évacuent l'air de la chambre opposée.",
+    schema: "pneumatic-symbols",
+    ascii: "PC → PILOTAGE (electrovanne) → DISTRIBUTEUR (ex. 5/2) → VERIN\n5/2 = 5 orifices (1 alim, 2 utilisations, 2 echappements), 2 positions\nmonostable = retour ressort · bistable = garde sa position",
+    retenir: [
+      "Le distributeur est le préactionneur : il distribue l'air vers le vérin.",
+      "On le lit par nombre d'orifices / nombre de positions (ex. 5/2).",
+      "Un 5/2 pilote un vérin double effet.",
+      "Monostable : revient au repos par ressort ; bistable : conserve sa position.",
+    ],
+    erreurs: [
+      "Confondre le distributeur (préactionneur) et le vérin (actionneur).",
+      "Oublier que l'automate ne commande pas le vérin directement, mais via le distributeur.",
+      "Mélanger orifices et positions dans la désignation (5/2).",
+    ],
+    astucesPro: [
+      "Un vérin qui ne bouge pas alors que la sortie API est active oriente vers le distributeur ou son pilotage.",
+      "Le voyant de l'électrovanne (s'il existe) indique si le pilotage est bien commandé.",
+      "On vérifie l'alimentation en air du distributeur avant de le suspecter.",
+    ],
+    diagnostic: [
+      "Vérifier que l'ordre de pilotage arrive au distributeur (électrovanne alimentée).",
+      "Vérifier que le distributeur est alimenté en air.",
+      "Contrôler que le distributeur bascule bien de position.",
+    ],
+    depannage: [
+      "Distinguer un défaut de pilotage (commande) d'un distributeur bloqué (mécanique/encrassement).",
+      "Contrôler l'air d'alimentation et les échappements du distributeur.",
+      "Remplacer un distributeur bloqué après avoir écarté un défaut de commande.",
+    ],
+    securite: [
+      "Le distributeur commande un vérin qui peut bouger brutalement : on consigne l'air et on purge avant intervention.",
+      "Un pilotage manuel (bouton de forçage sur l'électrovanne) peut faire bouger le vérin : on l'utilise avec prudence et jamais pour contourner une sécurité.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "La sortie de l'automate qui commande un vérin est active (voyant allumé), mais le vérin ne bouge pas.",
+      mission: ["Situer le maillon à contrôler.", "Citer deux vérifications sur le distributeur.", "Rappeler la précaution de sécurité."],
+      correction:
+        "La sortie étant commandée, le défaut est en aval : on contrôle le préactionneur, c'est-à-dire le distributeur et son pilotage. Deux vérifications : l'électrovanne de pilotage est-elle bien alimentée (voyant, présence de la commande) ? le distributeur est-il alimenté en air et bascule-t-il de position ? On vérifie aussi les échappements. On distingue ainsi un défaut de commande d'un distributeur bloqué. Avant d'intervenir, on consigne l'air et on purge la pression, car le vérin peut se déplacer brutalement ; on n'utilise pas le forçage pour contourner une sécurité.",
+    },
+    memo: ["Distributeur = préactionneur du vérin", "5/2 : 5 orifices, 2 positions", "API → distributeur → vérin"],
+    resume:
+      "Le distributeur est le préactionneur qui distribue l'air vers le vérin sur ordre de la partie commande ; on le désigne par ses orifices et positions (ex. 5/2 pour un vérin double effet).",
+    quizIds: ["aut176", "aut177", "aut178", "aut179", "aut180"],
+    verification: {
+      question: "Quel est le rôle d'un distributeur pneumatique ?",
+      options: ["Détecter une pièce", "Distribuer l'air comprimé vers le vérin sur ordre de la partie commande", "Réguler la pression du réseau", "Filtrer l'air"],
+      correct: 1,
+      explanation: "Le distributeur est le préactionneur : sur ordre de la PC, il oriente l'air comprimé vers la bonne chambre du vérin." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez le rôle du distributeur dans la chaîne, et ce que signifie la désignation « 5/2 ».",
+      consignes: [
+        "Situe le distributeur entre l'automate et le vérin.",
+        "Explique la désignation 5/2.",
+        "Indique la différence monostable / bistable.",
+      ],
+      criteres: [
+        "J'ai placé le distributeur comme préactionneur entre PC et vérin.",
+        "J'ai expliqué 5 orifices / 2 positions.",
+        "J'ai distingué monostable et bistable.",
+      ],
+      correction:
+        "Le distributeur est le préactionneur : l'automate ne commande pas le vérin directement, il commande le distributeur (souvent via une électrovanne), qui distribue l'air comprimé vers la bonne chambre du vérin. La désignation « 5/2 » signifie 5 orifices (une alimentation, deux utilisations vers le vérin, deux échappements) et 2 positions ; un 5/2 pilote un vérin double effet. Un distributeur monostable revient au repos tout seul par ressort quand le pilotage cesse ; un bistable conserve sa dernière position même sans ordre maintenu.",
+    },
+  },
+  {
+    id: "5-37",
+    title: "Régler la vitesse et sécuriser un mouvement pneumatique",
+    durationMinutes: 28,
+    objectifs: [
+      "Régler la vitesse d'un vérin avec des limiteurs de débit.",
+      "Connaître les dispositifs de sécurité pneumatiques courants.",
+    ],
+    simple:
+      "On règle la vitesse d'un vérin non pas en changeant la pression, mais en limitant le débit d'air, souvent à l'échappement (réglage dit « à l'échappement »). Pour la sécurité, on utilise des dispositifs comme le démarreur progressif (mise en pression douce) et la purge à l'arrêt, pour éviter les mouvements brusques au démarrage.",
+    vocab: [
+      ["Limiteur de débit", "Réduit le débit d'air pour ralentir le vérin (souvent réglable)."],
+      ["Réglage à l'échappement", "On freine l'air qui sort : mouvement plus régulier et stable."],
+      ["Démarreur progressif", "Met le circuit en pression doucement pour éviter un à-coup au démarrage."],
+      ["Purge à l'arrêt", "Évacue l'air du circuit à l'arrêt pour supprimer l'énergie résiduelle."],
+      ["Échappement rapide", "Accélère la vidange d'une chambre pour un mouvement rapide."],
+    ],
+    example:
+      "Un vérin trop rapide tape en fin de course : on visse légèrement le limiteur de débit à l'échappement pour le ralentir. Au démarrage de la machine, un démarreur progressif met le réseau en pression doucement, évitant que tous les vérins partent d'un coup.",
+    schema: "pneumatic-symbols",
+    ascii: "VITESSE : limiter le DEBIT (pas la pression), reglage a l'ECHAPPEMENT\nSECURITE : demarreur progressif (mise en pression douce) + purge a l'arret\nun verin trop rapide tape en fin de course → freiner l'echappement",
+    retenir: [
+      "On règle la vitesse par le débit, pas par la pression.",
+      "Le réglage à l'échappement donne un mouvement plus régulier.",
+      "Le démarreur progressif évite les à-coups à la mise en pression.",
+      "La purge à l'arrêt supprime l'énergie résiduelle du circuit.",
+    ],
+    erreurs: [
+      "Baisser la pression pour ralentir : on perd de la force sans bien contrôler la vitesse.",
+      "Oublier que l'air emprisonné peut provoquer un mouvement à la remise en pression.",
+      "Régler brutalement un limiteur et faire taper le vérin en fin de course.",
+    ],
+    astucesPro: [
+      "Le réglage à l'échappement est le plus courant car plus stable que le réglage à l'admission.",
+      "On règle progressivement le limiteur en observant le mouvement.",
+      "Un démarreur progressif est précieux sur les installations avec beaucoup de vérins.",
+    ],
+    diagnostic: [
+      "Vérifier le réglage des limiteurs si un vérin est trop lent ou trop rapide.",
+      "Contrôler la présence d'un démarrage progressif et son fonctionnement.",
+      "S'assurer que la purge à l'arrêt évacue bien la pression.",
+    ],
+    depannage: [
+      "Réajuster un limiteur mal réglé plutôt que de toucher la pression du réseau.",
+      "Vérifier un échappement bouché ou un silencieux colmaté qui ralentit le vérin.",
+      "Contrôler le démarreur progressif si les mouvements sont brusques au démarrage.",
+    ],
+    securite: [
+      "Le démarrage progressif et la purge à l'arrêt réduisent les mouvements brusques dangereux.",
+      "À la remise en pression, un vérin peut bouger : on s'assure que personne n'est en zone de mouvement.",
+      "On consigne l'air et on purge avant d'intervenir ; l'application est pédagogique et ne remplace pas les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un vérin arrive trop vite en fin de course et provoque des chocs répétés.",
+      mission: ["Indiquer comment le ralentir correctement.", "Dire pourquoi on n'agit pas sur la pression.", "Citer un dispositif de sécurité au démarrage."],
+      correction:
+        "Pour ralentir le vérin, on agit sur un limiteur de débit, de préférence à l'échappement (réglage à l'échappement), en le vissant progressivement jusqu'à obtenir une vitesse correcte sans choc en fin de course. On n'agit pas sur la pression car la baisser ferait perdre de la force sans contrôler finement la vitesse, et pourrait empêcher le vérin de tenir sa charge. Comme dispositif de sécurité au démarrage, on peut installer un démarreur progressif qui met le circuit en pression doucement, évitant les départs brusques ; une purge à l'arrêt supprime l'énergie résiduelle. On vérifie qu'aucune personne n'est en zone de mouvement à la remise en pression.",
+    },
+    memo: ["Vitesse = débit, pas pression", "Réglage à l'échappement", "Démarrage progressif + purge"],
+    resume:
+      "On règle la vitesse d'un vérin en limitant le débit (souvent à l'échappement), et on sécurise le mouvement avec le démarrage progressif et la purge à l'arrêt pour éviter les à-coups dangereux.",
+    quizIds: ["aut181", "aut182", "aut183", "aut184", "aut185"],
+    verification: {
+      question: "Comment règle-t-on correctement la vitesse d'un vérin ?",
+      options: ["En baissant la pression du réseau", "En limitant le débit d'air (souvent à l'échappement)", "En changeant le vérin", "En coupant l'air"],
+      correct: 1,
+      explanation: "La vitesse se règle par le débit, généralement à l'échappement, ce qui donne un mouvement plus régulier ; la pression sert à la force." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment régler la vitesse d'un vérin et citez deux dispositifs qui sécurisent un mouvement pneumatique.",
+      consignes: [
+        "Explique le réglage de vitesse par le débit.",
+        "Précise l'intérêt du réglage à l'échappement.",
+        "Cite deux dispositifs de sécurité.",
+      ],
+      criteres: [
+        "J'ai indiqué qu'on règle le débit, pas la pression.",
+        "J'ai expliqué l'intérêt du réglage à l'échappement.",
+        "J'ai cité deux dispositifs (démarrage progressif, purge…).",
+      ],
+      correction:
+        "On règle la vitesse d'un vérin avec un limiteur de débit, en freinant l'air, de préférence à l'échappement (réglage à l'échappement) : le mouvement est plus régulier et stable qu'en freinant l'admission. On ne touche pas à la pression, qui sert à fournir la force. Pour sécuriser un mouvement pneumatique, on peut utiliser un démarreur progressif (mise en pression douce évitant les à-coups au démarrage) et une purge à l'arrêt (évacuation de l'air pour supprimer l'énergie résiduelle). On veille à ce que personne ne soit en zone de mouvement à la remise en pression.",
+    },
+  },
+  {
+    id: "5-38",
+    title: "Risques du pneumatique et consignation",
+    durationMinutes: 30,
+    objectifs: [
+      "Identifier les risques propres à l'énergie pneumatique.",
+      "Appliquer la consignation et la purge avant intervention.",
+    ],
+    simple:
+      "L'air comprimé est une énergie dangereuse : un vérin peut se déplacer brutalement, un tuyau sous pression peut fouetter, un jet d'air peut blesser (yeux, peau). Avant d'intervenir, on consigne l'alimentation en air, on purge la pression résiduelle des deux chambres du vérin, et on tient compte des charges portées par la tige.",
+    vocab: [
+      ["Énergie résiduelle", "Air encore sous pression après coupure, capable de provoquer un mouvement."],
+      ["Purge", "Évacuation de l'air du circuit pour supprimer la pression résiduelle."],
+      ["Consignation", "Procédure qui met et maintient le circuit hors énergie de façon sûre."],
+      ["Effet de fouet", "Mouvement brutal d'un tuyau qui se détache sous pression."],
+      ["Sectionneur pneumatique", "Organe de coupure/consignation de l'alimentation en air."],
+    ],
+    example:
+      "Avant de démonter un vérin, on ferme et on consigne l'arrivée d'air, puis on purge : sinon, en débranchant un raccord, l'air emprisonné pourrait faire sortir la tige d'un coup ou faire fouetter le tuyau. Une charge tenue en l'air par un vérin doit aussi être calée.",
+    schema: "consignation-steps",
+    ascii: "RISQUES : mouvement brutal du verin · tuyau qui fouette · jet d'air (yeux/peau)\nAVANT INTERVENTION : consigner l'air → PURGER les 2 chambres → caler les charges\ntenir compte de l'ENERGIE RESIDUELLE (air emprisonne)",
+    retenir: [
+      "L'air comprimé peut provoquer un mouvement brutal du vérin.",
+      "Un tuyau sous pression peut fouetter ; un jet d'air peut blesser.",
+      "Avant intervention : consigner l'air ET purger la pression résiduelle.",
+      "On cale les charges portées par la tige avant de travailler.",
+    ],
+    erreurs: [
+      "Croire que fermer l'air suffit : l'air emprisonné reste dangereux tant qu'on ne purge pas.",
+      "Débrancher un raccord encore sous pression.",
+      "Se dépoussiérer ou nettoyer avec un jet d'air comprimé (risque grave).",
+    ],
+    astucesPro: [
+      "On vérifie l'absence de pression au manomètre après purge avant de travailler.",
+      "On sécurise mécaniquement une charge qui pourrait tomber une fois l'air coupé.",
+      "On remet en service progressivement, en s'assurant que la zone est dégagée.",
+    ],
+    diagnostic: [
+      "Identifier les sources d'énergie pneumatique du poste.",
+      "Vérifier que l'air est consigné et purgé avant intervention.",
+      "Repérer les charges et mouvements possibles à la remise en pression.",
+    ],
+    depannage: [
+      "Ne jamais intervenir sur un circuit encore sous pression.",
+      "Purger et vérifier l'absence de pression avant tout démontage.",
+      "Faire appel à une personne habilitée pour les opérations qui l'exigent.",
+    ],
+    securite: [
+      "La consignation pneumatique et la purge sont réalisées selon la procédure, en tenant compte de l'énergie résiduelle.",
+      "On ne dirige jamais un jet d'air vers une personne et on ne s'en sert pas pour se nettoyer.",
+      "Cette application est pédagogique et ne remplace ni la formation, ni les habilitations, ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Un opérateur veut débrancher le tuyau d'un vérin encore raccordé au réseau pour le remplacer.",
+      mission: ["Dire ce qu'il risque.", "Décrire la bonne procédure.", "Citer les vérifications avant de travailler."],
+      correction:
+        "S'il débranche le tuyau sous pression, l'air emprisonné peut faire fouetter le tuyau et faire bouger le vérin brutalement : risque de blessure. La bonne procédure : fermer et consigner l'alimentation en air, purger la pression résiduelle des deux chambres, et caler toute charge portée par la tige. Vérifications avant de travailler : contrôler l'absence de pression (manomètre à zéro), s'assurer que la zone est dégagée et qu'aucun mouvement n'est possible. On ne dirige jamais un jet d'air vers soi ou autrui.",
+    },
+    memo: ["Fermer l'air ne suffit pas : purger", "Tuyau sous pression = effet de fouet", "Caler les charges · jamais de jet vers soi"],
+    resume:
+      "Le pneumatique présente des risques (mouvement brutal, effet de fouet, jet d'air) : avant d'intervenir on consigne l'alimentation, on purge la pression résiduelle et on cale les charges, en vérifiant l'absence de pression.",
+    quizIds: ["aut186", "aut187", "aut188", "aut189", "aut190"],
+    verification: {
+      question: "Avant d'intervenir sur un circuit pneumatique, fermer l'air suffit-il ?",
+      options: ["Oui, tout est sûr", "Non : il faut aussi purger la pression résiduelle", "Oui, si on va vite", "Non, il faut couper l'électricité seulement"],
+      correct: 1,
+      explanation: "Fermer l'air ne suffit pas : l'air emprisonné reste dangereux. On consigne ET on purge la pression résiduelle." ,
+    },
+    exercice: {
+      enonce:
+        "Citez les principaux risques du pneumatique et décrivez la procédure de consignation avant intervention.",
+      consignes: [
+        "Cite au moins deux risques.",
+        "Décris les étapes de consignation/purge.",
+        "Indique les vérifications avant de travailler.",
+      ],
+      criteres: [
+        "J'ai cité au moins deux risques (mouvement brutal, fouet, jet).",
+        "J'ai décrit consignation + purge des deux chambres.",
+        "J'ai indiqué le contrôle d'absence de pression et le calage des charges.",
+      ],
+      correction:
+        "Risques principaux : mouvement brutal du vérin, tuyau qui fouette sous pression, jet d'air dangereux pour les yeux et la peau. Procédure : fermer et consigner l'alimentation en air, puis purger la pression résiduelle des deux chambres du vérin. On cale les charges portées par la tige qui pourraient tomber. Avant de travailler, on vérifie l'absence de pression (manomètre à zéro) et on s'assure que la zone est dégagée et qu'aucun mouvement n'est possible. On ne dirige jamais un jet d'air vers une personne. Ces opérations suivent la procédure de l'entreprise.",
+    },
+  },
+  {
+    id: "5-39",
+    title: "Diagnostic des pannes pneumatiques courantes",
+    durationMinutes: 30,
+    objectifs: [
+      "Relier les symptômes pneumatiques courants à leurs causes probables.",
+      "Appliquer une démarche de diagnostic pneumatique en sécurité.",
+    ],
+    simple:
+      "Beaucoup de pannes pneumatiques ont des causes simples : manque de pression (FRL, fuite), vérin lent (limiteur mal réglé, échappement bouché), vérin qui ne bouge pas (distributeur ou pilotage), fuite (raccord, joint). On raisonne du réseau vers l'actionneur, en s'appuyant sur les mêmes indices que pour l'automatisme (pression, voyants du pilotage).",
+    vocab: [
+      ["Fuite", "Échappement d'air non voulu (sifflement, chute de pression, perte d'énergie)."],
+      ["Contre-pression", "Air qui ne s'évacue pas et freine ou bloque le mouvement."],
+      ["Silencieux", "Élément d'échappement qui, colmaté, ralentit le vérin."],
+      ["Pilotage", "Commande du distributeur ; s'il manque, le vérin ne bouge pas."],
+      ["Symptôme", "Ce que l'on constate : lenteur, absence de mouvement, manque de force."],
+    ],
+    example:
+      "Un vérin devenu lent : on vérifie d'abord la pression (FRL, réseau), puis les limiteurs de débit et l'échappement (silencieux colmaté). Un vérin qui ne bouge plus alors que la sortie API est active : on regarde le distributeur et son pilotage. Un sifflement continu : on cherche une fuite au raccord ou au joint.",
+    schema: "diagnostic-flow",
+    ascii: "manque de pression → FRL / fuite / compresseur\nverin lent → limiteur mal regle / echappement (silencieux) bouche\nverin immobile (sortie API active) → distributeur / pilotage\nsifflement → fuite (raccord, joint)",
+    retenir: [
+      "Manque de pression général : contrôler FRL, fuites, compresseur.",
+      "Vérin lent : limiteur de débit mal réglé ou échappement/silencieux colmaté.",
+      "Vérin immobile alors que la sortie est commandée : distributeur ou pilotage.",
+      "Sifflement continu : fuite à un raccord ou un joint.",
+    ],
+    erreurs: [
+      "Suspecter le vérin en premier alors que la cause est souvent en amont (pression, distributeur).",
+      "Oublier de vérifier l'échappement (silencieux) sur un vérin lent.",
+      "Négliger les fuites, qui dégradent la pression de toute l'installation.",
+    ],
+    astucesPro: [
+      "On part du réseau (pression) vers l'actionneur, comme on remonte une chaîne.",
+      "Le voyant de l'électrovanne indique si le pilotage du distributeur est commandé.",
+      "Une fuite se localise au son, puis se confirme prudemment.",
+    ],
+    diagnostic: [
+      "Vérifier la pression disponible et l'unité FRL.",
+      "Contrôler le distributeur et son pilotage si le vérin ne bouge pas.",
+      "Examiner limiteurs, échappements et étanchéité si le vérin est lent ou fuit.",
+    ],
+    depannage: [
+      "Traiter d'abord la cause la plus en amont (pression, FRL) avant l'actionneur.",
+      "Régler un limiteur, déboucher un silencieux, remplacer un joint qui fuit.",
+      "Contrôler pilotage puis distributeur avant de remplacer le vérin.",
+    ],
+    securite: [
+      "Tout démontage se fait après consignation de l'air et purge de la pression résiduelle.",
+      "On tient compte des mouvements possibles du vérin et des charges portées.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un poste, un vérin double effet est devenu lent des deux côtés, sans autre défaut signalé.",
+      mission: ["Proposer une démarche de diagnostic.", "Citer deux causes probables.", "Rappeler la précaution de sécurité."],
+      correction:
+        "On remonte du réseau vers l'actionneur : d'abord la pression disponible et l'unité FRL (filtre encrassé, régulateur mal réglé), puis les réglages de vitesse (limiteurs de débit trop fermés) et les échappements (silencieux colmatés qui freinent l'évacuation), enfin l'étanchéité interne du vérin. Deux causes probables d'un vérin lent des deux côtés : une pression insuffisante (FRL) ou des échappements gênés. On confirme chaque hypothèse avant d'agir. Tout démontage se fait après consignation de l'air et purge de la pression résiduelle, en tenant compte des mouvements possibles et des charges.",
+    },
+    memo: ["Réseau → actionneur", "Lent : limiteur / échappement", "Immobile + sortie active : distributeur"],
+    resume:
+      "Les pannes pneumatiques courantes (manque de pression, vérin lent, vérin immobile, fuite) se diagnostiquent en remontant du réseau vers l'actionneur, en sécurité, après consignation et purge.",
+    quizIds: ["aut191", "aut192", "aut193", "aut194", "aut195"],
+    verification: {
+      question: "Un vérin est immobile alors que la sortie de l'automate qui le commande est active. Vers quoi s'oriente-t-on ?",
+      options: ["Le programme", "Le distributeur et son pilotage", "Le capteur d'entrée", "L'alimentation de l'automate"],
+      correct: 1,
+      explanation: "La sortie est commandée : le défaut est en aval. Sur un vérin, on regarde le distributeur (préactionneur) et son pilotage." ,
+    },
+    exercice: {
+      enonce:
+        "Pour trois symptômes pneumatiques (manque de pression, vérin lent, vérin immobile), donnez une cause probable et la démarche de diagnostic.",
+      consignes: [
+        "Traite le manque de pression.",
+        "Traite le vérin lent.",
+        "Traite le vérin immobile (sortie active) et rappelle la sécurité.",
+      ],
+      criteres: [
+        "J'ai relié le manque de pression au FRL / fuites.",
+        "J'ai relié le vérin lent au limiteur / échappement.",
+        "J'ai relié le vérin immobile au distributeur/pilotage et rappelé consignation + purge.",
+      ],
+      correction:
+        "Manque de pression : cause probable côté FRL (filtre encrassé, régulateur mal réglé) ou fuite/compresseur ; on contrôle la pression disponible et l'unité FRL. Vérin lent : limiteur de débit trop fermé ou échappement/silencieux colmaté ; on vérifie les réglages et les échappements. Vérin immobile alors que la sortie API est active : le défaut est en aval, on contrôle le distributeur et son pilotage (électrovanne alimentée ? distributeur qui bascule ?). On remonte toujours du réseau vers l'actionneur et on confirme chaque hypothèse. Tout démontage se fait après consignation de l'air et purge de la pression résiduelle, en tenant compte des mouvements et des charges.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -3053,7 +3393,11 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     objective: "Maîtriser vérins, distributeurs et traitement de l'air comprimé.",
     lessonIds: block4Lessons.map((lesson) => lesson.id),
     chapterCount: 7,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["aut161", "aut164", "aut166", "aut169", "aut171", "aut173", "aut176", "aut178", "aut181", "aut183", "aut186", "aut188", "aut191", "aut193"],
+      passPercent: 80,
+    },
   },
   {
     id: "m5-b5",
