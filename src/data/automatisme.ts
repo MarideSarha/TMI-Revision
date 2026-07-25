@@ -2227,6 +2227,268 @@ const block5Lessons: Lesson[] = [
   },
 ];
 
+const block7Lessons: Lesson[] = [
+  {
+    id: "5-27",
+    title: "La démarche de diagnostic d'un système automatisé",
+    durationMinutes: 30,
+    objectifs: [
+      "Adopter une démarche de diagnostic ordonnée plutôt qu'au hasard.",
+      "Situer une panne dans la chaîne information → décision → action.",
+    ],
+    simple:
+      "Diagnostiquer, c'est d'abord observer avant de démonter. On part du symptôme (ce qui ne se produit pas), on récolte les indices (voyants, IHM, schémas), puis on remonte la chaîne du système : capteur → entrée → automate → sortie → préactionneur → actionneur. On avance étape par étape, en confirmant chaque hypothèse, jusqu'à localiser le défaut.",
+    vocab: [
+      ["Symptôme", "Ce que l'on constate : l'action attendue ne se produit pas, ou pas correctement."],
+      ["Chaîne fonctionnelle", "Suite capteur → entrée → automate → sortie → préactionneur → actionneur à parcourir."],
+      ["Hypothèse", "Cause possible que l'on vérifie par une observation, avant d'agir."],
+      ["Indice", "Information objective : voyant, message d'IHM, mesure, état d'un schéma."],
+      ["Localiser", "Situer le défaut sur un maillon précis de la chaîne avant d'intervenir."],
+    ],
+    example:
+      "Un tapis ne démarre pas au cycle. Plutôt que de changer le moteur, on observe : le voyant de la sortie moteur est-il allumé ? les entrées de départ cycle sont-elles présentes ? le capteur de sécurité est-il actif ? En quelques observations, on situe le défaut sans rien démonter.",
+    schema: "diagnostic-flow",
+    ascii: "SYMPTOME → OBSERVER (voyants, IHM, schema) → REMONTER LA CHAINE\ncapteur → entree → automate → sortie → preactionneur → actionneur\nune etape a la fois, on confirme avant d'agir",
+    retenir: [
+      "Observer avant de démonter : les voyants et l'IHM renseignent sans ouvrir.",
+      "Partir du symptôme précis : quelle action ne se produit pas ?",
+      "Remonter la chaîne fonctionnelle maillon par maillon.",
+      "Confirmer chaque hypothèse par un indice avant d'intervenir.",
+    ],
+    erreurs: [
+      "Changer une pièce « au hasard » sans avoir localisé le défaut.",
+      "Sauter des étapes de la chaîne et conclure trop vite.",
+      "Ignorer les voyants et messages qui donnent déjà la réponse.",
+      "Intervenir sur les parties actives sans avoir consigné.",
+    ],
+    astucesPro: [
+      "On formule le symptôme en une phrase précise avant de chercher.",
+      "On note ce qu'on observe : cela évite de tourner en rond.",
+      "On suit toujours le même sens de parcours pour ne rien oublier.",
+    ],
+    diagnostic: [
+      "Décrire précisément ce qui ne fonctionne pas (quelle action, dans quel mode).",
+      "Recenser les indices disponibles : voyants d'E/S, messages d'IHM, schémas.",
+      "Situer le maillon suspect avant toute intervention matérielle.",
+    ],
+    depannage: [
+      "Remonter la chaîne dans l'ordre plutôt que d'intervenir au hasard.",
+      "Distinguer un défaut d'information (capteur, entrée) d'un défaut d'action (sortie, préactionneur, actionneur).",
+      "Faire appel à une personne compétente pour toute action sur le programme.",
+    ],
+    securite: [
+      "L'observation des voyants et de l'IHM se fait machine en fonctionnement mais sans accès aux parties actives.",
+      "Avant tout démontage ou mesure sur les parties actives, on consigne les énergies (électrique, pneumatique, hydraulique) et on vérifie l'absence de tension/pression.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine automatisée reste bloquée au départ de cycle. Un collègue veut immédiatement remplacer l'automate.",
+      mission: ["Proposer une démarche avant de changer une pièce.", "Citer deux indices à observer d'abord.", "Rappeler la précaution de sécurité."],
+      correction:
+        "Avant de remplacer quoi que ce soit, on formule le symptôme (le cycle ne démarre pas) et on observe : les voyants des entrées de départ cycle et des sécurités sont-ils dans l'état attendu ? le voyant de la sortie concernée s'allume-t-il ? On remonte ainsi la chaîne pour localiser le maillon en défaut. Deux indices utiles : l'état des voyants d'E/S et les messages de l'IHM. Remplacer l'automate au hasard est coûteux et souvent inutile. Toute intervention sur les parties actives se fait après consignation et vérification d'absence de tension/pression.",
+    },
+    memo: ["Observer avant de démonter", "Symptôme → chaîne → localiser", "Un indice confirme chaque hypothèse"],
+    resume:
+      "Une démarche de diagnostic ordonnée part du symptôme, s'appuie sur les indices (voyants, IHM, schémas) et remonte la chaîne fonctionnelle maillon par maillon jusqu'à localiser le défaut, en sécurité.",
+    quizIds: ["aut131", "aut132", "aut133", "aut134", "aut135"],
+    verification: {
+      question: "Quelle est la bonne première étape face à une panne sur un système automatisé ?",
+      options: ["Remplacer l'automate", "Observer les indices (voyants, IHM) et formuler le symptôme", "Démonter le moteur", "Augmenter la vitesse du cycle"],
+      correct: 1,
+      explanation: "On observe d'abord les indices et on formule précisément le symptôme : cela oriente la recherche avant tout démontage.",
+    },
+    exercice: {
+      enonce:
+        "Décrivez, dans l'ordre, la démarche pour diagnostiquer une action qui ne se produit pas sur un système automatisé.",
+      consignes: [
+        "Indique par quoi on commence.",
+        "Cite le sens de parcours de la chaîne.",
+        "Précise la règle avant d'intervenir sur les parties actives.",
+      ],
+      criteres: [
+        "J'ai commencé par l'observation et le symptôme.",
+        "J'ai parcouru la chaîne capteur → entrée → automate → sortie → préactionneur → actionneur.",
+        "J'ai rappelé la consignation avant intervention.",
+      ],
+      correction:
+        "On commence par observer les indices (voyants d'E/S, messages d'IHM, schémas) et formuler précisément le symptôme. Puis on remonte la chaîne fonctionnelle dans l'ordre : capteur → entrée → automate → sortie → préactionneur → actionneur, en confirmant chaque hypothèse par une observation. On localise ainsi le maillon en défaut avant d'agir. Toute intervention sur les parties actives (démontage, mesure) se fait après consignation des énergies et vérification d'absence de tension/pression.",
+    },
+  },
+  {
+    id: "5-28",
+    title: "Utiliser les voyants et l'IHM pour diagnostiquer",
+    durationMinutes: 30,
+    objectifs: [
+      "Lire les voyants d'entrées et de sorties d'un automate.",
+      "Exploiter les messages de l'IHM comme aide au diagnostic.",
+    ],
+    simple:
+      "Les voyants d'entrées et de sorties de l'automate, et les messages de l'IHM (le pupitre), sont les premiers outils de diagnostic : ils montrent ce que l'automate « voit » (entrées) et ce qu'il « commande » (sorties), sans rien démonter. Un voyant d'entrée allumé signifie que l'information arrive ; un voyant de sortie allumé signifie que l'automate envoie l'ordre.",
+    vocab: [
+      ["Voyant d'entrée", "LED qui s'allume quand l'automate reçoit le signal d'un capteur sur cette entrée."],
+      ["Voyant de sortie", "LED qui s'allume quand l'automate commande cette sortie (préactionneur)."],
+      ["IHM", "Interface Homme-Machine (pupitre, écran) : affiche états, valeurs et messages de défaut."],
+      ["Message de défaut", "Information affichée par l'IHM signalant une anomalie détectée."],
+      ["Forçage", "Action de figer manuellement une E/S : réservée à une personne compétente, jamais pour contourner une sécurité."],
+    ],
+    example:
+      "Un capteur de présence est censé être actif, mais le voyant de l'entrée correspondante reste éteint : l'information n'arrive pas à l'automate. On sait déjà que le problème est côté capteur ou câblage, pas dans le programme. À l'inverse, l'IHM affichant « défaut communication » oriente vers le réseau, pas vers la mécanique.",
+    schema: "plc-structure",
+    ascii: "VOYANT ENTREE allume = l'automate RECOIT l'info du capteur\nVOYANT SORTIE allume = l'automate COMMANDE le preactionneur\nIHM = messages d'etat et de defaut (lire avant d'agir)",
+    retenir: [
+      "Voyant d'entrée = ce que l'automate reçoit des capteurs.",
+      "Voyant de sortie = ce que l'automate commande vers les préactionneurs.",
+      "L'IHM affiche états, valeurs et messages de défaut : on les lit d'abord.",
+      "Ces indices permettent de situer le défaut sans démonter.",
+    ],
+    erreurs: [
+      "Confondre voyant d'entrée (info reçue) et voyant de sortie (ordre envoyé).",
+      "Ignorer un message de l'IHM qui donne déjà la piste.",
+      "Croire qu'un voyant de sortie allumé garantit que l'actionneur bouge (le défaut peut être en aval).",
+      "Utiliser le forçage pour contourner une sécurité.",
+    ],
+    astucesPro: [
+      "On compare l'état réel du procédé avec ce que montrent les voyants : l'écart est parlant.",
+      "On note le message exact de l'IHM avant de l'acquitter.",
+      "Le repérage des cartes et des voyants aide à relier voyant et capteur/préactionneur.",
+    ],
+    diagnostic: [
+      "Vérifier si le voyant d'entrée s'allume quand le capteur devrait détecter.",
+      "Vérifier si le voyant de sortie s'allume quand l'action est demandée.",
+      "Lire les messages de l'IHM et les relier au maillon concerné.",
+    ],
+    depannage: [
+      "Un voyant d'entrée éteint alors que le capteur détecte oriente vers le câblage ou l'entrée.",
+      "Un voyant de sortie allumé sans action oriente vers l'aval (préactionneur, énergie, actionneur).",
+      "Un message de défaut d'IHM oriente vers la fonction indiquée (communication, sécurité, surcharge…).",
+    ],
+    securite: [
+      "La lecture des voyants et de l'IHM se fait sans accès aux parties actives.",
+      "Le forçage d'une entrée ou d'une sortie relève d'une personne compétente et ne doit jamais contourner une sécurité.",
+      "Avant toute mesure ou démontage sur les parties actives, on consigne et on vérifie l'absence de tension/pression.",
+    ],
+    etudeDeCas: {
+      situation: "Une action de serrage ne se fait pas. Le voyant de la sortie correspondante est allumé sur l'automate.",
+      mission: ["Dire ce que prouve ce voyant.", "Indiquer où chercher le défaut.", "Citer une précaution avant d'intervenir."],
+      correction:
+        "Le voyant de sortie allumé prouve que l'automate commande bien la sortie : le programme et l'information sont donc corrects pour cette étape. Le défaut est en aval de la sortie : préactionneur (distributeur, contacteur), présence de l'énergie (air comprimé, tension), câblage, ou actionneur (vérin) lui-même. On y cherche la cause. Avant toute intervention sur les parties actives, on consigne les énergies concernées et on vérifie l'absence de tension/pression.",
+    },
+    memo: ["Entrée = reçu · Sortie = commandé", "IHM : lire les messages d'abord", "Sortie allumée sans action → aval"],
+    resume:
+      "Les voyants d'entrées/sorties et les messages de l'IHM montrent ce que l'automate reçoit et commande : ce sont les premiers outils de diagnostic pour situer un défaut sans démonter.",
+    quizIds: ["aut136", "aut137", "aut138", "aut139", "aut140"],
+    verification: {
+      question: "Un voyant d'entrée allumé indique que :",
+      options: ["L'automate commande un préactionneur", "L'automate reçoit bien le signal d'un capteur sur cette entrée", "L'actionneur est en panne", "Le programme est faux"],
+      correct: 1,
+      explanation: "Un voyant d'entrée s'allume quand l'automate reçoit le signal du capteur relié à cette entrée : l'information arrive bien.",
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment les voyants d'E/S et l'IHM aident à situer une panne, avec un exemple de chaque.",
+      consignes: [
+        "Explique ce qu'indique un voyant d'entrée.",
+        "Explique ce qu'indique un voyant de sortie.",
+        "Donne un exemple d'aide apportée par l'IHM.",
+      ],
+      criteres: [
+        "J'ai relié le voyant d'entrée à l'information reçue d'un capteur.",
+        "J'ai relié le voyant de sortie à la commande d'un préactionneur.",
+        "J'ai donné un exemple de message d'IHM utile.",
+      ],
+      correction:
+        "Un voyant d'entrée allumé montre que l'automate reçoit bien l'information d'un capteur : s'il reste éteint alors que le capteur détecte, le défaut est côté capteur ou câblage. Un voyant de sortie allumé montre que l'automate commande bien un préactionneur : s'il est allumé mais que l'actionneur ne bouge pas, le défaut est en aval. L'IHM complète ces indices : un message « défaut communication » oriente vers le réseau, un message de surcharge vers la protection moteur. Ces indices permettent de situer la panne sans démonter.",
+    },
+  },
+  {
+    id: "5-29",
+    title: "Localiser une panne : capteur, entrée, sortie, actionneur",
+    durationMinutes: 32,
+    objectifs: [
+      "Appliquer une méthode de localisation le long de la chaîne fonctionnelle.",
+      "Distinguer un défaut d'information, un défaut de programme et un défaut d'action.",
+    ],
+    simple:
+      "Localiser une panne, c'est décider sur quel maillon se situe le défaut. On raisonne avec les voyants : si la sortie est commandée (voyant allumé) mais que rien ne bouge, le défaut est en aval (préactionneur, énergie, actionneur). Si la sortie n'est pas commandée, on regarde les entrées : si une information manque, on remonte vers le capteur ; si toutes les entrées sont bonnes, c'est une condition du programme qui n'est pas remplie.",
+    vocab: [
+      ["En aval", "Après la sortie de l'automate : préactionneur, énergie de puissance, actionneur."],
+      ["En amont", "Avant l'automate : capteur, câblage capteur, entrée."],
+      ["Défaut d'information", "Une entrée n'a pas l'état attendu (capteur, câblage, entrée)."],
+      ["Défaut d'action", "L'ordre part mais l'action ne se fait pas (préactionneur, énergie, actionneur)."],
+      ["Condition non remplie", "Le programme n'active pas la sortie car une condition (autre entrée, sécurité, mode) manque."],
+    ],
+    example:
+      "Un vérin ne sort pas. Voyant de sortie éteint : l'automate ne commande pas. On regarde l'entrée « pièce présente » : voyant éteint. Le capteur de présence détecte-t-il la pièce ? Son voyant reste éteint : le défaut est un problème de détection (capteur mal réglé, hors portée ou en panne). La panne est localisée sans avoir rien démonté au hasard.",
+    schema: "energy-info-chains",
+    illustrations: ["auto-diagnostic-tree"],
+    ascii: "SORTIE commandee (voyant ON) + rien ne bouge → AVAL (preactionneur/energie/actionneur)\nSORTIE non commandee → regarder ENTREES\n  entree manquante → remonter au CAPTEUR\n  entrees OK → CONDITION du PROGRAMME non remplie",
+    retenir: [
+      "Voyant de sortie allumé + pas d'action ⇒ défaut en aval (préactionneur, énergie, actionneur).",
+      "Voyant de sortie éteint ⇒ regarder les entrées.",
+      "Entrée manquante ⇒ remonter vers le capteur (câblage puis capteur).",
+      "Entrées correctes mais sortie inactive ⇒ condition du programme non remplie (ou défaut interne).",
+    ],
+    erreurs: [
+      "Conclure « moteur en panne » alors que la sortie n'est même pas commandée.",
+      "Oublier de vérifier la présence de l'énergie de puissance en aval.",
+      "Confondre « le capteur ne détecte pas » et « l'information n'arrive pas à l'entrée ».",
+      "Contourner une sécurité pour forcer la sortie.",
+    ],
+    astucesPro: [
+      "On teste le capteur en présentant la cible et en regardant SON voyant, puis celui de l'entrée.",
+      "Un défaut en aval se confirme souvent en vérifiant l'énergie (air, tension) avant l'actionneur.",
+      "On garde en tête : information en amont, action en aval, décision au milieu.",
+    ],
+    diagnostic: [
+      "Regarder d'abord le voyant de la sortie concernée : commandée ou non ?",
+      "Selon le cas, contrôler l'aval (énergie, préactionneur, actionneur) ou les entrées.",
+      "Pour une entrée manquante, distinguer capteur en défaut et liaison capteur ↔ entrée.",
+    ],
+    depannage: [
+      "Aval : contrôler préactionneur, énergie de puissance et actionneur, après consignation.",
+      "Amont : contrôler position/réglage du capteur, puis câblage et entrée.",
+      "Programme : vérifier les conditions et sécurités ; toute modification relève d'une personne compétente.",
+    ],
+    securite: [
+      "Le repérage par les voyants se fait sans accès aux parties actives.",
+      "On consigne les énergies (électrique, pneumatique, hydraulique) et on vérifie l'absence de tension/pression avant tout contrôle en aval sur les parties actives.",
+      "On ne contourne jamais une sécurité pour faire fonctionner la machine ; l'application est pédagogique et ne remplace pas les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur une station, une pièce n'est pas éjectée. Le voyant de la sortie « éjecteur » est éteint et l'entrée « pièce en position » est éteinte, mais le capteur de position semble bien face à la pièce.",
+      mission: ["Situer le maillon suspect.", "Dire comment vérifier si le capteur est en cause.", "Citer la précaution avant intervention."],
+      correction:
+        "La sortie n'étant pas commandée, le problème est en amont : une information manque (entrée « pièce en position » éteinte). Pour vérifier le capteur, on présente la cible et on regarde son propre voyant : s'il s'allume mais que l'entrée reste éteinte, le défaut est dans la liaison capteur ↔ entrée (câblage, borne, entrée) ; s'il reste éteint, c'est un défaut de détection (position, réglage, portée ou capteur en panne). On localise ainsi précisément avant d'agir. Toute intervention sur les parties actives se fait après consignation et vérification d'absence de tension/pression, sans contourner de sécurité.",
+    },
+    memo: ["Sortie ON + rien ne bouge → aval", "Sortie OFF → entrées", "Capteur : tester avec son voyant"],
+    resume:
+      "On localise une panne en lisant les voyants : sortie commandée sans action ⇒ aval ; sortie non commandée ⇒ entrées, puis capteur ou condition de programme, avant toute intervention en sécurité.",
+    quizIds: ["aut141", "aut142", "aut143", "aut144", "aut145"],
+    verification: {
+      question: "Le voyant de la sortie est allumé mais l'actionneur ne bouge pas. Où se situe le défaut ?",
+      options: ["Dans le programme", "En aval de l'automate (préactionneur, énergie, actionneur)", "Dans le capteur d'entrée", "Dans l'alimentation de l'automate"],
+      correct: 1,
+      explanation: "La sortie est bien commandée : l'automate fait son travail. Le défaut est en aval — préactionneur, énergie de puissance ou actionneur.",
+    },
+    exercice: {
+      enonce:
+        "À partir de l'état des voyants, expliquez comment décider si une panne est en amont, dans le programme, ou en aval.",
+      consignes: [
+        "Explique le cas « voyant de sortie allumé, pas d'action ».",
+        "Explique le cas « voyant de sortie éteint, une entrée manque ».",
+        "Explique le cas « voyant de sortie éteint, toutes les entrées correctes ».",
+      ],
+      criteres: [
+        "J'ai relié sortie allumée sans action à un défaut en aval.",
+        "J'ai relié entrée manquante à un défaut capteur/câblage en amont.",
+        "J'ai relié entrées correctes + sortie inactive à une condition de programme.",
+      ],
+      correction:
+        "Si le voyant de sortie est allumé mais que rien ne bouge, l'automate commande bien : le défaut est en aval (préactionneur, énergie de puissance, actionneur). Si le voyant de sortie est éteint, on regarde les entrées : une entrée manquante conduit à remonter vers le capteur — s'il détecte mais que l'entrée reste éteinte, le défaut est dans la liaison ; s'il ne détecte pas, c'est un défaut de détection. Si toutes les entrées sont correctes mais la sortie reste inactive, c'est une condition du programme qui n'est pas remplie (autre condition, sécurité active, mode). On agit ensuite en sécurité, après consignation, sans contourner de sécurité.",
+    },
+  },
+];
+
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
   {
     id: "m5-b1",
@@ -2282,7 +2544,15 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     },
   },
   { id: "m5-b6", num: 6, title: "Cycle, séquence et logique de commande", objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).", lessonIds: [], chapterCount: 6, status: "planned" },
-  { id: "m5-b7", num: 7, title: "Diagnostic et maintenance des systèmes automatisés", objective: "Diagnostiquer méthodiquement un système automatisé en sécurité.", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m5-b7",
+    num: 7,
+    title: "Diagnostic et maintenance des systèmes automatisés",
+    objective: "Diagnostiquer méthodiquement un système automatisé en sécurité.",
+    lessonIds: block7Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
 ];
 
 export const AUTOMATISME_MODULE: TrainingModule = {
@@ -2292,6 +2562,6 @@ export const AUTOMATISME_MODULE: TrainingModule = {
   icon: Cpu,
   color: "sky",
   source: "[TMI] Parcours progressif débutant → opérationnel · capteurs, actionneurs, API · passerelle depuis le module 3",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block5Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block5Lessons, ...block7Lessons],
   blocks: AUTOMATISME_BLOCKS,
 };

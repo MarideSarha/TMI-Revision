@@ -92,7 +92,8 @@ export type InteractiveSchemaType =
   | "automated-system"
   | "sensor-detection"
   | "pneumatic-cylinder"
-  | "plc-scan-cycle";
+  | "plc-scan-cycle"
+  | "auto-diagnostic-tree";
 
 export interface LessonExercise {
   enonce: string;

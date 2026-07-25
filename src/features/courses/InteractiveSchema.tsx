@@ -921,6 +921,112 @@ function DiagnosticTree({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   ASSISTANT DE DIAGNOSTIC — SYSTÈME AUTOMATISÉ
+   Démarche adaptée à l'automatisme : on part du symptôme « l'action
+   attendue ne se produit pas » et on remonte la chaîne capteur → entrée
+   → programme → sortie → préactionneur → actionneur à l'aide des voyants.
+   --------------------------------------------------------------- */
+
+const AUTO_DIAG_NODES: Record<string, DiagNode> = {
+  start: {
+    prompt: "L'action attendue ne se produit pas. Le voyant de la sortie concernée (sur l'automate ou le préactionneur) est-il allumé ?",
+    options: [
+      { label: "Oui, le voyant de la sortie est allumé", conclusion: "L'ordre part bien de l'automate : le défaut est EN AVAL de la sortie. Contrôler la chaîne d'action — préactionneur (distributeur, contacteur), présence de l'énergie de puissance (air comprimé, tension moteur), câblage sortie → préactionneur, puis l'actionneur lui-même (vérin, moteur). Toute intervention se fait après consignation des différentes énergies et vérification d'absence de tension/pression." },
+      { label: "Non, le voyant de la sortie est éteint", next: "entrees" },
+    ],
+  },
+  entrees: {
+    prompt: "L'automate ne commande pas la sortie. Les entrées nécessaires à cette action sont-elles toutes à l'état attendu (voyants d'entrée) ?",
+    options: [
+      { label: "Oui, toutes les entrées attendues sont présentes", conclusion: "L'automate reçoit les bonnes informations mais ne commande pas la sortie : la condition du programme n'est pas remplie (une autre condition manque, une sécurité est active, le mode n'est pas le bon) ou l'automate/la carte de sortie est en défaut. Vérifier les conditions du cycle et l'état des sécurités. Ne JAMAIS contourner une sécurité pour « forcer » la sortie ; toute modification de programme relève d'une personne compétente." },
+      { label: "Non, une entrée attendue est absente (voyant éteint)", next: "capteur" },
+    ],
+  },
+  capteur: {
+    prompt: "Une information manque à l'entrée. En plaçant la cible devant le capteur concerné, son propre voyant s'allume-t-il ?",
+    options: [
+      { label: "Oui, le capteur détecte mais l'entrée reste éteinte", conclusion: "Défaut entre le capteur et l'automate : le capteur fonctionne mais l'information n'arrive pas à l'entrée. Contrôler la liaison capteur ↔ entrée — borne desserrée, fil coupé, fusible ou alimentation de l'entrée, voire la carte d'entrée. Les contrôles se font dans le respect des habilitations et, si besoin, après consignation." },
+      { label: "Non, le capteur ne détecte pas (son voyant reste éteint)", conclusion: "Défaut de détection au niveau du capteur : cible absente ou hors de portée, capteur mal positionné ou déréglé, réglage de sensibilité inadapté, ou capteur (ou son alimentation) en panne. Vérifier la présence de la cible, la position et le réglage du capteur, la distance de détection, puis son alimentation. Remplacer le capteur seulement après avoir écarté un simple défaut de réglage ou de position." },
+    ],
+  },
+};
+
+function AutoDiagnosticTree({ dark }: { dark: boolean }) {
+  const [nodeId, setNodeId] = useState<string>("start");
+  const [conclusion, setConclusion] = useState<string | null>(null);
+  const [path, setPath] = useState<string[]>([]);
+  const node = AUTO_DIAG_NODES[nodeId];
+
+  function choose(option: DiagOption) {
+    setPath((p) => [...p, option.label]);
+    if (option.conclusion) {
+      setConclusion(option.conclusion);
+    } else if (option.next) {
+      setNodeId(option.next);
+    }
+  }
+
+  function restart() {
+    setNodeId("start");
+    setConclusion(null);
+    setPath([]);
+  }
+
+  return (
+    <Figure
+      dark={dark}
+      title="Assistant de diagnostic : une action automatisée ne se produit pas"
+      legend="Remonte la chaîne capteur → entrée → automate → sortie → préactionneur → actionneur en t'appuyant sur les voyants. Outil pédagogique, non noté."
+      explanation="Sur un système automatisé, les voyants (entrées, sorties, capteurs) sont les premiers outils de diagnostic : ils permettent de situer une panne sans démonter. La démarche va du symptôme vers la cause en suivant le sens de l'information et de l'énergie. Cet assistant illustre ce raisonnement mais ne remplace ni la lecture des schémas, ni la sécurité : on consigne les différentes énergies (électrique, pneumatique, hydraulique) avant toute intervention, et une modification de programme relève d'une personne compétente. Pour t'entraîner sur des scénarios notés, utilise aussi la section « Pannes »."
+      controls={
+        conclusion !== null || path.length > 0 ? (
+          <button type="button" onClick={restart} className={`flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Recommencer le diagnostic
+          </button>
+        ) : undefined
+      }
+    >
+      <div className="p-1">
+        {path.length > 0 && (
+          <ol className="mb-3 space-y-1">
+            {path.map((step, i) => (
+              <li key={i} className={`flex gap-2 text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>
+                <span className="font-mono font-bold text-sky-400">{i + 1}.</span>{step}
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {conclusion === null ? (
+          <div className={`rounded-lg border p-3 ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+            <p className={`mb-3 font-semibold ${dark ? "text-white" : "text-slate-900"}`}>{node.prompt}</p>
+            <div className="space-y-2">
+              {node.options.map((option) => (
+                <button
+                  key={option.label}
+                  type="button"
+                  onClick={() => choose(option)}
+                  className={`flex w-full items-center gap-2 rounded-lg border-2 p-3 text-left text-sm transition ${dark ? "border-slate-600 hover:border-sky-400 text-slate-200" : "border-slate-300 hover:border-sky-500 text-slate-700"}`}
+                >
+                  <ArrowRight size={15} className="shrink-0 text-sky-400" /> {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-lg border-2 border-emerald-500/40 bg-emerald-500/5 p-3">
+            <p className="mb-1 flex items-center gap-2 text-sm font-bold text-emerald-500">
+              <ShieldCheck size={16} /> Piste de diagnostic
+            </p>
+            <p className={`text-sm leading-relaxed ${dark ? "text-slate-200" : "text-slate-700"}`}>{conclusion}</p>
+          </div>
+        )}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    SCHÉMA 9 — LA BOUCLE D'UN SYSTÈME AUTOMATISÉ
    Capteur → partie commande → préactionneur → actionneur → effet.
    --------------------------------------------------------------- */
@@ -1213,5 +1319,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "sensor-detection") return <SensorDetection dark={dark} />;
   if (type === "pneumatic-cylinder") return <PneumaticCylinder dark={dark} />;
   if (type === "plc-scan-cycle") return <PLCScanCycle dark={dark} />;
+  if (type === "auto-diagnostic-tree") return <AutoDiagnosticTree dark={dark} />;
   return null;
 }
