@@ -1,4 +1,4 @@
-import { Award, BookOpen, Cpu, Flame, Gauge, HardHat, ShieldAlert, ShieldCheck, Target, Wrench, Zap } from "lucide-react";
+import { Activity, Award, BookOpen, Cpu, Flame, Gauge, HardHat, ShieldAlert, ShieldCheck, Target, Wrench, Zap } from "lucide-react";
 import type { BadgeDefinition } from "../types";
 
 /* ---------------------------- BADGES ---------------------------- */
@@ -21,6 +21,7 @@ export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "auto_block_5", label: "L'automate (API)", desc: "Comprendre l'automate programmable, ses E/S et son cycle avec au moins 80 %", icon: Cpu },
   { id: "auto_block_6", label: "Séquence & GRAFCET", desc: "Décrire un fonctionnement séquentiel avec le GRAFCET avec au moins 80 %", icon: Cpu },
   { id: "auto_block_7", label: "Diagnostic & maintenance", desc: "Diagnostiquer et entretenir un système automatisé en sécurité avec au moins 80 %", icon: Target },
+  { id: "maint_block_1", label: "Stratégies de maintenance", desc: "Distinguer les stratégies de maintenance (corrective, préventive, conditionnelle) avec au moins 80 %", icon: Activity },
   { id: "mechanics_block_1", label: "Observateur mécanique", desc: "Maîtriser le bloc 1 de mécanique avec au moins 80 %", icon: ShieldCheck },
   { id: "mechanics_block_5", label: "Assembleur fiable", desc: "Maîtriser assemblages, fixations et étanchéité avec au moins 80 %", icon: Wrench },
   { id: "mechanics_block_6", label: "Aligneur de précision", desc: "Maîtriser arbres, accouplements, alignement et vibrations avec au moins 80 %", icon: Target },

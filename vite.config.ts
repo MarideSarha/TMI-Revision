@@ -43,6 +43,11 @@ export default defineConfig({
               test: /[\\/]src[\\/]data[\\/]automatisme/,
             },
             {
+              // Données du module 6 (maintenance) isolées de la même façon.
+              name: "learning-maint",
+              test: /[\\/]src[\\/]data[\\/]maintenance/,
+            },
+            {
               name: "learning-data",
               test: /[\\/]src[\\/]data[\\/]/,
             },

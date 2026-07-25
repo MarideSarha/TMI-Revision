@@ -1,0 +1,27 @@
+import type { QuestionBank } from "../types";
+
+/* ----------------------------------------------------------------
+   BANQUE DE QUESTIONS — MODULE 6 (Maintenance préventive et diagnostic)
+   Préfixe « mnt » = maintenance.
+   ---------------------------------------------------------------- */
+
+export const MAINTENANCE_QUESTIONS: QuestionBank = {
+  /* --- Bloc 1 : les stratégies de maintenance --- */
+  mnt1: { lesson: "6-1", type: "qcm", q: "Que recouvre la maintenance ?", options: ["Uniquement réparer une machine cassée", "Maintenir ou rétablir un équipement en état d'accomplir sa fonction", "Uniquement nettoyer les machines", "Uniquement acheter des pièces"], correct: 1, exp: "La maintenance regroupe les actions qui maintiennent ou rétablissent un bien dans un état où il accomplit sa fonction." },
+  mnt2: { lesson: "6-1", type: "qcm", q: "Quels sont les trois enjeux principaux de la maintenance ?", options: ["Couleur, poids, taille", "Disponibilité, sécurité, coûts", "Vitesse, bruit, température", "Marketing, ventes, publicité"], correct: 1, exp: "Les trois enjeux sont la disponibilité (produire), la sécurité (personnes/biens) et la maîtrise des coûts." },
+  mnt3: { lesson: "6-1", type: "vf", q: "La maintenance se limite à réparer les machines en panne.", options: ["Vrai", "Faux"], correct: 1, exp: "Faux : elle inclut aussi le fait de maintenir en bon état (prévenir), pas seulement réparer." },
+  mnt4: { lesson: "6-1", type: "qcm", q: "Quel arrêt est généralement le plus coûteux ?", options: ["Un arrêt planifié", "Un arrêt subi (panne imprévue)", "Un arrêt pour nettoyage", "Aucun n'a de coût"], correct: 1, exp: "L'arrêt subi ajoute la production perdue, l'urgence et parfois des dégâts en cascade : il est souvent le plus cher." },
+  mnt5: { lesson: "6-1", type: "qcm", q: "Qu'est-ce que la disponibilité d'un équipement ?", options: ["Sa couleur", "Son aptitude à être en état de fonctionner quand on en a besoin", "Son prix d'achat", "Son poids"], correct: 1, exp: "La disponibilité est l'aptitude de l'équipement à fonctionner au moment où on en a besoin." },
+
+  mnt6: { lesson: "6-2", type: "qcm", q: "Quand intervient la maintenance corrective ?", options: ["Avant la panne", "Après la défaillance", "Jamais", "Uniquement à l'achat"], correct: 1, exp: "La maintenance corrective intervient après la défaillance, pour rétablir la fonction." },
+  mnt7: { lesson: "6-2", type: "qcm", q: "Quelle est la différence entre palliatif et curatif ?", options: ["Aucune", "Le palliatif est une remise en marche provisoire, le curatif une réparation définitive", "Le curatif est provisoire", "Les deux sont préventifs"], correct: 1, exp: "Le palliatif (dépannage) remet provisoirement en marche ; le curatif (réparation) rétablit définitivement." },
+  mnt8: { lesson: "6-2", type: "vf", q: "Après un dépannage provisoire (palliatif), il faut planifier la réparation définitive.", options: ["Vrai", "Faux"], correct: 0, exp: "Vrai : sans réparation définitive (curatif), la panne finit par revenir." },
+  mnt9: { lesson: "6-2", type: "qcm", q: "Quel est le principal inconvénient de la maintenance corrective ?", options: ["Elle est trop planifiée", "L'arrêt est subi, souvent coûteux et parfois dangereux", "Elle coûte toujours zéro", "Elle empêche toute panne"], correct: 1, exp: "La corrective subit l'arrêt : la panne survient au moment qu'elle choisit, souvent au mauvais." },
+  mnt10: { lesson: "6-2", type: "vf", q: "Un dépannage provisoire peut neutraliser une sécurité si c'est plus rapide.", options: ["Vrai", "Faux"], correct: 1, exp: "Faux : un palliatif ne doit jamais neutraliser une sécurité ni créer un nouveau risque." },
+
+  mnt11: { lesson: "6-3", type: "qcm", q: "Sur quoi repose la maintenance préventive systématique ?", options: ["Sur l'attente de la panne", "Sur un échéancier fixe (temps ou nombre de cycles)", "Sur une mesure de l'état réel", "Sur le hasard"], correct: 1, exp: "La préventive systématique suit un échéancier fixe : on intervient à intervalles réguliers." },
+  mnt12: { lesson: "6-3", type: "qcm", q: "Quel est l'intérêt principal de la maintenance préventive ?", options: ["Attendre la panne", "Transformer des arrêts subis en arrêts planifiés", "Supprimer tout entretien", "Augmenter les pannes"], correct: 1, exp: "La préventive planifie les arrêts avant la panne, ce qui les rend plus courts et moins coûteux." },
+  mnt13: { lesson: "6-3", type: "qcm", q: "Qu'est-ce que la sur-maintenance ?", options: ["Ne jamais intervenir", "Intervenir trop souvent (gaspillage, risque d'introduire des défauts)", "Réparer après la panne", "Nettoyer les machines"], correct: 1, exp: "La sur-maintenance, c'est intervenir trop souvent : coûts inutiles et risque d'introduire des défauts au démontage." },
+  mnt14: { lesson: "6-3", type: "vf", q: "La préventive systématique attend un signe d'usure avant d'intervenir.", options: ["Vrai", "Faux"], correct: 1, exp: "Faux : la systématique suit un échéancier fixe, sans attendre de signe ; c'est la conditionnelle qui se base sur l'état réel." },
+  mnt15: { lesson: "6-3", type: "qcm", q: "Un exemple typique de maintenance préventive systématique est :", options: ["Réparer un moteur grillé", "La vidange tous les X kilomètres", "Attendre qu'un roulement casse", "Peindre la machine"], correct: 1, exp: "La vidange à intervalle fixe (temps/kilomètres) est un exemple classique de préventif systématique." },
+};
