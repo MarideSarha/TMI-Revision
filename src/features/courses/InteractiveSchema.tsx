@@ -1027,6 +1027,109 @@ function AutoDiagnosticTree({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   ASSISTANT — CHOISIR UNE STRATÉGIE DE MAINTENANCE
+   Arbre de décision : selon la criticité et la possibilité de
+   surveiller l'état, on oriente vers corrective, préventive
+   systématique, conditionnelle ou une démarche d'amélioration.
+   --------------------------------------------------------------- */
+
+const MAINT_STRATEGY_NODES: Record<string, DiagNode> = {
+  start: {
+    prompt: "L'équipement est-il critique (sa panne arrête la production ou crée un risque important) ?",
+    options: [
+      { label: "Non, il est peu critique", conclusion: "Maintenance corrective acceptable : on répare après la panne. L'impact d'un arrêt étant faible, on limite les coûts d'entretien et on accepte l'arrêt subi. On garde tout de même une traçabilité des pannes." },
+      { label: "Oui, il est critique", next: "surveillance" },
+    ],
+  },
+  surveillance: {
+    prompt: "Peut-on surveiller son état par une mesure (vibrations, température, analyse d'huile, ultrasons) ?",
+    options: [
+      { label: "Oui, on peut mesurer une dégradation", conclusion: "Maintenance conditionnelle (voire prévisionnelle) : on surveille l'état et on intervient lorsqu'un seuil d'alerte est atteint. On évite la panne sans démonter inutilement, et on planifie l'intervention au bon moment." },
+      { label: "Non, pas de mesure exploitable", next: "usure" },
+    ],
+  },
+  usure: {
+    prompt: "La dégradation est-elle liée au temps ou au nombre de cycles de façon prévisible ?",
+    options: [
+      { label: "Oui, l'usure est régulière/prévisible", conclusion: "Maintenance préventive systématique : on planifie des interventions à échéance fixe (temps ou cycles) avant la panne, en cherchant la bonne périodicité (ni sous- ni sur-maintenance)." },
+      { label: "Non, la panne est aléatoire", conclusion: "Approfondir l'analyse : pour une panne critique, aléatoire et non surveillable, on cherche à fiabiliser (AMDEC, amélioration de conception) ou à réduire la criticité (redondance, réduction de l'impact) plutôt que de subir." },
+    ],
+  },
+};
+
+function MaintenanceStrategy({ dark }: { dark: boolean }) {
+  const [nodeId, setNodeId] = useState<string>("start");
+  const [conclusion, setConclusion] = useState<string | null>(null);
+  const [path, setPath] = useState<string[]>([]);
+  const node = MAINT_STRATEGY_NODES[nodeId];
+
+  function choose(option: DiagOption) {
+    setPath((p) => [...p, option.label]);
+    if (option.conclusion) setConclusion(option.conclusion);
+    else if (option.next) setNodeId(option.next);
+  }
+
+  function restart() {
+    setNodeId("start");
+    setConclusion(null);
+    setPath([]);
+  }
+
+  return (
+    <Figure
+      dark={dark}
+      title="Quelle stratégie de maintenance choisir ?"
+      legend="Réponds selon la criticité de l'équipement et la possibilité de surveiller son état ; l'assistant oriente vers une stratégie adaptée. Outil pédagogique."
+      explanation="Il n'existe pas une seule bonne maintenance : le choix dépend de la criticité de l'équipement et des moyens de surveillance. Un équipement peu critique peut rester en correctif ; un équipement critique se protège par de la préventive systématique (si l'usure est prévisible) ou de la conditionnelle (si l'on peut mesurer son état). Quand la panne est critique, aléatoire et non mesurable, on cherche plutôt à fiabiliser ou à réduire la criticité. Cet assistant illustre ce raisonnement ; les vrais choix intègrent aussi les coûts et les contraintes de l'entreprise."
+      controls={
+        conclusion !== null || path.length > 0 ? (
+          <button type="button" onClick={restart} className={`flex w-full items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Recommencer
+          </button>
+        ) : undefined
+      }
+    >
+      <div className="p-1">
+        {path.length > 0 && (
+          <ol className="mb-3 space-y-1">
+            {path.map((step, i) => (
+              <li key={i} className={`flex gap-2 text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>
+                <span className="font-mono font-bold text-violet-400">{i + 1}.</span>{step}
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {conclusion === null ? (
+          <div className={`rounded-lg border p-3 ${dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+            <p className={`mb-3 font-semibold ${dark ? "text-white" : "text-slate-900"}`}>{node.prompt}</p>
+            <div className="space-y-2">
+              {node.options.map((option) => (
+                <button
+                  key={option.label}
+                  type="button"
+                  onClick={() => choose(option)}
+                  className={`flex w-full items-center gap-2 rounded-lg border-2 p-3 text-left text-sm transition ${dark ? "border-slate-600 hover:border-violet-400 text-slate-200" : "border-slate-300 hover:border-violet-500 text-slate-700"}`}
+                >
+                  <ArrowRight size={15} className="shrink-0 text-violet-400" /> {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-lg border-2 border-emerald-500/40 bg-emerald-500/5 p-3">
+            <p className="mb-1 flex items-center gap-2 text-sm font-bold text-emerald-500">
+              <ShieldCheck size={16} /> Stratégie conseillée
+            </p>
+            <p className={`text-sm leading-relaxed ${dark ? "text-slate-200" : "text-slate-700"}`}>{conclusion}</p>
+          </div>
+        )}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    GRAFCET INTERACTIF — RÈGLES D'ÉVOLUTION
    Petit GRAFCET à 3 étapes (0 initiale, 1, 2) commandant un vérin.
    L'utilisateur franchit les transitions une à une : l'étape active
@@ -1413,5 +1516,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "plc-scan-cycle") return <PLCScanCycle dark={dark} />;
   if (type === "auto-diagnostic-tree") return <AutoDiagnosticTree dark={dark} />;
   if (type === "grafcet-cycle") return <GrafcetCycle dark={dark} />;
+  if (type === "maintenance-strategy") return <MaintenanceStrategy dark={dark} />;
   return null;
 }

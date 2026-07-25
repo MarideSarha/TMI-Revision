@@ -217,9 +217,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après l'achèvement du module 5 : **5 modules, 26 blocs, 142 leçons, 715 questions, 10 pannes, 25 badges.**
-- Bundles sous budget : `learning-data` ≈ 451 kB, `learning-electro` et `learning-auto` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 4 : inchangé (6 blocs sur 12).**
+- Build réussi. Décomptes après le bloc 1 du module 6 : **6 modules, 32 blocs, 148 leçons, 745 questions, 10 pannes, 26 badges.**
+- Bundles sous budget : `learning-data` ≈ 451 kB, `learning-electro`, `learning-auto` et `learning-maint` isolés (budget 500 kB/fichier).
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau) : bloc 1 disponible sur 6 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -239,9 +239,15 @@ aucune réécriture d'historique.)
   (GRAFCET interactif : franchissement des transitions, étape active qui avance). Schémas statiques
   ajoutés : `air-treatment-frl` (unité FRL), `grafcet-structure` (étapes/transitions/liaisons) et
   `grafcet-structures` (séquence / sélection OU / parallélisme ET).
-- Prochaines pistes possibles : **compléter le module 4** (mécanique, 6 blocs restants sur 12), ou ajouter
-  un badge de fin de module `module_5` (non fait pour rester cohérent avec M4 qui n'utilise que des
-  badges de bloc).
+- **Module 6 « Maintenance préventive et diagnostic avancé » (nouveau, thème choisi par l'utilisateur)** :
+  `src/data/maintenance.ts` (id `m6`, icône `Activity`, couleur `violet`), `src/data/maintenanceQuestions.ts`
+  (préfixe `mnt`), chunk `learning-maint` dans `vite.config.ts`. 6 blocs prévus : **bloc 1 « Stratégies de
+  maintenance » terminé** (6 chapitres, examen, badge `maint_block_1`) ; restent les blocs 2 (préventif en
+  pratique), 3 (surveillance conditionnelle), 4 (méthodologie de diagnostic), 5 (indicateurs MTBF/MTTR/TRS,
+  AMDEC), 6 (documentation/GMAO/rapport). Le bloc 1 ajoute l'assistant interactif `maintenance-strategy`
+  (choix de stratégie selon criticité et surveillance). Lignes IDs : leçons `6-x`, questions `mntx`.
+- Prochaines pistes possibles : **poursuivre le module 6** (blocs 2 à 6), ou **compléter le module 4**
+  (mécanique, 6 blocs restants sur 12).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -284,6 +290,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-5): complete le bloc 4 (5-36 a 5-39), examen et badge`
 - `feat(module-5): demarre le bloc 6 (GRAFCET, 5-40 a 5-42) + GRAFCET interactif`
 - `feat(module-5): complete le bloc 6 (5-43 a 5-45), examen et badge — module 5 termine`
+- `feat(module-6): cree le module Maintenance et diagnostic + bloc 1 (6-1 a 6-3)`
+- `feat(module-6): complete le bloc 1 (6-4 a 6-6), examen et badge + assistant strategie`
 
 ## Instructions pour reprendre le développement
 

@@ -268,6 +268,262 @@ const block1Lessons: Lesson[] = [
         "La maintenance préventive systématique consiste à réaliser des opérations à intervalles fixes, définis en temps ou en nombre de cycles (par exemple un filtre toutes les 500 heures), sans attendre un signe d'usure. Son intérêt par rapport au correctif est de transformer des arrêts subis, imprévus et coûteux, en arrêts planifiés et maîtrisés, tout en évitant les dégâts d'une casse en production. Le risque de sur-maintenance est d'intervenir trop souvent : on gaspille des pièces, on immobilise inutilement la machine, et chaque démontage peut introduire un nouveau défaut. Il faut donc trouver la bonne périodicité, entre sous- et sur-maintenance.",
     },
   },
+  {
+    id: "6-4",
+    title: "La maintenance conditionnelle et prévisionnelle",
+    durationMinutes: 30,
+    objectifs: [
+      "Définir la maintenance conditionnelle basée sur l'état réel.",
+      "Distinguer conditionnelle et prévisionnelle.",
+    ],
+    simple:
+      "La maintenance conditionnelle intervient selon l'état réel de l'équipement : on surveille des paramètres (vibrations, température, huile…) et on agit quand un seuil d'alerte est atteint, ni trop tôt ni trop tard. La maintenance prévisionnelle va plus loin : à partir de l'évolution mesurée, on prévoit quand la panne surviendra et on planifie l'intervention avant.",
+    vocab: [
+      ["Maintenance conditionnelle", "Intervention déclenchée par l'état réel mesuré (dépassement d'un seuil)."],
+      ["Maintenance prévisionnelle", "Prévision de la date de défaillance à partir de l'évolution mesurée."],
+      ["Paramètre surveillé", "Grandeur mesurée qui renseigne sur l'état (vibration, température…)."],
+      ["Seuil d'alerte", "Valeur au-delà de laquelle on décide d'intervenir."],
+      ["Tendance", "Évolution d'un paramètre dans le temps, qui annonce une dégradation."],
+    ],
+    example:
+      "On mesure régulièrement les vibrations d'un moteur. Tant qu'elles restent basses, on n'intervient pas ; dès qu'elles franchissent le seuil d'alerte, on planifie le remplacement du roulement. En suivant la tendance, on peut même estimer dans combien de temps le seuil sera atteint : c'est le prévisionnel.",
+    schema: "maintenance-types",
+    ascii: "CONDITIONNELLE = selon l'ETAT REEL mesure → agir au SEUIL d'alerte\nPREVISIONNELLE = suivre la TENDANCE → PREVOIR la date de panne\nsurveiller : vibrations, temperature, analyse d'huile, ultrasons",
+    retenir: [
+      "Conditionnelle : on intervient selon l'état réel mesuré (au seuil d'alerte).",
+      "Prévisionnelle : on prévoit la date de panne à partir de la tendance.",
+      "On n'intervient ni trop tôt (gaspillage) ni trop tard (panne).",
+      "Elle repose sur la surveillance de paramètres (vibrations, température, huile…).",
+    ],
+    erreurs: [
+      "Confondre conditionnelle (état réel) et systématique (échéancier fixe).",
+      "Réagir à une seule mesure sans regarder la tendance.",
+      "Fixer un seuil au hasard, sans référence.",
+    ],
+    astucesPro: [
+      "Une mesure isolée dit peu ; c'est la tendance qui alerte.",
+      "On compare toujours à une référence (mesure à l'état sain).",
+      "La conditionnelle évite les démontages inutiles de la systématique.",
+    ],
+    diagnostic: [
+      "Comparer la mesure à la référence et au seuil d'alerte.",
+      "Analyser la tendance pour anticiper l'échéance.",
+      "Confirmer une alerte par une seconde mesure avant de conclure.",
+    ],
+    depannage: [
+      "Planifier l'intervention dès que la tendance approche du seuil.",
+      "Éviter d'intervenir sur une simple mesure isolée non confirmée.",
+      "Tracer les mesures pour affiner les seuils dans le temps.",
+    ],
+    securite: [
+      "La prise de mesures se fait dans le respect des consignes (accès, EPI) et sans exposer aux parties actives.",
+      "Toute intervention consécutive suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un moteur critique, les vibrations mesurées chaque semaine augmentent lentement et approchent du seuil d'alerte.",
+      mission: ["Nommer la stratégie utilisée.", "Dire quand intervenir.", "Expliquer l'apport du prévisionnel."],
+      correction:
+        "La stratégie est la maintenance conditionnelle : on surveille un paramètre (les vibrations) et on décide selon l'état réel. On intervient lorsque la mesure atteint le seuil d'alerte, pas avant (ce serait du gaspillage) ni après (ce serait la panne). L'apport du prévisionnel : en suivant la tendance (l'augmentation régulière), on estime dans combien de temps le seuil sera franchi, ce qui permet de planifier le remplacement du roulement au meilleur moment, sur un arrêt choisi. On confirme l'alerte par une seconde mesure et on trace les relevés pour affiner les seuils.",
+    },
+    memo: ["Conditionnelle = état réel + seuil", "Prévisionnelle = tendance + prévision", "Ni trop tôt, ni trop tard"],
+    resume:
+      "La maintenance conditionnelle déclenche l'intervention selon l'état réel mesuré (seuil d'alerte) ; la prévisionnelle prévoit la date de défaillance à partir de la tendance, pour intervenir au meilleur moment.",
+    quizIds: ["mnt16", "mnt17", "mnt18", "mnt19", "mnt20"],
+    verification: {
+      question: "Sur quoi repose la maintenance conditionnelle ?",
+      options: ["Sur un échéancier fixe", "Sur l'état réel mesuré (intervention au seuil d'alerte)", "Sur l'attente de la panne", "Sur le hasard"],
+      correct: 1,
+      explanation: "La conditionnelle se base sur l'état réel mesuré : on intervient quand un paramètre franchit son seuil d'alerte." ,
+    },
+    exercice: {
+      enonce:
+        "Distinguez maintenance conditionnelle et prévisionnelle, et expliquez pourquoi elles évitent le gaspillage.",
+      consignes: [
+        "Définis la conditionnelle.",
+        "Définis la prévisionnelle.",
+        "Explique l'avantage sur la systématique.",
+      ],
+      criteres: [
+        "J'ai défini la conditionnelle (état réel, seuil).",
+        "J'ai défini la prévisionnelle (tendance, prévision).",
+        "J'ai expliqué l'évitement des démontages inutiles.",
+      ],
+      correction:
+        "La maintenance conditionnelle déclenche l'intervention à partir de l'état réel de l'équipement : on surveille un paramètre (vibrations, température, analyse d'huile…) et on agit lorsqu'il dépasse un seuil d'alerte. La maintenance prévisionnelle va plus loin : en analysant la tendance d'évolution du paramètre, elle prévoit approximativement la date de la défaillance, ce qui permet de planifier l'intervention juste avant. Toutes deux évitent le gaspillage de la systématique : au lieu de démonter à échéance fixe (parfois inutilement), on n'intervient que lorsque l'état réel le justifie, ni trop tôt ni trop tard.",
+    },
+  },
+  {
+    id: "6-5",
+    title: "Choisir la bonne stratégie selon la criticité",
+    durationMinutes: 30,
+    objectifs: [
+      "Utiliser la criticité pour orienter le choix d'une stratégie.",
+      "Comprendre qu'on combine les stratégies selon les équipements.",
+    ],
+    simple:
+      "Il n'existe pas une seule bonne maintenance : on choisit selon la criticité de l'équipement (impact d'une panne) et selon qu'on peut surveiller son état. Un équipement peu critique peut rester en correctif ; un équipement critique se protège par du préventif systématique (si l'usure est prévisible) ou du conditionnel (si l'on peut mesurer son état). On combine les stratégies sur un même site.",
+    vocab: [
+      ["Criticité", "Importance de l'impact d'une panne (production, sécurité, coût)."],
+      ["Équipement critique", "Équipement dont la panne a un impact fort ; à protéger en priorité."],
+      ["Plan de maintenance", "Répartition des stratégies sur les équipements d'un site."],
+      ["Coût de possession", "Coût total : maintenance + arrêts + conséquences."],
+      ["Arbitrage", "Choix raisonné entre coût de maintenance et risque de panne."],
+    ],
+    example:
+      "Une ampoule d'éclairage secondaire : correctif (on remplace quand elle grille). Un moteur d'entraînement principal : conditionnel (surveillance vibratoire) car sa panne arrête la ligne. Un filtre à usure régulière : systématique. Sur un même atelier, les trois stratégies coexistent selon la criticité.",
+    schema: "maintenance-types",
+    illustrations: ["maintenance-strategy"],
+    ascii: "CHOIX = f(CRITICITE, possibilite de SURVEILLER)\npeu critique → CORRECTIF\ncritique + usure previsible → PREVENTIF SYSTEMATIQUE\ncritique + etat mesurable → CONDITIONNEL\non COMBINE les strategies selon les equipements",
+    retenir: [
+      "Le choix dépend de la criticité et de la possibilité de surveiller l'état.",
+      "Peu critique → correctif ; critique + usure prévisible → systématique ; critique + mesurable → conditionnel.",
+      "On combine les stratégies sur un même site, équipement par équipement.",
+      "L'objectif est le meilleur compromis coût / risque (coût de possession).",
+    ],
+    erreurs: [
+      "Vouloir appliquer une seule stratégie à tout le site.",
+      "Mettre du préventif lourd sur un équipement peu critique (gaspillage).",
+      "Laisser en correctif un équipement critique (risque d'arrêt majeur).",
+    ],
+    astucesPro: [
+      "On classe d'abord les équipements par criticité, puis on choisit la stratégie.",
+      "On réserve la surveillance conditionnelle (coûteuse) aux équipements critiques.",
+      "Le bon choix minimise le coût total (maintenance + conséquences des pannes).",
+    ],
+    diagnostic: [
+      "Évaluer la criticité de l'équipement (impact production, sécurité, coût).",
+      "Vérifier si l'état peut être surveillé par une mesure.",
+      "Vérifier si l'usure est prévisible dans le temps ou les cycles.",
+    ],
+    depannage: [
+      "Revoir la stratégie d'un équipement qui tombe souvent en panne malgré le plan.",
+      "Passer au conditionnel un équipement critique surveillable resté en correctif.",
+      "Alléger le systématique d'un équipement peu critique sur-maintenu.",
+    ],
+    securite: [
+      "La criticité intègre toujours la sécurité : un équipement dont la panne est dangereuse est critique, quel que soit son coût.",
+      "Le choix de stratégie ne dispense jamais des consignations et procédures d'intervention.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un atelier comporte : un éclairage d'appoint, un compresseur central alimentant toute la production, et un ventilateur avec filtre à usure régulière.",
+      mission: ["Proposer une stratégie pour chacun.", "Justifier par la criticité.", "Conclure sur la combinaison."],
+      correction:
+        "Éclairage d'appoint : peu critique, on reste en correctif (on remplace quand il grille). Compresseur central : très critique (sa panne arrête toute la production) et souvent surveillable (pression, température, vibrations, analyse d'huile) → maintenance conditionnelle, éventuellement prévisionnelle. Ventilateur avec filtre à usure régulière : critique modéré mais usure prévisible → préventif systématique (remplacement du filtre à échéance fixe). Conclusion : sur un même atelier, on combine les stratégies équipement par équipement, en fonction de la criticité et de la possibilité de surveiller l'état, pour obtenir le meilleur compromis coût/risque.",
+    },
+    memo: ["Criticité + surveillance → stratégie", "Peu critique : correctif", "On combine selon les équipements"],
+    resume:
+      "On choisit la stratégie de maintenance selon la criticité de l'équipement et la possibilité de surveiller son état ; on combine correctif, systématique et conditionnel sur un site pour le meilleur compromis coût/risque.",
+    quizIds: ["mnt21", "mnt22", "mnt23", "mnt24", "mnt25"],
+    verification: {
+      question: "De quoi dépend d'abord le choix d'une stratégie de maintenance ?",
+      options: ["De la couleur de la machine", "De la criticité de l'équipement et de la possibilité de surveiller son état", "Du jour de la semaine", "De la marque du fournisseur"],
+      correct: 1,
+      explanation: "Le choix dépend de la criticité (impact d'une panne) et de la possibilité de surveiller l'état de l'équipement." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment la criticité oriente le choix d'une stratégie, avec un exemple par stratégie.",
+      consignes: [
+        "Explique le rôle de la criticité.",
+        "Donne un exemple de correctif, de systématique et de conditionnel.",
+        "Conclus sur la combinaison des stratégies.",
+      ],
+      criteres: [
+        "J'ai relié la criticité au choix.",
+        "J'ai donné un exemple par stratégie.",
+        "J'ai conclu qu'on combine selon les équipements.",
+      ],
+      correction:
+        "La criticité — l'impact d'une panne sur la production, la sécurité et les coûts — oriente le choix : plus un équipement est critique, plus on cherche à éviter sa panne. Exemples : un éclairage d'appoint (peu critique) reste en correctif ; un filtre à usure régulière (usure prévisible) relève du préventif systématique ; un moteur d'entraînement critique et surveillable (vibrations) relève du conditionnel. On combine donc les stratégies sur un même site, équipement par équipement, pour protéger en priorité les équipements critiques tout en évitant de sur-maintenir les équipements secondaires — c'est le meilleur compromis coût/risque.",
+    },
+  },
+  {
+    id: "6-6",
+    title: "Le déroulement d'une intervention en sécurité (synthèse)",
+    durationMinutes: 30,
+    objectifs: [
+      "Décrire les grandes étapes d'une intervention de maintenance.",
+      "Replacer la sécurité au cœur de chaque étape.",
+    ],
+    simple:
+      "Une intervention de maintenance suit des étapes : préparer (comprendre le besoin, la documentation, les pièces), sécuriser (consignation des énergies, vérification d'absence de tension/pression), intervenir (diagnostic puis action), remettre en service (essais, contrôle des sécurités) et tracer (rapport). La sécurité n'est pas une étape isolée : elle est présente du début à la fin.",
+    vocab: [
+      ["Préparation", "Rassembler informations, documentation, pièces et outils avant d'intervenir."],
+      ["Consignation", "Mettre et maintenir l'installation hors énergie de façon sûre."],
+      ["Remise en service", "Redémarrage après essais et vérification des sécurités."],
+      ["Traçabilité", "Enregistrement de l'intervention (rapport)."],
+      ["Retour d'expérience", "Analyse a posteriori pour améliorer la prévention."],
+    ],
+    example:
+      "Pour remplacer un roulement : on prépare (pièce, outillage, doc), on consigne les énergies et on vérifie l'absence de tension/pression, on remplace le roulement, on effectue les essais et on contrôle les sécurités, puis on rédige le rapport (cause, pièces, temps). Chaque étape intègre la sécurité.",
+    schema: "consignation-steps",
+    ascii: "PREPARER → SECURISER (consignation + VAT/pression) → INTERVENIR (diagnostic + action)\n→ REMETTRE EN SERVICE (essais + securites) → TRACER (rapport)\nla SECURITE est presente a CHAQUE etape",
+    retenir: [
+      "Étapes : préparer, sécuriser, intervenir, remettre en service, tracer.",
+      "La consignation et la vérification d'absence d'énergie précèdent l'intervention.",
+      "La remise en service inclut des essais et le contrôle des sécurités.",
+      "La traçabilité (rapport) nourrit le retour d'expérience et la prévention.",
+    ],
+    erreurs: [
+      "Intervenir sans préparer (mauvaise pièce, temps perdu).",
+      "Sauter ou bâcler la consignation (danger).",
+      "Oublier le rapport, donc perdre l'historique utile à la prévention.",
+    ],
+    astucesPro: [
+      "Une bonne préparation réduit fortement le temps d'immobilisation.",
+      "On ne remet jamais en service sans avoir vérifié les sécurités.",
+      "Le rapport bien renseigné aujourd'hui accélère le diagnostic de demain.",
+    ],
+    diagnostic: [
+      "Vérifier que la préparation couvre la documentation et les pièces nécessaires.",
+      "S'assurer que la consignation est faite avant tout accès aux parties actives.",
+      "Contrôler les sécurités avant la remise en service.",
+    ],
+    depannage: [
+      "Reprendre une étape négligée (préparation, consignation) plutôt que de foncer.",
+      "Confirmer par des essais que la fonction est bien rétablie.",
+      "Compléter le rapport avec la cause identifiée et les actions menées.",
+    ],
+    securite: [
+      "La consignation des énergies et la vérification d'absence de tension/pression sont indispensables avant d'intervenir.",
+      "On ne remet jamais en service sans avoir contrôlé les organes de sécurité ; on ne neutralise aucune sécurité.",
+      "Cette application est pédagogique et ne remplace ni la formation, ni les habilitations, ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation: "Un technicien pressé veut remplacer une pièce sans préparer ni tracer, pour aller vite.",
+      mission: ["Rappeler les étapes d'une intervention.", "Expliquer les risques de sauter la préparation et le rapport.", "Rappeler la place de la sécurité."],
+      correction:
+        "Une intervention suit les étapes : préparer (documentation, pièces, outillage), sécuriser (consignation des énergies et vérification d'absence de tension/pression), intervenir (diagnostic puis action), remettre en service (essais et contrôle des sécurités) et tracer (rapport). Sauter la préparation expose à prendre la mauvaise pièce, à perdre du temps et à improviser dangereusement ; oublier le rapport fait perdre l'historique utile pour prévenir la récidive et diagnostiquer plus vite la prochaine fois. La sécurité n'est pas une étape à part : la consignation précède l'intervention, le contrôle des sécurités précède la remise en service, et l'on ne neutralise jamais une sécurité. Aller « vite » en sautant ces étapes coûte finalement plus cher et plus dangereux.",
+    },
+    memo: ["Préparer · sécuriser · intervenir · remettre · tracer", "Consignation avant d'intervenir", "Sécurité à chaque étape"],
+    resume:
+      "Une intervention de maintenance se déroule en étapes — préparer, sécuriser, intervenir, remettre en service, tracer — avec la sécurité (consignation, contrôle des sécurités) présente du début à la fin.",
+    quizIds: ["mnt26", "mnt27", "mnt28", "mnt29", "mnt30"],
+    verification: {
+      question: "À quel moment la sécurité intervient-elle dans une intervention de maintenance ?",
+      options: ["Seulement à la fin", "Seulement au début", "À chaque étape (préparation à remise en service)", "Jamais"],
+      correct: 2,
+      explanation: "La sécurité est présente à chaque étape : consignation avant d'intervenir, contrôle des sécurités avant la remise en service." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez les étapes d'une intervention de maintenance et montrez que la sécurité est présente partout.",
+      consignes: [
+        "Cite les étapes dans l'ordre.",
+        "Précise l'étape de sécurisation.",
+        "Explique la place de la traçabilité.",
+      ],
+      criteres: [
+        "J'ai cité préparer, sécuriser, intervenir, remettre en service, tracer.",
+        "J'ai décrit la consignation avant intervention.",
+        "J'ai expliqué l'intérêt du rapport.",
+      ],
+      correction:
+        "Les étapes d'une intervention sont : préparer (comprendre le besoin, réunir documentation, pièces et outillage), sécuriser (consigner les énergies et vérifier l'absence de tension/pression), intervenir (diagnostiquer puis agir), remettre en service (réaliser les essais et contrôler les sécurités) et tracer (rédiger le rapport : cause, pièces, temps). La sécurité est présente partout : la consignation précède tout accès aux parties actives, et le contrôle des organes de sécurité précède la remise en service, sans jamais neutraliser une sécurité. La traçabilité conserve l'historique, ce qui nourrit le retour d'expérience, améliore la prévention et accélère les diagnostics futurs.",
+    },
+  },
 ];
 
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
@@ -278,7 +534,11 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
     objective: "Distinguer maintenance corrective, préventive, conditionnelle et prévisionnelle, et savoir laquelle choisir.",
     lessonIds: block1Lessons.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["mnt1", "mnt4", "mnt6", "mnt7", "mnt11", "mnt13", "mnt16", "mnt19", "mnt21", "mnt24", "mnt26", "mnt29"],
+      passPercent: 80,
+    },
   },
   { id: "m6-b2", num: 2, title: "La maintenance préventive en pratique", objective: "Bâtir et suivre un plan de maintenance préventive (gammes, périodicités, lubrification).", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m6-b3", num: 3, title: "La surveillance conditionnelle", objective: "Surveiller l'état des équipements (vibrations, thermographie, analyse d'huile, ultrasons).", lessonIds: [], chapterCount: 6, status: "planned" },
@@ -295,5 +555,6 @@ export const MAINTENANCE_MODULE: TrainingModule = {
   color: "violet",
   source: "[TMI] Parcours progressif débutant → opérationnel · stratégies de maintenance, surveillance conditionnelle, diagnostic et méthodes · module transverse",
   lessons: [...block1Lessons],
+  // (bloc 1 complet : 6 chapitres ; blocs 2 à 6 à venir)
   blocks: MAINTENANCE_BLOCKS,
 };
