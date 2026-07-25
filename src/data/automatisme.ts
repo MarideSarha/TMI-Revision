@@ -3603,6 +3603,262 @@ const block6Lessons: Lesson[] = [
         "Une transition se franchit lorsque deux conditions sont réunies : son étape amont est active ET sa réceptivité est vraie. Au franchissement, l'étape amont se désactive et l'étape aval s'active ; ce sont les étapes actives qui commandent leurs actions. Si la réceptivité n'est pas vraie, la transition ne se franchit pas : la machine reste sur l'étape active et attend que la condition soit remplie. C'est ce mécanisme qui explique de nombreux blocages : l'étape est active mais la condition (souvent un capteur) manque.",
     },
   },
+  {
+    id: "5-43",
+    title: "Actions associées aux étapes et réceptivités",
+    durationMinutes: 30,
+    objectifs: [
+      "Associer des actions aux étapes d'un GRAFCET.",
+      "Exprimer une réceptivité à partir de capteurs, boutons ou temporisations.",
+    ],
+    simple:
+      "À chaque étape active correspondent une ou plusieurs actions (sortir un vérin, faire tourner un moteur…), écrites dans un rectangle relié à l'étape. À chaque transition correspond une réceptivité : la condition de passage, exprimée avec des capteurs, des boutons, ou une temporisation. Bien distinguer action (ce que fait l'étape) et réceptivité (ce qui autorise le passage) est essentiel.",
+    vocab: [
+      ["Action", "Ce que commande une étape active (ordre vers un préactionneur, par ex.)."],
+      ["Réceptivité", "Condition logique associée à une transition (capteur, bouton, temporisation)."],
+      ["Temporisation", "Réceptivité liée au temps (ex. « au bout de 3 s »)."],
+      ["Action continue", "Action maintenue tant que l'étape est active."],
+      ["Variable", "Nom qui représente un capteur ou un ordre (ex. b = vérin sorti, V+ = sortir)."],
+    ],
+    example:
+      "Étape 1 : action « V+ » (sortir le vérin). Transition suivante : réceptivité « b » (capteur vérin sorti). Autre exemple de réceptivité : « t/X2/3s » signifie « 3 secondes après l'activation de l'étape 2 ». On lit ainsi ce que fait l'étape et ce qui permet d'avancer.",
+    schema: "grafcet-structure",
+    ascii: "ETAPE active → ACTION (rectangle) : ex. V+ (sortir le verin)\nTRANSITION → RECEPTIVITE : capteur (b), bouton (dcy), temporisation (t/X2/3s)\nne pas confondre ACTION (ce que fait l'etape) et RECEPTIVITE (condition)",
+    retenir: [
+      "Une action est écrite dans un rectangle relié à l'étape ; elle n'agit que si l'étape est active.",
+      "Une réceptivité est la condition d'une transition (capteur, bouton, temporisation).",
+      "Ne pas confondre action (étape) et réceptivité (transition).",
+      "Une temporisation est une réceptivité liée au temps.",
+    ],
+    erreurs: [
+      "Mettre une action sur une transition ou une réceptivité sur une étape.",
+      "Croire qu'une action se poursuit après désactivation de l'étape.",
+      "Oublier qu'une réceptivité peut combiner plusieurs conditions.",
+    ],
+    astucesPro: [
+      "On relie chaque action à un préactionneur réel pour comprendre l'effet.",
+      "Une réceptivité de temporisation explique une attente « normale » de la machine.",
+      "Nommer clairement les variables (capteurs, ordres) facilite la lecture.",
+    ],
+    diagnostic: [
+      "Vérifier que l'action attendue correspond bien à l'étape active.",
+      "Contrôler la réceptivité (capteur, bouton, temporisation) de la transition non franchie.",
+      "Distinguer un défaut d'action (préactionneur, aval) d'une réceptivité non remplie.",
+    ],
+    depannage: [
+      "Si l'étape est active mais l'action absente, chercher en aval (préactionneur, énergie).",
+      "Si la machine attend, vérifier la réceptivité (capteur ou temporisation).",
+      "Faire appel à une personne compétente pour modifier le programme.",
+    ],
+    securite: [
+      "Une action commandée par une étape peut mettre en mouvement un actionneur : on tient compte des mouvements possibles.",
+      "Toute intervention suit la consignation et les procédures ; on ne contourne pas les sécurités.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un GRAFCET indique à l'étape 2 l'action « V− » et, sur la transition suivante, la réceptivité « a ». La machine reste à l'étape 2.",
+      mission: ["Dire ce que fait l'étape 2.", "Expliquer ce qu'attend la transition.", "Orienter le diagnostic."],
+      correction:
+        "À l'étape 2, l'action « V− » commande la rentrée du vérin : tant que l'étape 2 est active, le vérin doit rentrer. La transition suivante a pour réceptivité « a », le capteur de fin de course « vérin rentré » : on ne passe à l'étape suivante que lorsque a est vrai. Si la machine reste à l'étape 2, deux pistes : soit l'action ne se fait pas (le vérin ne rentre pas — défaut en aval : distributeur, air, actionneur), soit le vérin rentre mais le capteur a ne le détecte pas (position, réglage, câblage). On distingue ainsi défaut d'action et réceptivité non remplie, en sécurité.",
+    },
+    memo: ["Action = étape · Réceptivité = transition", "Action active si étape active", "Temporisation = réceptivité de temps"],
+    resume:
+      "Chaque étape active commande ses actions (rectangle relié à l'étape) ; chaque transition porte une réceptivité (capteur, bouton, temporisation) ; il faut distinguer action et réceptivité.",
+    quizIds: ["aut211", "aut212", "aut213", "aut214", "aut215"],
+    verification: {
+      question: "Où sont écrites les actions dans un GRAFCET ?",
+      options: ["Sur les transitions", "Dans un rectangle relié à l'étape", "Sur les liaisons", "Nulle part"],
+      correct: 1,
+      explanation: "Les actions sont écrites dans un rectangle relié à l'étape ; elles ne sont commandées que si l'étape est active." ,
+    },
+    exercice: {
+      enonce:
+        "Distinguez action et réceptivité, avec un exemple de chaque, et citez une réceptivité de temporisation.",
+      consignes: [
+        "Définis l'action et donne un exemple.",
+        "Définis la réceptivité et donne un exemple.",
+        "Donne un exemple de réceptivité de temporisation.",
+      ],
+      criteres: [
+        "J'ai défini l'action (liée à l'étape) avec un exemple.",
+        "J'ai défini la réceptivité (liée à la transition) avec un exemple.",
+        "J'ai donné une réceptivité de temporisation.",
+      ],
+      correction:
+        "L'action est ce que commande une étape active : elle est écrite dans un rectangle relié à l'étape et n'agit que tant que l'étape est active (exemple : « V+ » sortir le vérin à l'étape 1). La réceptivité est la condition de passage associée à une transition, exprimée avec des capteurs, boutons ou temporisations (exemple : « b », capteur vérin sorti). Une réceptivité de temporisation dépend du temps, par exemple « t/X2/3s » : trois secondes après l'activation de l'étape 2. Il ne faut pas confondre action (ce que fait l'étape) et réceptivité (ce qui autorise le franchissement).",
+    },
+  },
+  {
+    id: "5-44",
+    title: "Structures de base : séquence, sélection (OU), parallélisme (ET)",
+    durationMinutes: 32,
+    objectifs: [
+      "Reconnaître les trois structures de base d'un GRAFCET.",
+      "Distinguer un choix (OU) d'un fonctionnement simultané (ET).",
+    ],
+    simple:
+      "Un GRAFCET se construit avec trois structures. La séquence : les étapes s'enchaînent l'une après l'autre. La sélection (divergence en OU) : plusieurs chemins possibles, un seul est choisi selon la réceptivité vraie. Le parallélisme (divergence en ET) : plusieurs chemins actifs en même temps, qui se resynchronisent ensuite.",
+    vocab: [
+      ["Séquence", "Enchaînement simple d'étapes, l'une après l'autre."],
+      ["Sélection (OU)", "Divergence où un seul chemin est choisi (selon la réceptivité vraie)."],
+      ["Parallélisme (ET)", "Divergence où plusieurs chemins sont actifs simultanément."],
+      ["Divergence", "Endroit où le GRAFCET se sépare en plusieurs chemins."],
+      ["Convergence", "Endroit où les chemins se rejoignent."],
+    ],
+    example:
+      "Sélection (OU) : selon le type de pièce détecté, la machine suit le chemin A ou le chemin B, mais pas les deux. Parallélisme (ET) : après une transition, deux tâches démarrent en même temps (par ex. chauffer ET remplir), puis on attend que les deux soient finies pour continuer.",
+    schema: "grafcet-structures",
+    ascii: "SEQUENCE : etape → transition → etape (l'une apres l'autre)\nSELECTION (OU) : 1 seul chemin choisi (trait simple, transitions distinctes)\nPARALLELE (ET) : chemins actifs en meme temps (double barre de synchronisation)",
+    retenir: [
+      "Séquence : les étapes s'enchaînent l'une après l'autre.",
+      "Sélection (OU) : plusieurs chemins possibles, un seul est choisi (trait simple).",
+      "Parallélisme (ET) : plusieurs chemins actifs simultanément (double barre).",
+      "Le ET se resynchronise ensuite (on attend que tous les chemins soient finis).",
+    ],
+    erreurs: [
+      "Confondre le OU (un seul chemin) et le ET (tous les chemins).",
+      "Oublier la resynchronisation à la fin d'un parallélisme.",
+      "Croire qu'une sélection active plusieurs branches à la fois.",
+    ],
+    astucesPro: [
+      "Le double trait (barre de synchronisation) signale un ET ; le trait simple, un OU.",
+      "Dans un ET, la suite attend que toutes les branches soient terminées.",
+      "On identifie la structure pour comprendre pourquoi deux actions se font (ou non) en même temps.",
+    ],
+    diagnostic: [
+      "Repérer la structure (séquence, OU, ET) autour de l'endroit qui pose problème.",
+      "Pour un OU, vérifier quelle réceptivité a été vraie (quel chemin est pris).",
+      "Pour un ET, vérifier que toutes les branches ont bien atteint leur fin (synchronisation).",
+    ],
+    depannage: [
+      "Un blocage en fin de parallélisme vient souvent d'une branche non terminée.",
+      "Un mauvais chemin en sélection oriente vers la réceptivité qui a été vraie.",
+      "Faire appel à une personne compétente pour toute modification du programme.",
+    ],
+    securite: [
+      "Le parallélisme peut commander plusieurs actionneurs simultanément : on tient compte de tous les mouvements.",
+      "Toute intervention suit la consignation et les procédures ; on ne contourne pas les sécurités.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine doit chauffer un bain ET remplir une cuve en même temps, puis ne continuer que lorsque les deux sont finis.",
+      mission: ["Nommer la structure.", "Expliquer comment on la reconnaît.", "Dire ce qui se passe à la fin."],
+      correction:
+        "Il s'agit d'un parallélisme (divergence en ET) : deux tâches, « chauffer » et « remplir », sont actives en même temps. On la reconnaît à la double barre horizontale (barre de synchronisation) qui suit une transition unique, d'où partent les deux branches. À la fin, les branches se rejoignent sur une seconde double barre : on attend que les deux branches soient terminées (resynchronisation) avant de franchir la transition suivante et de continuer. C'est ce qui distingue le ET (tous les chemins actifs, puis on attend tout le monde) du OU (un seul chemin choisi).",
+    },
+    memo: ["Séquence : l'une après l'autre", "OU : un seul chemin (trait simple)", "ET : tous les chemins (double barre)"],
+    resume:
+      "Le GRAFCET utilise trois structures : la séquence (étapes successives), la sélection OU (un seul chemin choisi) et le parallélisme ET (chemins simultanés avec resynchronisation).",
+    quizIds: ["aut216", "aut217", "aut218", "aut219", "aut220"],
+    verification: {
+      question: "Quelle est la différence entre une sélection (OU) et un parallélisme (ET) ?",
+      options: ["Aucune", "Le OU choisit un seul chemin ; le ET active plusieurs chemins en même temps", "Le OU est plus rapide", "Le ET n'a pas de transition"],
+      correct: 1,
+      explanation: "En sélection (OU) un seul chemin est choisi ; en parallélisme (ET) plusieurs chemins sont actifs simultanément puis se resynchronisent." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez les trois structures de base du GRAFCET et donnez un exemple de OU et de ET.",
+      consignes: [
+        "Décris la séquence.",
+        "Décris la sélection (OU) avec un exemple.",
+        "Décris le parallélisme (ET) avec un exemple.",
+      ],
+      criteres: [
+        "J'ai décrit la séquence.",
+        "J'ai décrit le OU (un seul chemin) avec un exemple.",
+        "J'ai décrit le ET (chemins simultanés + resynchronisation) avec un exemple.",
+      ],
+      correction:
+        "La séquence enchaîne les étapes l'une après l'autre. La sélection (divergence en OU) propose plusieurs chemins dont un seul est choisi selon la réceptivité qui devient vraie — par exemple, selon le type de pièce, la machine suit le chemin A ou le chemin B, jamais les deux ; on la reconnaît au trait simple avec des transitions distinctes sur chaque branche. Le parallélisme (divergence en ET) active plusieurs chemins en même temps — par exemple chauffer ET remplir simultanément — et se reconnaît à la double barre de synchronisation ; à la fin, on attend que toutes les branches soient terminées (resynchronisation) avant de continuer.",
+    },
+  },
+  {
+    id: "5-45",
+    title: "Lire et suivre un GRAFCET : mise en situation",
+    durationMinutes: 30,
+    objectifs: [
+      "Suivre l'évolution d'un GRAFCET pas à pas.",
+      "Utiliser le GRAFCET pour situer un blocage sur une machine.",
+    ],
+    simple:
+      "Savoir lire un GRAFCET, c'est pouvoir dire, à tout instant, quelle étape est active, quelle action est commandée, et quelle réceptivité on attend pour avancer. C'est un outil très concret de dépannage : quand une machine se bloque, on repère l'étape active, on lit la réceptivité manquante, et on va vérifier le capteur ou la condition correspondante.",
+    vocab: [
+      ["Suivre un GRAFCET", "Repérer l'étape active et l'évolution attendue à chaque instant."],
+      ["Étape active", "L'étape « en cours », qui commande les actions du moment."],
+      ["Blocage", "Arrêt de l'évolution : une réceptivité attendue n'est pas remplie."],
+      ["Situation courante", "L'ensemble des étapes actives à un instant donné."],
+      ["Mise en situation", "Application concrète de la lecture du GRAFCET à un cas réel."],
+    ],
+    example:
+      "Machine à l'étape 3, action « fermer la porte », transition suivante avec réceptivité « porte fermée (fc) ». La machine n'avance pas : on va vérifier le capteur fc et la fermeture réelle de la porte. Le GRAFCET a guidé directement vers le bon point de contrôle.",
+    schema: "grafcet-structure",
+    illustrations: ["grafcet-cycle"],
+    ascii: "a chaque instant : ETAPE active ? ACTION commandee ? RECEPTIVITE attendue ?\nblocage → repere l'etape active → lit la receptivite manquante → verifie le capteur\nle GRAFCET guide vers le bon point de controle",
+    retenir: [
+      "À tout instant : quelle étape active, quelle action, quelle réceptivité attendue.",
+      "Un blocage se lit sur le GRAFCET : étape active + réceptivité manquante.",
+      "On va ensuite vérifier le capteur ou la condition nommée.",
+      "Le GRAFCET guide le dépannage vers le bon point de contrôle.",
+    ],
+    erreurs: [
+      "Chercher au hasard au lieu de partir de l'étape active.",
+      "Oublier de relier la réceptivité manquante à un capteur ou une condition réelle.",
+      "Confondre l'action non réalisée (aval) et la réceptivité non remplie (condition).",
+    ],
+    astucesPro: [
+      "On lit d'abord l'étape active, puis la réceptivité de la transition suivante.",
+      "On relie chaque réceptivité à un capteur ou une entrée pour aller le contrôler.",
+      "Les voyants d'E/S confirment l'état réel des capteurs cités dans les réceptivités.",
+    ],
+    diagnostic: [
+      "Identifier l'étape active au moment du blocage.",
+      "Lire la réceptivité de la transition qui ne se franchit pas.",
+      "Aller vérifier le capteur/condition correspondant (état réel, voyant).",
+    ],
+    depannage: [
+      "Traiter la cause de la réceptivité manquante (capteur, câblage, condition).",
+      "Distinguer une action non réalisée (aval) d'une réceptivité fausse (condition).",
+      "Faire appel à une personne compétente pour toute modification du programme.",
+    ],
+    securite: [
+      "La lecture du GRAFCET se fait sans accès aux parties actives.",
+      "Toute intervention consécutive suit la consignation et les procédures ; on ne contourne pas les sécurités.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine s'arrête en cours de cycle. Le GRAFCET indique l'étape 4 active, action « avancer le tapis », transition suivante avec réceptivité « pièce en butée (cap5) ».",
+      mission: ["Dire ce que fait la machine.", "Décrire la démarche avec le GRAFCET.", "Rappeler la sécurité."],
+      correction:
+        "À l'étape 4, l'action « avancer le tapis » est commandée : le tapis doit tourner. La transition suivante attend « pièce en butée (cap5) » : on ne passe à la suite que si le capteur cap5 détecte la pièce en butée. Démarche : on part de l'étape active (4), on lit la réceptivité manquante (cap5), puis on va vérifier concrètement — la pièce arrive-t-elle en butée ? le capteur cap5 détecte-t-il (voyant, position, réglage) ? le tapis avance-t-il réellement ? On distingue ainsi une action non réalisée (tapis, aval) d'une détection manquante (cap5). Toute vérification sur les parties actives se fait après consignation, sans contourner les sécurités ; une modification de programme relève d'une personne compétente.",
+    },
+    memo: ["Étape active → action → réceptivité", "Blocage = réceptivité manquante", "Le GRAFCET guide le dépannage"],
+    resume:
+      "Lire un GRAFCET, c'est savoir à tout instant l'étape active, l'action commandée et la réceptivité attendue ; c'est un outil concret pour situer un blocage et aller vérifier le bon capteur ou la bonne condition.",
+    quizIds: ["aut221", "aut222", "aut223", "aut224", "aut225"],
+    verification: {
+      question: "Une machine se bloque. Comment le GRAFCET aide-t-il à dépanner ?",
+      options: ["Il coupe l'énergie", "Il montre l'étape active et la réceptivité manquante, guidant vers le capteur à vérifier", "Il remplace le capteur", "Il ne sert à rien en dépannage"],
+      correct: 1,
+      explanation: "On repère l'étape active et la réceptivité non remplie, ce qui indique le capteur ou la condition à contrôler." ,
+    },
+    exercice: {
+      enonce:
+        "À partir d'un GRAFCET (étape active, action, réceptivité de la transition suivante), décrivez comment vous situez et diagnostiquez un blocage.",
+      consignes: [
+        "Indique par quoi tu commences (étape active).",
+        "Explique comment tu utilises la réceptivité.",
+        "Rappelle la sécurité avant vérification sur la machine.",
+      ],
+      criteres: [
+        "J'ai commencé par repérer l'étape active.",
+        "J'ai relié la réceptivité manquante au capteur/condition à vérifier.",
+        "J'ai rappelé la consignation et les sécurités.",
+      ],
+      correction:
+        "On commence par repérer l'étape active sur le GRAFCET : elle indique ce que la machine est censée faire (l'action commandée). On lit ensuite la réceptivité de la transition suivante : c'est la condition attendue pour avancer. Si la machine est bloquée, cette réceptivité n'est probablement pas remplie ; on la relie à un capteur ou une condition réelle que l'on va vérifier (état réel, voyant d'entrée, position, réglage). On distingue une action non réalisée (défaut en aval) d'une réceptivité fausse (capteur, condition). Avant toute vérification sur les parties actives, on consigne et on respecte les sécurités ; une modification de programme relève d'une personne compétente.",
+    },
+  },
 ];
 
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
@@ -3678,7 +3934,11 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
     objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).",
     lessonIds: block6Lessons.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["aut196", "aut199", "aut201", "aut204", "aut206", "aut209", "aut211", "aut214", "aut216", "aut219", "aut221", "aut224"],
+      passPercent: 80,
+    },
   },
   {
     id: "m5-b7",

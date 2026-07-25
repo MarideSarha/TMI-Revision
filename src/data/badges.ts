@@ -19,6 +19,7 @@ export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "auto_block_3", label: "Actionneurs & vérins", desc: "Comprendre actionneurs, préactionneurs et vérins avec au moins 80 %", icon: Cpu },
   { id: "auto_block_4", label: "Le pneumatique", desc: "Maîtriser vérins, distributeurs et traitement de l'air comprimé avec au moins 80 %", icon: Cpu },
   { id: "auto_block_5", label: "L'automate (API)", desc: "Comprendre l'automate programmable, ses E/S et son cycle avec au moins 80 %", icon: Cpu },
+  { id: "auto_block_6", label: "Séquence & GRAFCET", desc: "Décrire un fonctionnement séquentiel avec le GRAFCET avec au moins 80 %", icon: Cpu },
   { id: "auto_block_7", label: "Diagnostic & maintenance", desc: "Diagnostiquer et entretenir un système automatisé en sécurité avec au moins 80 %", icon: Target },
   { id: "mechanics_block_1", label: "Observateur mécanique", desc: "Maîtriser le bloc 1 de mécanique avec au moins 80 %", icon: ShieldCheck },
   { id: "mechanics_block_5", label: "Assembleur fiable", desc: "Maîtriser assemblages, fixations et étanchéité avec au moins 80 %", icon: Wrench },
