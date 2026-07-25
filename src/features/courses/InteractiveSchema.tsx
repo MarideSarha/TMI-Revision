@@ -1027,6 +1027,98 @@ function AutoDiagnosticTree({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   GRAFCET INTERACTIF — RÈGLES D'ÉVOLUTION
+   Petit GRAFCET à 3 étapes (0 initiale, 1, 2) commandant un vérin.
+   L'utilisateur franchit les transitions une à une : l'étape active
+   se désactive et l'étape suivante s'active. Repli statique : même sans
+   interaction, la structure (étapes, transitions, réceptivités,
+   actions) reste lisible.
+   --------------------------------------------------------------- */
+
+const GRAFCET_STEPS: Array<{ id: number; initial: boolean; action: string; recept: string }> = [
+  { id: 0, initial: true, action: "Attente — système prêt", recept: "Départ cycle (dcy)" },
+  { id: 1, initial: false, action: "Sortir le vérin (V+)", recept: "Vérin sorti (b)" },
+  { id: 2, initial: false, action: "Rentrer le vérin (V−)", recept: "Vérin rentré (a)" },
+];
+
+function GrafcetCycle({ dark }: { dark: boolean }) {
+  const [active, setActive] = useState(0);
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const box = dark ? "#1e293b" : "#f1f5f9";
+  const activeFill = "#f5b400";
+  const cur = GRAFCET_STEPS[active];
+  const nextStep = (active + 1) % GRAFCET_STEPS.length;
+
+  const stepY = [20, 92, 164]; // haut de chaque carré d'étape
+  const transY = [68, 140, 212]; // position de chaque barre de transition
+  const cx = 62; // axe vertical de la chaîne
+
+  return (
+    <Figure
+      dark={dark}
+      title="GRAFCET interactif : franchir les transitions"
+      legend="Franchis les transitions une à une : l'étape active se désactive et l'étape suivante s'active. La réceptivité est la condition à droite de chaque barre."
+      explanation="Un GRAFCET décrit un fonctionnement séquentiel : des étapes (ce que fait la machine) reliées par des transitions (les conditions de passage, appelées réceptivités). Une transition se franchit lorsque son étape amont est active ET que sa réceptivité est vraie : l'étape amont se désactive alors et l'étape aval s'active. Ici, on suppose la réceptivité vraie quand tu cliques : cela met en évidence la règle d'évolution. À l'étape 1 le vérin sort, à l'étape 2 il rentre, puis on revient à l'étape initiale : le cycle recommence."
+      controls={
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" onClick={() => setActive(nextStep)} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-2.5 text-sm font-bold ${dark ? "border-amber-400 bg-amber-400 text-slate-950" : "border-amber-500 bg-amber-500 text-white"}`}>
+            <ArrowRight size={16} /> Franchir la transition
+          </button>
+          <button type="button" onClick={() => setActive(0)} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Étape initiale
+          </button>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 240 244" className="h-auto w-full" role="img" aria-label={`Étape active : étape ${cur.id} — ${cur.action}. Réceptivité pour avancer : ${cur.recept}.`}>
+        {/* Liaisons verticales */}
+        <line x1={cx} y1="48" x2={cx} y2="92" stroke={stroke} strokeWidth="1.5" />
+        <line x1={cx} y1="120" x2={cx} y2="164" stroke={stroke} strokeWidth="1.5" />
+        <line x1={cx} y1="192" x2={cx} y2="224" stroke={stroke} strokeWidth="1.5" />
+        {/* Boucle de retour vers l'étape initiale */}
+        <path d={`M${cx} 224 L18 224 L18 30 L${cx - 14} 30`} fill="none" stroke={stroke} strokeWidth="1.5" />
+        <path d={`M${cx - 14} 30 l-6 -3 m6 3 l-6 3`} stroke={stroke} strokeWidth="1.5" fill="none" />
+
+        {GRAFCET_STEPS.map((s, i) => {
+          const isActive = i === active;
+          const y = stepY[i];
+          return (
+            <g key={s.id}>
+              {/* Carré d'étape (double bordure si initiale) */}
+              {s.initial && <rect x={cx - 17} y={y - 3} width="34" height="34" rx="2" fill="none" stroke={isActive ? activeFill : stroke} strokeWidth="1.3" />}
+              <rect x={cx - 14} y={y} width="28" height="28" rx="2" fill={isActive ? activeFill : box} stroke={isActive ? activeFill : stroke} strokeWidth="1.5" />
+              <text x={cx} y={y + 19} textAnchor="middle" fontSize="14" fontWeight="bold" fill={isActive ? "#14151a" : stroke}>{s.id}</text>
+              {/* Liaison vers la case action */}
+              <line x1={cx + 14} y1={y + 14} x2="104" y2={y + 14} stroke={stroke} strokeWidth="1.2" />
+              {/* Case action */}
+              <rect x="104" y={y + 3} width="126" height="22" rx="3" fill={box} stroke={isActive ? activeFill : stroke} strokeWidth={isActive ? "1.8" : "1.2"} />
+              <text x="110" y={y + 17} fontSize="8.2" fill={stroke}>{s.action}</text>
+            </g>
+          );
+        })}
+
+        {GRAFCET_STEPS.map((s, i) => {
+          const ty = transY[i];
+          const crossable = i === active;
+          return (
+            <g key={`t-${s.id}`}>
+              {/* Barre de transition */}
+              <line x1={cx - 12} y1={ty} x2={cx + 12} y2={ty} stroke={crossable ? activeFill : stroke} strokeWidth={crossable ? "3" : "2"} />
+              {/* Réceptivité */}
+              <text x={cx + 20} y={ty + 3.5} fontSize="8.5" fontWeight={crossable ? "bold" : "normal"} fill={crossable ? activeFill : stroke}>{s.recept}</text>
+            </g>
+          );
+        })}
+      </svg>
+
+      <p className={`mt-2 text-center text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>
+        Étape active : <span className="font-bold" style={{ color: activeFill }}>étape {cur.id}</span> — pour avancer, réceptivité «&nbsp;{cur.recept}&nbsp;».
+      </p>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    SCHÉMA 9 — LA BOUCLE D'UN SYSTÈME AUTOMATISÉ
    Capteur → partie commande → préactionneur → actionneur → effet.
    --------------------------------------------------------------- */
@@ -1320,5 +1412,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "pneumatic-cylinder") return <PneumaticCylinder dark={dark} />;
   if (type === "plc-scan-cycle") return <PLCScanCycle dark={dark} />;
   if (type === "auto-diagnostic-tree") return <AutoDiagnosticTree dark={dark} />;
+  if (type === "grafcet-cycle") return <GrafcetCycle dark={dark} />;
   return null;
 }

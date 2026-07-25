@@ -1317,5 +1317,76 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "grafcet-structure") {
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        <text x="160" y="12" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Les éléments d'un GRAFCET</text>
+        {/* Étape initiale (double carré) */}
+        <rect x="40" y="24" width="30" height="30" rx="2" fill="none" stroke={stroke} strokeWidth="1.2" />
+        <rect x="44" y="28" width="22" height="22" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.4" />
+        <text x="55" y="43" textAnchor="middle" fontSize="11" fontWeight="bold" fill={stroke}>0</text>
+        <text x="55" y="66" textAnchor="middle" fontSize="6.6" fill={stroke}>étape initiale</text>
+        {/* Liaison + transition */}
+        <line x1="55" y1="54" x2="55" y2="78" stroke={stroke} strokeWidth="1.4" />
+        <line x1="43" y1="72" x2="67" y2="72" stroke={accent} strokeWidth="2.4" />
+        <text x="72" y="75" fontSize="7.5" fill={stroke}>réceptivité (condition)</text>
+        {/* Étape 1 + action */}
+        <rect x="44" y="86" width="22" height="22" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.4" />
+        <text x="55" y="101" textAnchor="middle" fontSize="11" fontWeight="bold" fill={stroke}>1</text>
+        <line x1="66" y1="97" x2="96" y2="97" stroke={stroke} strokeWidth="1.2" />
+        <rect x="96" y="88" width="120" height="18" rx="3" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="102" y="100" fontSize="7.6" fill={stroke}>action associée à l'étape</text>
+        {/* Légende */}
+        <line x1="240" y1="30" x2="256" y2="30" stroke={stroke} strokeWidth="1.4" />
+        <text x="262" y="33" fontSize="7" fill={stroke}>liaison orientée</text>
+        <line x1="240" y1="46" x2="256" y2="46" stroke={accent} strokeWidth="2.4" />
+        <text x="262" y="49" fontSize="7" fill={stroke}>transition</text>
+        <rect x="240" y="58" width="16" height="12" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="262" y="67" fontSize="7" fill={stroke}>étape</text>
+      </svg>
+    );
+  }
+  if (type === "grafcet-structures") {
+    return (
+      <svg viewBox="0 0 320 150" className="w-full h-40">
+        <text x="160" y="11" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Structures de base du GRAFCET</text>
+        {/* Séquence */}
+        <text x="55" y="26" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Séquence</text>
+        <rect x="46" y="32" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <line x1="55" y1="48" x2="55" y2="66" stroke={stroke} strokeWidth="1.3" />
+        <line x1="47" y1="57" x2="63" y2="57" stroke={accent} strokeWidth="2.2" />
+        <rect x="46" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <text x="55" y="98" textAnchor="middle" fontSize="6.4" fill={stroke}>une étape</text>
+        <text x="55" y="107" textAnchor="middle" fontSize="6.4" fill={stroke}>après l'autre</text>
+        {/* Divergence OU (sélection) */}
+        <text x="160" y="26" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Sélection (OU)</text>
+        <rect x="151" y="32" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <line x1="130" y1="54" x2="190" y2="54" stroke={stroke} strokeWidth="1.3" />
+        <line x1="160" y1="48" x2="160" y2="54" stroke={stroke} strokeWidth="1.3" />
+        <line x1="122" y1="62" x2="138" y2="62" stroke={accent} strokeWidth="2.2" />
+        <line x1="182" y1="62" x2="198" y2="62" stroke={accent} strokeWidth="2.2" />
+        <line x1="130" y1="54" x2="130" y2="62" stroke={stroke} strokeWidth="1.3" />
+        <line x1="190" y1="54" x2="190" y2="62" stroke={stroke} strokeWidth="1.3" />
+        <rect x="121" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <rect x="181" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <text x="160" y="98" textAnchor="middle" fontSize="6.4" fill={stroke}>1 seul chemin</text>
+        <text x="160" y="107" textAnchor="middle" fontSize="6.4" fill={stroke}>choisi (1 trait)</text>
+        {/* Divergence ET (parallélisme) */}
+        <text x="265" y="26" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Parallèle (ET)</text>
+        <rect x="256" y="30" width="18" height="15" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <line x1="265" y1="45" x2="265" y2="56" stroke={stroke} strokeWidth="1.3" />
+        <line x1="257" y1="50" x2="273" y2="50" stroke={accent} strokeWidth="2.2" />
+        <line x1="235" y1="55" x2="295" y2="55" stroke={stroke} strokeWidth="1.6" />
+        <line x1="235" y1="58" x2="295" y2="58" stroke={stroke} strokeWidth="1.6" />
+        <line x1="235" y1="58" x2="235" y2="66" stroke={stroke} strokeWidth="1.3" />
+        <line x1="295" y1="58" x2="295" y2="66" stroke={stroke} strokeWidth="1.3" />
+        <rect x="226" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <rect x="286" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <text x="265" y="98" textAnchor="middle" fontSize="6.4" fill={stroke}>chemins actifs</text>
+        <text x="265" y="107" textAnchor="middle" fontSize="6.4" fill={stroke}>en même temps</text>
+        <text x="160" y="128" textAnchor="middle" fontSize="6.8" fill={stroke}>OU = double trait de sélection (1 chemin) · ET = double barre de synchronisation (chemins simultanés)</text>
+      </svg>
+    );
+  }
   return null;
 }

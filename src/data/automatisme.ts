@@ -3346,6 +3346,265 @@ const block4Lessons: Lesson[] = [
   },
 ];
 
+const block6Lessons: Lesson[] = [
+  {
+    id: "5-40",
+    title: "Décrire une séquence : pourquoi le GRAFCET",
+    durationMinutes: 28,
+    objectifs: [
+      "Comprendre le besoin de décrire clairement un fonctionnement séquentiel.",
+      "Situer le GRAFCET comme outil de description d'un automatisme.",
+    ],
+    simple:
+      "Beaucoup de machines fonctionnent par étapes qui s'enchaînent dans un ordre précis : c'est un fonctionnement séquentiel. Le GRAFCET est un langage graphique qui décrit clairement cette suite d'étapes et les conditions de passage. Il sert à concevoir, expliquer et dépanner un automatisme sans ambiguïté.",
+    vocab: [
+      ["Séquentiel", "Qui se déroule par étapes successives, dans un ordre défini."],
+      ["GRAFCET", "GRAphe Fonctionnel de Commande Étapes-Transitions : langage de description d'un automatisme."],
+      ["Étape", "Situation dans laquelle la machine fait (ou attend) quelque chose."],
+      ["Transition", "Passage d'une étape à la suivante, soumis à une condition."],
+      ["Cahier des charges", "Description de ce que doit faire la machine, que le GRAFCET traduit."],
+    ],
+    example:
+      "Une perceuse automatique : serrer la pièce, descendre la broche, percer, remonter, desserrer. Chaque action est une étape, et on ne passe à la suivante que sous condition (pièce serrée, position atteinte…). Le GRAFCET dessine cet enchaînement clairement.",
+    schema: "po-pc-structure",
+    ascii: "fonctionnement par ETAPES qui s'enchainent (sequentiel)\nGRAFCET = langage graphique : ETAPES + TRANSITIONS (conditions)\nsert a concevoir, expliquer et depanner l'automatisme",
+    retenir: [
+      "Un fonctionnement séquentiel se déroule par étapes ordonnées.",
+      "Le GRAFCET décrit graphiquement les étapes et les conditions de passage.",
+      "Il sert à concevoir, expliquer et dépanner un automatisme.",
+      "Il traduit le cahier des charges en un schéma sans ambiguïté.",
+    ],
+    erreurs: [
+      "Confondre le GRAFCET (description) avec le programme réel de l'automate.",
+      "Croire que toutes les étapes se font en même temps : elles s'enchaînent.",
+      "Négliger les conditions de passage entre étapes.",
+    ],
+    astucesPro: [
+      "Un GRAFCET clair aide à localiser à quelle étape une machine reste bloquée.",
+      "On rapproche le GRAFCET du comportement observé pour comprendre un blocage.",
+      "On décrit d'abord la séquence en mots, puis on la traduit en GRAFCET.",
+    ],
+    diagnostic: [
+      "Identifier à quelle étape la machine s'arrête ou se bloque.",
+      "Vérifier la condition de passage (réceptivité) qui n'est pas remplie.",
+      "Comparer la séquence attendue (GRAFCET) au comportement réel.",
+    ],
+    depannage: [
+      "Utiliser le GRAFCET pour situer l'étape bloquante.",
+      "Contrôler la réceptivité manquante (capteur, condition) qui empêche l'évolution.",
+      "Faire appel à une personne compétente pour toute modification du programme.",
+    ],
+    securite: [
+      "Le GRAFCET est un outil de description : il ne remplace pas les sécurités câblées (arrêt d'urgence, protecteurs).",
+      "Toute intervention sur la machine suit la consignation et les procédures habituelles.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine à cycle reste bloquée après avoir serré la pièce ; elle ne descend pas la broche.",
+      mission: ["Expliquer comment le GRAFCET aide.", "Indiquer où chercher.", "Rappeler une précaution."],
+      correction:
+        "Le GRAFCET décrit la séquence attendue : serrer → descendre → percer → remonter → desserrer. Si la machine reste bloquée après le serrage, elle est arrêtée sur l'étape « serrer » et n'a pas franchi la transition vers « descendre ». On cherche donc la réceptivité de cette transition (par exemple « pièce serrée » confirmée par un capteur) : elle n'est probablement pas remplie. Le GRAFCET permet ainsi de situer précisément le blocage. Toute intervention se fait après consignation ; une modification du programme relève d'une personne compétente et ne doit pas contourner les sécurités.",
+    },
+    memo: ["Séquentiel = étapes ordonnées", "GRAFCET = étapes + transitions", "Situe l'étape bloquante"],
+    resume:
+      "Le GRAFCET est un langage graphique qui décrit un fonctionnement séquentiel par étapes et transitions ; il sert à concevoir, expliquer et dépanner un automatisme sans ambiguïté.",
+    quizIds: ["aut196", "aut197", "aut198", "aut199", "aut200"],
+    verification: {
+      question: "À quoi sert le GRAFCET ?",
+      options: ["À mesurer une tension", "À décrire graphiquement un fonctionnement séquentiel (étapes et conditions)", "À filtrer l'air comprimé", "À remplacer les capteurs"],
+      correct: 1,
+      explanation: "Le GRAFCET décrit graphiquement la suite des étapes et les conditions de passage d'un automatisme." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez en étapes le fonctionnement séquentiel d'une machine simple de votre choix et expliquez l'intérêt du GRAFCET.",
+      consignes: [
+        "Décris au moins trois étapes ordonnées.",
+        "Indique une condition de passage entre deux étapes.",
+        "Explique l'intérêt du GRAFCET.",
+      ],
+      criteres: [
+        "J'ai décrit des étapes dans l'ordre.",
+        "J'ai donné une condition de passage.",
+        "J'ai expliqué l'intérêt (décrire/expliquer/dépanner sans ambiguïté).",
+      ],
+      correction:
+        "Exemple d'une perceuse : étape 1 serrer la pièce, étape 2 descendre la broche, étape 3 percer, étape 4 remonter, étape 5 desserrer. Une condition de passage : on ne descend la broche (étape 2) que si la pièce est serrée (capteur). L'intérêt du GRAFCET est de décrire cet enchaînement de façon claire et sans ambiguïté : il aide à concevoir la machine, à l'expliquer à un collègue, et à dépanner en repérant à quelle étape la machine se bloque et quelle condition n'est pas remplie.",
+    },
+  },
+  {
+    id: "5-41",
+    title: "Étapes, transitions et liaisons orientées",
+    durationMinutes: 30,
+    objectifs: [
+      "Identifier les éléments de base d'un GRAFCET.",
+      "Reconnaître l'étape initiale et le sens de lecture.",
+    ],
+    simple:
+      "Un GRAFCET se lit de haut en bas. Il est fait d'étapes (des carrés numérotés), de transitions (des barres horizontales entre deux étapes) et de liaisons orientées (les traits qui les relient). L'étape initiale, active au démarrage, se dessine avec un double carré. À côté de chaque transition, on écrit la réceptivité : la condition à remplir pour passer.",
+    vocab: [
+      ["Étape", "Carré numéroté ; active, elle correspond à une situation de la machine."],
+      ["Étape initiale", "Double carré ; elle est active au démarrage du système."],
+      ["Transition", "Barre entre deux étapes ; elle marque le passage possible."],
+      ["Réceptivité", "Condition écrite à côté de la transition (capteur, bouton, temporisation)."],
+      ["Liaison orientée", "Trait reliant étapes et transitions, lu de haut en bas."],
+    ],
+    example:
+      "Un petit GRAFCET : étape 0 (initiale, double carré) « attente », puis une transition avec la réceptivité « départ cycle », puis l'étape 1 « sortir le vérin ». On lit toujours de haut en bas, en suivant les liaisons.",
+    schema: "grafcet-structure",
+    ascii: "[[0]] etape initiale (double carre)\n  |\n --+--  transition (barre) + receptivite a droite\n  |\n [1] etape --- action associee\nlecture de HAUT en BAS",
+    retenir: [
+      "Étape = carré numéroté ; étape initiale = double carré (active au démarrage).",
+      "Transition = barre horizontale entre deux étapes.",
+      "Réceptivité = condition écrite à côté de la transition.",
+      "Liaisons orientées : on lit le GRAFCET de haut en bas.",
+    ],
+    erreurs: [
+      "Oublier le double carré de l'étape initiale.",
+      "Confondre étape (situation) et transition (passage).",
+      "Placer la réceptivité au mauvais endroit (elle accompagne la transition).",
+    ],
+    astucesPro: [
+      "On repère toujours l'étape initiale en premier pour situer le début du cycle.",
+      "Le numéro d'étape aide à parler précisément d'un point du cycle.",
+      "Une réceptivité s'exprime souvent avec des noms de capteurs ou de boutons.",
+    ],
+    diagnostic: [
+      "Repérer l'étape active pour situer la machine dans son cycle.",
+      "Lire la réceptivité de la transition suivante pour savoir ce qui est attendu.",
+      "Suivre les liaisons pour comprendre l'enchaînement prévu.",
+    ],
+    depannage: [
+      "Identifier l'étape où la machine est bloquée grâce au numéro d'étape.",
+      "Contrôler la réceptivité de la transition non franchie.",
+      "Vérifier le capteur ou le bouton nommé dans la réceptivité.",
+    ],
+    securite: [
+      "Lire un GRAFCET ne nécessite aucun accès aux parties actives.",
+      "Toute intervention consécutive sur la machine suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "On vous montre un GRAFCET : un double carré numéroté 0, une barre avec « dcy » écrit à côté, puis un carré 1.",
+      mission: ["Nommer chaque élément.", "Dire lequel est actif au démarrage.", "Expliquer ce qu'est « dcy »."],
+      correction:
+        "Le double carré numéroté 0 est l'étape initiale ; le carré 1 est une étape ordinaire ; la barre horizontale entre les deux est une transition ; les traits qui relient le tout sont des liaisons orientées, lues de haut en bas. L'étape active au démarrage est l'étape initiale 0 (d'où le double carré). « dcy » est la réceptivité de la transition : c'est la condition « départ cycle » à remplir (souvent l'appui sur un bouton) pour désactiver l'étape 0 et activer l'étape 1.",
+    },
+    memo: ["Étape = carré · initiale = double", "Transition = barre + réceptivité", "Lecture haut → bas"],
+    resume:
+      "Un GRAFCET se lit de haut en bas et se compose d'étapes (carrés, initiale en double), de transitions (barres) accompagnées de leurs réceptivités, et de liaisons orientées.",
+    quizIds: ["aut201", "aut202", "aut203", "aut204", "aut205"],
+    verification: {
+      question: "Comment reconnaît-on l'étape initiale d'un GRAFCET ?",
+      options: ["Elle est en rouge", "Elle est dessinée avec un double carré", "Elle n'a pas de numéro", "Elle est toujours en bas"],
+      correct: 1,
+      explanation: "L'étape initiale, active au démarrage du système, se représente par un double carré." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez les éléments de base d'un GRAFCET et le sens de lecture.",
+      consignes: [
+        "Nomme les éléments (étape, transition, liaison, réceptivité).",
+        "Précise comment on repère l'étape initiale.",
+        "Indique le sens de lecture.",
+      ],
+      criteres: [
+        "J'ai nommé les éléments de base.",
+        "J'ai indiqué le double carré de l'étape initiale.",
+        "J'ai précisé la lecture de haut en bas.",
+      ],
+      correction:
+        "Un GRAFCET est constitué d'étapes (carrés numérotés représentant une situation de la machine), de transitions (barres horizontales marquant un passage possible entre deux étapes), de liaisons orientées (traits qui relient étapes et transitions) et de réceptivités (conditions écrites à côté de chaque transition). L'étape initiale, active au démarrage, se reconnaît à son double carré. On lit le GRAFCET de haut en bas, en suivant les liaisons orientées, d'une étape à la transition puis à l'étape suivante.",
+    },
+  },
+  {
+    id: "5-42",
+    title: "Les règles d'évolution : franchir une transition",
+    durationMinutes: 32,
+    objectifs: [
+      "Énoncer la règle de franchissement d'une transition.",
+      "Comprendre l'activation et la désactivation des étapes.",
+    ],
+    simple:
+      "Une transition se franchit à deux conditions réunies : son étape amont (au-dessus) est active ET sa réceptivité est vraie. Quand on la franchit, l'étape amont se désactive et l'étape aval (en dessous) s'active. À un instant donné, seules certaines étapes sont actives : ce sont elles qui déclenchent les actions.",
+    vocab: [
+      ["Franchir", "Passer une transition : désactive l'étape amont, active l'étape aval."],
+      ["Étape amont", "Étape située au-dessus de la transition."],
+      ["Étape aval", "Étape située en dessous de la transition."],
+      ["Étape active", "Étape « en cours » ; elle commande ses actions."],
+      ["Réceptivité vraie", "La condition de la transition est remplie (capteur, bouton, temporisation…)."],
+    ],
+    example:
+      "Étape 1 active, le vérin sort. La transition suivante a pour réceptivité « vérin sorti (b) ». Dès que le capteur b confirme la sortie, la transition se franchit : l'étape 1 se désactive et l'étape 2 s'active, ce qui commande la rentrée du vérin.",
+    schema: "grafcet-structure",
+    illustrations: ["grafcet-cycle"],
+    ascii: "FRANCHIR une transition SI : etape amont ACTIVE + receptivite VRAIE\nalors : etape amont DESACTIVEE, etape aval ACTIVEE\nseules les etapes actives commandent leurs actions",
+    retenir: [
+      "Une transition se franchit si l'étape amont est active ET la réceptivité vraie.",
+      "Le franchissement désactive l'étape amont et active l'étape aval.",
+      "Seules les étapes actives commandent leurs actions.",
+      "Si la réceptivité n'est pas vraie, la transition ne se franchit pas : la machine attend.",
+    ],
+    erreurs: [
+      "Croire qu'une transition se franchit même si l'étape amont n'est pas active.",
+      "Oublier que l'étape amont se désactive au franchissement.",
+      "Penser que toutes les étapes sont actives en même temps.",
+    ],
+    astucesPro: [
+      "Une machine « bloquée » attend souvent une réceptivité non remplie (capteur, condition).",
+      "On vérifie l'étape active, puis la réceptivité de la transition suivante.",
+      "L'assistant interactif ci-dessus aide à visualiser l'avancée étape par étape.",
+    ],
+    diagnostic: [
+      "Repérer l'étape active au moment du blocage.",
+      "Vérifier la réceptivité de la transition qui ne se franchit pas.",
+      "Contrôler le capteur ou la condition nommée dans cette réceptivité.",
+    ],
+    depannage: [
+      "Rechercher pourquoi la réceptivité reste fausse (capteur, câblage, condition).",
+      "Ne pas forcer une étape : traiter la cause qui empêche le franchissement.",
+      "Faire appel à une personne compétente pour toute action sur le programme.",
+    ],
+    securite: [
+      "Comprendre l'évolution ne dispense pas des sécurités : une étape ne doit jamais contourner un arrêt d'urgence.",
+      "Toute intervention sur la machine suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un GRAFCET est à l'étape 1 (vérin qui sort) et n'avance pas ; la réceptivité de la transition suivante est « vérin sorti (b) ».",
+      mission: ["Dire ce qui empêche le franchissement.", "Indiquer où chercher.", "Rappeler la règle d'évolution."],
+      correction:
+        "L'étape 1 est bien active, mais la transition ne se franchit pas : c'est donc que la réceptivité « vérin sorti (b) » n'est pas vraie. On cherche du côté du capteur b (fin de course sortie) : le vérin ne sort peut-être pas complètement, ou le capteur ne détecte pas (position, réglage, câblage). Tant que b n'est pas vrai, la machine attend, ce qui est le comportement normal. Règle d'évolution : une transition se franchit si l'étape amont est active ET la réceptivité vraie ; alors l'étape amont se désactive et l'étape aval s'active. On traite la cause (capteur) sans forcer l'étape ni contourner de sécurité.",
+    },
+    memo: ["Amont active + réceptivité vraie → franchir", "Franchir : amont OFF, aval ON", "Bloqué = réceptivité fausse"],
+    resume:
+      "Une transition se franchit lorsque son étape amont est active et sa réceptivité vraie : l'étape amont se désactive et l'étape aval s'active ; seules les étapes actives commandent leurs actions.",
+    quizIds: ["aut206", "aut207", "aut208", "aut209", "aut210"],
+    verification: {
+      question: "À quelles conditions une transition se franchit-elle ?",
+      options: ["Dès qu'on le souhaite", "Si l'étape amont est active ET la réceptivité vraie", "Seulement si toutes les étapes sont actives", "Si l'étape aval est déjà active"],
+      correct: 1,
+      explanation: "Une transition se franchit lorsque son étape amont est active et que sa réceptivité est vraie ; l'amont se désactive et l'aval s'active." ,
+    },
+    exercice: {
+      enonce:
+        "Énoncez la règle de franchissement d'une transition et décrivez ce qui se passe pour les étapes.",
+      consignes: [
+        "Donne les deux conditions du franchissement.",
+        "Décris l'effet sur l'étape amont et l'étape aval.",
+        "Explique ce qui se passe si la réceptivité est fausse.",
+      ],
+      criteres: [
+        "J'ai cité étape amont active ET réceptivité vraie.",
+        "J'ai décrit la désactivation de l'amont et l'activation de l'aval.",
+        "J'ai indiqué que la machine attend si la réceptivité est fausse.",
+      ],
+      correction:
+        "Une transition se franchit lorsque deux conditions sont réunies : son étape amont est active ET sa réceptivité est vraie. Au franchissement, l'étape amont se désactive et l'étape aval s'active ; ce sont les étapes actives qui commandent leurs actions. Si la réceptivité n'est pas vraie, la transition ne se franchit pas : la machine reste sur l'étape active et attend que la condition soit remplie. C'est ce mécanisme qui explique de nombreux blocages : l'étape est active mais la condition (souvent un capteur) manque.",
+    },
+  },
+];
+
 export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
   {
     id: "m5-b1",
@@ -3412,7 +3671,15 @@ export const AUTOMATISME_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m5-b6", num: 6, title: "Cycle, séquence et logique de commande", objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m5-b6",
+    num: 6,
+    title: "Cycle, séquence et logique de commande",
+    objective: "Décrire un fonctionnement séquentiel simple (approche GRAFCET).",
+    lessonIds: block6Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
   {
     id: "m5-b7",
     num: 7,
@@ -3435,6 +3702,6 @@ export const AUTOMATISME_MODULE: TrainingModule = {
   icon: Cpu,
   color: "sky",
   source: "[TMI] Parcours progressif débutant → opérationnel · capteurs, actionneurs, API · passerelle depuis le module 3",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons, ...block7Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons, ...block5Lessons, ...block6Lessons, ...block7Lessons],
   blocks: AUTOMATISME_BLOCKS,
 };
