@@ -1130,6 +1130,83 @@ function MaintenanceStrategy({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   MÉTHODE DES 5 POURQUOI — REMONTER À LA CAUSE RACINE
+   On part d'un symptôme et on demande « pourquoi ? » à chaque
+   réponse, jusqu'à la cause profonde ; l'action corrective agit
+   sur cette cause racine, pas sur le symptôme. Repli statique : le
+   problème et la consigne restent lisibles sans interaction.
+   --------------------------------------------------------------- */
+
+const FIVE_WHYS = {
+  problem: "Le convoyeur s'est arrêté en production.",
+  steps: [
+    "Le moteur a déclenché sa protection thermique (surcharge).",
+    "Le moteur a été surchargé : il forçait anormalement.",
+    "Le rouleau entraîné tournait difficilement (frottement excessif).",
+    "Le roulement du rouleau était grippé.",
+    "Le roulement n'était plus lubrifié.",
+  ],
+  root: "Cause racine : un point de graissage non couvert par le plan de maintenance.",
+  action: "Action durable : ajouter ce point au plan de graissage (et remplacer le roulement), plutôt que de seulement réarmer la protection.",
+};
+
+function FiveWhys({ dark }: { dark: boolean }) {
+  const [depth, setDepth] = useState(0);
+  const total = FIVE_WHYS.steps.length;
+  const done = depth >= total;
+
+  return (
+    <Figure
+      dark={dark}
+      title="Les 5 pourquoi : du symptôme à la cause racine"
+      legend="Clique « Pourquoi ? » pour remonter la chaîne des causes jusqu'à la cause racine. L'action durable agit sur la cause racine, pas sur le symptôme."
+      explanation="La méthode des 5 pourquoi consiste à demander « pourquoi ? » à chaque réponse, jusqu'à atteindre une cause sur laquelle on peut agir durablement (la cause racine). Le nombre 5 est indicatif : parfois moins, parfois plus. L'intérêt est d'éviter de traiter seulement le symptôme (ici, réarmer la protection) : sans agir sur la cause racine (le point de graissage oublié), la panne reviendrait. On valide chaque « pourquoi » par des faits, pas par des suppositions."
+      controls={
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" onClick={() => setDepth((d) => Math.min(total, d + 1))} disabled={done} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-2.5 text-sm font-bold disabled:opacity-40 ${dark ? "border-violet-400 bg-violet-400 text-slate-950" : "border-violet-500 bg-violet-500 text-white"}`}>
+            <ArrowRight size={16} /> Pourquoi ?
+          </button>
+          <button type="button" onClick={() => setDepth(0)} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Recommencer
+          </button>
+        </div>
+      }
+    >
+      <div className="p-1">
+        {/* Problème de départ */}
+        <div className={`rounded-lg border-2 p-3 ${dark ? "border-amber-400/50 bg-amber-400/5" : "border-amber-500/50 bg-amber-500/5"}`}>
+          <p className={`text-xs font-bold uppercase tracking-wide ${dark ? "text-amber-300" : "text-amber-600"}`}>Symptôme</p>
+          <p className={`text-sm ${dark ? "text-slate-100" : "text-slate-800"}`}>{FIVE_WHYS.problem}</p>
+        </div>
+
+        {/* Chaîne des pourquoi */}
+        <ol className="mt-2 space-y-1.5">
+          {FIVE_WHYS.steps.slice(0, depth).map((step, i) => (
+            <li key={i} className={`flex gap-2 rounded-lg border p-2.5 text-sm ${dark ? "border-slate-700 bg-slate-900/60 text-slate-200" : "border-slate-200 bg-white text-slate-700"}`}>
+              <span className="shrink-0 font-mono text-xs font-bold text-violet-400">↳ {i + 1}</span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+
+        {done ? (
+          <div className="mt-2 space-y-2">
+            <div className="rounded-lg border-2 border-emerald-500/40 bg-emerald-500/5 p-3">
+              <p className="mb-1 flex items-center gap-2 text-sm font-bold text-emerald-500"><ShieldCheck size={16} /> {FIVE_WHYS.root}</p>
+              <p className={`text-sm leading-relaxed ${dark ? "text-slate-200" : "text-slate-700"}`}>{FIVE_WHYS.action}</p>
+            </div>
+          </div>
+        ) : (
+          <p className={`mt-2 text-center text-xs ${dark ? "text-slate-400" : "text-slate-500"}`}>
+            {depth === 0 ? "Clique « Pourquoi ? » pour commencer à remonter les causes." : `Pourquoi ${depth}/${total} — continue jusqu'à la cause racine.`}
+          </p>
+        )}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    SURVEILLANCE CONDITIONNELLE — TENDANCE ET SEUIL D'ALERTE
    On révèle les mesures une à une : la grandeur surveillée augmente
    et finit par franchir le seuil d'alerte, ce qui déclenche la
@@ -1603,5 +1680,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "grafcet-cycle") return <GrafcetCycle dark={dark} />;
   if (type === "maintenance-strategy") return <MaintenanceStrategy dark={dark} />;
   if (type === "condition-trend") return <ConditionTrend dark={dark} />;
+  if (type === "five-whys") return <FiveWhys dark={dark} />;
   return null;
 }

@@ -1042,6 +1042,265 @@ const block2Lessons: Lesson[] = [
   },
 ];
 
+const block3Lessons: Lesson[] = [
+  {
+    id: "6-13",
+    title: "Adopter une démarche de diagnostic structurée",
+    durationMinutes: 30,
+    objectifs: [
+      "Suivre une démarche de diagnostic ordonnée plutôt qu'au hasard.",
+      "Enchaîner symptôme, observation, hypothèses, tests, cause et action.",
+    ],
+    simple:
+      "Diagnostiquer avec méthode, c'est suivre un enchaînement : décrire le symptôme, observer et recueillir les faits, formuler des hypothèses, les tester une à une, identifier la cause, agir, puis contrôler que c'est résolu et tracer. Cette démarche évite de changer des pièces au hasard et fait gagner du temps.",
+    vocab: [
+      ["Symptôme", "Ce que l'on constate : l'effet anormal observé."],
+      ["Hypothèse", "Cause possible que l'on va vérifier par un test ou une observation."],
+      ["Test", "Vérification qui confirme ou écarte une hypothèse."],
+      ["Cause", "Origine réelle du problème, à traiter pour résoudre durablement."],
+      ["Contrôle", "Vérification finale que la fonction est bien rétablie."],
+    ],
+    example:
+      "Une machine s'arrête. Au lieu de remplacer un composant au hasard, on décrit précisément le symptôme, on observe (voyants, bruits, mesures), on liste les causes possibles, on les teste dans un ordre logique, on trouve la cause, on la traite, puis on vérifie que la machine refonctionne et on trace l'intervention.",
+    schema: "diagnostic-flow",
+    ascii: "SYMPTOME → OBSERVER (faits) → HYPOTHESES → TESTER une a une → CAUSE → AGIR → CONTROLER → TRACER\ndemarche ORDONNEE (pas de changement de piece au hasard)",
+    retenir: [
+      "La démarche va du symptôme à la cause, par observation puis tests d'hypothèses.",
+      "On teste les hypothèses une à une, dans un ordre logique.",
+      "On agit sur la cause, puis on contrôle et on trace.",
+      "Une méthode ordonnée bat le remplacement au hasard.",
+    ],
+    erreurs: [
+      "Changer une pièce « pour voir » sans avoir identifié la cause.",
+      "Sauter l'observation et conclure trop vite.",
+      "Ne pas contrôler que le problème est réellement résolu.",
+    ],
+    astucesPro: [
+      "On commence toujours par le plus simple et le plus probable.",
+      "On ne teste qu'une chose à la fois pour savoir ce qui agit.",
+      "On note ce qu'on observe : cela évite de tourner en rond.",
+    ],
+    diagnostic: [
+      "Formuler le symptôme précisément avant de chercher.",
+      "Recueillir les faits (voyants, mesures, historique) avant d'agir.",
+      "Hiérarchiser les hypothèses (probable/simple d'abord).",
+    ],
+    depannage: [
+      "Traiter la cause identifiée, pas seulement le symptôme.",
+      "Contrôler par un essai que la fonction est rétablie.",
+      "Tracer la cause et l'action pour la prévention.",
+    ],
+    securite: [
+      "Les tests et interventions sur les parties actives se font après consignation et vérification d'absence d'énergie.",
+      "On ne contourne jamais une sécurité pour tester plus vite.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Face à une panne, un technicien remplace successivement plusieurs pièces au hasard, sans succès et à grands frais.",
+      mission: ["Expliquer le problème de sa méthode.", "Décrire la démarche structurée.", "Rappeler une précaution."],
+      correction:
+        "Le problème est l'absence de méthode : remplacer des pièces au hasard coûte cher, prend du temps et ne garantit pas de trouver la cause — on peut même en masquer une sans la traiter. La démarche structurée enchaîne : décrire précisément le symptôme, observer et recueillir les faits (voyants, bruits, mesures, historique), formuler des hypothèses hiérarchisées (le plus simple et probable d'abord), les tester une à une, identifier la cause réelle, agir sur elle, puis contrôler que la fonction est rétablie et tracer. Précaution : les tests et interventions sur les parties actives se font après consignation et vérification d'absence d'énergie, sans jamais contourner une sécurité.",
+    },
+    memo: ["Symptôme → observer → tester → cause → agir → contrôler", "Une hypothèse à la fois", "Pas de pièce au hasard"],
+    resume:
+      "Une démarche de diagnostic structurée enchaîne symptôme, observation, hypothèses, tests, cause, action, contrôle et traçabilité : elle évite le remplacement au hasard et fait gagner du temps.",
+    quizIds: ["mnt61", "mnt62", "mnt63", "mnt64", "mnt65"],
+    verification: {
+      question: "Quelle est la bonne façon de tester des hypothèses en diagnostic ?",
+      options: ["Toutes en même temps", "Une à une, dans un ordre logique", "Aucune, on remplace au hasard", "Seulement la plus improbable"],
+      correct: 1,
+      explanation: "On teste les hypothèses une à une pour savoir ce qui agit, en commençant par les plus simples et probables." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez, dans l'ordre, une démarche de diagnostic structurée.",
+      consignes: [
+        "Cite les étapes dans l'ordre.",
+        "Explique pourquoi tester une hypothèse à la fois.",
+        "Rappelle la sécurité.",
+      ],
+      criteres: [
+        "J'ai cité symptôme → observation → hypothèses → tests → cause → action → contrôle → traçabilité.",
+        "J'ai expliqué le test une à une.",
+        "J'ai rappelé la consignation.",
+      ],
+      correction:
+        "Une démarche de diagnostic structurée suit cet enchaînement : décrire précisément le symptôme ; observer et recueillir les faits (voyants, bruits, mesures, historique) ; formuler des hypothèses, hiérarchisées du plus simple et probable au plus complexe ; les tester une à une ; identifier la cause réelle ; agir sur cette cause ; contrôler par un essai que la fonction est rétablie ; puis tracer la cause et l'action. On teste une hypothèse à la fois pour savoir précisément ce qui agit : en changeant plusieurs choses simultanément, on ne sait plus quelle action a résolu (ou aggravé) le problème. Enfin, les tests et interventions sur les parties actives se font après consignation et vérification d'absence d'énergie, sans contourner de sécurité.",
+    },
+  },
+  {
+    id: "6-14",
+    title: "Décrire précisément le problème",
+    durationMinutes: 28,
+    objectifs: [
+      "Formuler un problème avec des faits, pas des interprétations.",
+      "Utiliser un questionnement systématique (QQOQCP).",
+    ],
+    simple:
+      "Un bon diagnostic commence par une bonne description du problème. On s'appuie sur des faits observables, pas sur des suppositions, et on répond à des questions simples : Quoi ? Qui ? Où ? Quand ? Comment ? Combien ? (QQOQCP). « La machine s'arrête toutes les deux heures depuis lundi » est une description utile ; « la machine est capricieuse » ne l'est pas.",
+    vocab: [
+      ["QQOQCP", "Quoi, Qui, Où, Quand, Comment, Combien : questionnement systématique."],
+      ["Fait", "Observation objective, vérifiable (mesure, constat)."],
+      ["Interprétation", "Explication supposée, non vérifiée : à distinguer du fait."],
+      ["Contexte", "Circonstances de l'apparition (quand, dans quel mode…)."],
+      ["Fréquence", "À quelle fréquence le problème survient (une fois, périodique…)."],
+    ],
+    example:
+      "Description faible : « le moteur chauffe, il est sûrement fichu ». Description forte : « le moteur atteint 90 °C après 30 min de marche à pleine charge, depuis le changement de courroie de mardi ». La seconde donne des pistes ; la première contient déjà une conclusion non vérifiée.",
+    schema: "diagnostic-flow",
+    ascii: "DECRIRE avec des FAITS (mesures, constats), PAS des interpretations\nQQOQCP : QUOI · QUI · OU · QUAND · COMMENT · COMBIEN\n« capricieuse » = inutile ; « s'arrete toutes les 2 h depuis lundi » = utile",
+    retenir: [
+      "On décrit le problème avec des faits observables, pas des interprétations.",
+      "Le QQOQCP structure la description (Quoi, Qui, Où, Quand, Comment, Combien).",
+      "Le contexte et la fréquence orientent fortement le diagnostic.",
+      "Une conclusion glissée dans la description biaise la recherche.",
+    ],
+    erreurs: [
+      "Mélanger fait et interprétation (« il est fichu ») dès la description.",
+      "Rester vague (« ça marche mal ») sans données.",
+      "Oublier le contexte (depuis quand, dans quel mode).",
+    ],
+    astucesPro: [
+      "On note quand le problème est apparu : un changement récent est souvent lié.",
+      "On distingue toujours ce qu'on a vu de ce qu'on suppose.",
+      "Des chiffres (température, fréquence) valent mieux que des adjectifs.",
+    ],
+    diagnostic: [
+      "Répondre au QQOQCP pour cadrer le problème.",
+      "Séparer les faits des interprétations.",
+      "Repérer un changement récent corrélé à l'apparition.",
+    ],
+    depannage: [
+      "Réunir les données manquantes avant de conclure.",
+      "Relier l'apparition à un événement (intervention, changement).",
+      "Reformuler le problème en faits avant de tester.",
+    ],
+    securite: [
+      "La collecte d'informations se fait sans exposition aux parties actives ; les mesures suivent les habilitations.",
+      "Toute intervention consécutive respecte la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un opérateur signale : « la machine est capricieuse, elle fait n'importe quoi ».",
+      mission: ["Dire pourquoi cette description est insuffisante.", "Proposer des questions à poser.", "Donner un exemple de bonne description."],
+      correction:
+        "Cette description est insuffisante car elle ne contient aucun fait exploitable : « capricieuse » et « n'importe quoi » sont des interprétations, pas des observations. Pour la transformer en éléments utiles, on pose des questions de type QQOQCP : Quoi exactement (quel mouvement, quelle fonction) ? Quand cela arrive-t-il (à quel moment du cycle, depuis quand) ? Où (quel poste, quelle partie) ? Comment (progressivement, brutalement) ? Combien de fois (une fois, périodique) ? Qui/quel mode (automatique, manuel) ? Exemple de bonne description obtenue : « en mode automatique, le vérin de serrage ne sort pas une fois sur trois, depuis le nettoyage de vendredi ». Cette formulation, faite de faits, oriente immédiatement la recherche.",
+    },
+    memo: ["Faits, pas interprétations", "QQOQCP", "Depuis quand ? un changement récent ?"],
+    resume:
+      "Décrire précisément un problème, c'est le formuler avec des faits observables (pas des interprétations) en s'appuyant sur le QQOQCP, en notant le contexte et la fréquence, ce qui oriente fortement le diagnostic.",
+    quizIds: ["mnt66", "mnt67", "mnt68", "mnt69", "mnt70"],
+    verification: {
+      question: "Laquelle de ces descriptions est la plus utile au diagnostic ?",
+      options: ["« La machine est capricieuse »", "« Le vérin ne sort pas une fois sur trois en automatique, depuis vendredi »", "« Elle est fichue »", "« Ça marche mal »"],
+      correct: 1,
+      explanation: "Une description faite de faits (quoi, fréquence, depuis quand) oriente la recherche ; les jugements vagues n'aident pas." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi il faut décrire un problème par des faits, et comment le QQOQCP y aide.",
+      consignes: [
+        "Distingue fait et interprétation.",
+        "Cite les questions du QQOQCP.",
+        "Donne un exemple de description forte.",
+      ],
+      criteres: [
+        "J'ai distingué fait et interprétation.",
+        "J'ai cité le QQOQCP.",
+        "J'ai donné une description faite de faits.",
+      ],
+      correction:
+        "Il faut décrire un problème par des faits observables et vérifiables, car une interprétation glissée dès le départ (« il est fichu ») oriente à tort la recherche et fait sauter des pistes. On distingue donc ce qu'on a réellement constaté (un fait : une température, une fréquence, un constat) de ce qu'on suppose (une interprétation). Le QQOQCP structure cette description en répondant à : Quoi, Qui, Où, Quand, Comment, Combien. Exemple de description forte : « le moteur atteint 90 °C après 30 minutes à pleine charge, depuis le changement de courroie de mardi » : elle donne des données chiffrées, un contexte et un changement récent, tout ce qui manque à « le moteur chauffe, il est sûrement fichu ».",
+    },
+  },
+  {
+    id: "6-15",
+    title: "Remonter aux causes : les 5 pourquoi",
+    durationMinutes: 30,
+    objectifs: [
+      "Utiliser la méthode des 5 pourquoi pour trouver la cause racine.",
+      "Distinguer traiter le symptôme et traiter la cause.",
+    ],
+    simple:
+      "La méthode des « 5 pourquoi » consiste à demander « pourquoi ? » à chaque réponse, jusqu'à atteindre la cause profonde (la cause racine) sur laquelle on peut agir durablement. Le chiffre 5 est indicatif. L'intérêt : ne pas se contenter de traiter le symptôme (qui reviendrait), mais remonter à l'origine réelle.",
+    vocab: [
+      ["5 pourquoi", "Méthode de questionnement en chaîne pour atteindre la cause racine."],
+      ["Cause racine", "Origine profonde sur laquelle agir pour éviter la récidive."],
+      ["Symptôme", "Effet visible ; le traiter seul ne supprime pas la cause."],
+      ["Cause immédiate", "Cause directe de l'effet, souvent proche du symptôme."],
+      ["Action durable", "Action sur la cause racine qui empêche le problème de revenir."],
+    ],
+    example:
+      "Le convoyeur s'arrête → pourquoi ? le moteur a disjoncté → pourquoi ? surcharge → pourquoi ? le rouleau frottait → pourquoi ? roulement grippé → pourquoi ? plus de lubrification. Cause racine : un point de graissage oublié dans le plan. Réarmer la protection (symptôme) n'aurait pas suffi.",
+    schema: "diagnostic-flow",
+    illustrations: ["five-whys"],
+    ascii: "SYMPTOME → pourquoi ? → cause → pourquoi ? → ... → CAUSE RACINE\nAGIR sur la cause RACINE (durable), pas seulement sur le SYMPTOME\nle « 5 » est indicatif (parfois moins, parfois plus)",
+    retenir: [
+      "On demande « pourquoi ? » en chaîne jusqu'à la cause racine.",
+      "Agir sur la cause racine évite la récidive ; traiter le symptôme non.",
+      "Le chiffre 5 est indicatif : on s'arrête quand on peut agir durablement.",
+      "Chaque « pourquoi » doit s'appuyer sur des faits, pas des suppositions.",
+    ],
+    erreurs: [
+      "S'arrêter à la cause immédiate (le symptôme) et « réarmer » sans plus.",
+      "Enchaîner des « pourquoi » supposés, non vérifiés par des faits.",
+      "Chercher un coupable plutôt qu'une cause technique traitable.",
+    ],
+    astucesPro: [
+      "On valide chaque « pourquoi » par une observation ou une mesure.",
+      "La cause racine est souvent organisationnelle (un point oublié dans le plan).",
+      "On s'arrête quand l'action possible empêche durablement la récidive.",
+    ],
+    diagnostic: [
+      "Partir du symptôme décrit en faits.",
+      "Remonter la chaîne des causes en vérifiant chaque étape.",
+      "Identifier la cause sur laquelle une action durable est possible.",
+    ],
+    depannage: [
+      "Traiter la cause racine (durable), pas seulement l'effet.",
+      "Mettre à jour le plan ou la procédure si la cause est organisationnelle.",
+      "Vérifier que l'action empêche bien la récidive.",
+    ],
+    securite: [
+      "La méthode vise une cause technique/organisationnelle, jamais à contourner une sécurité.",
+      "Les vérifications sur les parties actives suivent la consignation et les habilitations.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une protection thermique de moteur déclenche régulièrement ; un opérateur se contente de la réarmer à chaque fois.",
+      mission: ["Dire ce qui manque à sa réponse.", "Appliquer les 5 pourquoi.", "Proposer l'action durable."],
+      correction:
+        "Réarmer la protection ne traite que le symptôme : la protection redéclenchera car la cause n'est pas supprimée. En appliquant les 5 pourquoi : la protection déclenche → pourquoi ? le moteur est en surcharge → pourquoi ? il force → pourquoi ? l'organe entraîné frotte anormalement → pourquoi ? un roulement est en fin de vie → pourquoi ? il n'a pas été lubrifié/surveillé. Cause racine : un défaut de lubrification ou de surveillance (point non couvert par le plan). Action durable : remplacer le roulement en fin de vie ET ajouter le point de graissage/surveillance au plan de maintenance, afin que le problème ne revienne pas. Chaque « pourquoi » se valide par des faits (mesure de courant, contrôle du roulement), et l'on ne contourne jamais la protection.",
+    },
+    memo: ["« Pourquoi ? » jusqu'à la cause racine", "Agir sur la cause, pas le symptôme", "Valider par des faits"],
+    resume:
+      "La méthode des 5 pourquoi remonte la chaîne des causes jusqu'à la cause racine, sur laquelle on agit durablement ; traiter seulement le symptôme laisserait le problème revenir.",
+    quizIds: ["mnt71", "mnt72", "mnt73", "mnt74", "mnt75"],
+    verification: {
+      question: "Quel est l'objectif de la méthode des 5 pourquoi ?",
+      options: ["Trouver un coupable", "Atteindre la cause racine pour agir durablement", "Réarmer plus vite", "Changer une pièce au hasard"],
+      correct: 1,
+      explanation: "Les 5 pourquoi remontent jusqu'à la cause racine, celle sur laquelle une action durable empêche la récidive." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez la méthode des 5 pourquoi et la différence entre traiter le symptôme et traiter la cause racine.",
+      consignes: [
+        "Explique le principe des 5 pourquoi.",
+        "Donne un exemple de chaîne de causes.",
+        "Distingue symptôme et cause racine.",
+      ],
+      criteres: [
+        "J'ai expliqué le questionnement en chaîne.",
+        "J'ai donné un exemple remontant à une cause racine.",
+        "J'ai distingué symptôme et cause racine.",
+      ],
+      correction:
+        "La méthode des 5 pourquoi consiste à demander « pourquoi ? » à chaque réponse, en remontant la chaîne des causes jusqu'à une cause racine sur laquelle on peut agir durablement ; le chiffre 5 est indicatif. Exemple : le convoyeur s'arrête → le moteur a disjoncté (surcharge) → le rouleau frottait → son roulement était grippé → il n'était plus lubrifié → le point de graissage manquait au plan (cause racine). Traiter le symptôme, ce serait seulement réarmer la protection : le problème reviendrait, car la cause subsiste. Traiter la cause racine, c'est remplacer le roulement et ajouter le point au plan de graissage, ce qui empêche la récidive. Chaque « pourquoi » doit s'appuyer sur des faits vérifiés, et l'on cherche une cause technique ou organisationnelle traitable, pas un coupable.",
+    },
+  },
+];
+
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
   {
     id: "m6-b1",
@@ -1069,7 +1328,15 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m6-b3", num: 3, title: "La méthodologie de diagnostic", objective: "Mener un diagnostic structuré multi-technologies et remonter aux causes.", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m6-b3",
+    num: 3,
+    title: "La méthodologie de diagnostic",
+    objective: "Mener un diagnostic structuré multi-technologies et remonter aux causes.",
+    lessonIds: block3Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
   { id: "m6-b4", num: 4, title: "Indicateurs et amélioration continue", objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m6-b5", num: 5, title: "Documentation, GMAO et traçabilité", objective: "Exploiter la documentation technique, la GMAO et rédiger un rapport d'intervention.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];
@@ -1081,6 +1348,6 @@ export const MAINTENANCE_MODULE: TrainingModule = {
   icon: Activity,
   color: "violet",
   source: "[TMI] Parcours avancé · prolonge le module 1 · plan préventif, surveillance conditionnelle, diagnostic, indicateurs et GMAO",
-  lessons: [...block1Lessons, ...block2Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
   blocks: MAINTENANCE_BLOCKS,
 };

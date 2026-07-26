@@ -99,7 +99,8 @@ export type InteractiveSchemaType =
   | "auto-diagnostic-tree"
   | "grafcet-cycle"
   | "maintenance-strategy"
-  | "condition-trend";
+  | "condition-trend"
+  | "five-whys";
 
 export interface LessonExercise {
   enonce: string;
