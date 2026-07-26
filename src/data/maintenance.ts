@@ -528,6 +528,265 @@ const block1Lessons: Lesson[] = [
   },
 ];
 
+const block2Lessons: Lesson[] = [
+  {
+    id: "6-7",
+    title: "Le principe de la surveillance conditionnelle",
+    durationMinutes: 30,
+    objectifs: [
+      "Comprendre comment on surveille l'état d'un équipement par la mesure.",
+      "Utiliser référence, tendance et seuil d'alerte pour décider.",
+    ],
+    simple:
+      "Surveiller l'état, c'est mesurer régulièrement une grandeur qui renseigne sur la santé d'une machine (vibration, température, particules dans l'huile…), la comparer à une référence saine, et suivre son évolution dans le temps (la tendance). On ne réagit pas à une mesure isolée : c'est la montée vers un seuil d'alerte qui déclenche la décision d'intervenir.",
+    vocab: [
+      ["Grandeur surveillée", "Paramètre mesuré qui renseigne sur l'état (vibration, température…)."],
+      ["Référence", "Valeur mesurée à l'état sain, servant de point de comparaison."],
+      ["Tendance", "Évolution de la mesure dans le temps (stable, en hausse…)."],
+      ["Seuil d'alerte", "Valeur au-delà de laquelle on décide d'agir."],
+      ["Périodicité de mesure", "Fréquence des relevés (assez rapprochés pour voir la tendance)."],
+    ],
+    example:
+      "On mesure chaque semaine la vibration d'un moteur. À l'état sain, elle est basse (référence). Semaine après semaine, elle monte : la tendance est claire. Quand elle franchit le seuil d'alerte, on planifie le remplacement du roulement — avant la panne, pas après.",
+    schema: "maintenance-types",
+    illustrations: ["condition-trend"],
+    ascii: "MESURER regulierement → COMPARER a la REFERENCE (etat sain) → suivre la TENDANCE\ndecision au SEUIL d'alerte (ni trop tot, ni trop tard)\nune mesure ISOLEE dit peu ; c'est la TENDANCE qui alerte",
+    retenir: [
+      "On mesure régulièrement une grandeur liée à l'état de la machine.",
+      "On compare à une référence (état sain) et on suit la tendance.",
+      "La décision se prend au seuil d'alerte, pas sur une mesure isolée.",
+      "Les relevés doivent être assez fréquents pour voir la tendance.",
+    ],
+    erreurs: [
+      "Réagir à une seule mesure sans regarder l'évolution.",
+      "Ne pas disposer de référence (état sain) pour comparer.",
+      "Espacer trop les mesures : on rate la montée.",
+    ],
+    astucesPro: [
+      "On mesure toujours dans les mêmes conditions (régime, point) pour comparer.",
+      "Une mesure surprenante se confirme avant de conclure.",
+      "La tendance, même sous le seuil, annonce quand on devra intervenir.",
+    ],
+    diagnostic: [
+      "Comparer la mesure à la référence et au seuil.",
+      "Analyser la tendance pour anticiper le franchissement.",
+      "Confirmer une alerte par une mesure supplémentaire.",
+    ],
+    depannage: [
+      "Planifier l'intervention quand la tendance approche du seuil.",
+      "Vérifier la répétabilité des mesures avant de décider.",
+      "Tracer les relevés pour affiner les seuils dans le temps.",
+    ],
+    securite: [
+      "La prise de mesures se fait dans le respect des accès et des EPI, sans exposition aux parties actives.",
+      "Toute intervention consécutive suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "La vibration d'un moteur critique, mesurée chaque semaine, passe de 1,2 à 3,1 mm/s en six semaines ; le seuil d'alerte est 3,5 mm/s.",
+      mission: ["Analyser la situation.", "Dire quand intervenir.", "Justifier de ne pas attendre la panne."],
+      correction:
+        "La tendance est clairement à la hausse : de 1,2 mm/s (proche de l'état sain) à 3,1 mm/s en six semaines, la vibration se rapproche du seuil de 3,5 mm/s. On n'intervient pas encore puisque le seuil n'est pas franchi, mais on resserre la surveillance et on prépare l'intervention : au prochain relevé qui franchira 3,5 mm/s, on planifie le remplacement du roulement lors d'un arrêt choisi. On ne conclut pas sur une mesure isolée, mais la tendance permet d'anticiper. Ne pas attendre la panne évite une casse en production (arrêt subi, coûts, risque) : c'est tout l'intérêt du conditionnel — intervenir au bon moment, ni trop tôt (gaspillage) ni trop tard.",
+    },
+    memo: ["Mesurer · comparer · suivre la tendance", "Décision au seuil, pas sur 1 mesure", "Même conditions de mesure"],
+    resume:
+      "La surveillance conditionnelle mesure régulièrement une grandeur liée à l'état, la compare à une référence et suit sa tendance ; la décision d'intervenir se prend au franchissement du seuil d'alerte.",
+    quizIds: ["mnt31", "mnt32", "mnt33", "mnt34", "mnt35"],
+    verification: {
+      question: "Sur quoi se base la décision d'intervenir en surveillance conditionnelle ?",
+      options: ["Une seule mesure isolée", "La tendance des mesures et le franchissement du seuil d'alerte", "La couleur de la machine", "Le calendrier fixe"],
+      correct: 1,
+      explanation: "On suit la tendance des mesures comparée à une référence ; la décision se prend au franchissement du seuil d'alerte." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez le principe de la surveillance conditionnelle avec les notions de référence, tendance et seuil.",
+      consignes: [
+        "Explique ce qu'on mesure et à quelle fréquence.",
+        "Explique le rôle de la référence et de la tendance.",
+        "Explique la décision au seuil.",
+      ],
+      criteres: [
+        "J'ai décrit la mesure régulière d'une grandeur d'état.",
+        "J'ai relié référence et tendance.",
+        "J'ai situé la décision au seuil d'alerte.",
+      ],
+      correction:
+        "La surveillance conditionnelle consiste à mesurer régulièrement une grandeur qui renseigne sur l'état de la machine (vibration, température, particules d'usure dans l'huile…), à une périodicité assez rapprochée pour voir l'évolution. On compare chaque mesure à une référence prise à l'état sain, et surtout on suit la tendance : une valeur qui monte régulièrement annonce une dégradation. On ne décide pas sur une mesure isolée : c'est le franchissement d'un seuil d'alerte, après une tendance à la hausse, qui déclenche la planification de l'intervention — avant la panne, ni trop tôt ni trop tard. Les mesures se prennent toujours dans les mêmes conditions pour être comparables.",
+    },
+  },
+  {
+    id: "6-8",
+    title: "L'analyse vibratoire",
+    durationMinutes: 32,
+    objectifs: [
+      "Comprendre ce que révèle la vibration d'une machine tournante.",
+      "Associer des défauts courants à leur signature vibratoire.",
+    ],
+    simple:
+      "Une machine tournante saine vibre peu ; une machine dégradée vibre plus, et surtout différemment. L'analyse vibratoire mesure ce niveau et, en regardant à quelle fréquence la machine vibre, permet de distinguer les défauts : un balourd (déséquilibre) vibre à la vitesse de rotation, un désalignement donne une signature particulière, un roulement usé génère des vibrations à hautes fréquences.",
+    vocab: [
+      ["Vibration", "Oscillation d'une machine ; son niveau et sa fréquence renseignent sur l'état."],
+      ["Balourd", "Déséquilibre d'une pièce tournante ; vibre à la fréquence de rotation."],
+      ["Désalignement", "Arbres mal alignés ; signature vibratoire caractéristique."],
+      ["Défaut de roulement", "Écaillage/usure ; vibrations à hautes fréquences typiques."],
+      ["Spectre", "Décomposition de la vibration par fréquence, qui aide à identifier le défaut."],
+    ],
+    example:
+      "Un ventilateur vibre de plus en plus. L'analyse montre une forte vibration à la fréquence de rotation : c'est un balourd (une pale encrassée ou abîmée déséquilibre l'hélice). Un autre cas, avec des composantes à hautes fréquences, oriente vers un roulement en fin de vie.",
+    schema: "balance-vibration",
+    ascii: "machine SAINE vibre peu ; machine DEGRADEE vibre PLUS et AUTREMENT\nNIVEAU (combien) + FREQUENCE (a quelle vitesse) → identifier le defaut\nbalourd = f rotation · desalignement = signature · roulement = hautes frequences",
+    retenir: [
+      "Le niveau de vibration augmente avec la dégradation.",
+      "La fréquence de la vibration aide à identifier le défaut.",
+      "Balourd : vibration à la fréquence de rotation.",
+      "Roulement usé : composantes à hautes fréquences.",
+    ],
+    erreurs: [
+      "Ne regarder que le niveau global sans la fréquence (on perd l'identification).",
+      "Mesurer dans des conditions différentes d'une fois à l'autre.",
+      "Confondre balourd (rotation) et défaut de roulement (hautes fréquences).",
+    ],
+    astucesPro: [
+      "On mesure toujours au même point et au même régime pour comparer.",
+      "Une hausse du niveau global déclenche une analyse plus fine (spectre).",
+      "Le suivi dans le temps (tendance) vaut mieux qu'une mesure ponctuelle.",
+    ],
+    diagnostic: [
+      "Comparer le niveau vibratoire à la référence et au seuil.",
+      "Regarder la fréquence dominante pour orienter vers un défaut.",
+      "Confirmer par la tendance et, si besoin, une analyse spectrale.",
+    ],
+    depannage: [
+      "Balourd : nettoyer/équilibrer la pièce tournante.",
+      "Désalignement : contrôler et corriger l'alignement des arbres.",
+      "Roulement : planifier son remplacement avant la panne.",
+    ],
+    securite: [
+      "Les mesures sur machine en marche se font avec les EPI adaptés, sans approcher les parties tournantes.",
+      "Toute intervention (équilibrage, remplacement) suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un ventilateur voit son niveau vibratoire grimper ; l'analyse montre une composante dominante exactement à la fréquence de rotation.",
+      mission: ["Identifier le défaut probable.", "Expliquer le raisonnement.", "Proposer l'action."],
+      correction:
+        "Une vibration dominante à la fréquence de rotation est la signature typique d'un balourd (déséquilibre de la partie tournante) : ici, une pale encrassée ou légèrement abîmée déséquilibre l'hélice, ce qui produit une vibration à un tour par rotation. Le raisonnement s'appuie sur la fréquence, pas seulement sur le niveau : c'est elle qui distingue un balourd d'un désalignement ou d'un défaut de roulement (hautes fréquences). Action : contrôler et nettoyer l'hélice, puis rééquilibrer si nécessaire ; on planifie l'intervention avant que le niveau ne devienne dangereux. Les mesures et l'intervention se font en sécurité (EPI, pas d'approche des parties tournantes, consignation pour intervenir).",
+    },
+    memo: ["Niveau + fréquence = identification", "Balourd = fréquence de rotation", "Roulement = hautes fréquences"],
+    resume:
+      "L'analyse vibratoire mesure le niveau et la fréquence des vibrations d'une machine tournante : le niveau signale la dégradation, la fréquence identifie le défaut (balourd, désalignement, roulement).",
+    quizIds: ["mnt36", "mnt37", "mnt38", "mnt39", "mnt40"],
+    verification: {
+      question: "Un défaut de balourd se traduit par une vibration principalement :",
+      options: ["à hautes fréquences", "à la fréquence de rotation de la machine", "nulle", "sans lien avec la rotation"],
+      correct: 1,
+      explanation: "Le balourd (déséquilibre) génère une vibration à la fréquence de rotation ; les roulements donnent plutôt des hautes fréquences." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez ce que mesure l'analyse vibratoire et comment la fréquence aide à identifier un défaut.",
+      consignes: [
+        "Explique le rôle du niveau de vibration.",
+        "Explique le rôle de la fréquence.",
+        "Associe deux défauts à leur signature.",
+      ],
+      criteres: [
+        "J'ai relié le niveau à la dégradation.",
+        "J'ai expliqué que la fréquence identifie le défaut.",
+        "J'ai associé balourd et roulement à leur signature.",
+      ],
+      correction:
+        "L'analyse vibratoire mesure d'abord le niveau de vibration : plus une machine tournante est dégradée, plus elle vibre, donc une hausse du niveau signale un problème. Mais c'est la fréquence de la vibration qui permet d'identifier le défaut : en regardant à quelle fréquence la machine vibre (le spectre), on distingue les causes. Deux exemples : un balourd (déséquilibre de la partie tournante) génère une vibration à la fréquence de rotation, tandis qu'un défaut de roulement (écaillage, usure) produit des vibrations à hautes fréquences caractéristiques ; un désalignement a encore une autre signature. On mesure toujours au même point et au même régime, et on suit la tendance pour intervenir avant la panne.",
+    },
+  },
+  {
+    id: "6-9",
+    title: "La thermographie infrarouge",
+    durationMinutes: 30,
+    objectifs: [
+      "Comprendre comment la thermographie révèle des défauts.",
+      "Interpréter un point chaud selon son contexte.",
+    ],
+    simple:
+      "La thermographie infrarouge utilise une caméra qui « voit » la chaleur : elle transforme les températures en image. Un point anormalement chaud trahit souvent un défaut : une connexion électrique desserrée qui chauffe, un roulement qui s'échauffe, un frottement excessif. C'est une mesure sans contact, rapide, mais qui s'interprète toujours dans son contexte.",
+    vocab: [
+      ["Thermographie", "Mesure et visualisation des températures par caméra infrarouge."],
+      ["Point chaud", "Zone anormalement chaude révélant souvent un défaut."],
+      ["Sans contact", "La mesure se fait à distance, sans toucher l'objet."],
+      ["Émissivité", "Aptitude d'une surface à émettre de l'infrarouge ; influe sur la mesure."],
+      ["Comparaison", "On compare une zone à une zone équivalente saine pour juger."],
+    ],
+    example:
+      "Sur un tableau électrique, la caméra montre une borne bien plus chaude que ses voisines identiques : c'est le signe d'une connexion desserrée ou oxydée qui résiste et chauffe. Repérée tôt, on la resserre avant qu'elle ne provoque une panne ou un échauffement dangereux.",
+    schema: "maintenance-types",
+    ascii: "CAMERA infrarouge = voir la CHALEUR (image thermique, SANS contact)\nPOINT CHAUD anormal → connexion desserree, roulement chaud, frottement\ninterpreter en COMPARANT a une zone equivalente SAINE (attention emissivite)",
+    retenir: [
+      "La thermographie visualise les températures sans contact.",
+      "Un point chaud anormal révèle souvent un défaut (électrique ou mécanique).",
+      "On interprète en comparant à une zone équivalente saine.",
+      "L'émissivité et le contexte influencent la lecture : prudence.",
+    ],
+    erreurs: [
+      "Conclure sur une température absolue sans comparer à une référence.",
+      "Oublier l'influence de l'émissivité (surfaces brillantes trompeuses).",
+      "Prendre un échauffement normal (charge élevée) pour un défaut.",
+    ],
+    astucesPro: [
+      "On compare des éléments identiques (trois phases, roulements jumeaux) : l'écart parle.",
+      "Un point chaud électrique se traite souvent par un simple resserrage… après consignation.",
+      "On tient compte de la charge : plus de courant = plus de chaleur normale.",
+    ],
+    diagnostic: [
+      "Comparer la zone suspecte à une zone équivalente saine.",
+      "Tenir compte de la charge et de l'émissivité.",
+      "Relier le point chaud à un défaut plausible (connexion, roulement, frottement).",
+    ],
+    depannage: [
+      "Connexion chaude : resserrer/refaire la connexion après consignation.",
+      "Roulement chaud : vérifier lubrification et usure, planifier si besoin.",
+      "Confirmer par une autre méthode si le diagnostic est incertain.",
+    ],
+    securite: [
+      "La thermographie électrique se fait à distance et sans contact ; l'ouverture d'un tableau sous tension relève d'une personne habilitée.",
+      "Toute correction (resserrage) se fait après consignation et vérification d'absence de tension.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un départ moteur triphasé, la thermographie montre une borne d'une phase nettement plus chaude que les deux autres, à charge équilibrée.",
+      mission: ["Interpréter l'image.", "Donner la cause probable.", "Indiquer l'action en sécurité."],
+      correction:
+        "À charge équilibrée, les trois phases devraient chauffer de façon comparable. Une borne d'une phase nettement plus chaude que les deux autres, identiques, est un point chaud anormal : la comparaison entre éléments équivalents rend le défaut évident. Cause probable : une connexion desserrée ou oxydée sur cette phase, qui augmente la résistance de contact et donc l'échauffement. Action en sécurité : l'observation se fait sans contact à distance ; la correction (resserrage ou réfection de la connexion) se fait après consignation et vérification d'absence de tension, par une personne habilitée. Traiter tôt ce point chaud évite une panne, voire un risque d'incendie.",
+    },
+    memo: ["Caméra IR = voir la chaleur", "Point chaud = défaut probable", "Comparer à une zone saine · consigner"],
+    resume:
+      "La thermographie infrarouge visualise les températures sans contact ; un point chaud anormal, interprété en comparaison d'une zone saine, révèle souvent un défaut électrique ou mécanique à traiter en sécurité.",
+    quizIds: ["mnt41", "mnt42", "mnt43", "mnt44", "mnt45"],
+    verification: {
+      question: "Que révèle souvent un point chaud anormal en thermographie sur un tableau électrique ?",
+      options: ["Un fonctionnement parfait", "Une connexion desserrée ou oxydée qui chauffe", "Une machine trop froide", "Rien du tout"],
+      correct: 1,
+      explanation: "Un point chaud sur une connexion signale souvent un serrage défectueux ou une oxydation qui augmente la résistance et l'échauffement." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez le principe de la thermographie et comment on interprète un point chaud.",
+      consignes: [
+        "Explique ce que mesure la caméra infrarouge.",
+        "Explique comment interpréter un point chaud.",
+        "Cite une précaution de sécurité.",
+      ],
+      criteres: [
+        "J'ai décrit la mesure de température sans contact.",
+        "J'ai expliqué la comparaison à une zone saine (et l'émissivité/charge).",
+        "J'ai cité une précaution (consignation avant correction).",
+      ],
+      correction:
+        "La thermographie infrarouge utilise une caméra qui mesure le rayonnement infrarouge et le transforme en image thermique : elle visualise les températures sans contact, à distance. Pour interpréter un point chaud, on ne se fie pas à une température absolue mais on compare la zone suspecte à une zone équivalente saine (par exemple les trois phases d'un départ moteur) : un écart anormal révèle un défaut, comme une connexion desserrée qui chauffe. On tient compte de la charge (plus de courant = plus de chaleur normale) et de l'émissivité des surfaces. Précaution : l'observation est sans contact, mais toute correction (resserrage) se fait après consignation et vérification d'absence de tension, par une personne habilitée.",
+    },
+  },
+];
+
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
   {
     id: "m6-b1",
@@ -542,7 +801,15 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m6-b2", num: 2, title: "La surveillance conditionnelle", objective: "Surveiller l'état des équipements (vibrations, thermographie, analyse d'huile, ultrasons).", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m6-b2",
+    num: 2,
+    title: "La surveillance conditionnelle",
+    objective: "Surveiller l'état des équipements (vibrations, thermographie, analyse d'huile, ultrasons).",
+    lessonIds: block2Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
   { id: "m6-b3", num: 3, title: "La méthodologie de diagnostic", objective: "Mener un diagnostic structuré multi-technologies et remonter aux causes.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m6-b4", num: 4, title: "Indicateurs et amélioration continue", objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m6-b5", num: 5, title: "Documentation, GMAO et traçabilité", objective: "Exploiter la documentation technique, la GMAO et rédiger un rapport d'intervention.", lessonIds: [], chapterCount: 6, status: "planned" },
@@ -555,6 +822,6 @@ export const MAINTENANCE_MODULE: TrainingModule = {
   icon: Activity,
   color: "violet",
   source: "[TMI] Parcours avancé · prolonge le module 1 · plan préventif, surveillance conditionnelle, diagnostic, indicateurs et GMAO",
-  lessons: [...block1Lessons],
+  lessons: [...block1Lessons, ...block2Lessons],
   blocks: MAINTENANCE_BLOCKS,
 };

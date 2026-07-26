@@ -98,7 +98,8 @@ export type InteractiveSchemaType =
   | "plc-scan-cycle"
   | "auto-diagnostic-tree"
   | "grafcet-cycle"
-  | "maintenance-strategy";
+  | "maintenance-strategy"
+  | "condition-trend";
 
 export interface LessonExercise {
   enonce: string;

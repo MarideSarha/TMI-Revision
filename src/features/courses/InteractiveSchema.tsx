@@ -1130,6 +1130,91 @@ function MaintenanceStrategy({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   SURVEILLANCE CONDITIONNELLE — TENDANCE ET SEUIL D'ALERTE
+   On révèle les mesures une à une : la grandeur surveillée augmente
+   et finit par franchir le seuil d'alerte, ce qui déclenche la
+   décision d'intervenir. Repli statique : le seuil, les axes et la
+   dernière courbe restent lisibles sans interaction.
+   --------------------------------------------------------------- */
+
+const TREND_MEASURES = [1.2, 1.4, 1.5, 1.9, 2.4, 3.1, 3.9]; // ex. vitesse vibratoire (mm/s)
+const TREND_THRESHOLD = 3.5;
+const TREND_MAX = 4.5;
+
+function ConditionTrend({ dark }: { dark: boolean }) {
+  const [shown, setShown] = useState(1);
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const grid = dark ? "#334155" : "#e2e8f0";
+  const line = "#38bdf8";
+  const alert = "#ef4444";
+
+  const x0 = 34;
+  const x1 = 288;
+  const yTop = 20;
+  const yBot = 132;
+  const n = TREND_MEASURES.length;
+  const xAt = (i: number) => x0 + (i * (x1 - x0)) / (n - 1);
+  const yAt = (v: number) => yBot - (v / TREND_MAX) * (yBot - yTop);
+  const yThreshold = yAt(TREND_THRESHOLD);
+
+  const latest = TREND_MEASURES[shown - 1];
+  const crossed = latest >= TREND_THRESHOLD;
+  const points = TREND_MEASURES.slice(0, shown).map((v, i) => `${xAt(i)},${yAt(v)}`).join(" ");
+
+  return (
+    <Figure
+      dark={dark}
+      title="Surveillance conditionnelle : suivre la tendance vers le seuil"
+      legend="Ajoute les mesures une à une : la grandeur surveillée monte et, au franchissement du seuil d'alerte, on décide d'intervenir. Exemple : vitesse vibratoire en mm/s."
+      explanation="En maintenance conditionnelle, on ne regarde pas une mesure isolée mais son évolution dans le temps (la tendance), comparée à une référence saine et à un seuil d'alerte. Tant que la grandeur reste basse, on n'intervient pas ; dès qu'elle approche puis franchit le seuil, on planifie l'intervention — ni trop tôt (gaspillage) ni trop tard (panne). C'est le principe commun à l'analyse vibratoire, la thermographie ou l'analyse d'huile : mesurer, suivre la tendance, réagir au seuil."
+      controls={
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" onClick={() => setShown((s) => Math.min(n, s + 1))} disabled={shown >= n} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-2.5 text-sm font-bold disabled:opacity-40 ${dark ? "border-violet-400 bg-violet-400 text-slate-950" : "border-violet-500 bg-violet-500 text-white"}`}>
+            <ArrowRight size={16} /> Mesure suivante
+          </button>
+          <button type="button" onClick={() => setShown(1)} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Recommencer
+          </button>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 300 152" className="h-auto w-full" role="img" aria-label={`Mesure ${shown} sur ${n} : ${latest.toFixed(1)} mm/s. Seuil d'alerte ${TREND_THRESHOLD} mm/s. ${crossed ? "Seuil dépassé." : "Sous le seuil."}`}>
+        {/* Axes */}
+        <line x1={x0} y1={yTop} x2={x0} y2={yBot} stroke={stroke} strokeWidth="1" />
+        <line x1={x0} y1={yBot} x2={x1} y2={yBot} stroke={stroke} strokeWidth="1" />
+        <text x={x0 - 4} y={yTop + 3} textAnchor="end" fontSize="7" fill={stroke}>mm/s</text>
+        <text x={x1} y={yBot + 11} textAnchor="end" fontSize="7" fill={stroke}>temps →</text>
+        {/* Ligne de seuil */}
+        <line x1={x0} y1={yThreshold} x2={x1} y2={yThreshold} stroke={alert} strokeWidth="1.3" strokeDasharray="4 3" />
+        <text x={x1} y={yThreshold - 3} textAnchor="end" fontSize="7.5" fill={alert} fontWeight="bold">seuil d'alerte ({TREND_THRESHOLD})</text>
+        {/* Grille horizontale légère */}
+        {[1, 2, 3, 4].map((v) => (
+          <line key={v} x1={x0} y1={yAt(v)} x2={x1} y2={yAt(v)} stroke={grid} strokeWidth="0.6" />
+        ))}
+        {/* Courbe révélée */}
+        {shown > 1 && <polyline points={points} fill="none" stroke={line} strokeWidth="2" />}
+        {TREND_MEASURES.slice(0, shown).map((v, i) => {
+          const over = v >= TREND_THRESHOLD;
+          return <circle key={i} cx={xAt(i)} cy={yAt(v)} r={i === shown - 1 ? 4 : 2.6} fill={over ? alert : line} />;
+        })}
+      </svg>
+
+      <div className={`mt-2 rounded-lg border-2 p-2.5 text-sm ${crossed ? "border-red-500/50 bg-red-500/5" : dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+        {crossed ? (
+          <p className="flex items-center gap-2 font-semibold text-red-500">
+            <TriangleAlert size={16} /> Seuil dépassé ({latest.toFixed(1)} mm/s) — planifier l'intervention avant la panne.
+          </p>
+        ) : (
+          <p className={dark ? "text-slate-300" : "text-slate-600"}>
+            Mesure {shown}/{n} : <span className="font-semibold" style={{ color: line }}>{latest.toFixed(1)} mm/s</span> — sous le seuil, la tendance monte : on continue de surveiller.
+          </p>
+        )}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    GRAFCET INTERACTIF — RÈGLES D'ÉVOLUTION
    Petit GRAFCET à 3 étapes (0 initiale, 1, 2) commandant un vérin.
    L'utilisateur franchit les transitions une à une : l'étape active
@@ -1517,5 +1602,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "auto-diagnostic-tree") return <AutoDiagnosticTree dark={dark} />;
   if (type === "grafcet-cycle") return <GrafcetCycle dark={dark} />;
   if (type === "maintenance-strategy") return <MaintenanceStrategy dark={dark} />;
+  if (type === "condition-trend") return <ConditionTrend dark={dark} />;
   return null;
 }
