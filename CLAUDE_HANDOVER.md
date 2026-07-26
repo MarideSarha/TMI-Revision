@@ -217,9 +217,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 1 du module 6 (recentré) : **6 modules, 31 blocs, 148 leçons, 745 questions, 10 pannes, 26 badges.**
-- Bundles sous budget : `learning-data` ≈ 451 kB, `learning-electro`, `learning-auto` et `learning-maint` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : bloc 1 disponible sur 5 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
+- Build réussi. Décomptes après le bloc 2 du module 6 : **6 modules, 31 blocs, 154 leçons, 775 questions, 10 pannes, 27 badges.**
+- Bundles sous budget : `learning-data` ≈ 452 kB, `learning-electro`, `learning-auto` et `learning-maint` isolés (budget 500 kB/fichier).
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : blocs 1 et 2 disponibles sur 5 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -250,9 +250,13 @@ aucune réécriture d'historique.)
   vibrations, thermographie, analyse d'huile, ultrasons), 3 (méthodologie de diagnostic), 4 (indicateurs
   MTBF/MTTR/TRS, AMDEC, Pareto), 5 (documentation/GMAO/rapport). Le bloc 1 réutilise l'assistant interactif
   `maintenance-strategy` (choix de périodicité/stratégie selon criticité et surveillance) au chapitre 6-2.
-  Lignes IDs : leçons `6-x`, questions `mntx`.
-- Prochaines pistes possibles : **poursuivre le module 6** (blocs 2 à 5), ou **compléter le module 4**
-  (mécanique, 6 blocs restants sur 12).
+  Lignes IDs : leçons `6-x`, questions `mntx`. **Bloc 2 « La surveillance conditionnelle » terminé**
+  (6-7 à 6-12 : principe/tendance, analyse vibratoire, thermographie, analyse d'huile, ultrasons/CND,
+  mise en place ; examen ; badge `maint_block_2`). Nouveau schéma interactif `condition-trend`
+  (mesures révélées une à une, courbe qui franchit le seuil d'alerte) au chapitre 6-7.
+- Prochaines pistes possibles : **poursuivre le module 6** (blocs 3 à 5 : méthodologie de diagnostic,
+  indicateurs MTBF/MTTR/TRS + AMDEC, documentation/GMAO), ou **compléter le module 4** (mécanique,
+  6 blocs restants sur 12).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -297,6 +301,10 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-5): complete le bloc 6 (5-43 a 5-45), examen et badge — module 5 termine`
 - `feat(module-6): cree le module Maintenance et diagnostic + bloc 1 (6-1 a 6-3)`
 - `feat(module-6): complete le bloc 1 (6-4 a 6-6), examen et badge + assistant strategie`
+- `refactor(module-6): recentre M6 sur l'avance (retire le doublon avec M1) + nouveau bloc 1 (6-1 a 6-3)`
+- `feat(module-6): complete le bloc 1 recentre (6-4 a 6-6), examen et badge`
+- `feat(module-6): demarre le bloc 2 (surveillance conditionnelle, 6-7 a 6-9) + tendance interactive`
+- `feat(module-6): complete le bloc 2 (6-10 a 6-12), examen et badge`
 
 ## Instructions pour reprendre le développement
 

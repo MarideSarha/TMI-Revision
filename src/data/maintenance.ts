@@ -785,6 +785,261 @@ const block2Lessons: Lesson[] = [
         "La thermographie infrarouge utilise une caméra qui mesure le rayonnement infrarouge et le transforme en image thermique : elle visualise les températures sans contact, à distance. Pour interpréter un point chaud, on ne se fie pas à une température absolue mais on compare la zone suspecte à une zone équivalente saine (par exemple les trois phases d'un départ moteur) : un écart anormal révèle un défaut, comme une connexion desserrée qui chauffe. On tient compte de la charge (plus de courant = plus de chaleur normale) et de l'émissivité des surfaces. Précaution : l'observation est sans contact, mais toute correction (resserrage) se fait après consignation et vérification d'absence de tension, par une personne habilitée.",
     },
   },
+  {
+    id: "6-10",
+    title: "L'analyse d'huile",
+    durationMinutes: 30,
+    objectifs: [
+      "Comprendre ce que révèle l'analyse d'un lubrifiant.",
+      "Distinguer usure, contamination et dégradation de l'huile.",
+    ],
+    simple:
+      "L'huile qui circule dans une machine « ramasse » des informations sur son état. En analysant un échantillon, on détecte trois choses : des particules d'usure (métal arraché aux pièces), des contaminants (eau, poussières) et l'état de l'huile elle-même (vieillissement). L'analyse d'huile est un véritable « bilan sanguin » de la machine.",
+    vocab: [
+      ["Analyse d'huile", "Examen d'un échantillon de lubrifiant pour évaluer l'état de la machine."],
+      ["Particules d'usure", "Fines particules métalliques arrachées aux pièces en mouvement."],
+      ["Contamination", "Présence indésirable d'eau, de poussières ou d'autres impuretés."],
+      ["Dégradation de l'huile", "Vieillissement du lubrifiant qui perd ses propriétés."],
+      ["Échantillon", "Prélèvement d'huile pris dans de bonnes conditions pour l'analyse."],
+    ],
+    example:
+      "Sur un réducteur, l'analyse d'huile révèle une hausse des particules de fer : des engrenages ou roulements s'usent anormalement. Un autre résultat montrant de l'eau signale une entrée d'humidité (joint défectueux) qui va dégrader la lubrification.",
+    schema: "maintenance-types",
+    ascii: "HUILE = « bilan sanguin » de la machine\n3 infos : PARTICULES d'usure (metal) · CONTAMINATION (eau, poussieres) · etat de l'HUILE (vieillissement)\nsuivre la TENDANCE des resultats dans le temps",
+    retenir: [
+      "L'analyse d'huile révèle l'usure (particules métalliques), la contamination et le vieillissement de l'huile.",
+      "Une hausse des particules d'usure signale une dégradation interne.",
+      "De l'eau ou des poussières dans l'huile est une contamination à traiter.",
+      "On suit la tendance des résultats, pas une seule analyse.",
+    ],
+    erreurs: [
+      "Prélever l'échantillon n'importe comment (résultat faussé).",
+      "Juger sur une seule analyse sans suivre l'évolution.",
+      "Confondre usure (métal) et contamination (eau, poussières).",
+    ],
+    astucesPro: [
+      "On prélève toujours au même endroit et dans les mêmes conditions.",
+      "La nature du métal trouvé oriente vers la pièce qui s'use.",
+      "Une contamination par l'eau appelle à chercher une entrée d'humidité (joint).",
+    ],
+    diagnostic: [
+      "Comparer les résultats à l'historique (tendance) et aux références.",
+      "Relier le type de particules à la pièce en usure.",
+      "Identifier une contamination (eau, poussières) et sa source.",
+    ],
+    depannage: [
+      "Usure croissante : planifier l'inspection/le remplacement de l'organe concerné.",
+      "Contamination : traiter la source (joint, filtration) et changer l'huile si besoin.",
+      "Huile dégradée : remplacer le lubrifiant et revoir la périodicité.",
+    ],
+    securite: [
+      "Le prélèvement se fait dans le respect des consignes (température, EPI) et la gestion des huiles usagées.",
+      "Toute intervention consécutive suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un réducteur critique, trois analyses d'huile successives montrent une teneur en fer qui augmente régulièrement.",
+      mission: ["Interpréter la tendance.", "Dire ce que le fer indique.", "Proposer la conduite à tenir."],
+      correction:
+        "Trois analyses successives avec une teneur en fer croissante donnent une tendance claire : une usure interne progresse. Le fer indique que des pièces en acier — engrenages ou bagues de roulement du réducteur — s'usent anormalement et libèrent des particules métalliques dans l'huile. Ce n'est pas une valeur isolée mais l'évolution qui alerte. Conduite à tenir : resserrer la surveillance, éventuellement croiser avec l'analyse vibratoire, et planifier une inspection ou le remplacement de l'organe concerné avant la défaillance, sur un arrêt choisi. On vérifie aussi qu'il n'y a pas de contamination associée (eau) et on adapte l'huile/la périodicité. Prélèvements et intervention se font en sécurité, avec gestion des huiles usagées.",
+    },
+    memo: ["Huile = bilan sanguin", "Usure (métal) · contamination · vieillissement", "Suivre la tendance"],
+    resume:
+      "L'analyse d'huile est le « bilan sanguin » de la machine : elle révèle l'usure (particules métalliques), la contamination (eau, poussières) et le vieillissement du lubrifiant, à suivre en tendance.",
+    quizIds: ["mnt46", "mnt47", "mnt48", "mnt49", "mnt50"],
+    verification: {
+      question: "Que révèle principalement l'analyse d'huile d'une machine ?",
+      options: ["Sa couleur préférée", "L'usure (particules métalliques), la contamination et le vieillissement de l'huile", "Son prix", "Sa vitesse"],
+      correct: 1,
+      explanation: "L'analyse d'huile détecte les particules d'usure, les contaminants (eau, poussières) et l'état du lubrifiant." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez ce que révèle l'analyse d'huile et pourquoi on la qualifie de « bilan sanguin » de la machine.",
+      consignes: [
+        "Cite les trois types d'informations.",
+        "Explique l'image du bilan sanguin.",
+        "Explique l'importance de la tendance.",
+      ],
+      criteres: [
+        "J'ai cité usure, contamination, vieillissement.",
+        "J'ai expliqué l'analogie du bilan sanguin.",
+        "J'ai souligné le suivi de tendance.",
+      ],
+      correction:
+        "En circulant dans la machine, l'huile se charge d'informations sur son état. Son analyse révèle trois types d'informations : les particules d'usure (fines particules métalliques arrachées aux pièces, dont la nature indique quel organe s'use), la contamination (eau, poussières, autres impuretés indésirables) et l'état de l'huile elle-même (vieillissement, perte de propriétés). C'est pourquoi on parle de « bilan sanguin » : comme une prise de sang, l'échantillon d'huile renseigne sur la santé interne sans démonter. Comme pour les autres méthodes conditionnelles, on ne juge pas sur une seule analyse mais sur la tendance de plusieurs analyses dans le temps, en prélevant toujours dans les mêmes conditions.",
+    },
+  },
+  {
+    id: "6-11",
+    title: "Les ultrasons et les autres contrôles",
+    durationMinutes: 30,
+    objectifs: [
+      "Découvrir l'apport des ultrasons en surveillance.",
+      "Situer les principaux contrôles non destructifs (CND).",
+    ],
+    simple:
+      "Les ultrasons captent des sons trop aigus pour l'oreille humaine. En maintenance, ils détectent très tôt des phénomènes discrets : fuites d'air comprimé ou de gaz (qui sifflent en ultrasons), premiers défauts de roulement, ou décharges électriques. À côté, les contrôles non destructifs (CND) — ressuage, magnétoscopie, ultrasons de contrôle, radiographie — recherchent des fissures sans casser la pièce.",
+    vocab: [
+      ["Ultrasons", "Sons de fréquence trop élevée pour l'oreille, captés par un appareil dédié."],
+      ["Fuite", "Échappement d'air/gaz sous pression, détectable en ultrasons."],
+      ["Contrôle non destructif (CND)", "Recherche de défauts (fissures) sans détériorer la pièce."],
+      ["Ressuage", "CND révélant les fissures débouchantes par un liquide pénétrant."],
+      ["Magnétoscopie", "CND détectant les fissures sur pièces ferromagnétiques."],
+    ],
+    example:
+      "Un détecteur d'ultrasons repère un sifflement inaudible sur un réseau d'air comprimé : une fuite qui gaspille de l'énergie. Sur une pièce mécanique sollicitée, un ressuage révèle une microfissure débouchante avant qu'elle ne casse.",
+    schema: "maintenance-types",
+    ascii: "ULTRASONS = sons inaudibles → detecter tot : FUITES (air/gaz), 1ers defauts roulement, decharges elec.\nCND (sans casser la piece) : RESSUAGE, MAGNETOSCOPIE, ULTRASONS de controle, RADIO → cherchent les FISSURES",
+    retenir: [
+      "Les ultrasons détectent tôt fuites, premiers défauts de roulement et décharges électriques.",
+      "Une fuite d'air comprimé « siffle » en ultrasons : c'est aussi une perte d'énergie.",
+      "Les CND recherchent des fissures sans détériorer la pièce.",
+      "Chaque méthode a son domaine : on les combine selon le besoin.",
+    ],
+    erreurs: [
+      "Croire qu'une seule méthode couvre tous les défauts.",
+      "Ignorer les fuites d'air comprimé (perte d'énergie continue).",
+      "Utiliser un CND inadapté au matériau (ex. magnétoscopie sur métal non magnétique).",
+    ],
+    astucesPro: [
+      "La détection de fuites par ultrasons a un intérêt énergétique immédiat.",
+      "On choisit le CND selon le matériau et le type de défaut recherché.",
+      "Les ultrasons complètent l'analyse vibratoire pour les tout premiers défauts.",
+    ],
+    diagnostic: [
+      "Choisir la méthode adaptée au phénomène recherché (fuite, fissure, échauffement).",
+      "Croiser plusieurs méthodes pour confirmer un diagnostic.",
+      "Localiser précisément la source (fuite, fissure) avant d'agir.",
+    ],
+    depannage: [
+      "Fuite détectée : réparer le raccord/composant, après consignation si nécessaire.",
+      "Fissure révélée par CND : décider du remplacement selon la criticité.",
+      "Combiner les résultats pour un diagnostic fiable.",
+    ],
+    securite: [
+      "Certains CND emploient des produits ou des rayonnements réglementés : ils relèvent de personnes formées et habilitées.",
+      "Toute intervention consécutive suit la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un atelier constate une baisse de pression d'air et une consommation électrique élevée du compresseur, sans fuite visible.",
+      mission: ["Proposer une méthode de détection.", "Expliquer l'intérêt.", "Citer un autre contrôle utile ailleurs."],
+      correction:
+        "Pour trouver des fuites d'air comprimé invisibles, la méthode adaptée est la détection par ultrasons : une fuite sous pression émet un sifflement à haute fréquence, inaudible pour l'oreille mais capté par un détecteur d'ultrasons, ce qui permet de localiser précisément les fuites sur le réseau. Intérêt : au-delà de la baisse de pression, les fuites d'air comprimé sont une perte d'énergie continue et coûteuse ; les traiter améliore la disponibilité et réduit la facture. Autre contrôle utile ailleurs : pour rechercher une fissure sur une pièce mécanique sollicitée, on emploie un contrôle non destructif comme le ressuage (fissures débouchantes) ou la magnétoscopie (pièces ferromagnétiques), selon le matériau. Les CND réglementés relèvent de personnes formées.",
+    },
+    memo: ["Ultrasons : fuites · 1ers défauts · décharges", "Fuite d'air = perte d'énergie", "CND = fissures sans casser"],
+    resume:
+      "Les ultrasons détectent très tôt fuites, premiers défauts de roulement et décharges ; les contrôles non destructifs (ressuage, magnétoscopie…) recherchent des fissures sans détériorer la pièce.",
+    quizIds: ["mnt51", "mnt52", "mnt53", "mnt54", "mnt55"],
+    verification: {
+      question: "Que détectent particulièrement bien les ultrasons en maintenance ?",
+      options: ["La couleur des câbles", "Les fuites d'air/gaz et les tout premiers défauts", "Le prix des pièces", "La vitesse de rotation exacte"],
+      correct: 1,
+      explanation: "Les ultrasons captent le sifflement des fuites sous pression et révèlent très tôt certains défauts (roulement, décharges)." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez l'apport des ultrasons et ce qu'est un contrôle non destructif, avec un exemple de chaque.",
+      consignes: [
+        "Explique ce que détectent les ultrasons.",
+        "Définis le CND avec un exemple.",
+        "Explique pourquoi on combine les méthodes.",
+      ],
+      criteres: [
+        "J'ai cité fuites / premiers défauts pour les ultrasons.",
+        "J'ai défini le CND avec un exemple (ressuage, magnétoscopie…).",
+        "J'ai expliqué la complémentarité des méthodes.",
+      ],
+      correction:
+        "Les ultrasons captent des sons trop aigus pour l'oreille : en maintenance, ils détectent très tôt des phénomènes discrets comme les fuites d'air comprimé ou de gaz (qui « sifflent » en ultrasons), les tout premiers défauts de roulement ou des décharges électriques. Détecter les fuites a en plus un intérêt énergétique direct. Un contrôle non destructif (CND) recherche des défauts, en particulier des fissures, sans détériorer la pièce : par exemple le ressuage révèle les fissures débouchantes à l'aide d'un liquide pénétrant, la magnétoscopie détecte les fissures sur les pièces ferromagnétiques. On combine les méthodes car chacune a son domaine : les ultrasons pour les fuites et premiers défauts, la vibratoire pour les machines tournantes, la thermographie pour les points chauds, les CND pour les fissures — le croisement fiabilise le diagnostic.",
+    },
+  },
+  {
+    id: "6-12",
+    title: "Mettre en place la surveillance (synthèse)",
+    durationMinutes: 30,
+    objectifs: [
+      "Choisir les méthodes de surveillance selon l'équipement.",
+      "Organiser mesures, seuils et alarmes dans le temps.",
+    ],
+    simple:
+      "Mettre en place la surveillance, c'est décider quoi surveiller, comment et à quelle fréquence. On choisit les méthodes selon l'équipement (vibratoire pour une machine tournante, thermographie pour l'électrique, huile pour un réducteur…), on définit des points de mesure, des références et des seuils, et on organise les relevés et les alarmes. La surveillance ne se justifie que sur les équipements assez critiques.",
+    vocab: [
+      ["Plan de surveillance", "Choix des méthodes, points, périodicités et seuils par équipement."],
+      ["Point de mesure", "Endroit précis et répétable où l'on prend la mesure."],
+      ["Seuil / alarme", "Valeurs déclenchant alerte puis action."],
+      ["Périodicité de relevé", "Fréquence des mesures, adaptée à la vitesse de dégradation."],
+      ["Retour sur investissement", "La surveillance a un coût : elle se justifie sur les équipements critiques."],
+    ],
+    example:
+      "Pour un groupe motopompe critique : analyse vibratoire mensuelle sur les paliers, thermographie trimestrielle de l'armoire, analyse d'huile semestrielle. On fixe pour chacun une référence et un seuil, et on planifie les relevés. Un petit ventilateur secondaire, lui, ne justifie pas tout cela.",
+    schema: "maintenance-types",
+    ascii: "PLAN de SURVEILLANCE = QUOI surveiller + COMMENT (methode) + OU (points) + QUAND (periodicite) + SEUILS/alarmes\nchoisir la methode selon l'equipement · reserver aux equipements CRITIQUES\nla surveillance nourrit le PLAN preventif (bloc 1)",
+    retenir: [
+      "On choisit la méthode selon l'équipement (vibratoire, thermographie, huile, ultrasons).",
+      "On définit points de mesure, références, seuils et périodicités.",
+      "On organise relevés et alarmes dans le temps.",
+      "La surveillance se réserve aux équipements assez critiques (elle a un coût).",
+    ],
+    erreurs: [
+      "Vouloir tout surveiller, même les équipements peu critiques (coût injustifié).",
+      "Choisir une méthode inadaptée à l'équipement.",
+      "Fixer des seuils sans référence ni suivi de tendance.",
+    ],
+    astucesPro: [
+      "On croise criticité et vitesse de dégradation pour fixer la périodicité des relevés.",
+      "On combine les méthodes complémentaires sur un même équipement critique.",
+      "Les résultats de surveillance alimentent et ajustent le plan préventif.",
+    ],
+    diagnostic: [
+      "Vérifier que chaque équipement critique a une surveillance adaptée.",
+      "Contrôler que les points, références et seuils sont définis.",
+      "S'assurer que les relevés sont réellement effectués et exploités.",
+    ],
+    depannage: [
+      "Ajouter une méthode manquante sur un équipement critique mal couvert.",
+      "Corriger une périodicité de relevé inadaptée à la vitesse de dégradation.",
+      "Alléger une surveillance excessive sur un équipement peu critique.",
+    ],
+    securite: [
+      "Les relevés se font en sécurité (accès, EPI) sans exposition aux parties actives ou tournantes.",
+      "Les interventions déclenchées par la surveillance suivent la consignation et les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "On vous confie la mise en place de la surveillance d'un groupe motopompe critique et d'un petit ventilateur secondaire.",
+      mission: ["Proposer une surveillance pour chacun.", "Justifier les choix.", "Relier au plan préventif."],
+      correction:
+        "Pour le groupe motopompe critique, on met en place une surveillance combinée : analyse vibratoire régulière sur les paliers (machine tournante), thermographie de l'armoire électrique associée, et analyse d'huile si un réducteur est présent ; pour chaque méthode, on définit points de mesure, référence, seuil et périodicité (par exemple vibratoire mensuelle). Ces choix se justifient par la criticité élevée : une panne arrêterait une fonction importante, donc l'investissement en surveillance est rentable. Pour le petit ventilateur secondaire, peu critique, une surveillance lourde n'est pas justifiée : une inspection sensorielle lors des rondes suffit, et on reste en correctif. Enfin, la surveillance nourrit le plan préventif du bloc 1 : les tendances mesurées déclenchent les interventions au bon moment et permettent d'ajuster les périodicités.",
+    },
+    memo: ["Quoi · comment · où · quand · seuils", "Méthode selon l'équipement", "Surveiller le critique · nourrir le plan"],
+    resume:
+      "Mettre en place la surveillance, c'est choisir les méthodes selon l'équipement, définir points, références, seuils et périodicités, et organiser relevés et alarmes — en la réservant aux équipements critiques et en nourrissant le plan préventif.",
+    quizIds: ["mnt56", "mnt57", "mnt58", "mnt59", "mnt60"],
+    verification: {
+      question: "Sur quels équipements réserve-t-on en priorité une surveillance conditionnelle poussée ?",
+      options: ["Tous, sans distinction", "Les équipements assez critiques (car elle a un coût)", "Les moins chers uniquement", "Aucun"],
+      correct: 1,
+      explanation: "La surveillance a un coût : on la réserve aux équipements assez critiques, là où elle est rentable." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez comment mettre en place la surveillance d'un équipement critique.",
+      consignes: [
+        "Explique le choix des méthodes selon l'équipement.",
+        "Cite ce qu'on définit (points, seuils, périodicités).",
+        "Relie la surveillance au plan préventif.",
+      ],
+      criteres: [
+        "J'ai relié la méthode au type d'équipement.",
+        "J'ai cité points, références, seuils et périodicités.",
+        "J'ai relié la surveillance au plan et à sa mise à jour.",
+      ],
+      correction:
+        "Mettre en place la surveillance d'un équipement critique commence par le choix des méthodes adaptées : l'analyse vibratoire pour une machine tournante, la thermographie pour les organes électriques, l'analyse d'huile pour un réducteur, les ultrasons pour les fuites et premiers défauts. On définit ensuite, pour chaque méthode, des points de mesure précis et répétables, une référence prise à l'état sain, des seuils d'alerte et d'action, et une périodicité de relevé adaptée à la vitesse de dégradation. On organise les relevés et les alarmes dans le temps, et on réserve cette surveillance aux équipements assez critiques pour qu'elle soit rentable. Enfin, la surveillance nourrit le plan de maintenance préventive : les tendances mesurées déclenchent les interventions au bon moment et permettent d'ajuster les périodicités du plan.",
+    },
+  },
 ];
 
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
@@ -808,7 +1063,11 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
     objective: "Surveiller l'état des équipements (vibrations, thermographie, analyse d'huile, ultrasons).",
     lessonIds: block2Lessons.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["mnt31", "mnt35", "mnt36", "mnt39", "mnt41", "mnt43", "mnt46", "mnt49", "mnt51", "mnt54", "mnt56", "mnt59"],
+      passPercent: 80,
+    },
   },
   { id: "m6-b3", num: 3, title: "La méthodologie de diagnostic", objective: "Mener un diagnostic structuré multi-technologies et remonter aux causes.", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m6-b4", num: 4, title: "Indicateurs et amélioration continue", objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).", lessonIds: [], chapterCount: 6, status: "planned" },
