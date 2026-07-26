@@ -217,9 +217,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 1 du module 6 : **6 modules, 32 blocs, 148 leçons, 745 questions, 10 pannes, 26 badges.**
+- Build réussi. Décomptes après le bloc 1 du module 6 (recentré) : **6 modules, 31 blocs, 148 leçons, 745 questions, 10 pannes, 26 badges.**
 - Bundles sous budget : `learning-data` ≈ 451 kB, `learning-electro`, `learning-auto` et `learning-maint` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau) : bloc 1 disponible sur 6 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : bloc 1 disponible sur 5 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -239,14 +239,19 @@ aucune réécriture d'historique.)
   (GRAFCET interactif : franchissement des transitions, étape active qui avance). Schémas statiques
   ajoutés : `air-treatment-frl` (unité FRL), `grafcet-structure` (étapes/transitions/liaisons) et
   `grafcet-structures` (séquence / sélection OU / parallélisme ET).
-- **Module 6 « Maintenance préventive et diagnostic avancé » (nouveau, thème choisi par l'utilisateur)** :
+- **Module 6 « Méthodes de maintenance et diagnostic avancé » (nouveau)** :
   `src/data/maintenance.ts` (id `m6`, icône `Activity`, couleur `violet`), `src/data/maintenanceQuestions.ts`
-  (préfixe `mnt`), chunk `learning-maint` dans `vite.config.ts`. 6 blocs prévus : **bloc 1 « Stratégies de
-  maintenance » terminé** (6 chapitres, examen, badge `maint_block_1`) ; restent les blocs 2 (préventif en
-  pratique), 3 (surveillance conditionnelle), 4 (méthodologie de diagnostic), 5 (indicateurs MTBF/MTTR/TRS,
-  AMDEC), 6 (documentation/GMAO/rapport). Le bloc 1 ajoute l'assistant interactif `maintenance-strategy`
-  (choix de stratégie selon criticité et surveillance). Lignes IDs : leçons `6-x`, questions `mntx`.
-- Prochaines pistes possibles : **poursuivre le module 6** (blocs 2 à 6), ou **compléter le module 4**
+  (préfixe `mnt`), chunk `learning-maint` dans `vite.config.ts`. **Recentré sur l'avancé** (décision
+  utilisateur) : le bloc « stratégies de maintenance » initial faisait doublon avec le module 1
+  (leçons 1-1/1-2/1-3 : rôle, 3 types, EPI/consignation) ; il a été **retiré** et remplacé. Le module
+  prolonge donc M1 au lieu de le répéter. **5 blocs prévus** : **bloc 1 « La maintenance préventive en
+  pratique » terminé** (6 chapitres : plan, gammes/périodicités, lubrification, inspection/rondes, pièces de
+  rechange, synthèse ; examen ; badge `maint_block_1`) ; restent les blocs 2 (surveillance conditionnelle :
+  vibrations, thermographie, analyse d'huile, ultrasons), 3 (méthodologie de diagnostic), 4 (indicateurs
+  MTBF/MTTR/TRS, AMDEC, Pareto), 5 (documentation/GMAO/rapport). Le bloc 1 réutilise l'assistant interactif
+  `maintenance-strategy` (choix de périodicité/stratégie selon criticité et surveillance) au chapitre 6-2.
+  Lignes IDs : leçons `6-x`, questions `mntx`.
+- Prochaines pistes possibles : **poursuivre le module 6** (blocs 2 à 5), ou **compléter le module 4**
   (mécanique, 6 blocs restants sur 12).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
