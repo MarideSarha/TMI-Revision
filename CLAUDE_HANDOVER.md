@@ -217,9 +217,9 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 2 du module 6 : **6 modules, 31 blocs, 154 leçons, 775 questions, 10 pannes, 27 badges.**
+- Build réussi. Décomptes après le bloc 3 du module 6 : **6 modules, 31 blocs, 160 leçons, 805 questions, 10 pannes, 28 badges.**
 - Bundles sous budget : `learning-data` ≈ 452 kB, `learning-electro`, `learning-auto` et `learning-maint` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : blocs 1 et 2 disponibles sur 5 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : blocs 1 à 3 disponibles sur 5 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
 
 ## Problèmes connus
 
@@ -253,10 +253,12 @@ aucune réécriture d'historique.)
   Lignes IDs : leçons `6-x`, questions `mntx`. **Bloc 2 « La surveillance conditionnelle » terminé**
   (6-7 à 6-12 : principe/tendance, analyse vibratoire, thermographie, analyse d'huile, ultrasons/CND,
   mise en place ; examen ; badge `maint_block_2`). Nouveau schéma interactif `condition-trend`
-  (mesures révélées une à une, courbe qui franchit le seuil d'alerte) au chapitre 6-7.
-- Prochaines pistes possibles : **poursuivre le module 6** (blocs 3 à 5 : méthodologie de diagnostic,
-  indicateurs MTBF/MTTR/TRS + AMDEC, documentation/GMAO), ou **compléter le module 4** (mécanique,
-  6 blocs restants sur 12).
+  (mesures révélées une à une, courbe qui franchit le seuil d'alerte) au chapitre 6-7. **Bloc 3
+  « La méthodologie de diagnostic » terminé** (6-13 à 6-18 : démarche structurée, description QQOQCP,
+  5 pourquoi, Ishikawa/5M, multi-technologies, confirmer/corriger/capitaliser ; examen ; badge
+  `maint_block_3`). Nouveau schéma interactif `five-whys` (remontée symptôme → cause racine) au chapitre 6-15.
+- Prochaines pistes possibles : **poursuivre le module 6** (blocs 4 et 5 : indicateurs MTBF/MTTR/TRS +
+  AMDEC, documentation/GMAO), ou **compléter le module 4** (mécanique, 6 blocs restants sur 12).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -305,6 +307,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-6): complete le bloc 1 recentre (6-4 a 6-6), examen et badge`
 - `feat(module-6): demarre le bloc 2 (surveillance conditionnelle, 6-7 a 6-9) + tendance interactive`
 - `feat(module-6): complete le bloc 2 (6-10 a 6-12), examen et badge`
+- `feat(module-6): demarre le bloc 3 (methodologie de diagnostic, 6-13 a 6-15) + 5 pourquoi interactif`
+- `feat(module-6): complete le bloc 3 (6-16 a 6-18), examen et badge`
 
 ## Instructions pour reprendre le développement
 

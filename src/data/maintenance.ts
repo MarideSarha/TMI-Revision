@@ -1299,6 +1299,261 @@ const block3Lessons: Lesson[] = [
         "La méthode des 5 pourquoi consiste à demander « pourquoi ? » à chaque réponse, en remontant la chaîne des causes jusqu'à une cause racine sur laquelle on peut agir durablement ; le chiffre 5 est indicatif. Exemple : le convoyeur s'arrête → le moteur a disjoncté (surcharge) → le rouleau frottait → son roulement était grippé → il n'était plus lubrifié → le point de graissage manquait au plan (cause racine). Traiter le symptôme, ce serait seulement réarmer la protection : le problème reviendrait, car la cause subsiste. Traiter la cause racine, c'est remplacer le roulement et ajouter le point au plan de graissage, ce qui empêche la récidive. Chaque « pourquoi » doit s'appuyer sur des faits vérifiés, et l'on cherche une cause technique ou organisationnelle traitable, pas un coupable.",
     },
   },
+  {
+    id: "6-16",
+    title: "Organiser les causes : l'arbre des causes (5M)",
+    durationMinutes: 30,
+    objectifs: [
+      "Explorer toutes les familles de causes possibles avec les 5M.",
+      "Éviter de se focaliser trop tôt sur une seule piste.",
+    ],
+    simple:
+      "Quand une panne peut avoir plusieurs origines, on organise la recherche avec le diagramme causes-effet (Ishikawa, en « arête de poisson ») et les 5M : Main-d'œuvre, Matériel, Méthode, Matière, Milieu. On liste, pour chaque famille, les causes possibles. Cela évite de foncer sur une seule idée et d'oublier des pistes.",
+    vocab: [
+      ["Ishikawa (arête de poisson)", "Diagramme qui classe les causes possibles d'un effet par familles."],
+      ["5M", "Main-d'œuvre, Matériel, Méthode, Matière, Milieu : familles de causes."],
+      ["Main-d'œuvre", "Cause liée aux personnes (formation, geste, organisation)."],
+      ["Matériel", "Cause liée aux machines, outils, composants."],
+      ["Milieu", "Cause liée à l'environnement (température, poussière, humidité)."],
+    ],
+    example:
+      "Un défaut de qualité récurrent : on remplit un Ishikawa. Matériel : outil usé ? Méthode : réglage inadapté ? Matière : lot de pièces hors tolérance ? Milieu : température de l'atelier ? Main-d'œuvre : mode opératoire mal appliqué ? On explore chaque famille avant de conclure.",
+    schema: "diagnostic-flow",
+    ascii: "ISHIKAWA (arete de poisson) : classer les CAUSES d'un EFFET par familles\n5M : MAIN-D'OEUVRE · MATERIEL · METHODE · MATIERE · MILIEU\nexplorer TOUTES les familles avant de conclure",
+    retenir: [
+      "L'Ishikawa classe les causes possibles d'un effet par familles.",
+      "Les 5M : Main-d'œuvre, Matériel, Méthode, Matière, Milieu.",
+      "On explore chaque famille pour ne pas oublier de piste.",
+      "L'outil complète les 5 pourquoi quand les causes sont multiples.",
+    ],
+    erreurs: [
+      "Se focaliser sur une seule cause sans explorer les autres familles.",
+      "Confondre l'effet (le problème) et les causes.",
+      "Lister des causes sans ensuite les vérifier par des faits.",
+    ],
+    astucesPro: [
+      "Les 5M servent d'aide-mémoire pour n'oublier aucune famille.",
+      "On combine Ishikawa (large) et 5 pourquoi (en profondeur).",
+      "Après avoir listé, on hiérarchise et on vérifie les causes probables.",
+    ],
+    diagnostic: [
+      "Formuler l'effet précisément (au bout de l'arête).",
+      "Parcourir les 5M pour lister les causes possibles.",
+      "Hiérarchiser puis vérifier les causes les plus probables.",
+    ],
+    depannage: [
+      "Écarter par des faits les familles non concernées.",
+      "Approfondir la cause retenue avec les 5 pourquoi.",
+      "Agir sur la cause confirmée et vérifier l'effet.",
+    ],
+    securite: [
+      "L'analyse des causes se fait sans exposition aux parties actives ; les vérifications suivent la consignation.",
+      "On ne néglige jamais une cause « Milieu » ou « Main-d'œuvre » liée à la sécurité.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un défaut de qualité apparaît régulièrement sur des pièces usinées, sans cause évidente.",
+      mission: ["Proposer un outil d'analyse.", "Lister une cause par famille (5M).", "Dire comment conclure."],
+      correction:
+        "Comme les origines possibles sont multiples, on utilise un diagramme d'Ishikawa avec les 5M pour explorer toutes les familles de causes. Une cause possible par famille : Matériel — outil de coupe usé ; Méthode — paramètres d'usinage/réglage inadaptés ; Matière — lot de pièces brutes hors tolérance ; Milieu — variations de température de l'atelier dilatant les pièces ; Main-d'œuvre — mode opératoire mal appliqué. Pour conclure, on ne s'arrête pas à la liste : on hiérarchise les causes les plus probables, on les vérifie par des faits (mesures, contrôles), on écarte celles qui ne collent pas, puis on approfondit la cause retenue avec les 5 pourquoi avant d'agir et de contrôler l'effet.",
+    },
+    memo: ["Ishikawa = arête de poisson", "5M : Main-d'œuvre/Matériel/Méthode/Matière/Milieu", "Explorer avant de conclure"],
+    resume:
+      "L'arbre des causes (Ishikawa) et les 5M — Main-d'œuvre, Matériel, Méthode, Matière, Milieu — organisent la recherche des causes multiples d'un effet, pour explorer toutes les pistes avant de conclure.",
+    quizIds: ["mnt76", "mnt77", "mnt78", "mnt79", "mnt80"],
+    verification: {
+      question: "Que représentent les 5M d'un diagramme d'Ishikawa ?",
+      options: ["Cinq machines", "Main-d'œuvre, Matériel, Méthode, Matière, Milieu", "Cinq mesures", "Cinq minutes"],
+      correct: 1,
+      explanation: "Les 5M sont les familles de causes : Main-d'œuvre, Matériel, Méthode, Matière, Milieu." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez l'intérêt du diagramme d'Ishikawa et des 5M, et comment il complète les 5 pourquoi.",
+      consignes: [
+        "Explique le rôle de l'Ishikawa.",
+        "Cite les 5M.",
+        "Explique la complémentarité avec les 5 pourquoi.",
+      ],
+      criteres: [
+        "J'ai expliqué le classement des causes par familles.",
+        "J'ai cité les 5M.",
+        "J'ai relié Ishikawa (large) et 5 pourquoi (profondeur).",
+      ],
+      correction:
+        "Le diagramme d'Ishikawa (en arête de poisson) classe les causes possibles d'un effet par familles, ce qui évite de se focaliser trop tôt sur une seule piste et d'en oublier d'autres. Les familles sont les 5M : Main-d'œuvre (personnes, formation, geste), Matériel (machines, outils, composants), Méthode (réglages, procédures), Matière (pièces, matières premières) et Milieu (environnement : température, poussière, humidité). L'Ishikawa travaille en largeur — il liste toutes les causes plausibles — tandis que les 5 pourquoi travaillent en profondeur — ils remontent une chaîne jusqu'à la cause racine. On les combine : d'abord explorer les familles avec l'Ishikawa, hiérarchiser et vérifier par des faits, puis approfondir la cause retenue avec les 5 pourquoi.",
+    },
+  },
+  {
+    id: "6-17",
+    title: "Le diagnostic multi-technologies",
+    durationMinutes: 30,
+    objectifs: [
+      "Croiser les technologies (mécanique, électrique, pneumatique, automatisme).",
+      "Situer un défaut dans la bonne chaîne avant d'accuser une technologie.",
+    ],
+    simple:
+      "Une machine moderne mêle mécanique, électricité, pneumatique et automatisme. Un même symptôme peut venir de n'importe laquelle : un mouvement qui manque peut être mécanique (grippage), électrique (protection), pneumatique (pression) ou de commande (capteur, programme). Diagnostiquer, c'est situer le défaut dans la bonne technologie avant d'agir, en s'appuyant sur les indices de chacune.",
+    vocab: [
+      ["Multi-technologies", "Présence conjointe de mécanique, électricité, pneumatique, automatisme."],
+      ["Chaîne d'énergie", "De la source à l'actionneur (électrique, pneumatique…)."],
+      ["Chaîne d'information", "Des capteurs à la commande (automatisme)."],
+      ["Indice", "Voyant, pression, bruit, mesure propre à une technologie."],
+      ["Frontière", "Point où l'on passe d'une technologie à une autre (ex. sortie automate → préactionneur)."],
+    ],
+    example:
+      "Un vérin ne sort pas. Automatisme : la sortie est-elle commandée (voyant) ? Pneumatique : la pression et le distributeur sont-ils corrects ? Mécanique : le vérin est-il grippé ? On teste chaque technologie à sa frontière pour situer le défaut, au lieu d'accuser d'emblée « le vérin ».",
+    schema: "diagnostic-flow",
+    ascii: "1 symptome → plusieurs technologies possibles (MECA · ELEC · PNEU · AUTO)\nsituer le defaut a la bonne FRONTIERE avant d'agir\nutiliser les INDICES de chaque techno (voyant, pression, bruit, mesure)",
+    retenir: [
+      "Un même symptôme peut venir de plusieurs technologies.",
+      "On situe le défaut dans la bonne chaîne (énergie ou information) avant d'agir.",
+      "Chaque technologie a ses indices : voyants (auto), pression (pneu), mesures (élec), bruit/jeu (méca).",
+      "On teste aux frontières entre technologies pour localiser.",
+    ],
+    erreurs: [
+      "Accuser une technologie sans avoir vérifié les autres.",
+      "Ignorer la chaîne d'information (capteur, programme) et ne regarder que la mécanique.",
+      "Ne pas exploiter les indices propres à chaque technologie.",
+    ],
+    astucesPro: [
+      "Les voyants d'E/S disent vite si le problème est « commande » ou « puissance/mécanique ».",
+      "On remonte la chaîne : information (capteur→auto) puis énergie (sortie→préactionneur→actionneur).",
+      "On raisonne « frontières » : où passe-t-on d'une techno à l'autre ?",
+    ],
+    diagnostic: [
+      "Lister les technologies pouvant causer le symptôme.",
+      "Utiliser les indices de chacune pour situer le défaut.",
+      "Tester aux frontières pour isoler la technologie en cause.",
+    ],
+    depannage: [
+      "Traiter la technologie réellement en cause, pas la plus « évidente ».",
+      "Confirmer par les indices avant de remplacer un composant.",
+      "Croiser les résultats si le diagnostic reste ambigu.",
+    ],
+    securite: [
+      "Un système multi-technologies cumule des énergies : on consigne toutes les énergies (électrique, pneumatique, hydraulique) avant d'intervenir.",
+      "On vérifie l'absence de tension ET de pression, et les énergies résiduelles.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur une station automatisée, un vérin de serrage ne sort plus. Le technicien veut immédiatement remplacer le vérin.",
+      mission: ["Lister les technologies à vérifier.", "Proposer un ordre de test.", "Rappeler la sécurité multi-énergies."],
+      correction:
+        "Plusieurs technologies peuvent expliquer le symptôme : l'automatisme (la sortie de l'automate est-elle commandée ? capteur amont présent ? condition du programme remplie ?), le pneumatique (pression disponible ? distributeur qui bascule ? échappement libre ?), et la mécanique (vérin grippé, obstacle). Ordre de test : commencer par les indices rapides — le voyant de la sortie (commande ou non), puis les entrées/capteurs, puis la pression et le distributeur, et enfin la mécanique du vérin ; on teste ainsi aux frontières pour situer le défaut avant de remplacer quoi que ce soit. Remplacer le vérin d'emblée serait souvent inutile et coûteux. Sécurité : ce système cumule électricité et air comprimé ; avant toute intervention, on consigne les deux énergies, on purge la pression et on vérifie l'absence de tension et de pression, sans contourner de sécurité.",
+    },
+    memo: ["1 symptôme → plusieurs technos", "Situer avant d'accuser", "Consigner toutes les énergies"],
+    resume:
+      "Le diagnostic multi-technologies croise mécanique, électricité, pneumatique et automatisme : on situe le défaut dans la bonne chaîne à l'aide des indices de chacune, avant d'agir et en consignant toutes les énergies.",
+    quizIds: ["mnt81", "mnt82", "mnt83", "mnt84", "mnt85"],
+    verification: {
+      question: "Face à un vérin qui ne sort pas sur une machine automatisée, que fait-on d'abord ?",
+      options: ["Remplacer le vérin", "Situer le défaut (automatisme, pneumatique, mécanique) à l'aide des indices", "Augmenter la pression au maximum", "Changer l'automate"],
+      correct: 1,
+      explanation: "On situe le défaut dans la bonne technologie grâce aux indices (voyants, pression, mécanique) avant d'agir." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi un diagnostic doit croiser plusieurs technologies, avec un exemple.",
+      consignes: [
+        "Explique qu'un symptôme peut venir de plusieurs technologies.",
+        "Donne un exemple avec les indices de chaque technologie.",
+        "Rappelle la sécurité multi-énergies.",
+      ],
+      criteres: [
+        "J'ai expliqué la multi-causalité par technologie.",
+        "J'ai donné un exemple avec indices (auto/pneu/méca).",
+        "J'ai rappelé la consignation de toutes les énergies.",
+      ],
+      correction:
+        "Une machine moderne combine plusieurs technologies (mécanique, électricité, pneumatique, automatisme), si bien qu'un même symptôme peut provenir de l'une ou l'autre : il faut donc situer le défaut dans la bonne technologie avant d'agir, plutôt que d'accuser d'emblée le composant le plus visible. Exemple : un vérin qui ne sort pas — côté automatisme, on regarde si la sortie est commandée (voyant) et si les capteurs/conditions du programme sont bons ; côté pneumatique, on vérifie la pression, le distributeur et l'échappement ; côté mécanique, on cherche un grippage ou un obstacle. On teste aux frontières entre technologies pour localiser. Sécurité : ces systèmes cumulent des énergies (électrique, pneumatique) ; avant toute intervention, on consigne toutes les énergies, on purge la pression et on vérifie l'absence de tension et de pression.",
+    },
+  },
+  {
+    id: "6-18",
+    title: "Confirmer, corriger durablement et capitaliser (synthèse)",
+    durationMinutes: 30,
+    objectifs: [
+      "Confirmer la cause avant de corriger, puis vérifier l'efficacité.",
+      "Capitaliser l'intervention pour prévenir la récidive.",
+    ],
+    simple:
+      "La fin d'un diagnostic compte autant que le début. Une fois la cause identifiée, on la confirme (on s'assure qu'elle explique bien le symptôme), on corrige durablement (on agit sur la cause racine, pas le symptôme), on vérifie que le problème est résolu, et on capitalise : on trace l'intervention et, si utile, on met à jour le plan de maintenance pour que la panne ne revienne pas.",
+    vocab: [
+      ["Confirmation", "Vérifier que la cause identifiée explique bien le symptôme."],
+      ["Correction durable", "Action sur la cause racine, qui empêche la récidive."],
+      ["Vérification d'efficacité", "Contrôle que le problème est réellement résolu."],
+      ["Capitalisation", "Tracer et exploiter l'intervention pour l'avenir."],
+      ["Mise à jour du plan", "Ajouter une opération/surveillance pour prévenir la récidive."],
+    ],
+    example:
+      "Après avoir trouvé un roulement grippé par manque de graissage, on remplace le roulement (correction), on vérifie que la machine refonctionne normalement (efficacité), on trace l'intervention et on ajoute le point de graissage au plan (capitalisation) : la panne ne reviendra pas pour la même raison.",
+    schema: "diagnostic-flow",
+    ascii: "CONFIRMER la cause → CORRIGER durablement (cause racine) → VERIFIER l'efficacite → CAPITALISER (tracer + MAJ plan)\nla fin du diagnostic previent la RECIDIVE",
+    retenir: [
+      "On confirme la cause avant de corriger.",
+      "On corrige durablement (cause racine), pas seulement le symptôme.",
+      "On vérifie que le problème est réellement résolu.",
+      "On capitalise : traçabilité et mise à jour du plan préviennent la récidive.",
+    ],
+    erreurs: [
+      "Corriger sans avoir confirmé la cause (on traite peut-être la mauvaise).",
+      "Ne pas vérifier l'efficacité et laisser un problème latent.",
+      "Ne rien tracer : la même panne se reproduit et se re-diagnostique de zéro.",
+    ],
+    astucesPro: [
+      "Une correction durable inclut souvent une mise à jour du plan préventif.",
+      "La traçabilité d'aujourd'hui accélère le diagnostic de demain.",
+      "On vérifie l'efficacité dans les conditions réelles, pas seulement à l'arrêt.",
+    ],
+    diagnostic: [
+      "Vérifier que la cause retenue explique tous les faits.",
+      "Contrôler l'efficacité après correction (essai en conditions réelles).",
+      "Repérer si une action préventive doit être ajoutée au plan.",
+    ],
+    depannage: [
+      "Agir sur la cause racine confirmée.",
+      "Vérifier la remise en fonction et les sécurités.",
+      "Tracer et, si besoin, mettre à jour le plan de maintenance.",
+    ],
+    securite: [
+      "La vérification d'efficacité inclut le contrôle des organes de sécurité avant remise en service.",
+      "Toute correction sur les parties actives suit la consignation ; on ne neutralise aucune sécurité.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Après un diagnostic, un technicien remplace une pièce, redémarre, et part sans vérifier ni tracer.",
+      mission: ["Dire ce qui manque à sa clôture.", "Décrire les bonnes étapes finales.", "Expliquer l'intérêt de capitaliser."],
+      correction:
+        "Il manque trois choses à sa clôture : la confirmation que la pièce remplacée était bien la cause (et non un symptôme), la vérification d'efficacité (contrôler, en conditions réelles, que le problème est résolu et que les sécurités fonctionnent) et la capitalisation (tracer l'intervention). Les bonnes étapes finales sont donc : confirmer la cause, corriger durablement en agissant sur la cause racine, vérifier l'efficacité par un essai, puis capitaliser en renseignant le rapport et, si nécessaire, en mettant à jour le plan de maintenance (ajout d'une opération ou d'une surveillance). Capitaliser est essentiel : sans traçabilité, la même panne reviendra et devra être re-diagnostiquée de zéro ; avec elle, on prévient la récidive et on accélère les diagnostics futurs. Toute correction se fait après consignation, sans neutraliser de sécurité.",
+    },
+    memo: ["Confirmer → corriger → vérifier → capitaliser", "Cause racine, pas symptôme", "Tracer + MAJ du plan"],
+    resume:
+      "Clôturer un diagnostic, c'est confirmer la cause, corriger durablement (cause racine), vérifier l'efficacité et capitaliser (traçabilité, mise à jour du plan) pour prévenir la récidive.",
+    quizIds: ["mnt86", "mnt87", "mnt88", "mnt89", "mnt90"],
+    verification: {
+      question: "Que fait-on après avoir corrigé une panne, pour bien clôturer le diagnostic ?",
+      options: ["On part aussitôt", "On vérifie l'efficacité et on capitalise (trace, mise à jour du plan)", "On neutralise les sécurités", "On oublie l'intervention"],
+      correct: 1,
+      explanation: "On vérifie que le problème est résolu et on capitalise (traçabilité, mise à jour du plan) pour éviter la récidive." ,
+    },
+    exercice: {
+      enonce:
+        "Décrivez les étapes finales d'un diagnostic (confirmer, corriger, vérifier, capitaliser) et leur intérêt.",
+      consignes: [
+        "Explique la confirmation et la correction durable.",
+        "Explique la vérification d'efficacité.",
+        "Explique la capitalisation et son intérêt.",
+      ],
+      criteres: [
+        "J'ai décrit la confirmation avant correction.",
+        "J'ai décrit la vérification d'efficacité.",
+        "J'ai expliqué la capitalisation (traçabilité, plan) et son intérêt.",
+      ],
+      correction:
+        "Les étapes finales d'un diagnostic sont : confirmer la cause (s'assurer qu'elle explique bien tous les faits, pour ne pas corriger la mauvaise) ; corriger durablement en agissant sur la cause racine plutôt que sur le symptôme ; vérifier l'efficacité en contrôlant, en conditions réelles, que le problème est résolu et que les organes de sécurité fonctionnent ; puis capitaliser en traçant l'intervention (cause, action, pièces, temps) et, si nécessaire, en mettant à jour le plan de maintenance (ajout d'une opération ou d'une surveillance). Leur intérêt : sans confirmation ni vérification, on risque de laisser un problème latent ; sans capitalisation, la même panne reviendra et sera re-diagnostiquée de zéro. Bien clôturer un diagnostic prévient donc la récidive et accélère les interventions futures, la sécurité étant contrôlée avant la remise en service.",
+    },
+  },
 ];
 
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
@@ -1335,7 +1590,11 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
     objective: "Mener un diagnostic structuré multi-technologies et remonter aux causes.",
     lessonIds: block3Lessons.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["mnt61", "mnt64", "mnt66", "mnt69", "mnt71", "mnt72", "mnt76", "mnt79", "mnt81", "mnt84", "mnt86", "mnt89"],
+      passPercent: 80,
+    },
   },
   { id: "m6-b4", num: 4, title: "Indicateurs et amélioration continue", objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).", lessonIds: [], chapterCount: 6, status: "planned" },
   { id: "m6-b5", num: 5, title: "Documentation, GMAO et traçabilité", objective: "Exploiter la documentation technique, la GMAO et rédiger un rapport d'intervention.", lessonIds: [], chapterCount: 6, status: "planned" },
