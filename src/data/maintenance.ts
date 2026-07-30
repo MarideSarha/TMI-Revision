@@ -1556,6 +1556,264 @@ const block3Lessons: Lesson[] = [
   },
 ];
 
+const block4Lessons: Lesson[] = [
+  {
+    id: "6-19",
+    title: "Pourquoi mesurer ? Les indicateurs de maintenance",
+    durationMinutes: 28,
+    objectifs: [
+      "Comprendre l'intérêt de mesurer la performance de la maintenance.",
+      "Situer les grands indicateurs (fiabilité, maintenabilité, disponibilité).",
+    ],
+    simple:
+      "« On ne pilote bien que ce que l'on mesure. » Les indicateurs de maintenance transforment le vécu (pannes, arrêts, réparations) en chiffres qui permettent de comparer, suivre l'évolution et décider où agir. Les principaux mesurent la fiabilité (tombe-t-on souvent en panne ?), la maintenabilité (répare-t-on vite ?) et la disponibilité (la machine est-elle prête quand on en a besoin ?).",
+    vocab: [
+      ["Indicateur", "Chiffre qui mesure un aspect de la performance (pannes, temps…)."],
+      ["Fiabilité", "Aptitude à fonctionner sans défaillance (on y reviendra : MTBF)."],
+      ["Maintenabilité", "Aptitude à être réparé rapidement (on y reviendra : MTTR)."],
+      ["Disponibilité", "Aptitude à être en état de fonctionner quand on en a besoin."],
+      ["Objectif", "Valeur cible que l'on cherche à atteindre pour un indicateur."],
+    ],
+    example:
+      "Dire « la machine tombe souvent en panne » est vague. Dire « elle a eu 12 pannes ce trimestre, contre 5 le précédent, et chaque réparation dure en moyenne 2 h » permet de comparer, de voir que ça se dégrade, et de décider d'agir.",
+    schema: "percentage-bar",
+    ascii: "« on ne pilote que ce qu'on MESURE »\nindicateurs → comparer · suivre l'evolution · decider ou agir\ngrandes familles : FIABILITE (MTBF) · MAINTENABILITE (MTTR) · DISPONIBILITE",
+    retenir: [
+      "Les indicateurs transforment le vécu en chiffres exploitables.",
+      "Ils servent à comparer, suivre l'évolution et décider où agir.",
+      "Trois familles clés : fiabilité, maintenabilité, disponibilité.",
+      "Un indicateur se compare à un objectif et se suit dans le temps.",
+    ],
+    erreurs: [
+      "Se contenter d'impressions (« ça marche mal ») sans mesurer.",
+      "Mesurer sans jamais exploiter les chiffres pour décider.",
+      "Regarder une valeur isolée sans suivre sa tendance.",
+    ],
+    astucesPro: [
+      "Un indicateur n'a de sens que comparé (à un objectif, à une période, à un équipement).",
+      "On choisit peu d'indicateurs mais utiles, plutôt que beaucoup d'inutiles.",
+      "La tendance d'un indicateur alerte avant la valeur absolue.",
+    ],
+    diagnostic: [
+      "Identifier ce qu'on veut piloter (pannes, temps d'arrêt, disponibilité).",
+      "Choisir l'indicateur adapté à la question posée.",
+      "Comparer à l'objectif et à l'historique.",
+    ],
+    depannage: [
+      "Réagir à une dégradation d'indicateur en cherchant la cause.",
+      "Concentrer l'action sur les équipements aux plus mauvais indicateurs.",
+      "Vérifier l'effet des actions sur l'évolution des indicateurs.",
+    ],
+    securite: [
+      "Les indicateurs incluent souvent des aspects sécurité (incidents, presque-accidents) à suivre sérieusement.",
+      "Améliorer un indicateur de production ne doit jamais se faire au détriment de la sécurité.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un responsable affirme « la maintenance coûte cher » mais ne dispose d'aucun chiffre.",
+      mission: ["Expliquer l'intérêt des indicateurs.", "Proposer trois indicateurs utiles.", "Dire comment les exploiter."],
+      correction:
+        "Sans chiffres, on ne peut ni prouver, ni comparer, ni décider : les indicateurs transforment le ressenti en données. Trois indicateurs utiles : la fiabilité (fréquence des pannes, mesurée par le MTBF), la maintenabilité (rapidité de réparation, mesurée par le MTTR) et la disponibilité (part du temps où la machine est prête). On les exploite en les comparant à des objectifs et en suivant leur évolution dans le temps et par équipement : on repère ainsi les équipements les plus problématiques, on y concentre les actions, et on vérifie ensuite que les indicateurs s'améliorent. La mesure sert le pilotage, pas la statistique pour elle-même ; les aspects sécurité (incidents) se suivent aussi.",
+    },
+    memo: ["Mesurer pour piloter", "Fiabilité · maintenabilité · disponibilité", "Comparer et suivre la tendance"],
+    resume:
+      "Les indicateurs de maintenance transforment le vécu en chiffres pour comparer, suivre l'évolution et décider où agir ; les familles clés sont la fiabilité, la maintenabilité et la disponibilité.",
+    quizIds: ["mnt91", "mnt92", "mnt93", "mnt94", "mnt95"],
+    verification: {
+      question: "À quoi servent les indicateurs de maintenance ?",
+      options: ["À décorer les rapports", "À comparer, suivre l'évolution et décider où agir", "À remplacer les techniciens", "À rien"],
+      correct: 1,
+      explanation: "Les indicateurs transforment le vécu en chiffres qui permettent de comparer, suivre et décider." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez pourquoi on mesure la performance de la maintenance et citez les trois grandes familles d'indicateurs.",
+      consignes: [
+        "Explique l'intérêt de mesurer.",
+        "Cite les trois familles.",
+        "Explique comment un indicateur s'exploite.",
+      ],
+      criteres: [
+        "J'ai expliqué comparer/suivre/décider.",
+        "J'ai cité fiabilité, maintenabilité, disponibilité.",
+        "J'ai indiqué la comparaison à un objectif et le suivi de tendance.",
+      ],
+      correction:
+        "On mesure la performance de la maintenance parce qu'« on ne pilote bien que ce que l'on mesure » : les indicateurs transforment le vécu (pannes, arrêts, réparations) en chiffres qui permettent de comparer objectivement, de suivre l'évolution dans le temps et de décider où concentrer les actions. Les trois grandes familles sont la fiabilité (tombe-t-on souvent en panne ? mesurée par le MTBF), la maintenabilité (répare-t-on vite ? mesurée par le MTTR) et la disponibilité (la machine est-elle prête quand on en a besoin ?). Un indicateur s'exploite en le comparant à un objectif et à son historique, et en suivant sa tendance : c'est l'évolution, plus que la valeur isolée, qui guide les décisions.",
+    },
+  },
+  {
+    id: "6-20",
+    title: "La fiabilité et le MTBF",
+    durationMinutes: 30,
+    objectifs: [
+      "Définir la fiabilité et l'indicateur MTBF.",
+      "Calculer et interpréter un MTBF simple.",
+    ],
+    simple:
+      "La fiabilité, c'est l'aptitude d'un équipement à fonctionner sans tomber en panne. On la mesure par le MTBF (temps moyen entre défaillances) : c'est le temps de bon fonctionnement divisé par le nombre de pannes. Plus le MTBF est grand, plus l'équipement est fiable (il tombe rarement en panne).",
+    vocab: [
+      ["Fiabilité", "Aptitude à fonctionner sans défaillance pendant une durée donnée."],
+      ["MTBF", "Mean Time Between Failures : temps moyen entre deux défaillances."],
+      ["Défaillance", "Panne : perte de la fonction requise."],
+      ["Temps de bon fonctionnement", "Durée pendant laquelle l'équipement a fonctionné."],
+      ["Tendance du MTBF", "Son évolution : en hausse (on fiabilise) ou en baisse (on se dégrade)."],
+    ],
+    example:
+      "Une machine a fonctionné 900 heures et a subi 3 pannes sur la période : MTBF = 900 / 3 = 300 heures. En moyenne, elle tombe en panne toutes les 300 heures. Si, après des améliorations, le MTBF passe à 450 h, la fiabilité a progressé.",
+    schema: "maintenance-types",
+    ascii: "FIABILITE = fonctionner SANS panne\nMTBF = temps de bon fonctionnement / nombre de pannes\nex : 900 h / 3 pannes = 300 h  →  MTBF ELEVE = plus FIABLE",
+    retenir: [
+      "La fiabilité = aptitude à fonctionner sans défaillance.",
+      "MTBF = temps de bon fonctionnement ÷ nombre de pannes.",
+      "Plus le MTBF est grand, plus l'équipement est fiable.",
+      "On suit la tendance du MTBF pour voir si on fiabilise.",
+    ],
+    erreurs: [
+      "Confondre MTBF (entre pannes, fiabilité) et MTTR (durée de réparation).",
+      "Comparer des MTBF sans tenir compte des conditions d'usage.",
+      "Se fier à un MTBF calculé sur trop peu de pannes (peu significatif).",
+    ],
+    astucesPro: [
+      "Un MTBF qui baisse dans le temps signale une dégradation à traiter.",
+      "On calcule le MTBF sur une période et des conditions comparables.",
+      "Le MTBF guide le préventif : on intervient avant l'échéance moyenne.",
+    ],
+    diagnostic: [
+      "Calculer le MTBF sur une période représentative.",
+      "Comparer le MTBF à l'objectif et à l'historique.",
+      "Repérer les équipements à faible MTBF (peu fiables).",
+    ],
+    depannage: [
+      "Cibler les équipements au plus faible MTBF pour fiabiliser.",
+      "Analyser les causes des pannes récurrentes (5 pourquoi, AMDEC).",
+      "Vérifier que les actions font remonter le MTBF.",
+    ],
+    securite: [
+      "Un équipement de sécurité doit avoir une fiabilité élevée : sa défaillance peut être dangereuse.",
+      "On ne « gonfle » jamais un MTBF en masquant des pannes : la sécurité repose sur des données honnêtes.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une machine a fonctionné 1 200 heures avec 4 pannes ce trimestre ; au trimestre précédent, son MTBF était de 400 h.",
+      mission: ["Calculer le MTBF actuel.", "Comparer à la période précédente.", "Conclure sur la tendance."],
+      correction:
+        "Le MTBF actuel se calcule en divisant le temps de bon fonctionnement par le nombre de pannes : 1 200 h ÷ 4 = 300 heures. Au trimestre précédent, le MTBF était de 400 heures. La comparaison montre une baisse (de 400 à 300 h) : la machine tombe désormais en panne plus fréquemment, sa fiabilité s'est dégradée. Conclusion sur la tendance : c'est un signal d'alerte. On cherche les causes des pannes récurrentes (par les 5 pourquoi ou une AMDEC), on agit sur elles, et on vérifie ensuite que le MTBF remonte. On veille aussi à mesurer sur des conditions comparables et à ne jamais masquer de pannes, la fiabilité des équipements de sécurité étant particulièrement critique.",
+    },
+    memo: ["MTBF = fonctionnement ÷ pannes", "MTBF grand = fiable", "MTBF qui baisse = alerte"],
+    resume:
+      "La fiabilité est l'aptitude à fonctionner sans panne ; elle se mesure par le MTBF (temps de bon fonctionnement ÷ nombre de pannes), d'autant plus élevé que l'équipement est fiable.",
+    quizIds: ["mnt96", "mnt97", "mnt98", "mnt99", "mnt100"],
+    verification: {
+      question: "Une machine fonctionne 900 h avec 3 pannes. Quel est son MTBF ?",
+      options: ["3 heures", "300 heures", "2 700 heures", "900 pannes"],
+      correct: 1,
+      explanation: "MTBF = temps de bon fonctionnement ÷ nombre de pannes = 900 ÷ 3 = 300 heures." ,
+    },
+    exercice: {
+      enonce:
+        "Définissez la fiabilité et le MTBF, et calculez un exemple.",
+      consignes: [
+        "Définis la fiabilité.",
+        "Donne la formule du MTBF.",
+        "Calcule un MTBF (ex. 800 h, 4 pannes).",
+      ],
+      criteres: [
+        "J'ai défini la fiabilité.",
+        "J'ai donné MTBF = fonctionnement ÷ pannes.",
+        "J'ai calculé correctement (800 ÷ 4 = 200 h).",
+      ],
+      correction:
+        "La fiabilité est l'aptitude d'un équipement à fonctionner sans défaillance pendant une durée donnée : un équipement fiable tombe rarement en panne. On la mesure par le MTBF (Mean Time Between Failures, temps moyen entre défaillances), qui se calcule en divisant le temps de bon fonctionnement par le nombre de pannes. Exemple : une machine qui a fonctionné 800 heures avec 4 pannes a un MTBF de 800 ÷ 4 = 200 heures ; en moyenne, elle tombe en panne toutes les 200 heures. Plus le MTBF est grand, plus l'équipement est fiable ; on suit sa tendance pour vérifier que les actions de fiabilisation le font progresser.",
+    },
+  },
+  {
+    id: "6-21",
+    title: "La maintenabilité et le MTTR",
+    durationMinutes: 30,
+    objectifs: [
+      "Définir la maintenabilité et l'indicateur MTTR.",
+      "Comprendre ce qui influence le temps de réparation.",
+    ],
+    simple:
+      "La maintenabilité, c'est l'aptitude d'un équipement à être réparé rapidement. On la mesure par le MTTR (temps moyen de réparation) : c'est le temps total des réparations divisé par le nombre d'interventions. Plus le MTTR est petit, mieux c'est. Le MTTR dépend de l'accessibilité, de la disponibilité des pièces, de la documentation et de la préparation.",
+    vocab: [
+      ["Maintenabilité", "Aptitude d'un équipement à être remis en état rapidement."],
+      ["MTTR", "Mean Time To Repair : temps moyen de réparation."],
+      ["Accessibilité", "Facilité d'accès aux organes à réparer (influe sur le MTTR)."],
+      ["Temps de réparation", "Durée d'une intervention (diagnostic + réparation + contrôle)."],
+      ["Préparation", "Documentation, pièces et outillage prêts : réduit le MTTR."],
+    ],
+    example:
+      "Trois réparations ont duré au total 6 heures : MTTR = 6 / 3 = 2 heures. Si les pièces sont en stock, la doc à jour et l'organe accessible, le MTTR baisse ; si on cherche la pièce pendant deux jours, il explose.",
+    schema: "maintenance-types",
+    ascii: "MAINTENABILITE = etre repare VITE\nMTTR = temps total de reparation / nombre d'interventions\nex : 6 h / 3 = 2 h  →  MTTR PETIT = mieux\ninfluences : accessibilite · pieces · doc · preparation",
+    retenir: [
+      "La maintenabilité = aptitude à être réparé rapidement.",
+      "MTTR = temps total de réparation ÷ nombre d'interventions.",
+      "Plus le MTTR est petit, mieux c'est.",
+      "Le MTTR dépend de l'accessibilité, des pièces, de la doc et de la préparation.",
+    ],
+    erreurs: [
+      "Confondre MTTR (durée de réparation) et MTBF (entre pannes).",
+      "Négliger la préparation, qui pèse lourd sur le MTTR.",
+      "Oublier que le diagnostic fait partie du temps de réparation.",
+    ],
+    astucesPro: [
+      "Une bonne préparation (pièces, doc, outillage) réduit fortement le MTTR.",
+      "L'accessibilité se pense dès la conception/l'implantation des équipements.",
+      "Un MTTR élevé et récurrent signale un problème d'organisation, pas que technique.",
+    ],
+    diagnostic: [
+      "Calculer le MTTR sur une période représentative.",
+      "Décomposer le temps (attente pièce, diagnostic, réparation) pour voir où ça coince.",
+      "Comparer le MTTR à l'objectif et à l'historique.",
+    ],
+    depannage: [
+      "Réduire le MTTR en améliorant préparation, stock et documentation.",
+      "Améliorer l'accessibilité des organes souvent maintenus.",
+      "Standardiser les gammes pour accélérer les interventions.",
+    ],
+    securite: [
+      "Réduire le MTTR ne doit jamais conduire à bâcler la consignation ou les contrôles de sécurité.",
+      "La vitesse de réparation ne se gagne pas en contournant les procédures.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Sur un équipement, le MTTR est élevé : l'analyse montre que la moitié du temps de réparation est passée à chercher les pièces.",
+      mission: ["Interpréter la cause.", "Proposer des actions pour réduire le MTTR.", "Rappeler une limite de sécurité."],
+      correction:
+        "Un MTTR élevé dont la moitié est due à la recherche de pièces révèle un problème d'organisation, pas seulement technique : le temps de réparation « utile » n'est pas en cause, c'est l'attente/approvisionnement. Actions pour réduire le MTTR : constituer un stock de sécurité des pièces critiques (lien avec le bloc 1), améliorer la traçabilité et le repérage des pièces, préparer les interventions (documentation et outillage prêts), standardiser les gammes et améliorer l'accessibilité des organes fréquemment maintenus. Ces leviers agissent surtout sur la préparation et la logistique. Limite de sécurité : réduire le MTTR ne doit jamais conduire à sauter la consignation, la vérification d'absence d'énergie ou les contrôles de sécurité — la rapidité ne se gagne pas en contournant les procédures.",
+    },
+    memo: ["MTTR = réparation ÷ interventions", "MTTR petit = mieux", "Préparation/pièces/accès réduisent le MTTR"],
+    resume:
+      "La maintenabilité est l'aptitude à être réparé vite ; elle se mesure par le MTTR (temps total de réparation ÷ interventions), d'autant meilleur qu'il est petit, et dépend de l'accessibilité, des pièces, de la doc et de la préparation.",
+    quizIds: ["mnt101", "mnt102", "mnt103", "mnt104", "mnt105"],
+    verification: {
+      question: "Que mesure le MTTR ?",
+      options: ["Le temps moyen entre deux pannes", "Le temps moyen de réparation", "Le nombre de machines", "La consommation électrique"],
+      correct: 1,
+      explanation: "Le MTTR (Mean Time To Repair) est le temps moyen de réparation : temps total de réparation ÷ nombre d'interventions." ,
+    },
+    exercice: {
+      enonce:
+        "Définissez la maintenabilité et le MTTR, et citez trois facteurs qui l'influencent.",
+      consignes: [
+        "Définis la maintenabilité.",
+        "Donne la formule du MTTR et un calcul.",
+        "Cite trois facteurs influençant le MTTR.",
+      ],
+      criteres: [
+        "J'ai défini la maintenabilité.",
+        "J'ai donné MTTR = réparation ÷ interventions avec un exemple.",
+        "J'ai cité trois facteurs (accessibilité, pièces, doc, préparation).",
+      ],
+      correction:
+        "La maintenabilité est l'aptitude d'un équipement à être remis en état rapidement après une défaillance. On la mesure par le MTTR (Mean Time To Repair), temps moyen de réparation, égal au temps total des réparations divisé par le nombre d'interventions : par exemple, 6 heures de réparation pour 3 interventions donnent un MTTR de 2 heures. Plus le MTTR est petit, meilleure est la maintenabilité. Il dépend de plusieurs facteurs : l'accessibilité des organes à réparer, la disponibilité des pièces de rechange, la qualité de la documentation et la préparation de l'intervention (outillage et pièces prêts). Améliorer ces facteurs réduit le MTTR, sans jamais bâcler la consignation ni les contrôles de sécurité.",
+    },
+  },
+];
+
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
   {
     id: "m6-b1",
@@ -1596,7 +1854,15 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
       passPercent: 80,
     },
   },
-  { id: "m6-b4", num: 4, title: "Indicateurs et amélioration continue", objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).", lessonIds: [], chapterCount: 6, status: "planned" },
+  {
+    id: "m6-b4",
+    num: 4,
+    title: "Indicateurs et amélioration continue",
+    objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).",
+    lessonIds: block4Lessons.map((lesson) => lesson.id),
+    chapterCount: 6,
+    status: "in_progress",
+  },
   { id: "m6-b5", num: 5, title: "Documentation, GMAO et traçabilité", objective: "Exploiter la documentation technique, la GMAO et rédiger un rapport d'intervention.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];
 
@@ -1607,6 +1873,6 @@ export const MAINTENANCE_MODULE: TrainingModule = {
   icon: Activity,
   color: "violet",
   source: "[TMI] Parcours avancé · prolonge le module 1 · plan préventif, surveillance conditionnelle, diagnostic, indicateurs et GMAO",
-  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons],
+  lessons: [...block1Lessons, ...block2Lessons, ...block3Lessons, ...block4Lessons],
   blocks: MAINTENANCE_BLOCKS,
 };
