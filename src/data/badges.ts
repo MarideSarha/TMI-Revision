@@ -24,6 +24,7 @@ export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "maint_block_1", label: "Plan préventif", desc: "Bâtir et suivre un plan de maintenance préventive (gammes, périodicités, lubrification) avec au moins 80 %", icon: Activity },
   { id: "maint_block_2", label: "Surveillance conditionnelle", desc: "Surveiller l'état des équipements (vibrations, thermographie, huile, ultrasons) avec au moins 80 %", icon: Activity },
   { id: "maint_block_3", label: "Diagnostic méthodique", desc: "Mener un diagnostic structuré (5 pourquoi, Ishikawa, multi-technologies) avec au moins 80 %", icon: Target },
+  { id: "maint_block_4", label: "Indicateurs & amélioration", desc: "Utiliser MTBF, MTTR, disponibilité, TRS, Pareto et AMDEC avec au moins 80 %", icon: Gauge },
   { id: "mechanics_block_1", label: "Observateur mécanique", desc: "Maîtriser le bloc 1 de mécanique avec au moins 80 %", icon: ShieldCheck },
   { id: "mechanics_block_5", label: "Assembleur fiable", desc: "Maîtriser assemblages, fixations et étanchéité avec au moins 80 %", icon: Wrench },
   { id: "mechanics_block_6", label: "Aligneur de précision", desc: "Maîtriser arbres, accouplements, alignement et vibrations avec au moins 80 %", icon: Target },

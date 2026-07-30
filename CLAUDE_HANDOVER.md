@@ -217,9 +217,14 @@ aucune réécriture d'historique.)
 
 ## Résultat du build
 
-- Build réussi. Décomptes après le bloc 3 du module 6 : **6 modules, 31 blocs, 160 leçons, 805 questions, 10 pannes, 28 badges.**
+- Build réussi. Décomptes après le bloc 4 du module 6 : **6 modules, 31 blocs, 166 leçons, 835 questions, 10 pannes, 29 badges.**
 - Bundles sous budget : `learning-data` ≈ 452 kB, `learning-electro`, `learning-auto` et `learning-maint` isolés (budget 500 kB/fichier).
-- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : blocs 1 à 3 disponibles sur 5 blocs prévus. Module 4 : inchangé (6 blocs sur 12).**
+- **Module 3 : entièrement développé (7 blocs, 43 chapitres). Module 5 : entièrement développé (7 blocs, 45 chapitres). Module 6 (nouveau, recentré sur l'avancé) : blocs 1 à 4 disponibles sur 5 blocs prévus (reste le bloc 5 : documentation/GMAO). Module 4 : inchangé (6 blocs sur 12).**
+- **Contrat pédagogique étendu par Codex** (`validate.ts`) : les leçons `4-*`, `5-*`, `6-*` et `3-*` (≥ 3-4)
+  doivent désormais avoir exactement 5 questions ET le parcours pro complet (ascii, astucesPro, diagnostic,
+  depannage, securite, etudeDeCas, memo, resume). Tout le contenu M5/M6 déjà écrit respecte ce contrat.
+  `npm run check` inclut maintenant `check:ui` (`scripts/check-ui-contract.mjs`) et un workflow CI
+  (`.github/workflows/ci-pr.yml`) s'exécute sur les PR — la PR #1 reçoit donc de vrais check runs.
 
 ## Problèmes connus
 
@@ -257,8 +262,11 @@ aucune réécriture d'historique.)
   « La méthodologie de diagnostic » terminé** (6-13 à 6-18 : démarche structurée, description QQOQCP,
   5 pourquoi, Ishikawa/5M, multi-technologies, confirmer/corriger/capitaliser ; examen ; badge
   `maint_block_3`). Nouveau schéma interactif `five-whys` (remontée symptôme → cause racine) au chapitre 6-15.
-- Prochaines pistes possibles : **poursuivre le module 6** (blocs 4 et 5 : indicateurs MTBF/MTTR/TRS +
-  AMDEC, documentation/GMAO), ou **compléter le module 4** (mécanique, 6 blocs restants sur 12).
+  **Bloc 4 « Indicateurs et amélioration continue » terminé** (6-19 à 6-24 : indicateurs, MTBF, MTTR,
+  disponibilité/TRS, Pareto, AMDEC/amélioration continue ; examen ; badge `maint_block_4`). Nouveau schéma
+  interactif `pareto-chart` (barres triées + courbe cumulée, mise en évidence des 20 % vitaux) au chapitre 6-23.
+- Prochaines pistes possibles : **terminer le module 6** (bloc 5 : documentation technique, GMAO, bon de
+  travail / rapport d'intervention, REX), ou **compléter le module 4** (mécanique, 6 blocs restants sur 12).
 - Alternative : compléter le **module 4** (mécanique, 6 blocs restants sur 12).
 - Envisager d'étendre `validate.ts` aux leçons `3-*` (parcours pro complet) une fois les leçons
   fondatrices 3-1/3-2/3-3 enrichies au même niveau que les blocs 2 à 7.
@@ -309,6 +317,8 @@ Branche poussée sur GitHub (Pull Request #1) :
 - `feat(module-6): complete le bloc 2 (6-10 a 6-12), examen et badge`
 - `feat(module-6): demarre le bloc 3 (methodologie de diagnostic, 6-13 a 6-15) + 5 pourquoi interactif`
 - `feat(module-6): complete le bloc 3 (6-16 a 6-18), examen et badge`
+- `feat(module-6): demarre le bloc 4 (indicateurs : MTBF, MTTR, 6-19 a 6-21)`
+- `feat(module-6): complete le bloc 4 (6-22 a 6-24), Pareto interactif, examen et badge`
 
 ## Instructions pour reprendre le développement
 

@@ -1130,6 +1130,111 @@ function MaintenanceStrategy({ dark }: { dark: boolean }) {
 }
 
 /* ---------------------------------------------------------------
+   DIAGRAMME DE PARETO — LA RÈGLE DES 20/80
+   Les causes de pannes sont triées par ordre décroissant ; une courbe
+   cumulée montre que quelques causes (les « 20 % vitaux ») concentrent
+   l'essentiel des problèmes. Repli statique : barres et courbe restent
+   lisibles sans interaction.
+   --------------------------------------------------------------- */
+
+const PARETO_CAUSES = [
+  { label: "Roulements", value: 42 },
+  { label: "Capteurs", value: 28 },
+  { label: "Courroies", value: 15 },
+  { label: "Câblage", value: 8 },
+  { label: "Divers", value: 7 },
+]; // arrêts (%) sur une période — total 100
+
+function ParetoChart({ dark }: { dark: boolean }) {
+  const [showVital, setShowVital] = useState(false);
+  const stroke = dark ? "#94a3b8" : "#475569";
+  const grid = dark ? "#334155" : "#e2e8f0";
+  const bar = dark ? "#64748b" : "#94a3b8";
+  const accent = "#8b5cf6";
+  const alert = "#ef4444";
+
+  const x0 = 34;
+  const x1 = 288;
+  const yTop = 18;
+  const yBot = 128;
+  const n = PARETO_CAUSES.length;
+  const yAt = (pct: number) => yBot - (pct / 100) * (yBot - yTop);
+  const slot = (x1 - x0) / n;
+  const barW = slot * 0.56;
+  const xCenter = (i: number) => x0 + (i + 0.5) * slot;
+
+  let cum = 0;
+  const cumPoints: Array<{ x: number; y: number; cum: number }> = [];
+  let vitalIndex = n - 1;
+  let firstFound = false;
+  PARETO_CAUSES.forEach((c, i) => {
+    cum += c.value;
+    cumPoints.push({ x: xCenter(i), y: yAt(cum), cum });
+    if (!firstFound && cum >= 80) {
+      vitalIndex = i;
+      firstFound = true;
+    }
+  });
+
+  return (
+    <Figure
+      dark={dark}
+      title="Diagramme de Pareto : cibler les 20 % de causes vitales"
+      legend="Les causes sont triées par ordre décroissant ; la courbe cumulée montre que quelques causes concentrent l'essentiel des pannes. Exemple : arrêts (%) par cause."
+      explanation="La loi de Pareto (règle des 20/80) observe qu'une petite part des causes (environ 20 %) produit l'essentiel des effets (environ 80 %). En maintenance, on classe les causes de pannes ou d'arrêts par ordre décroissant et on trace la courbe cumulée : on repère ainsi les « quelques causes vitales » sur lesquelles agir en priorité, plutôt que de se disperser. Les chiffres 20 et 80 sont indicatifs ; l'idée est de concentrer l'effort là où il rapporte le plus."
+      controls={
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="button" onClick={() => setShowVital(true)} disabled={showVital} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-2.5 text-sm font-bold disabled:opacity-40 ${dark ? "border-violet-400 bg-violet-400 text-slate-950" : "border-violet-500 bg-violet-500 text-white"}`}>
+            <ArrowRight size={16} /> Cibler les 20 % vitaux
+          </button>
+          <button type="button" onClick={() => setShowVital(false)} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} /> Réinitialiser
+          </button>
+        </div>
+      }
+    >
+      <svg viewBox="0 0 300 150" className="h-auto w-full" role="img" aria-label={`Causes d'arrêts triées : ${PARETO_CAUSES.map((c) => `${c.label} ${c.value}%`).join(", ")}. Les ${vitalIndex + 1} premières cumulent ${cumPoints[vitalIndex].cum}%.`}>
+        {/* Axes */}
+        <line x1={x0} y1={yTop} x2={x0} y2={yBot} stroke={stroke} strokeWidth="1" />
+        <line x1={x0} y1={yBot} x2={x1} y2={yBot} stroke={stroke} strokeWidth="1" />
+        <text x={x0 - 4} y={yTop + 3} textAnchor="end" fontSize="7" fill={stroke}>%</text>
+        {/* Grille + ligne 80 % */}
+        {[20, 40, 60, 80].map((v) => (
+          <line key={v} x1={x0} y1={yAt(v)} x2={x1} y2={yAt(v)} stroke={v === 80 && showVital ? alert : grid} strokeWidth={v === 80 && showVital ? 1.1 : 0.6} strokeDasharray={v === 80 && showVital ? "4 3" : undefined} />
+        ))}
+        {showVital && <text x={x1} y={yAt(80) - 3} textAnchor="end" fontSize="7.5" fill={alert} fontWeight="bold">80 %</text>}
+        {/* Barres */}
+        {PARETO_CAUSES.map((c, i) => {
+          const isVital = showVital && i <= vitalIndex;
+          return (
+            <g key={c.label}>
+              <rect x={xCenter(i) - barW / 2} y={yAt(c.value)} width={barW} height={yBot - yAt(c.value)} rx="1.5" fill={isVital ? accent : bar} />
+              <text x={xCenter(i)} y={yBot + 9} textAnchor="middle" fontSize="6.6" fill={stroke}>{c.label}</text>
+              <text x={xCenter(i)} y={yAt(c.value) - 2} textAnchor="middle" fontSize="6.6" fill={stroke}>{c.value}</text>
+            </g>
+          );
+        })}
+        {/* Courbe cumulée */}
+        <polyline points={cumPoints.map((p) => `${p.x},${p.y}`).join(" ")} fill="none" stroke={dark ? "#e2e8f0" : "#1e293b"} strokeWidth="1.5" />
+        {cumPoints.map((p, i) => (
+          <circle key={i} cx={p.x} cy={p.y} r="2.4" fill={dark ? "#e2e8f0" : "#1e293b"} />
+        ))}
+      </svg>
+
+      <div className={`mt-2 rounded-lg border-2 p-2.5 text-sm ${showVital ? "border-violet-500/40 bg-violet-500/5" : dark ? "border-slate-700 bg-slate-900/60" : "border-slate-200 bg-white"}`}>
+        {showVital ? (
+          <p className={dark ? "text-slate-200" : "text-slate-700"}>
+            <span className="font-semibold" style={{ color: accent }}>{PARETO_CAUSES.slice(0, vitalIndex + 1).map((c) => c.label).join(" + ")}</span> = {cumPoints[vitalIndex].cum} % des arrêts. On agit d'abord sur ces {vitalIndex + 1} causes : c'est là que l'effort rapporte le plus.
+          </p>
+        ) : (
+          <p className={dark ? "text-slate-300" : "text-slate-600"}>Clique « Cibler les 20 % vitaux » pour repérer les causes prioritaires.</p>
+        )}
+      </div>
+    </Figure>
+  );
+}
+
+/* ---------------------------------------------------------------
    MÉTHODE DES 5 POURQUOI — REMONTER À LA CAUSE RACINE
    On part d'un symptôme et on demande « pourquoi ? » à chaque
    réponse, jusqu'à la cause profonde ; l'action corrective agit
@@ -1681,5 +1786,6 @@ export function InteractiveSchema({ type, dark }: { type: InteractiveSchemaType;
   if (type === "maintenance-strategy") return <MaintenanceStrategy dark={dark} />;
   if (type === "condition-trend") return <ConditionTrend dark={dark} />;
   if (type === "five-whys") return <FiveWhys dark={dark} />;
+  if (type === "pareto-chart") return <ParetoChart dark={dark} />;
   return null;
 }

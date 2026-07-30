@@ -1812,6 +1812,262 @@ const block4Lessons: Lesson[] = [
         "La maintenabilité est l'aptitude d'un équipement à être remis en état rapidement après une défaillance. On la mesure par le MTTR (Mean Time To Repair), temps moyen de réparation, égal au temps total des réparations divisé par le nombre d'interventions : par exemple, 6 heures de réparation pour 3 interventions donnent un MTTR de 2 heures. Plus le MTTR est petit, meilleure est la maintenabilité. Il dépend de plusieurs facteurs : l'accessibilité des organes à réparer, la disponibilité des pièces de rechange, la qualité de la documentation et la préparation de l'intervention (outillage et pièces prêts). Améliorer ces facteurs réduit le MTTR, sans jamais bâcler la consignation ni les contrôles de sécurité.",
     },
   },
+  {
+    id: "6-22",
+    title: "La disponibilité et le TRS",
+    durationMinutes: 32,
+    objectifs: [
+      "Calculer la disponibilité à partir du MTBF et du MTTR.",
+      "Comprendre ce que mesure le TRS (taux de rendement synthétique).",
+    ],
+    simple:
+      "La disponibilité combine fiabilité et maintenabilité : c'est la part du temps où la machine est apte à produire. Elle se calcule par MTBF / (MTBF + MTTR). Le TRS (taux de rendement synthétique) va plus loin : il mesure la performance réelle d'un moyen de production en combinant sa disponibilité, sa performance (vitesse) et sa qualité (pièces bonnes).",
+    vocab: [
+      ["Disponibilité", "Part du temps où l'équipement est apte à fonctionner : MTBF / (MTBF + MTTR)."],
+      ["TRS", "Taux de Rendement Synthétique : Disponibilité × Performance × Qualité."],
+      ["Performance (TRS)", "Rapport entre la vitesse réelle et la vitesse nominale."],
+      ["Qualité (TRS)", "Part de pièces bonnes parmi les pièces produites."],
+      ["Temps requis", "Temps pendant lequel on voulait produire (base du TRS)."],
+    ],
+    example:
+      "MTBF = 300 h, MTTR = 20 h : disponibilité = 300 / (300 + 20) ≈ 0,94, soit 94 %. Le TRS d'une ligne à 90 % de disponibilité, 95 % de performance et 98 % de qualité vaut 0,90 × 0,95 × 0,98 ≈ 0,84, soit 84 %.",
+    schema: "percentage-bar",
+    ascii: "DISPONIBILITE = MTBF / (MTBF + MTTR)  (fiabilite + maintenabilite)\nex : 300 / (300+20) ≈ 94 %\nTRS = DISPONIBILITE × PERFORMANCE × QUALITE  (performance reelle d'un moyen)",
+    retenir: [
+      "Disponibilité = MTBF / (MTBF + MTTR).",
+      "Elle combine fiabilité (MTBF) et maintenabilité (MTTR).",
+      "TRS = Disponibilité × Performance × Qualité.",
+      "Le TRS révèle les pertes cachées (arrêts, ralentissements, rebuts).",
+    ],
+    erreurs: [
+      "Confondre disponibilité (temps) et TRS (disponibilité × perf × qualité).",
+      "Oublier que réduire le MTTR augmente aussi la disponibilité.",
+      "Ne regarder que la disponibilité en négligeant performance et qualité.",
+    ],
+    astucesPro: [
+      "Pour améliorer la disponibilité, on agit sur le MTBF (fiabiliser) ET le MTTR (réparer vite).",
+      "Un bon TRS demande d'agir sur les trois leviers, pas un seul.",
+      "Le TRS met en lumière des pertes qu'on ne voyait pas (micro-arrêts, ralentissements).",
+    ],
+    diagnostic: [
+      "Calculer la disponibilité à partir du MTBF et du MTTR.",
+      "Décomposer le TRS pour voir quel facteur pénalise (dispo, perf, qualité).",
+      "Comparer au objectif et suivre la tendance.",
+    ],
+    depannage: [
+      "Disponibilité faible : fiabiliser (MTBF) ou accélérer les réparations (MTTR).",
+      "Performance faible : traiter micro-arrêts et ralentissements.",
+      "Qualité faible : réduire les rebuts et retouches.",
+    ],
+    securite: [
+      "Améliorer le TRS ne justifie jamais de faire tourner une machine sécurité neutralisée ou en survitesse dangereuse.",
+      "La disponibilité inclut les arrêts nécessaires à la sécurité, qui ne se sacrifient pas.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Une ligne a un MTBF de 200 h et un MTTR de 25 h ; par ailleurs, sa performance est de 90 % et sa qualité de 97 %.",
+      mission: ["Calculer la disponibilité.", "Estimer le TRS.", "Dire sur quel levier agir en priorité."],
+      correction:
+        "La disponibilité se calcule par MTBF / (MTBF + MTTR) = 200 / (200 + 25) = 200 / 225 ≈ 0,89, soit environ 89 %. Le TRS combine les trois facteurs : Disponibilité × Performance × Qualité ≈ 0,89 × 0,90 × 0,97 ≈ 0,78, soit environ 78 %. Pour décider du levier prioritaire, on regarde quel facteur pénalise le plus : ici la disponibilité (89 %) et la performance (90 %) sont proches, la qualité (97 %) est bonne. La disponibilité peut être améliorée en fiabilisant (augmenter le MTBF) ou en réduisant le MTTR (réparer plus vite, mieux préparer) ; la performance en traitant les micro-arrêts et ralentissements. On agit d'abord là où le gain potentiel est le plus grand, sans jamais compromettre la sécurité (pas de survitesse ni de sécurité neutralisée).",
+    },
+    memo: ["Dispo = MTBF/(MTBF+MTTR)", "TRS = Dispo × Perf × Qualité", "Trois leviers, pas un seul"],
+    resume:
+      "La disponibilité (MTBF / (MTBF + MTTR)) combine fiabilité et maintenabilité ; le TRS (Disponibilité × Performance × Qualité) mesure la performance réelle d'un moyen de production et révèle les pertes cachées.",
+    quizIds: ["mnt106", "mnt107", "mnt108", "mnt109", "mnt110"],
+    verification: {
+      question: "Comment calcule-t-on la disponibilité à partir du MTBF et du MTTR ?",
+      options: ["MTBF × MTTR", "MTBF / (MTBF + MTTR)", "MTTR / MTBF", "MTBF − MTTR"],
+      correct: 1,
+      explanation: "La disponibilité = MTBF / (MTBF + MTTR) : elle combine la fiabilité et la maintenabilité." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez la disponibilité et le TRS, et calculez un exemple de chacun.",
+      consignes: [
+        "Donne la formule de la disponibilité et un calcul.",
+        "Donne la formule du TRS.",
+        "Calcule un TRS à partir de trois facteurs.",
+      ],
+      criteres: [
+        "J'ai donné disponibilité = MTBF/(MTBF+MTTR) avec un calcul.",
+        "J'ai donné TRS = Dispo × Perf × Qualité.",
+        "J'ai calculé un TRS (ex. 0,90 × 0,95 × 0,98 ≈ 0,84).",
+      ],
+      correction:
+        "La disponibilité mesure la part du temps où l'équipement est apte à produire ; elle se calcule par MTBF / (MTBF + MTTR) et combine ainsi la fiabilité (MTBF, temps entre pannes) et la maintenabilité (MTTR, durée de réparation). Exemple : avec MTBF = 300 h et MTTR = 20 h, disponibilité = 300 / 320 ≈ 0,94, soit 94 %. Le TRS (taux de rendement synthétique) va plus loin en mesurant la performance réelle d'un moyen de production : TRS = Disponibilité × Performance × Qualité, où la performance est le rapport vitesse réelle/vitesse nominale et la qualité la part de pièces bonnes. Exemple : 0,90 × 0,95 × 0,98 ≈ 0,84, soit un TRS de 84 %. Le TRS révèle des pertes cachées (micro-arrêts, ralentissements, rebuts) ; on l'améliore en agissant sur les trois leviers, jamais au détriment de la sécurité.",
+    },
+  },
+  {
+    id: "6-23",
+    title: "Prioriser avec le diagramme de Pareto (20/80)",
+    durationMinutes: 30,
+    objectifs: [
+      "Utiliser la loi de Pareto pour prioriser les actions.",
+      "Lire un diagramme de Pareto et repérer les causes vitales.",
+    ],
+    simple:
+      "La loi de Pareto, ou règle des 20/80, observe qu'une petite part des causes (environ 20 %) produit l'essentiel des effets (environ 80 %). En maintenance, on classe les causes de pannes par ordre décroissant et on trace la courbe cumulée : on identifie ainsi les « quelques causes vitales » sur lesquelles agir en priorité, au lieu de se disperser sur tout.",
+    vocab: [
+      ["Loi de Pareto (20/80)", "Une minorité de causes produit la majorité des effets."],
+      ["Diagramme de Pareto", "Barres triées par ordre décroissant + courbe cumulée."],
+      ["Causes vitales", "Le petit nombre de causes qui concentrent l'essentiel des problèmes."],
+      ["Courbe cumulée", "Somme progressive des effets, qui atteint vite 80 %."],
+      ["Priorisation", "Choisir où agir d'abord pour le maximum d'effet."],
+    ],
+    example:
+      "Sur une ligne, on compte les arrêts par cause : roulements 42 %, capteurs 28 %, courroies 15 %, câblage 8 %, divers 7 %. Les trois premières cumulent 85 % des arrêts : agir sur elles règle l'essentiel du problème. Inutile de commencer par « divers » (7 %).",
+    schema: "percentage-bar",
+    illustrations: ["pareto-chart"],
+    ascii: "PARETO (20/80) : ~20 % des causes → ~80 % des effets\nclasser les causes par ordre DECROISSANT + courbe CUMULEE\nagir d'abord sur les « causes VITALES » (le plus d'effet)",
+    retenir: [
+      "Loi de Pareto : ~20 % des causes produisent ~80 % des effets.",
+      "On classe les causes par ordre décroissant et on cumule.",
+      "On agit d'abord sur les causes vitales (le haut du diagramme).",
+      "Les chiffres 20 et 80 sont indicatifs : l'idée est de prioriser.",
+    ],
+    erreurs: [
+      "Traiter les causes mineures avant les causes vitales.",
+      "Ne pas classer les causes (on ne voit plus les priorités).",
+      "Croire que 20/80 est une loi exacte plutôt qu'une tendance.",
+    ],
+    astucesPro: [
+      "On collecte d'abord des données fiables (comptage des pannes par cause).",
+      "Le diagramme rend la priorité évidente pour tout le monde.",
+      "Après action sur les vitales, on refait un Pareto : les priorités changent.",
+    ],
+    diagnostic: [
+      "Recenser et compter les causes de pannes/arrêts.",
+      "Les classer par ordre décroissant et tracer la courbe cumulée.",
+      "Identifier les causes qui cumulent l'essentiel des effets.",
+    ],
+    depannage: [
+      "Concentrer les actions sur les causes vitales.",
+      "Mesurer l'effet, puis refaire un Pareto pour les priorités suivantes.",
+      "Éviter de disperser l'effort sur les causes mineures.",
+    ],
+    securite: [
+      "Une cause mineure en fréquence mais grave pour la sécurité reste prioritaire : Pareto ne prime pas sur le risque.",
+      "On croise toujours la priorisation économique avec l'analyse de risque.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "Un atelier veut réduire ses arrêts. Le relevé donne : roulements 42 %, capteurs 28 %, courroies 15 %, câblage 8 %, divers 7 %.",
+      mission: ["Ordonner et cumuler.", "Dire par où commencer.", "Rappeler une limite (sécurité)."],
+      correction:
+        "Les causes sont déjà triées par ordre décroissant : roulements 42 %, capteurs 28 % (cumul 70 %), courroies 15 % (cumul 85 %), câblage 8 % (cumul 93 %), divers 7 % (cumul 100 %). La courbe cumulée montre que les trois premières causes concentrent 85 % des arrêts : ce sont les causes vitales. On commence donc par les roulements et les capteurs (déjà 70 % à elles deux), puis les courroies : agir là règle l'essentiel du problème, alors que commencer par « divers » (7 %) n'apporterait presque rien. Après avoir traité ces causes, on refait un Pareto car les priorités auront changé. Limite : la loi de Pareto priorise selon la fréquence/le coût, mais une cause peu fréquente et dangereuse pour la sécurité reste prioritaire — on croise toujours cette priorisation avec l'analyse de risque.",
+    },
+    memo: ["20 % des causes → 80 % des effets", "Classer + cumuler", "Agir sur les causes vitales"],
+    resume:
+      "Le diagramme de Pareto (règle des 20/80) classe les causes par ordre décroissant et les cumule pour repérer les quelques causes vitales sur lesquelles agir en priorité, sans écarter les risques de sécurité.",
+    quizIds: ["mnt111", "mnt112", "mnt113", "mnt114", "mnt115"],
+    verification: {
+      question: "Que dit la loi de Pareto (20/80) appliquée aux pannes ?",
+      options: ["Toutes les causes se valent", "Une minorité de causes (~20 %) produit l'essentiel des pannes (~80 %)", "80 % des causes sont vitales", "Il faut traiter les causes mineures d'abord"],
+      correct: 1,
+      explanation: "La loi de Pareto : une petite part des causes concentre l'essentiel des effets ; on agit d'abord sur elles." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez comment le diagramme de Pareto aide à prioriser, avec un exemple.",
+      consignes: [
+        "Énonce la loi de Pareto.",
+        "Explique comment on lit le diagramme (tri + cumul).",
+        "Donne un exemple de priorisation et une limite.",
+      ],
+      criteres: [
+        "J'ai énoncé la règle 20/80.",
+        "J'ai expliqué le tri décroissant et la courbe cumulée.",
+        "J'ai donné un exemple et rappelé la limite sécurité.",
+      ],
+      correction:
+        "La loi de Pareto (règle des 20/80) observe qu'environ 20 % des causes produisent environ 80 % des effets. Pour l'appliquer, on compte les pannes ou arrêts par cause, on classe les causes par ordre décroissant et on trace la courbe cumulée : on voit alors que quelques causes (les « vitales ») concentrent l'essentiel des problèmes. Exemple : roulements 42 %, capteurs 28 %, courroies 15 % cumulent déjà 85 % des arrêts ; on agit d'abord sur elles plutôt que sur « divers » (7 %). Après action, on refait un Pareto car les priorités évoluent. Limite : la priorisation par Pareto se fait sur la fréquence ou le coût ; une cause rare mais dangereuse pour la sécurité reste prioritaire — on croise donc toujours Pareto avec l'analyse de risque.",
+    },
+  },
+  {
+    id: "6-24",
+    title: "Anticiper avec l'AMDEC et améliorer en continu (synthèse)",
+    durationMinutes: 32,
+    objectifs: [
+      "Comprendre le principe de l'AMDEC et de la criticité.",
+      "Relier indicateurs, analyse et amélioration continue.",
+    ],
+    simple:
+      "L'AMDEC (Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité) anticipe les pannes : pour chaque mode de défaillance, on évalue trois notes — Gravité, Fréquence (occurrence) et Détection — et on les multiplie pour obtenir une criticité. Les modes les plus critiques sont traités en priorité. C'est un outil de prévention qui alimente la boucle d'amélioration continue.",
+    vocab: [
+      ["AMDEC", "Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité."],
+      ["Mode de défaillance", "Façon dont un élément peut tomber en panne."],
+      ["Criticité", "Note = Gravité × Fréquence × Détection (parfois notée G×O×D)."],
+      ["Détection", "Aptitude à repérer le défaut avant qu'il ne produise son effet."],
+      ["Amélioration continue", "Cycle qui réduit progressivement les pannes (mesurer, analyser, agir)."],
+    ],
+    example:
+      "Sur un roulement : mode « grippage », gravité forte (arrêt ligne), fréquence moyenne, détection difficile → criticité élevée : on met en place une surveillance vibratoire et un graissage planifié. Un mode peu grave, rare et facile à détecter a une criticité faible : on le laisse en correctif.",
+    schema: "maintenance-types",
+    ascii: "AMDEC = anticiper les pannes\nCRITICITE = GRAVITE × FREQUENCE × DETECTION\ntraiter d'abord les modes les plus CRITIQUES\nboucle : MESURER (indicateurs) → ANALYSER (Pareto/AMDEC/5 pourquoi) → AGIR → mesurer",
+    retenir: [
+      "L'AMDEC anticipe : elle évalue les modes de défaillance avant la panne.",
+      "Criticité = Gravité × Fréquence × Détection.",
+      "On traite en priorité les modes les plus critiques.",
+      "Indicateurs, Pareto, AMDEC et 5 pourquoi alimentent l'amélioration continue.",
+    ],
+    erreurs: [
+      "Réduire l'AMDEC à la seule gravité en oubliant fréquence et détection.",
+      "Faire une AMDEC et ne rien mettre en place derrière.",
+      "Croire que l'amélioration s'arrête une fois les indicateurs bons.",
+    ],
+    astucesPro: [
+      "Une détection difficile augmente la criticité : d'où l'intérêt de la surveillance.",
+      "L'AMDEC oriente le plan préventif et la surveillance (blocs 1 et 2).",
+      "L'amélioration est continue : on mesure, on agit, puis on re-mesure.",
+    ],
+    diagnostic: [
+      "Lister les modes de défaillance d'un équipement critique.",
+      "Noter gravité, fréquence et détection, puis calculer la criticité.",
+      "Classer les modes par criticité décroissante.",
+    ],
+    depannage: [
+      "Traiter les modes les plus critiques (préventif, surveillance, amélioration).",
+      "Réduire la criticité en agissant sur gravité, fréquence ou détection.",
+      "Re-mesurer les indicateurs pour vérifier le progrès.",
+    ],
+    securite: [
+      "La gravité de l'AMDEC intègre les conséquences sécurité : un mode dangereux est critique même s'il est rare.",
+      "Les actions issues de l'AMDEC ne doivent jamais réduire le niveau de sécurité existant.",
+      "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
+    ],
+    etudeDeCas: {
+      situation: "On réalise une AMDEC sur une pompe critique. Un mode « fuite au joint » : gravité 4/5, fréquence 3/5, détection difficile 4/5.",
+      mission: ["Calculer la criticité.", "Dire comment la réduire.", "Relier à l'amélioration continue."],
+      correction:
+        "La criticité se calcule en multipliant les trois notes : Gravité × Fréquence × Détection = 4 × 3 × 4 = 48 (sur un maximum de 125). C'est une criticité élevée, tirée notamment par la difficulté de détection. Pour la réduire, on agit sur l'un des trois facteurs : diminuer la gravité (limiter l'effet d'une fuite, rétention), réduire la fréquence (meilleur joint, préventif adapté) ou surtout améliorer la détection (surveillance : contrôle visuel planifié, capteur de niveau/fuite) — améliorer la détection fait fortement baisser la criticité. On relie ensuite à l'amélioration continue : l'AMDEC alimente le plan préventif et la surveillance (blocs 1 et 2), on met en place les actions, puis on re-mesure les indicateurs (MTBF, disponibilité) pour vérifier le progrès — mesurer, analyser, agir, re-mesurer. La gravité intègre la sécurité : un mode dangereux reste prioritaire même s'il est rare.",
+    },
+    memo: ["AMDEC = anticiper", "Criticité = Gravité × Fréquence × Détection", "Mesurer → analyser → agir → re-mesurer"],
+    resume:
+      "L'AMDEC anticipe les pannes en notant la criticité (Gravité × Fréquence × Détection) de chaque mode de défaillance pour traiter les plus critiques ; avec les indicateurs, le Pareto et les 5 pourquoi, elle nourrit l'amélioration continue.",
+    quizIds: ["mnt116", "mnt117", "mnt118", "mnt119", "mnt120"],
+    verification: {
+      question: "Comment se calcule la criticité dans une AMDEC ?",
+      options: ["Gravité + Fréquence", "Gravité × Fréquence × Détection", "Fréquence − Détection", "Gravité seule"],
+      correct: 1,
+      explanation: "La criticité = Gravité × Fréquence (occurrence) × Détection ; on traite en priorité les modes les plus critiques." ,
+    },
+    exercice: {
+      enonce:
+        "Expliquez le principe de l'AMDEC et comment elle s'inscrit dans l'amélioration continue.",
+      consignes: [
+        "Explique ce qu'évalue l'AMDEC.",
+        "Donne la formule de la criticité.",
+        "Relie AMDEC, indicateurs et amélioration continue.",
+      ],
+      criteres: [
+        "J'ai expliqué l'analyse des modes de défaillance.",
+        "J'ai donné criticité = Gravité × Fréquence × Détection.",
+        "J'ai relié à la boucle mesurer/analyser/agir.",
+      ],
+      correction:
+        "L'AMDEC (Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité) anticipe les pannes : pour chaque mode de défaillance d'un équipement, on évalue trois notes — la Gravité de l'effet, la Fréquence (occurrence) et la Détection (difficulté à repérer le défaut avant son effet) — et l'on calcule la criticité en les multipliant : Criticité = Gravité × Fréquence × Détection. On traite en priorité les modes les plus critiques, en agissant sur l'un des trois facteurs (réduire la gravité, la fréquence, ou améliorer la détection par la surveillance). L'AMDEC s'inscrit dans l'amélioration continue : elle alimente le plan préventif et la surveillance (blocs 1 et 2), et, avec les indicateurs (MTBF, MTTR, disponibilité, TRS), le diagramme de Pareto et les 5 pourquoi, elle boucle le cycle mesurer → analyser → agir → re-mesurer, qui réduit progressivement les pannes. La gravité intègre toujours les conséquences de sécurité.",
+    },
+  },
 ];
 
 export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
@@ -1861,7 +2117,11 @@ export const MAINTENANCE_BLOCKS: TrainingBlock[] = [
     objective: "Utiliser les indicateurs (MTBF, MTTR, disponibilité, TRS) et les outils d'analyse (AMDEC, Pareto).",
     lessonIds: block4Lessons.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: ["mnt91", "mnt94", "mnt96", "mnt99", "mnt101", "mnt104", "mnt106", "mnt109", "mnt111", "mnt114", "mnt116", "mnt119"],
+      passPercent: 80,
+    },
   },
   { id: "m6-b5", num: 5, title: "Documentation, GMAO et traçabilité", objective: "Exploiter la documentation technique, la GMAO et rédiger un rapport d'intervention.", lessonIds: [], chapterCount: 6, status: "planned" },
 ];

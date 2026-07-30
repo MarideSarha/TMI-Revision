@@ -100,7 +100,8 @@ export type InteractiveSchemaType =
   | "grafcet-cycle"
   | "maintenance-strategy"
   | "condition-trend"
-  | "five-whys";
+  | "five-whys"
+  | "pareto-chart";
 
 export interface LessonExercise {
   enonce: string;
