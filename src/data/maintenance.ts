@@ -280,28 +280,28 @@ const block1Lessons: Lesson[] = [
       "Utiliser ses sens pour détecter les débuts de dégradation.",
     ],
     simple:
-      "L'inspection est un contrôle régulier de l'état d'un équipement, souvent organisé en ronde (un parcours de points à vérifier). Elle s'appuie beaucoup sur l'inspection sensorielle : voir (fuites, jeu, corrosion), entendre (bruit anormal), sentir (odeur de brûlé), toucher avec prudence (échauffement, vibration). Une ronde bien faite détecte tôt, avant la panne.",
+      "L'inspection est un contrôle régulier de l'état d'un équipement, souvent organisé en ronde (un parcours de points à vérifier). Elle s'appuie sur la vue (fuites, jeu, corrosion), l'ouïe (bruit anormal) et l'odorat (odeur de brûlé). Pour un échauffement ou une vibration, on privilégie un instrument sans contact ou un capteur adapté plutôt que la main. Une ronde bien faite détecte tôt, avant la panne.",
     vocab: [
       ["Inspection", "Contrôle régulier de l'état d'un équipement."],
       ["Ronde", "Parcours organisé de points de contrôle à vérifier périodiquement."],
-      ["Inspection sensorielle", "Détection par les sens : vue, ouïe, odorat, toucher (avec prudence)."],
+      ["Inspection sensorielle", "Détection par la vue, l'ouïe et l'odorat ; la température et la vibration se contrôlent de préférence avec un instrument adapté."],
       ["Check-list", "Liste des points à vérifier lors de la ronde."],
       ["Signal faible", "Petit signe précoce (léger bruit, suintement) annonçant une dégradation."],
     ],
     example:
-      "Lors d'une ronde, on repère un léger suintement d'huile sous un réducteur, un bruit de roulement qui « chante », et un moteur anormalement chaud au toucher (avec prudence). Aucun n'a encore arrêté la machine, mais ces signaux faibles annoncent des dégradations : on planifie l'intervention.",
+      "Lors d'une ronde, on repère un léger suintement d'huile sous un réducteur, un bruit de roulement qui « chante » et une température anormale relevée au thermomètre infrarouge sur un moteur. Aucun n'a encore arrêté la machine, mais ces signaux faibles annoncent des dégradations : on planifie l'intervention.",
     schema: "maintenance-types",
-    ascii: "INSPECTION / RONDE = parcours de points a controler regulierement\nSENS : VOIR (fuite, jeu) · ENTENDRE (bruit) · SENTIR (brule) · TOUCHER (chaleur, avec prudence)\ndetecter les SIGNAUX FAIBLES → agir AVANT la panne",
+    ascii: "INSPECTION / RONDE = parcours de points a controler regulierement\nVOIR (fuite, jeu) · ENTENDRE (bruit) · SENTIR (brule) · MESURER sans contact (temperature)\ndetecter les SIGNAUX FAIBLES → agir AVANT la panne",
     retenir: [
       "L'inspection contrôle régulièrement l'état ; la ronde en organise le parcours.",
-      "L'inspection sensorielle mobilise la vue, l'ouïe, l'odorat et le toucher (prudent).",
+      "L'inspection mobilise les sens sans exposer le technicien ; température et vibration se mesurent avec un instrument adapté.",
       "On cherche les signaux faibles : ils annoncent la dégradation avant la panne.",
       "Une check-list garantit qu'aucun point n'est oublié.",
     ],
     erreurs: [
       "Faire une ronde « machinalement » sans vraiment observer.",
       "Négliger un signal faible parce que « ça marche encore ».",
-      "Toucher des parties chaudes ou en mouvement sans précaution.",
+      "Utiliser la main pour tester une température inconnue ou s'approcher d'une partie en mouvement.",
     ],
     astucesPro: [
       "On compare toujours à l'état normal connu : un bruit ou une chaleur inhabituels alertent.",
@@ -319,7 +319,7 @@ const block1Lessons: Lesson[] = [
       "Tracer l'observation pour suivre son évolution.",
     ],
     securite: [
-      "Le toucher (chaleur, vibration) se fait avec prudence et jamais sur des parties actives ou en mouvement dangereuses.",
+      "Privilégier une mesure sans contact ; ne jamais toucher une surface inconnue, une partie active ou un organe en mouvement.",
       "L'inspection se fait dans le respect des accès autorisés et des EPI.",
       "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
     ],
@@ -327,9 +327,9 @@ const block1Lessons: Lesson[] = [
       situation: "Pendant une ronde, un technicien entend un roulement qui « chante » légèrement sur un ventilateur, sans autre symptôme.",
       mission: ["Dire ce que représente ce bruit.", "Indiquer la conduite à tenir.", "Rappeler une précaution."],
       correction:
-        "Ce bruit léger est un signal faible : un roulement qui « chante » annonce souvent un début de dégradation, même si le ventilateur fonctionne encore normalement. Conduite à tenir : ne pas l'ignorer sous prétexte que « ça marche encore » ; noter et tracer l'observation, comparer à l'état normal, et selon la criticité, approfondir par une mesure (analyse vibratoire) puis planifier le remplacement avant la panne. Précaution : lors de l'inspection sensorielle, le toucher pour évaluer chaleur ou vibration se fait avec prudence, jamais sur des parties en mouvement ou actives dangereuses, et dans le respect des accès et EPI.",
+        "Ce bruit léger est un signal faible : un roulement qui « chante » annonce souvent un début de dégradation, même si le ventilateur fonctionne encore normalement. Conduite à tenir : ne pas l'ignorer sous prétexte que « ça marche encore » ; noter et tracer l'observation, comparer à l'état normal, et selon la criticité, approfondir par une mesure (analyse vibratoire et température sans contact) puis planifier le remplacement avant la panne. Précaution : rester hors des zones de mouvement, conserver les protecteurs en place et respecter les accès autorisés et les EPI.",
     },
-    memo: ["Ronde = parcours de contrôle", "Sens : voir/entendre/sentir/toucher (prudence)", "Signal faible = agir avant la panne"],
+    memo: ["Ronde = parcours de contrôle", "Voir/entendre/sentir sans s'exposer", "Température = mesure sans contact", "Signal faible = agir avant la panne"],
     resume:
       "L'inspection, souvent en ronde, contrôle régulièrement l'état des équipements par les sens ; en détectant les signaux faibles, elle permet d'agir avant la panne, en sécurité et en traçant les observations.",
     quizIds: ["mnt16", "mnt17", "mnt18", "mnt19", "mnt20"],
@@ -349,7 +349,7 @@ const block1Lessons: Lesson[] = [
       ],
       criteres: [
         "J'ai défini inspection et ronde.",
-        "J'ai décrit l'usage des sens (avec prudence pour le toucher).",
+        "J'ai décrit l'usage des sens et des instruments sans contact.",
         "J'ai expliqué la détection précoce et une précaution de sécurité.",
       ],
       correction:
@@ -1091,7 +1091,7 @@ const block3Lessons: Lesson[] = [
       "Tracer la cause et l'action pour la prévention.",
     ],
     securite: [
-      "Les tests et interventions sur les parties actives se font après consignation et vérification d'absence d'énergie.",
+      "On privilégie les contrôles hors tension après consignation et vérification d'absence d'énergie. Toute mesure sous tension doit être indispensable, autorisée et couverte par l'habilitation et la procédure applicables.",
       "On ne contourne jamais une sécurité pour tester plus vite.",
       "Cette application est pédagogique et ne remplace ni la formation ni les procédures.",
     ],

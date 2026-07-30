@@ -91,4 +91,8 @@ Noter les résultats et joindre des captures à la pull request avant de la déc
 - [x] Tester entièrement une évaluation avec mauvaise réponse, remédiation et nouvelle tentative.
 - [x] Terminer un scénario de panne jusqu'à sa correction (5/5).
 - [x] Vérifier la persistance de la progression après actualisation (XP et résultat du quiz conservés).
-- [ ] Faire relire les procédures de sécurité par un professionnel qualifié.
+- [x] Effectuer une revue technique interne des contenus de sécurité et corriger les formulations ambiguës (voir `SECURITE_PEDAGOGIQUE.md`).
+
+Une relecture humaine par un formateur ou un préventeur qualifié reste recommandée avant d'utiliser le contenu comme
+support officiel d'entreprise. Elle n'est pas remplacée par la présente revue et ne conditionne pas la publication de
+cette version pédagogique de révision.

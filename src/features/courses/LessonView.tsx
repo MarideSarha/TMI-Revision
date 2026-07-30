@@ -49,6 +49,19 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
         </div>
       </div>
 
+      <aside
+        role="note"
+        aria-label="Limites de l'entraînement et règles de sécurité"
+        className={`rounded-xl border p-3 text-xs leading-relaxed ${
+          dark ? "border-red-400/40 bg-red-400/5 text-slate-300" : "border-red-200 bg-red-50 text-slate-700"
+        }`}
+      >
+        <strong className="text-red-400">Entraînement uniquement.</strong>{" "}
+        Sur une machine réelle, applique toujours l’analyse de risques et la procédure du site. N’interviens que si tu es
+        autorisé, formé et habilité pour l’opération ; consigne toutes les énergies avant accès. Une mesure sous tension
+        reste exceptionnelle et relève d’une personne habilitée avec le matériel et la procédure adaptés.
+      </aside>
+
       <LessonStepper stage={stage} dark={dark} />
 
       {stage === "read" && (

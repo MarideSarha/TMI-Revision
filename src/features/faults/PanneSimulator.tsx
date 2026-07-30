@@ -32,6 +32,19 @@ function PanneCard({ panne, dark, onFinish }: PanneCardProps) {
 
   return (
     <div className="space-y-4">
+      <aside
+        role="note"
+        aria-label="Règles de sécurité du simulateur"
+        className={`rounded-xl border p-3 text-xs leading-relaxed ${
+          dark ? "border-red-400/40 bg-red-400/5 text-slate-300" : "border-red-200 bg-red-50 text-slate-700"
+        }`}
+      >
+        <strong className="text-red-400">Simulation pédagogique.</strong>{" "}
+        Dans l’atelier, sécurise la zone, préviens les personnes concernées et suis la procédure du site. Toute ouverture,
+        mesure ou intervention exige l’autorisation et les compétences adaptées, ainsi que la consignation de toutes les
+        énergies concernées.
+      </aside>
+
       <div className={`rounded-xl p-4 border-2 border-red-400/50 ${dark ? "bg-red-400/5" : "bg-red-50"}`}>
         <div className="flex items-center gap-2 mb-2">
           <Icon size={20} className="text-red-400" />
@@ -118,7 +131,7 @@ export function PanneSimulator({ progress, dark, onScore }: PanneSimulatorProps)
         <h2 className={`text-2xl font-bold flex items-center gap-2 ${dark ? "text-white" : "text-slate-900"}`}>
           <ShieldAlert className="text-red-400" /> Simulateur de pannes
         </h2>
-        <p className="text-sm text-slate-400 mt-1">[+] Complément pédagogique — 10 scénarios réalistes. La sécurité passe toujours avant la réparation.</p>
+        <p className="text-sm text-slate-400 mt-1">[+] Complément pédagogique — 10 scénarios réalistes. Il ne remplace ni l’autorisation, ni l’habilitation, ni la procédure de l’entreprise.</p>
       </div>
       <div className="grid gap-3">
         {PANNES.map((p) => {
