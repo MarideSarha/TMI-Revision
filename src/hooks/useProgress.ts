@@ -148,7 +148,13 @@ export function useProgress() {
     (result: QuizResult) => {
       if (!progress) return;
 
-      const nextProgress = { ...progress };
+      const nextProgress: Progress = {
+        ...progress,
+        quizAnswers: {
+          ...progress.quizAnswers,
+          [`practice-${Date.now()}`]: Object.values(result.answers),
+        },
+      };
       nextProgress.xp += result.correctCount * 8;
       addHistory(nextProgress, `Quiz terminé (${result.correctCount}/${result.total})`);
       checkBadges(nextProgress);
