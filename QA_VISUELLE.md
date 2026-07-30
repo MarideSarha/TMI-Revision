@@ -88,7 +88,7 @@ Noter les résultats et joindre des captures à la pull request avant de la déc
 
 ### Contrôles restant ouverts
 
-- [ ] Tester entièrement une évaluation avec mauvaise réponse, remédiation et nouvelle tentative.
-- [ ] Terminer un scénario de panne jusqu'à sa correction.
-- [ ] Vérifier la persistance de la progression après actualisation.
+- [x] Tester entièrement une évaluation avec mauvaise réponse, remédiation et nouvelle tentative.
+- [x] Terminer un scénario de panne jusqu'à sa correction (5/5).
+- [x] Vérifier la persistance de la progression après actualisation (XP et résultat du quiz conservés).
 - [ ] Faire relire les procédures de sécurité par un professionnel qualifié.
