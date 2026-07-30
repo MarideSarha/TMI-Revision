@@ -6,9 +6,8 @@ import type { Lesson, TrainingBlock, TrainingModule } from "../types";
    Parcours progressif débutant → opérationnel, organisé par blocs
    de maîtrise sur le modèle du module 4 (mécanique).
 
-   Bloc 1 = fondamentaux déjà rédigés (leçons 3-1, 3-2, 3-3),
-   conservés à l'identique. Les blocs 2 à 7 sont développés et
-   validés un par un.
+   Bloc 1 = fondamentaux (leçons 3-1, 3-2, 3-3), harmonisés avec
+   le contrat pédagogique professionnel des blocs 2 à 7.
    ============================================================ */
 
 const block1Lessons: Lesson[] = [
@@ -35,6 +34,15 @@ const block1Lessons: Lesson[] = [
     example:
       "Un radiateur de résistance 50 Ω branché sur du 230 V consomme un courant I = U / R = 230 / 50 = 4,6 A.",
     schema: "ohm-triangle",
+    ascii: [
+      "SOURCE 230 V ─── [ RÉCEPTEUR 50 Ω ] ─── retour",
+      "       tension U       courant I →",
+      "",
+      "             U",
+      "          ───────",
+      "           R × I",
+      "U = R × I     I = U / R     R = U / I",
+    ].join("\n"),
     retenir: [
       "Triangle U-R-I : U = R × I, I = U / R, R = U / I.",
       "Le triphasé alimente les moteurs industriels car il fournit un champ tournant naturel.",
@@ -44,6 +52,44 @@ const block1Lessons: Lesson[] = [
       "Confondre 230 V (monophasé) et 400 V (entre phases en triphasé) : ce ne sont pas deux tensions différentes par hasard, elles sont liées par √3.",
       "Oublier que la loi d'Ohm ne s'applique telle quelle qu'en courant continu ou en résistance pure.",
     ],
+    astucesPro: [
+      "Toujours écrire la formule avec les unités avant de remplacer les valeurs : cela évite la plupart des erreurs.",
+      "Contrôler l'ordre de grandeur : 230 V sur 50 Ω ne peut pas donner plusieurs milliers d'ampères.",
+      "Sur un moteur alternatif, la plaque signalétique et la mesure du courant sont plus utiles qu'une « résistance équivalente » simplifiée.",
+    ],
+    diagnostic: [
+      "Décrire le symptôme puis identifier la grandeur utile : tension présente, courant absorbé ou résistance hors tension.",
+      "Comparer la valeur mesurée à la valeur attendue, à la plaque signalétique et aux autres phases.",
+      "Interpréter l'écart avant de remplacer un composant : absence de tension, courant trop élevé ou circuit coupé n'ont pas la même cause.",
+    ],
+    depannage: [
+      "Sécuriser l'équipement selon la procédure et l'habilitation avant toute mesure ou intervention.",
+      "Vérifier d'abord l'alimentation et les protections, puis progresser vers le récepteur.",
+      "Après correction, effectuer une remise en service maîtrisée et contrôler tension, courant et fonctionnement.",
+    ],
+    securite: [
+      "Une formule ne donne jamais l'autorisation de mesurer : seules l'habilitation, la procédure et l'analyse de risque le permettent.",
+      "Une mesure de résistance ou de continuité se réalise hors tension, après consignation et vérification d'absence de tension.",
+      "Cette application est pédagogique et ne remplace ni une formation habilitante ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation:
+        "Le chauffage d'une petite armoire est alimenté sous 230 V. Sa résistance mesurée hors tension vaut 115 Ω, mais il ne chauffe plus.",
+      mission: [
+        "Calculer le courant théorique si le chauffage est correctement alimenté.",
+        "Proposer un ordre de contrôles sans conclure trop vite que la résistance est défectueuse.",
+        "Préciser les règles de sécurité applicables.",
+      ],
+      correction:
+        "Le courant théorique vaut I = U / R = 230 / 115 = 2 A. La résistance n'est pas forcément en cause : on commence par sécuriser l'intervention selon l'habilitation et la procédure, puis on vérifie l'état des protections, de la commande et du câblage. Une mesure de résistance se fait exclusivement hors tension, après consignation et vérification d'absence de tension. Si une mesure de tension est nécessaire, elle est réalisée uniquement par une personne habilitée avec un appareil adapté. On compare ensuite les valeurs attendues et mesurées avant de décider d'une réparation.",
+    },
+    memo: [
+      "U en volts · I en ampères · R en ohms",
+      "U = R × I · I = U / R · R = U / I",
+      "Mesure de résistance = hors tension et sécurisé",
+    ],
+    resume:
+      "La tension pousse le courant, la résistance le limite et la loi d'Ohm relie U, I et R. Le calcul sert au diagnostic seulement s'il est associé aux unités, à un ordre de grandeur cohérent et à une mesure réalisée en sécurité.",
     quizIds: ["q33", "q34", "q35", "q36", "q37", "q38"],
     verification: {
       question: "Un récepteur de 50 Ω est alimenté sous 230 V. Quelle intensité circule ?",
@@ -89,6 +135,14 @@ const block1Lessons: Lesson[] = [
     example:
       "Sur un convoyeur, le contacteur ferme le circuit pour démarrer le moteur quand on appuie sur « marche ». Si le moteur force trop (colis coincé), le relais thermique détecte la surcharge et coupe l'alimentation avant que le moteur ne grille.",
     schema: "control-circuit",
+    ascii: [
+      "RÉSEAU",
+      "  │",
+      "[Sectionnement] → [Protection court-circuit] → [Contacteur] → [Relais thermique] → Moteur",
+      "                        PROTÈGE              COMMANDE          SURCHARGE",
+      "",
+      "Chaîne de diagnostic : énergie → protection → commande → protection moteur → récepteur",
+    ].join("\n"),
     retenir: [
       "Fusible = protection non réarmable contre le court-circuit. Disjoncteur = protection réarmable.",
       "Relais thermique = protection spécifique contre la surcharge du moteur, pas contre le court-circuit.",
@@ -98,6 +152,44 @@ const block1Lessons: Lesson[] = [
       "Confondre contacteur (qui commande) et disjoncteur (qui protège).",
       "Réarmer un relais thermique plusieurs fois sans chercher la cause de la surcharge.",
     ],
+    astucesPro: [
+      "Identifier la fonction de chaque composant avant de mesurer : sectionner, protéger, commander ou convertir l'énergie.",
+      "Lire les repères du schéma et de l'armoire plutôt que de suivre les fils au hasard.",
+      "Un relais thermique déclenché est un symptôme : rechercher la surcharge mécanique, le manque de phase ou un mauvais réglage.",
+    ],
+    diagnostic: [
+      "Recueillir le symptôme : aucun démarrage, arrêt retardé, déclenchement immédiat ou fonctionnement irrégulier.",
+      "Suivre la chaîne d'énergie dans l'ordre : alimentation, protection, contacteur, relais thermique, moteur et charge mécanique.",
+      "Vérifier séparément la chaîne de commande : arrêt d'urgence, boutons, capteurs, automate et bobine du contacteur.",
+    ],
+    depannage: [
+      "Mettre l'installation en sécurité avant l'ouverture, le contrôle hors tension ou le remplacement d'un composant.",
+      "Traiter la cause identifiée, puis vérifier les réglages et le serrage selon la documentation constructeur.",
+      "Réaliser un essai maîtrisé, contrôler le courant sur les phases et confirmer le bon fonctionnement des sécurités.",
+    ],
+    securite: [
+      "Ne jamais réarmer plusieurs fois une protection sans avoir recherché la cause du déclenchement.",
+      "Un contacteur ouvert ne constitue pas une séparation sûre : la consignation s'effectue sur un organe prévu à cet effet.",
+      "Cette application est pédagogique et ne remplace ni l'habilitation électrique ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation:
+        "Le convoyeur démarre, puis s'arrête après plusieurs minutes. Le relais thermique est déclenché et un rouleau tourne difficilement.",
+      mission: [
+        "Distinguer le composant qui a commandé l'arrêt de la cause probable.",
+        "Décrire l'ordre des contrôles électriques et mécaniques.",
+        "Expliquer la remise en service attendue.",
+      ],
+      correction:
+        "Le relais thermique a provoqué l'arrêt en détectant une surcharge prolongée, mais il n'est probablement pas la cause racine. Le rouleau dur augmente le couple demandé et donc le courant moteur. Après mise en sécurité et consignation adaptées, on contrôle la liberté mécanique, les roulements et la transmission, puis le réglage du relais et l'équilibre des courants. On corrige la cause mécanique, on vérifie les protections et les sécurités, puis on effectue un essai maîtrisé en surveillant le courant et le comportement du convoyeur. Réarmer sans corriger ferait revenir la panne et pourrait endommager le moteur.",
+    },
+    memo: [
+      "Sectionner · protéger · commander · protéger le moteur · entraîner",
+      "Contacteur = commande, pas protection",
+      "Déclenchement thermique = rechercher la surcharge avant réarmement",
+    ],
+    resume:
+      "Un départ moteur associe des fonctions différentes : séparation, protection contre les courts-circuits, commande par contacteur et protection contre les surcharges. Le diagnostic suit la chaîne d'énergie et la chaîne de commande sans confondre symptôme et cause.",
     quizIds: ["q39", "q40", "q41", "q42", "q43", "q44"],
     verification: {
       question: "Quel composant protège principalement un moteur contre une surcharge prolongée ?",
@@ -141,6 +233,15 @@ const block1Lessons: Lesson[] = [
     example:
       "Pour savoir si un moteur triphasé est bien alimenté sur ses 3 phases sans démonter l'armoire, on utilise une pince ampèremétrique sur chaque fil d'alimentation.",
     schema: "measurement-tools",
+    ascii: [
+      "QUESTION                         OUTIL ADAPTÉ",
+      "Absence de tension avant contact → VAT",
+      "Tension entre deux points        → Multimètre en V",
+      "Continuité / résistance          → Multimètre en Ω, HORS TENSION",
+      "Courant dans un conducteur       → Pince ampèremétrique autour d'UN seul fil",
+      "",
+      "Toujours : analyser → choisir l'appareil → vérifier son état → mesurer → interpréter",
+    ].join("\n"),
     retenir: [
       "Toujours vérifier l'absence de tension avec un VAT avant de toucher un circuit, même consigné.",
       "La pince ampèremétrique mesure sans contact direct avec le conducteur nu : plus sûr pour l'intensité.",
@@ -150,6 +251,46 @@ const block1Lessons: Lesson[] = [
       "Mesurer une résistance ou une continuité sur un circuit encore sous tension : risque d'endommager l'appareil et danger pour l'utilisateur.",
       "Utiliser un multimètre en position ampèremètre en série sans précaution : cela peut créer un court-circuit si mal branché.",
     ],
+    astucesPro: [
+      "Avant chaque mesure, annoncer ce que l'on cherche, la valeur attendue et les points de mesure : une mesure sans hypothèse apporte peu.",
+      "Contrôler l'état des cordons, la catégorie de mesure et le réglage de l'appareil avant de l'approcher du circuit.",
+      "Avec une pince, entourer un seul conducteur : entourer l'aller et le retour annule les champs et donne une valeur trompeuse.",
+    ],
+    diagnostic: [
+      "Formuler une hypothèse à partir du symptôme et du schéma.",
+      "Choisir l'appareil et le mode adaptés à la grandeur recherchée.",
+      "Comparer la mesure à la valeur attendue, aux autres phases et aux données constructeur avant de conclure.",
+    ],
+    depannage: [
+      "Sécuriser la zone et appliquer la procédure correspondant au type de mesure et à l'habilitation.",
+      "Commencer par les contrôles les moins intrusifs, puis isoler progressivement la partie en défaut.",
+      "Après réparation, contrôler le câblage, remettre en service de façon maîtrisée et enregistrer les mesures utiles.",
+    ],
+    securite: [
+      "La VAT est une opération réglementée : l'appareil est vérifié avant et après usage et l'opérateur doit être habilité.",
+      "La continuité et la résistance se mesurent uniquement hors tension, après consignation et vérification d'absence de tension.",
+      "Une mesure sous tension n'est réalisée que si elle est nécessaire, autorisée, préparée et effectuée avec l'EPI et le matériel adaptés.",
+      "Cette application est pédagogique et ne remplace ni la formation pratique ni les procédures de l'entreprise.",
+    ],
+    etudeDeCas: {
+      situation:
+        "Un moteur triphasé vibre et manque de couple. Les courants mesurés par une personne habilitée sont 8,1 A, 8,0 A et 0 A.",
+      mission: [
+        "Interpréter les trois valeurs sans remplacer immédiatement le moteur.",
+        "Proposer la suite logique du diagnostic.",
+        "Préciser les limites de sécurité.",
+      ],
+      correction:
+        "Deux phases conduisent environ 8 A et la troisième 0 A : le moteur fonctionne vraisemblablement avec une phase absente, ce qui explique le manque de couple, les vibrations et l'échauffement. On arrête l'équipement pour éviter sa détérioration. Après consignation et vérification d'absence de tension par une personne habilitée, on contrôle la protection, les connexions, les contacts du contacteur et la continuité du conducteur concerné. On ne conclut à un moteur défectueux qu'après avoir localisé l'endroit où la phase disparaît. Toute mesure sous tension doit être nécessaire, autorisée et réalisée avec un appareil, des EPI et une procédure adaptés.",
+    },
+    memo: [
+      "VAT = confirmer l'absence de tension",
+      "Ω et continuité = hors tension",
+      "Pince = un seul conducteur · comparer les trois phases",
+      "Mesurer seulement pour confirmer une hypothèse",
+    ],
+    resume:
+      "Le bon diagnostic dépend du bon appareil : VAT pour l'absence de tension, multimètre pour tension ou continuité selon l'état du circuit, pince pour le courant. Chaque mesure doit être préparée, autorisée, interprétée et réalisée en sécurité.",
     quizIds: ["q45", "q46", "q47", "q48", "q49", "q50"],
     verification: {
       question: "Dans quel état doit être un circuit pour mesurer sa continuité ?",
