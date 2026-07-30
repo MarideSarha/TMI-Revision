@@ -1179,16 +1179,16 @@ function ParetoChart({ dark }: { dark: boolean }) {
   return (
     <Figure
       dark={dark}
-      title="Diagramme de Pareto : cibler les 20 % de causes vitales"
+      title="Diagramme de Pareto : cibler les causes vitales"
       legend="Les causes sont triées par ordre décroissant ; la courbe cumulée montre que quelques causes concentrent l'essentiel des pannes. Exemple : arrêts (%) par cause."
       explanation="La loi de Pareto (règle des 20/80) observe qu'une petite part des causes (environ 20 %) produit l'essentiel des effets (environ 80 %). En maintenance, on classe les causes de pannes ou d'arrêts par ordre décroissant et on trace la courbe cumulée : on repère ainsi les « quelques causes vitales » sur lesquelles agir en priorité, plutôt que de se disperser. Les chiffres 20 et 80 sont indicatifs ; l'idée est de concentrer l'effort là où il rapporte le plus."
       controls={
         <div className="flex flex-col gap-2 sm:flex-row">
-          <button type="button" onClick={() => setShowVital(true)} disabled={showVital} className={`flex flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-2.5 text-sm font-bold disabled:opacity-40 ${dark ? "border-violet-400 bg-violet-400 text-slate-950" : "border-violet-500 bg-violet-500 text-white"}`}>
-            <ArrowRight size={16} /> Cibler les 20 % vitaux
+          <button type="button" onClick={() => setShowVital(true)} disabled={showVital} aria-pressed={showVital} className={`flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg border-2 px-4 py-2.5 text-sm font-bold disabled:opacity-40 ${dark ? "border-violet-400 bg-violet-400 text-slate-950" : "border-violet-500 bg-violet-500 text-white"}`}>
+            <ArrowRight size={16} aria-hidden="true" /> Identifier les causes vitales
           </button>
-          <button type="button" onClick={() => setShowVital(false)} className={`flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
-            <RotateCcw size={16} /> Réinitialiser
+          <button type="button" onClick={() => setShowVital(false)} className={`flex min-h-11 items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${dark ? "border-slate-600 text-slate-200" : "border-slate-300 text-slate-700"}`}>
+            <RotateCcw size={16} aria-hidden="true" /> Réinitialiser
           </button>
         </div>
       }
@@ -1227,7 +1227,7 @@ function ParetoChart({ dark }: { dark: boolean }) {
             <span className="font-semibold" style={{ color: accent }}>{PARETO_CAUSES.slice(0, vitalIndex + 1).map((c) => c.label).join(" + ")}</span> = {cumPoints[vitalIndex].cum} % des arrêts. On agit d'abord sur ces {vitalIndex + 1} causes : c'est là que l'effort rapporte le plus.
           </p>
         ) : (
-          <p className={dark ? "text-slate-300" : "text-slate-600"}>Clique « Cibler les 20 % vitaux » pour repérer les causes prioritaires.</p>
+          <p className={dark ? "text-slate-300" : "text-slate-600"}>Clique « Identifier les causes vitales » pour repérer les causes prioritaires.</p>
         )}
       </div>
     </Figure>
