@@ -57,3 +57,38 @@ La fusion est interdite si l’un de ces défauts apparaît :
 - progression perdue après actualisation.
 
 Noter les résultats et joindre des captures à la pull request avant de la déclarer prête pour revue.
+
+## Résultats de la recette du 30 juillet 2026
+
+### Formats contrôlés
+
+- [x] Téléphone compact — 320 × 568 px.
+- [x] Téléphone courant — 390 × 844 px.
+- [x] Tablette — 768 × 1024 px.
+- [x] Ordinateur — captures utilisateur en 1440 × 900 px environ.
+- [x] Mode sombre.
+- [x] Mode clair.
+
+### Parcours contrôlés
+
+- [x] Accueil : statistiques, accès rapides, cartes de modules et navigation basse.
+- [x] Module 3 : liste des blocs, états disponible/verrouillé et premier chapitre.
+- [x] Leçon 3-1 : objectifs, vocabulaire, schéma, sécurité, diagnostic, étude de cas et fiche mémo.
+- [x] Simulateur : liste des dix scénarios.
+- [x] Quiz : quiz rapide, quiz quotidien et examen blanc.
+- [x] Absence d'erreur dans la console pendant les parcours contrôlés.
+
+### Observations
+
+- Aucun débordement horizontal applicatif détecté aux largeurs 320, 390 et 768 px.
+- Les titres longs reviennent correctement à la ligne.
+- La navigation basse reste accessible sur tous les écrans contrôlés.
+- Le format 320 px est compact, mais les commandes et les contenus restent utilisables.
+- Les captures fournies par l'utilisateur confirment l'affichage du tableau de bord et des six modules sur ordinateur.
+
+### Contrôles restant ouverts
+
+- [ ] Tester entièrement une évaluation avec mauvaise réponse, remédiation et nouvelle tentative.
+- [ ] Terminer un scénario de panne jusqu'à sa correction.
+- [ ] Vérifier la persistance de la progression après actualisation.
+- [ ] Faire relire les procédures de sécurité par un professionnel qualifié.
