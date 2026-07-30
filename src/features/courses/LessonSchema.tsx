@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { LessonSchemaType } from "../../types";
 
 /* ---------------------------- SVG SCHEMAS ---------------------------- */
@@ -8,9 +9,18 @@ interface LessonSchemaProps {
 }
 
 export function LessonSchema({ type, dark }: LessonSchemaProps) {
+  const arrowId = `lesson-schema-arrow-${useId().replace(/:/g, "")}`;
+  const arrowUrl = `url(#${arrowId})`;
   const stroke = dark ? "#94a3b8" : "#475569";
   const accent = "#f5b400";
   const box = dark ? "#1e293b" : "#f1f5f9";
+  const arrowDefinition = (
+    <defs>
+      <marker id={arrowId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+      </marker>
+    </defs>
+  );
 
   if (type === "orgchart") {
     return (
@@ -36,13 +46,14 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "maintenance-types") {
     return (
       <svg viewBox="0 0 320 110" className="w-full h-28">
+        {arrowDefinition}
         {["Corrective", "Préventive sys.", "Préventive cond.", "Améliorative"].map((t, i) => (
           <g key={i}>
             <rect x={10 + i * 78} y="30" width="68" height="50" rx="6" fill={box} stroke={i === 3 ? accent : stroke} strokeWidth={i === 3 ? 2 : 1} />
             <text x={10 + i * 78 + 34} y="58" textAnchor="middle" fontSize="9" fill={stroke}>{t}</text>
           </g>
         ))}
-        <line x1="10" y1="20" x2="310" y2="20" stroke={stroke} markerEnd="url(#arrow)" />
+        <line x1="10" y1="20" x2="310" y2="20" stroke={stroke} markerEnd={arrowUrl} />
         <text x="160" y="12" textAnchor="middle" fontSize="9" fill={stroke}>Panne présente → absente</text>
       </svg>
     );
@@ -73,12 +84,13 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "energy-flow") {
     return (
       <svg viewBox="0 0 320 90" className="w-full h-24">
+        {arrowDefinition}
         <rect x="10" y="30" width="90" height="30" rx="4" fill={box} stroke={stroke} />
         <text x="55" y="49" textAnchor="middle" fontSize="9" fill={stroke}>Puissance fournie</text>
-        <line x1="100" y1="45" x2="150" y2="45" stroke={stroke} markerEnd="url(#arrow)" />
+        <line x1="100" y1="45" x2="150" y2="45" stroke={stroke} markerEnd={arrowUrl} />
         <rect x="150" y="15" width="80" height="60" rx="6" fill={accent} />
         <text x="190" y="49" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">Moteur η</text>
-        <line x1="230" y1="35" x2="280" y2="35" stroke={stroke} markerEnd="url(#arrow)" />
+        <line x1="230" y1="35" x2="280" y2="35" stroke={stroke} markerEnd={arrowUrl} />
         <text x="300" y="32" textAnchor="middle" fontSize="8" fill={stroke}>utile</text>
         <line x1="230" y1="60" x2="280" y2="75" stroke={stroke} strokeDasharray="3,2" />
         <text x="298" y="80" textAnchor="middle" fontSize="8" fill={stroke}>pertes</text>
@@ -88,10 +100,11 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "torque-diagram") {
     return (
       <svg viewBox="0 0 320 100" className="w-full h-28">
+        {arrowDefinition}
         <circle cx="160" cy="55" r="6" fill={stroke} />
         <line x1="160" y1="55" x2="260" y2="55" stroke={stroke} strokeWidth="3" />
         <text x="210" y="45" textAnchor="middle" fontSize="9" fill={stroke}>distance d</text>
-        <line x1="260" y1="55" x2="260" y2="20" stroke={accent} strokeWidth="3" markerEnd="url(#arrow)" />
+        <line x1="260" y1="55" x2="260" y2="20" stroke={accent} strokeWidth="3" markerEnd={arrowUrl} />
         <text x="272" y="35" fontSize="9" fill={accent}>Force F</text>
         <text x="160" y="85" textAnchor="middle" fontSize="9" fill={stroke}>C = F × d</text>
       </svg>
@@ -818,11 +831,12 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "control-circuit") {
     return (
       <svg viewBox="0 0 320 100" className="w-full h-28">
+        {arrowDefinition}
         {["Disjoncteur", "Contacteur", "Relais th.", "Moteur"].map((t, i) => (
           <g key={i}>
             <rect x={10 + i * 78} y="30" width="66" height="40" rx="4" fill={i === 3 ? accent : box} stroke={stroke} />
             <text x={10 + i * 78 + 33} y="53" textAnchor="middle" fontSize="8" fill={i === 3 ? "#14151a" : stroke}>{t}</text>
-            {i < 3 && <line x1={10 + i * 78 + 66} y1="50" x2={10 + (i + 1) * 78} y2="50" stroke={stroke} markerEnd="url(#arrow)" />}
+            {i < 3 && <line x1={10 + i * 78 + 66} y1="50" x2={10 + (i + 1) * 78} y2="50" stroke={stroke} markerEnd={arrowUrl} />}
           </g>
         ))}
       </svg>

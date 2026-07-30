@@ -6,8 +6,9 @@ button, input, textarea { font: inherit; }
 button { touch-action: manipulation; }
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
+.tmi-safe-top { padding-top: env(safe-area-inset-top); }
+.tmi-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 @media (max-width: 380px) { .max-w-2xl { padding-left: .65rem; padding-right: .65rem; } }
-@media (display-mode: standalone) { body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); } }
 
 /* --- Schémas pédagogiques animés (SVG + CSS) ---
    L'animation ne se déclenche QUE si l'utilisateur n'a pas demandé à réduire

@@ -49,11 +49,11 @@ export default function App() {
 
   return (
     <div className={`min-h-screen ${bg} ${text} font-sans`}>
-      <header className={`sticky top-0 z-20 border-b ${dark ? "bg-slate-950/95 border-slate-800" : "bg-slate-50/95 border-slate-200"} backdrop-blur`}>
+      <header className={`tmi-safe-top sticky top-0 z-20 border-b ${dark ? "bg-slate-950/95 border-slate-800" : "bg-slate-50/95 border-slate-200"} backdrop-blur`}>
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-lg bg-amber-400 flex items-center justify-center">
-              <Wrench size={18} className="text-slate-900" />
+              <Wrench size={18} className="text-slate-900" aria-hidden="true" />
             </div>
             <div>
               <div className="font-bold leading-tight tracking-tight">TMI RÉVISION</div>
@@ -61,16 +61,19 @@ export default function App() {
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setTheme(dark ? "light" : "dark")}
-            className={`w-9 h-9 rounded-lg flex items-center justify-center border ${dark ? "border-slate-700 text-amber-400" : "border-slate-300 text-slate-600"}`}
+            aria-label={dark ? "Activer le mode clair" : "Activer le mode sombre"}
+            title={dark ? "Activer le mode clair" : "Activer le mode sombre"}
+            className={`w-11 h-11 shrink-0 rounded-lg flex items-center justify-center border ${dark ? "border-slate-700 text-amber-400" : "border-slate-300 text-slate-600"}`}
           >
-            {dark ? <Sun size={16} /> : <Moon size={16} />}
+            {dark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
           </button>
         </div>
         <HazardStripe />
       </header>
 
-      <main className="max-w-2xl mx-auto px-4 py-5">
+      <main id="contenu-principal" className="max-w-2xl mx-auto px-4 py-5">
         {view === "dashboard" && <Dashboard progress={progress} dark={dark} onNavigate={navigate} />}
 
         {view === "modules" && (
@@ -129,7 +132,7 @@ export default function App() {
         {view === "coach" && <CoachTMI dark={dark} />}
       </main>
 
-      <nav className={`fixed bottom-0 left-0 right-0 z-20 border-t ${dark ? "bg-slate-950/95 border-slate-800" : "bg-white/95 border-slate-200"} backdrop-blur`}>
+      <nav aria-label="Navigation principale" className={`tmi-safe-bottom fixed bottom-0 left-0 right-0 z-20 border-t ${dark ? "bg-slate-950/95 border-slate-800" : "bg-white/95 border-slate-200"} backdrop-blur`}>
         <div className="max-w-2xl mx-auto grid grid-cols-5">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
@@ -137,10 +140,12 @@ export default function App() {
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => navigate(item.id)}
+                aria-current={active ? "page" : undefined}
                 className={`flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold ${active ? "text-amber-400" : "text-slate-400"}`}
               >
-                <Icon size={20} />
+                <Icon size={20} aria-hidden="true" />
                 {item.label}
               </button>
             );

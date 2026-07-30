@@ -89,7 +89,7 @@ export function Dashboard({ progress, dark, onNavigate }: DashboardProps) {
         <ProgressBar value={100 - daysLeft > 0 ? 100 - daysLeft : 2} max={100} tone="amber" />
       </div>
 
-      <button onClick={() => onNavigate("progression")} className="grid grid-cols-2 gap-3 text-left w-full">
+      <button type="button" aria-label="Voir le détail de ma progression" onClick={() => onNavigate("progression")} className="grid grid-cols-2 gap-3 text-left w-full">
         <StatTile icon={Award} label="Niveau" value={lvl} sub={`${progress.xp} XP`} dark={dark} />
         <StatTile icon={Flame} label="Série de révision" value={`${progress.streak} j`} dark={dark} />
         <StatTile icon={BookOpen} label="Cours terminés" value={`${doneLessons}/${totalLessons}`} dark={dark} />
@@ -110,14 +110,15 @@ export function Dashboard({ progress, dark, onNavigate }: DashboardProps) {
       )}
 
       <button
+        type="button"
         onClick={() => (nextLesson ? onNavigate("lesson", { lesson: nextLesson, mod: nextMod }) : onNavigate("modules"))}
-        className="w-full rounded-xl bg-amber-400 text-slate-900 p-4 flex items-center justify-between font-bold shadow-lg shadow-amber-400/20"
+        className="w-full rounded-xl bg-amber-400 text-slate-900 p-4 flex items-center justify-between gap-3 text-left font-bold shadow-lg shadow-amber-400/20"
       >
-        <span className="flex items-center gap-2">
-          <GraduationCap size={20} />
-          {nextLesson ? `Continuer : ${nextLesson.title}` : "Voir le programme complet"}
+        <span className="flex min-w-0 items-center gap-2">
+          <GraduationCap size={20} className="shrink-0" aria-hidden="true" />
+          <span className="min-w-0 break-words">{nextLesson ? `Continuer : ${nextLesson.title}` : "Voir le programme complet"}</span>
         </span>
-        <ChevronRight size={20} />
+        <ChevronRight size={20} className="shrink-0" aria-hidden="true" />
       </button>
 
       <section aria-labelledby="quick-access-title">

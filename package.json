@@ -8,8 +8,9 @@
     "build": "vite build",
     "build:pages": "vite build --configLoader=runner --base=/TMI-Revision/",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "check:ui": "node scripts/check-ui-contract.mjs",
     "check:bundle": "node scripts/check-bundle-size.mjs",
-    "check": "npm run typecheck && vite build --configLoader=runner && npm run check:bundle",
+    "check": "npm run typecheck && npm run check:ui && vite build --configLoader=runner && npm run check:bundle",
     "preview": "vite preview"
   },
   "dependencies": {
