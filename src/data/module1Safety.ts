@@ -1,5 +1,6 @@
 import type { Lesson, TrainingBlock } from "../types";
 import { MODULE1_PREPARATION_LESSONS } from "./module1Preparation";
+import { MODULE1_WORKSHOP_RISK_LESSONS } from "./module1WorkshopRisks";
 
 /**
  * Première tranche du parcours sécurité.
@@ -388,9 +389,9 @@ export const MODULE1_SAFETY_BLOCKS: TrainingBlock[] = [
     num: 3,
     title: "Risques spécifiques de l'atelier industriel",
     objective: "Reconnaître les risques mécaniques, électriques, chimiques, thermiques, de manutention, de hauteur, de bruit et d'atmosphère dangereuse.",
-    lessonIds: [],
+    lessonIds: MODULE1_WORKSHOP_RISK_LESSONS.map((lesson) => lesson.id),
     chapterCount: 7,
-    status: "planned",
+    status: "in_progress",
   },
   {
     id: "m1-b4",

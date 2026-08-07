@@ -2,6 +2,7 @@ import { Gauge, HardHat } from "lucide-react";
 // Module 3 (Électrotechnique) est désormais défini dans ./electrotechnique.ts
 import type { TrainingModule } from "../types";
 import { MODULE1_PREPARATION_LESSONS } from "./module1Preparation";
+import { MODULE1_WORKSHOP_RISK_LESSONS } from "./module1WorkshopRisks";
 import { MODULE1_SAFETY_BLOCKS, MODULE1_SAFETY_LESSONS } from "./module1Safety";
 
 /* ---------------------------- DATA: MODULES & LEÇONS ---------------------------- */
@@ -314,6 +315,7 @@ CONSIGNATION     = maîtrise durable des énergies`,
       },
       ...MODULE1_SAFETY_LESSONS,
       ...MODULE1_PREPARATION_LESSONS,
+      ...MODULE1_WORKSHOP_RISK_LESSONS,
     ],
     blocks: MODULE1_SAFETY_BLOCKS,
   },
