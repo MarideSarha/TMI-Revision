@@ -68,6 +68,20 @@ et aux autorisations, formations et habilitations de l'intervenant.
 - prise en compte de la pression résiduelle, des accumulateurs, des charges, du fouettement et de l'injection sous-cutanée ;
 - interdiction de rechercher une fuite avec la main et urgence médicale en cas de suspicion d'injection.
 
+## Risques spécifiques de l'atelier — deuxième tranche vérifiée le 7 août 2026
+
+- distinction entre danger chimique et exposition réelle par inhalation, contact, ingestion accidentelle ou injection ;
+- prise en compte des émissions de procédé même lorsqu'aucune étiquette n'est visible sur la machine ;
+- consultation de l'étiquette, de la fiche de données de sécurité et des consignes du site avant toute utilisation ;
+- interdiction explicite de sentir, toucher, goûter, mélanger ou neutraliser un produit inconnu ;
+- priorité à la suppression, à la substitution et au captage à la source avant les protections individuelles ;
+- analyse thermique fondée sur la source, le transfert, l'exposition, l'effort et l'organisation du travail ;
+- interdiction d'utiliser la main comme thermomètre et prise en compte conjointe de la température, de la pression et du produit ;
+- intégration de l'inertie thermique et des mesures sans contact lorsque la procédure et le matériel le permettent ;
+- définition large de la manutention : charge, prise, trajet, posture, environnement, fréquence et coordination ;
+- priorité à l'évitement, à la réduction ou à la mécanisation de la manutention avant l'apprentissage d'un geste ;
+- interdiction de passer sous une charge suspendue ou d'improviser un point de levage ou un accessoire.
+
 ## Verdict interne
 
 Le contenu est jugé cohérent pour une plateforme pédagogique de révision destinée à un débutant. Il ne doit jamais être
@@ -93,3 +107,10 @@ ou en entreprise, une relecture humaine par un formateur, un préventeur ou un r
 - [INRS — Opérations sur les installations électriques](https://www.inrs.fr/risques/electriques/operations-installations.html)
 - [INRS ED 6109 — Consignations et déconsignations](https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6109/ed6109.pdf)
 - [INRS ED 6323 — Aide à la détection des risques liés à l'utilisation d'une machine](https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6323.pdf)
+- [INRS — Risques chimiques : évaluation et prévention](https://www.inrs.fr/risques/chimiques/evaluation-risques.html)
+- [INRS — Comprendre l'étiquetage des produits chimiques](https://www.inrs.fr/risques/classification-etiquetage-produits-chimiques/comprendre-systemes-etiquetage-produits-chimiques.html)
+- [INRS — Risques chimiques : information et formation](https://www.inrs.fr/risques/chimiques/information-formation)
+- [INRS — Travail à la chaleur : mesures de prévention](https://www.inrs.fr/risques/chaleur/mesures-prevention.html)
+- [INRS — Troubles musculosquelettiques : prévention](https://www.inrs.fr/risques/tms-troubles-musculosquelettiques/prevention.html)
+- [INRS TJ 18 — Manutention manuelle](https://www.inrs.fr/media.html?refINRS=TJ+18)
+- [INRS — Mécanique industrielle : risques du métier](https://www.inrs.fr/metiers/industrie/mecanique-industrielle/les-risques-du-metier)

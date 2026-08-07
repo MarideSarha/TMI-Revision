@@ -3,6 +3,7 @@ import { Gauge, HardHat } from "lucide-react";
 import type { TrainingModule } from "../types";
 import { MODULE1_PREPARATION_LESSONS } from "./module1Preparation";
 import { MODULE1_WORKSHOP_RISK_LESSONS } from "./module1WorkshopRisks";
+import { MODULE1_WORKSHOP_RISK_LESSONS_2 } from "./module1WorkshopRisks2";
 import { MODULE1_SAFETY_BLOCKS, MODULE1_SAFETY_LESSONS } from "./module1Safety";
 
 /* ---------------------------- DATA: MODULES & LEÇONS ---------------------------- */
@@ -316,6 +317,7 @@ CONSIGNATION     = maîtrise durable des énergies`,
       ...MODULE1_SAFETY_LESSONS,
       ...MODULE1_PREPARATION_LESSONS,
       ...MODULE1_WORKSHOP_RISK_LESSONS,
+      ...MODULE1_WORKSHOP_RISK_LESSONS_2,
     ],
     blocks: MODULE1_SAFETY_BLOCKS,
   },
