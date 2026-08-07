@@ -57,6 +57,17 @@ et aux autorisations, formations et habilitations de l'intervenant.
 - remise en service précédée du contrôle de la zone, du retrait coordonné des protections temporaires, d'un essai maîtrisé et d'une restitution explicite ;
 - traçabilité des écarts, mesures, pièces remplacées, réserves et actions restant à réaliser.
 
+## Risques spécifiques de l'atelier — première tranche vérifiée le 7 août 2026
+
+- distinction entre écrasement, cisaillement, entraînement, coupure, choc et projection ;
+- analyse mécanique structurée de la source jusqu'à la zone dangereuse et à l'exposition ;
+- interdiction explicite du contournement des protecteurs et du travail sous une charge non retenue ;
+- distinction entre contact électrique direct, indirect, arc, incendie et explosion ;
+- rappel qu'observer une anomalie n'autorise ni ouverture, ni mesure, ni réarmement ;
+- renvoi systématique des opérations électriques vers une personne habilitée dans les limites de son titre ;
+- prise en compte de la pression résiduelle, des accumulateurs, des charges, du fouettement et de l'injection sous-cutanée ;
+- interdiction de rechercher une fuite avec la main et urgence médicale en cas de suspicion d'injection.
+
 ## Verdict interne
 
 Le contenu est jugé cohérent pour une plateforme pédagogique de révision destinée à un débutant. Il ne doit jamais être
@@ -77,3 +88,8 @@ ou en entreprise, une relecture humaine par un formateur, un préventeur ou un r
 - [Code du travail — Plan de prévention, articles R. 4512-6 à R. 4512-12](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018491568/2026-04-19)
 - [INRS — Organisation des activités de maintenance : intervenir en sécurité](https://www.inrs.fr/dam/inrs/CataloguePapier/HST/TI-DO-32.pdf)
 - [INRS — Remise en service des machines après un arrêt prolongé](https://www.inrs.fr/dms/inrs/GenerationPDF/accueil/demarche/conception-utilisation-equipements-travail/Machines%20%3A%20remise%20en%20service%20apr%C3%A8s%20une%20p%C3%A9riode%20d%27arr%C3%AAt.pdf)
+- [INRS — Prévention des risques liés à l'utilisation des machines](https://www.inrs.fr/risques/utilisation-machines/prevention-risques-utilisation-machines)
+- [INRS — Habilitation électrique](https://www.inrs.fr/risques/electriques/habilitation-electrique)
+- [INRS — Opérations sur les installations électriques](https://www.inrs.fr/risques/electriques/operations-installations.html)
+- [INRS ED 6109 — Consignations et déconsignations](https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6109/ed6109.pdf)
+- [INRS ED 6323 — Aide à la détection des risques liés à l'utilisation d'une machine](https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6323.pdf)

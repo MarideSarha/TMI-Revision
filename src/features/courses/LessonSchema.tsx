@@ -52,6 +52,21 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       steps: ["Contrôler", "Évacuer", "Essayer", "Restituer / tracer"],
       note: "La production reprend seulement après une restitution explicite.",
     },
+    "mechanical-hazard-zone": {
+      title: "Chaîne d'un phénomène dangereux mécanique",
+      steps: ["Source", "Transmission", "Zone dangereuse", "Exposition"],
+      note: "Empêcher l'exposition avant d'approcher la zone ou de rechercher la panne.",
+    },
+    "electrical-hazard-path": {
+      title: "Chemins possibles du risque électrique",
+      steps: ["Énergie", "Partie active / défaut", "Contact ou arc", "Dommage"],
+      note: "Un voyant éteint ne constitue jamais une vérification d'absence de tension.",
+    },
+    "pressure-energy-path": {
+      title: "Chaîne de l'énergie d'un fluide sous pression",
+      steps: ["Source", "Liaison / stockage", "Actionneur / charge", "État sûr vérifié"],
+      note: "Séparer la source ne suffit pas : maîtriser puis vérifier l'énergie résiduelle.",
+    },
   };
 
   if (type === "orgchart") {
