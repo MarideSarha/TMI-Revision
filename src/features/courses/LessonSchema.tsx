@@ -22,6 +22,21 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
     </defs>
   );
   const preparationDiagrams: Partial<Record<LessonSchemaType, { title: string; steps: string[]; note: string }>> = {
+    "chemical-exposure-path": {
+      title: "Du produit au dommage : rechercher l'exposition réelle",
+      steps: ["Danger", "Émission", "Voie d'entrée", "Prévention"],
+      note: "Supprimer ou capter à la source avant de compter sur les seuls EPI.",
+    },
+    "thermal-exposure-path": {
+      title: "Analyser une exposition thermique avant d'intervenir",
+      steps: ["Source", "Transfert", "Exposition", "Maîtrise"],
+      note: "Température, pression, produit et inertie doivent être vérifiés ensemble.",
+    },
+    "handling-risk-analysis": {
+      title: "Préparer une manutention sans improviser",
+      steps: ["Charge", "Trajet", "Moyens / rôles", "Pose sûre"],
+      note: "Éviter ou mécaniser la manutention reste prioritaire sur le seul geste correct.",
+    },
     "work-order": {
       title: "De la demande exploitable à la restitution",
       steps: ["Symptôme", "Contexte", "Priorité", "Critères de fin"],
