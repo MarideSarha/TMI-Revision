@@ -32,6 +32,22 @@ export default defineConfig({
               test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
             },
             {
+              // Données du module 3 (électrotechnique) isolées pour tenir
+              // sous le budget par fichier tout en laissant grandir le contenu.
+              name: "learning-electro",
+              test: /[\\/]src[\\/]data[\\/]electrotechnique/,
+            },
+            {
+              // Données du module 5 (automatisme) isolées de la même façon.
+              name: "learning-auto",
+              test: /[\\/]src[\\/]data[\\/]automatisme/,
+            },
+            {
+              // Données du module 6 (maintenance) isolées de la même façon.
+              name: "learning-maint",
+              test: /[\\/]src[\\/]data[\\/]maintenance/,
+            },
+            {
               name: "learning-data",
               test: /[\\/]src[\\/]data[\\/]/,
             },

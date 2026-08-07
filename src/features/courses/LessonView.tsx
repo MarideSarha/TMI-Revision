@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AlertTriangle, ArrowLeft, CheckCircle2, ClipboardList, Clock3, Target } from "lucide-react";
 import type { Lesson, LessonStage, Progress, QuizResult, TrainingModule } from "../../types";
 import { QuizRunner } from "../quiz/QuizRunner";
+import { InteractiveSchema } from "./InteractiveSchema";
 import { LessonInteractiveActivity } from "./LessonInteractiveActivity";
 import { LessonSchema } from "./LessonSchema";
 import { LessonRemediation } from "./LessonRemediation";
@@ -47,6 +48,19 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
           {wasAlreadyDone && <span className="rounded-full bg-emerald-500/10 px-2 py-1 font-semibold text-emerald-500">Déjà terminée · mode révision</span>}
         </div>
       </div>
+
+      <aside
+        role="note"
+        aria-label="Limites de l'entraînement et règles de sécurité"
+        className={`rounded-xl border p-3 text-xs leading-relaxed ${
+          dark ? "border-red-400/40 bg-red-400/5 text-slate-300" : "border-red-200 bg-red-50 text-slate-700"
+        }`}
+      >
+        <strong className="text-red-400">Entraînement uniquement.</strong>{" "}
+        Sur une machine réelle, applique toujours l’analyse de risques et la procédure du site. N’interviens que si tu es
+        autorisé, formé et habilité pour l’opération ; consigne toutes les énergies avant accès. Une mesure sous tension
+        reste exceptionnelle et relève d’une personne habilitée avec le matériel et la procédure adaptés.
+      </aside>
 
       <LessonStepper stage={stage} dark={dark} />
 
@@ -99,6 +113,10 @@ export function LessonView({ lesson, mod, dark, onBack, onDone, progress }: Less
               </pre>
             )}
           </section>
+
+          {lesson.illustrations?.map((illustration) => (
+            <InteractiveSchema key={illustration} type={illustration} dark={dark} />
+          ))}
 
           {lesson.securite && (
             <section className={`rounded-xl border-2 border-red-400/40 p-4 ${dark ? "bg-red-400/5" : "bg-red-50"}`}>

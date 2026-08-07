@@ -13,12 +13,12 @@ export const PANNES: FaultScenario[] = [
     steps: [
       { label: "Cause la plus probable ?", options: ["Le moteur est totalement grillé", "Un arrêt d'urgence de la ligne est resté enclenché", "Le variateur est en surchauffe", "La courroie a cassé"], correct: 1 },
       { label: "Premier contrôle à effectuer ?", options: ["Démonter le moteur", "Inspecter visuellement tous les boutons d'arrêt d'urgence de la ligne", "Mesurer le débit d'huile", "Changer le contacteur"], correct: 1 },
-      { label: "Appareil de mesure à utiliser si besoin ?", options: ["Manomètre", "Tachymètre", "Multimètre / VAT", "Débitmètre"], correct: 2 },
+      { label: "Appareil de sécurité à utiliser avant un contrôle électrique hors tension ?", options: ["Manomètre", "Tachymètre", "VAT adapté (un multimètre ne le remplace pas)", "Débitmètre"], correct: 2 },
       { label: "Règle de sécurité à respecter ?", options: ["Réarmer directement sans vérifier", "Ne jamais shunter le circuit de sécurité, vérifier avant de réarmer", "Ignorer la procédure car on est pressé", "Démonter l'AU"], correct: 1 },
       { label: "Réparation proposée ?", options: ["Remplacer le moteur", "Identifier l'AU enclenché, vérifier qu'il n'y a pas de danger réel, puis le réarmer et retester", "Court-circuiter le bouton", "Changer la courroie"], correct: 1 },
     ],
     correction:
-      "Quand une machine ne démarre pas sans aucun signe de défaut électrique, le premier réflexe est de vérifier tous les arrêts d'urgence de la ligne (souvent partagés entre plusieurs postes). Une fois la cause identifiée (bouton resté enclenché, coup accidentel), on vérifie qu'il n'y a aucun danger réel avant de réarmer, puis on relance un test à vide avant de remettre en production.",
+      "Quand une machine ne démarre pas sans aucun signe de défaut électrique, le premier réflexe est de vérifier tous les arrêts d'urgence de la ligne (souvent partagés entre plusieurs postes). Une fois la cause identifiée, on recherche pourquoi la sécurité a agi, on vérifie que la zone est évacuée et que le redémarrage est autorisé, puis on réarme selon la procédure. L'essai à vide se fait avec protecteurs remis, personnes prévenues et zone dégagée. Pour confirmer une absence de tension, on utilise un VAT adapté : un multimètre ne remplace pas la VAT.",
   },
   {
     id: "p2",
@@ -34,7 +34,7 @@ export const PANNES: FaultScenario[] = [
       { label: "Réparation proposée ?", options: ["Peindre le moteur", "Corriger la surcharge ou le déséquilibre de phase identifié, puis remettre en service progressivement", "Changer la couleur du carter", "Ne rien faire, c'est normal"], correct: 1 },
     ],
     correction:
-      "Un moteur qui chauffe sans bruit ni odeur suspecte oriente vers une surcharge (charge mécanique trop importante) ou un déséquilibre entre les phases (une phase qui alimente moins que les autres). On mesure l'intensité sur chaque phase avec une pince ampèremétrique et on compare à la valeur nominale de la plaque signalétique. Un écart important entre phases confirme le déséquilibre.",
+      "Un moteur qui chauffe sans bruit ni odeur suspecte oriente vers une surcharge (charge mécanique trop importante) ou un déséquilibre entre les phases. On compare l'intensité des trois phases à la valeur nominale. Cette mesure est réalisée sous tension uniquement si elle est indispensable, par une personne autorisée et habilitée, avec une pince adaptée à la catégorie de mesure, les EPI et la procédure du site. Toute ouverture du bornier exige ensuite consignation et VAT.",
   },
   {
     id: "p3",
@@ -50,7 +50,7 @@ export const PANNES: FaultScenario[] = [
       { label: "Réparation proposée ?", options: ["Nettoyer et réaligner le capteur, le remplacer si toujours défaillant", "Changer tout le convoyeur", "Ignorer le problème", "Augmenter la vitesse du convoyeur"], correct: 0 },
     ],
     correction:
-      "Un capteur qui ne détecte plus, sans autre défaut sur la ligne, est souvent encrassé, désaligné, ou en fin de vie. On vérifie d'abord son alimentation puis son signal de sortie avec un multimètre. Le nettoyage et le réalignement résolvent souvent le problème ; sinon, on remplace le capteur.",
+      "Un capteur qui ne détecte plus, sans autre défaut sur la ligne, est souvent encrassé, désaligné ou en fin de vie. On observe d'abord ses voyants et son alignement sans pénétrer dans la zone dangereuse. Nettoyage, réglage, câblage et remplacement se font après arrêt sûr et consignation des énergies concernées. Toute mesure électrique est réalisée dans les limites de l'autorisation et de l'habilitation applicables.",
   },
   {
     id: "p4",
@@ -60,12 +60,12 @@ export const PANNES: FaultScenario[] = [
     steps: [
       { label: "Cause la plus probable ?", options: ["Un défaut d'isolement ou un court-circuit sur le circuit", "Un simple encrassement mécanique", "Une pression pneumatique trop basse", "Un capteur mal réglé"], correct: 0 },
       { label: "Contrôle prioritaire ?", options: ["Réarmer plusieurs fois de suite pour voir", "Vérifier l'isolement du circuit et la charge raccordée", "Changer directement tout le câblage", "Ignorer et attendre"], correct: 1 },
-      { label: "Appareil de mesure adapté ?", options: ["Multimètre / mégohmmètre", "Débitmètre", "Tachymètre", "Manomètre"], correct: 0 },
+      { label: "Appareil de mesure adapté après consignation et préparation du circuit ?", options: ["Mégohmmètre adapté au circuit et aux composants raccordés", "Débitmètre", "Tachymètre", "Manomètre"], correct: 0 },
       { label: "Sécurité à respecter ?", options: ["Réarmer en boucle sans diagnostic", "Ne jamais réarmer plusieurs fois sans diagnostic, consigner avant d'investiguer", "Shunter le disjoncteur", "Augmenter le calibre du disjoncteur pour que ça ne coupe plus"], correct: 1 },
       { label: "Réparation proposée ?", options: ["Augmenter le calibre du disjoncteur", "Localiser et isoler ou remplacer le composant en défaut d'isolement, puis réarmer", "Ignorer le déclenchement", "Remplacer le disjoncteur par un modèle plus faible"], correct: 1 },
     ],
     correction:
-      "Un disjoncteur qui déclenche rapidement après réarmement indique très probablement un court-circuit ou un défaut d'isolement sur le circuit protégé, et non un simple problème de disjoncteur. Réarmer en boucle sans chercher la cause est dangereux : il faut consigner, mesurer l'isolement du circuit et localiser le défaut avant toute remise en service.",
+      "Un disjoncteur qui déclenche rapidement après réarmement indique probablement un court-circuit, un défaut d'isolement ou une surcharge. Réarmer en boucle est dangereux. Une personne habilitée consigne, effectue la VAT, identifie et déconnecte si nécessaire les composants sensibles, puis réalise la mesure d'isolement avec un mégohmmètre et une tension d'essai compatibles. On suit la documentation constructeur avant toute remise en service.",
   },
   {
     id: "p5",
@@ -80,7 +80,7 @@ export const PANNES: FaultScenario[] = [
       { label: "Réparation proposée ?", options: ["Réparer la fuite d'air, débloquer ou remplacer le distributeur, remplacer la bobine de l'électrovanne si besoin", "Changer tout le convoyeur", "Augmenter la pression réseau au-delà des specs", "Ignorer, ce n'est pas grave"], correct: 0 },
     ],
     correction:
-      "Un vérin qui ne sort pas alors que la commande électrique semble active oriente vers un problème pneumatique : pression insuffisante, distributeur bloqué, fuite, ou bobine d'électrovanne défectueuse. Avant toute intervention mécanique, on coupe et on purge l'alimentation en air comprimé, car l'air sous pression peut projeter des pièces.",
+      "Un vérin qui ne sort pas alors que la commande électrique semble active oriente vers un problème pneumatique : pression insuffisante, distributeur bloqué, fuite ou bobine d'électrovanne défectueuse. Avant toute intervention, on consigne l'électricité et l'air, on purge et vérifie l'absence de pression, puis on bloque toute charge ou pièce susceptible de bouger sous l'effet de la gravité ou d'une énergie accumulée.",
   },
   {
     id: "p6",
@@ -95,7 +95,7 @@ export const PANNES: FaultScenario[] = [
       { label: "Réparation proposée ?", options: ["Remplacer le joint ou le flexible, resserrer le raccord, purger l'air du circuit avant remise en service", "Ajouter de l'huile sans réparer la fuite", "Augmenter la pression pour compenser", "Ignorer, une petite fuite n'est jamais grave"], correct: 0 },
     ],
     correction:
-      "Une fuite hydraulique doit toujours être traitée avec prudence : un jet d'huile sous haute pression peut pénétrer la peau et provoquer une urgence médicale. On ne cherche jamais la fuite avec la main. On balise la zone, arrête et dépressurise complètement le circuit, puis on remplace la pièce défaillante (joint, flexible ou raccord) avant de purger et contrôler la remise en service.",
+      "Une fuite hydraulique doit toujours être traitée avec prudence : un jet d'huile sous haute pression peut pénétrer la peau. On ne cherche jamais une fuite avec la main. On balise, consigne toutes les énergies, soutient les charges, dépressurise et vérifie l'absence de pression avant remplacement. Toute suspicion d'injection sous la peau, même avec une petite marque, impose une prise en charge médicale urgente immédiate.",
   },
   {
     id: "p7",
@@ -110,7 +110,7 @@ export const PANNES: FaultScenario[] = [
       { label: "Réparation proposée ?", options: ["Lubrifier ou remplacer le roulement, vérifier l'alignement de l'arbre", "Ignorer le bruit tant que ça tourne", "Augmenter la vitesse pour compenser", "Changer uniquement la courroie"], correct: 0 },
     ],
     correction:
-      "Un bruit de roulement qui s'aggrave progressivement est un signe classique de défaut naissant (manque de graisse, usure, désalignement). L'analyse vibratoire ou le contrôle de température permettent de confirmer le diagnostic avant une panne complète. On consigne toujours l'organe en mouvement avant de démonter.",
+      "Un bruit de roulement qui s'aggrave progressivement est un signe classique de défaut naissant (lubrification, usure, désalignement). On privilégie des capteurs de vibration et une mesure de température sans contact depuis une zone autorisée, protecteurs en place. On ne s'approche jamais d'une transmission tournante avec un outil ou une partie du corps. Démontage et contrôle par contact se font après consignation multi-énergies et immobilisation vérifiée.",
   },
   {
     id: "p8",
@@ -125,7 +125,7 @@ export const PANNES: FaultScenario[] = [
       { label: "Réparation proposée ?", options: ["Retendre ou remplacer la courroie, vérifier l'alignement des poulies", "Ignorer le patinage", "Augmenter la vitesse du moteur pour compenser", "Ajouter de la graisse sur la courroie"], correct: 0 },
     ],
     correction:
-      "Une courroie détendue ou usée patine et perd en efficacité de transmission, ce qui peut aussi accélérer son usure et celle des poulies. On mesure sa tension avec un tensiomètre dédié, on vérifie l'absence de fissures, puis on retend ou remplace la courroie après avoir consigné l'organe en mouvement.",
+      "Une courroie détendue ou usée patine et perd en efficacité de transmission, ce qui accélère son usure et celle des poulies. L'inspection détaillée et la mesure de tension se font machine arrêtée, après consignation et vérification de l'immobilisation. On ne retire jamais un protecteur en marche. Après réglage, le protecteur est remonté avant un essai maîtrisé.",
   },
   {
     id: "p9",
@@ -150,11 +150,11 @@ export const PANNES: FaultScenario[] = [
     steps: [
       { label: "Cause la plus probable ?", options: ["Un bouton AU resté bloqué mécaniquement ou un défaut du circuit de sécurité", "Une simple coupure de courant générale", "Un problème de capteur de colis uniquement", "Une fuite hydraulique"], correct: 0 },
       { label: "Contrôle prioritaire ?", options: ["Inspecter visuellement tous les AU de la ligne et vérifier le relais de sécurité", "Redémarrer directement sans vérifier", "Changer le moteur principal", "Vérifier la pression pneumatique uniquement"], correct: 0 },
-      { label: "Appareil de mesure adapté ?", options: ["Multimètre (continuité du circuit de sécurité)", "Manomètre", "Tachymètre", "Débitmètre"], correct: 0 },
+      { label: "Appareil de mesure adapté pour un contrôle de continuité hors tension ?", options: ["Multimètre, uniquement après consignation et VAT", "Manomètre", "Tachymètre", "Débitmètre"], correct: 0 },
       { label: "Sécurité à respecter ?", options: ["Shunter le circuit de sécurité pour redémarrer plus vite", "Ne jamais shunter un circuit de sécurité, analyser la cause avant de réarmer", "Ignorer le voyant et forcer le redémarrage", "Débrancher le relais de sécurité définitivement"], correct: 1 },
       { label: "Réparation proposée ?", options: ["Déverrouiller le bouton bloqué ou remplacer le relais de sécurité défectueux, puis réarmer et retester", "Contourner le circuit de sécurité avec un fil", "Ignorer et laisser la ligne à l'arrêt indéfiniment sans diagnostic", "Changer tout le pupitre de commande"], correct: 0 },
     ],
     correction:
-      "Un déclenchement de sécurité sans action visible d'un opérateur doit toujours être pris au sérieux : bouton AU resté mécaniquement bloqué, ou défaut du relais de sécurité lui-même. On inspecte tous les AU de la ligne et on contrôle la continuité du circuit de sécurité au multimètre. Shunter un circuit de sécurité est absolument interdit, quelle que soit l'urgence de production.",
+      "Un déclenchement de sécurité sans action visible doit toujours être pris au sérieux : actionnement non vu, défaut de câblage ou défaillance d'un composant de sécurité. On inspecte les organes sans les neutraliser. Un contrôle de continuité se fait uniquement hors tension, après consignation et VAT, par une personne compétente suivant le schéma et la procédure. Le remplacement d'un composant de sécurité doit respecter la référence et la validation prévues ; shunter le circuit est interdit.",
   },
 ];

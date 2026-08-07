@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { LessonSchemaType } from "../../types";
 
 /* ---------------------------- SVG SCHEMAS ---------------------------- */
@@ -8,9 +9,18 @@ interface LessonSchemaProps {
 }
 
 export function LessonSchema({ type, dark }: LessonSchemaProps) {
+  const arrowId = `lesson-schema-arrow-${useId().replace(/:/g, "")}`;
+  const arrowUrl = `url(#${arrowId})`;
   const stroke = dark ? "#94a3b8" : "#475569";
   const accent = "#f5b400";
   const box = dark ? "#1e293b" : "#f1f5f9";
+  const arrowDefinition = (
+    <defs>
+      <marker id={arrowId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+      </marker>
+    </defs>
+  );
 
   if (type === "orgchart") {
     return (
@@ -36,13 +46,14 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "maintenance-types") {
     return (
       <svg viewBox="0 0 320 110" className="w-full h-28">
+        {arrowDefinition}
         {["Corrective", "Préventive sys.", "Préventive cond.", "Améliorative"].map((t, i) => (
           <g key={i}>
             <rect x={10 + i * 78} y="30" width="68" height="50" rx="6" fill={box} stroke={i === 3 ? accent : stroke} strokeWidth={i === 3 ? 2 : 1} />
             <text x={10 + i * 78 + 34} y="58" textAnchor="middle" fontSize="9" fill={stroke}>{t}</text>
           </g>
         ))}
-        <line x1="10" y1="20" x2="310" y2="20" stroke={stroke} markerEnd="url(#arrow)" />
+        <line x1="10" y1="20" x2="310" y2="20" stroke={stroke} markerEnd={arrowUrl} />
         <text x="160" y="12" textAnchor="middle" fontSize="9" fill={stroke}>Panne présente → absente</text>
       </svg>
     );
@@ -73,12 +84,13 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "energy-flow") {
     return (
       <svg viewBox="0 0 320 90" className="w-full h-24">
+        {arrowDefinition}
         <rect x="10" y="30" width="90" height="30" rx="4" fill={box} stroke={stroke} />
         <text x="55" y="49" textAnchor="middle" fontSize="9" fill={stroke}>Puissance fournie</text>
-        <line x1="100" y1="45" x2="150" y2="45" stroke={stroke} markerEnd="url(#arrow)" />
+        <line x1="100" y1="45" x2="150" y2="45" stroke={stroke} markerEnd={arrowUrl} />
         <rect x="150" y="15" width="80" height="60" rx="6" fill={accent} />
         <text x="190" y="49" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">Moteur η</text>
-        <line x1="230" y1="35" x2="280" y2="35" stroke={stroke} markerEnd="url(#arrow)" />
+        <line x1="230" y1="35" x2="280" y2="35" stroke={stroke} markerEnd={arrowUrl} />
         <text x="300" y="32" textAnchor="middle" fontSize="8" fill={stroke}>utile</text>
         <line x1="230" y1="60" x2="280" y2="75" stroke={stroke} strokeDasharray="3,2" />
         <text x="298" y="80" textAnchor="middle" fontSize="8" fill={stroke}>pertes</text>
@@ -88,10 +100,11 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "torque-diagram") {
     return (
       <svg viewBox="0 0 320 100" className="w-full h-28">
+        {arrowDefinition}
         <circle cx="160" cy="55" r="6" fill={stroke} />
         <line x1="160" y1="55" x2="260" y2="55" stroke={stroke} strokeWidth="3" />
         <text x="210" y="45" textAnchor="middle" fontSize="9" fill={stroke}>distance d</text>
-        <line x1="260" y1="55" x2="260" y2="20" stroke={accent} strokeWidth="3" markerEnd="url(#arrow)" />
+        <line x1="260" y1="55" x2="260" y2="20" stroke={accent} strokeWidth="3" markerEnd={arrowUrl} />
         <text x="272" y="35" fontSize="9" fill={accent}>Force F</text>
         <text x="160" y="85" textAnchor="middle" fontSize="9" fill={stroke}>C = F × d</text>
       </svg>
@@ -818,11 +831,12 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
   if (type === "control-circuit") {
     return (
       <svg viewBox="0 0 320 100" className="w-full h-28">
+        {arrowDefinition}
         {["Disjoncteur", "Contacteur", "Relais th.", "Moteur"].map((t, i) => (
           <g key={i}>
             <rect x={10 + i * 78} y="30" width="66" height="40" rx="4" fill={i === 3 ? accent : box} stroke={stroke} />
             <text x={10 + i * 78 + 33} y="53" textAnchor="middle" fontSize="8" fill={i === 3 ? "#14151a" : stroke}>{t}</text>
-            {i < 3 && <line x1={10 + i * 78 + 66} y1="50" x2={10 + (i + 1) * 78} y2="50" stroke={stroke} markerEnd="url(#arrow)" />}
+            {i < 3 && <line x1={10 + i * 78 + 66} y1="50" x2={10 + (i + 1) * 78} y2="50" stroke={stroke} markerEnd={arrowUrl} />}
           </g>
         ))}
       </svg>
@@ -837,6 +851,554 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
             <text x={60 + i * 100} y="47" textAnchor="middle" fontSize="9" fill={stroke}>{t}</text>
           </g>
         ))}
+      </svg>
+    );
+  }
+  if (type === "electrical-ppe") {
+    const items: Array<[string, string]> = [
+      ["Gants", "isolants"],
+      ["Écran", "facial"],
+      ["Chaussures", "de sécurité"],
+      ["Tapis", "isolant"],
+      ["Outils", "isolés"],
+    ];
+    return (
+      <svg viewBox="0 0 320 110" className="w-full h-28">
+        {items.map(([l1, l2], i) => {
+          const x = 18 + i * 60;
+          return (
+            <g key={l1}>
+              <rect x={x} y="18" width="46" height="46" rx="8" fill={box} stroke={accent} strokeWidth="2" />
+              <text x={x + 23} y="44" textAnchor="middle" fontSize="14" fill={stroke}>{i + 1}</text>
+              <text x={x + 23} y="80" textAnchor="middle" fontSize="8" fill={stroke}>{l1}</text>
+              <text x={x + 23} y="92" textAnchor="middle" fontSize="8" fill={stroke}>{l2}</text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (type === "measurement-safety") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Multimètre */}
+        <rect x="30" y="20" width="110" height="90" rx="10" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <rect x="44" y="30" width="82" height="24" rx="3" fill={dark ? "#0f172a" : "#e2e8f0"} stroke={stroke} />
+        <text x="85" y="47" textAnchor="middle" fontSize="11" fill={accent} fontFamily="monospace">0.0 V</text>
+        <circle cx="85" cy="80" r="18" fill="none" stroke={stroke} strokeWidth="1.5" />
+        <line x1="85" y1="80" x2="85" y2="66" stroke={accent} strokeWidth="2.5" />
+        <text x="85" y="103" textAnchor="middle" fontSize="7" fill={stroke}>sélecteur de calibre</text>
+        {/* Cordons */}
+        <circle cx="60" cy="110" r="3" fill={stroke} />
+        <circle cx="110" cy="110" r="3" fill={stroke} />
+        <text x="60" y="124" textAnchor="middle" fontSize="7" fill={stroke}>COM</text>
+        <text x="110" y="124" textAnchor="middle" fontSize="7" fill={stroke}>V/Ω</text>
+        {/* Règles de sécurité */}
+        <g>
+          <rect x="160" y="24" width="150" height="24" rx="4" fill="none" stroke={stroke} />
+          <text x="235" y="39" textAnchor="middle" fontSize="8" fill={stroke}>Catégorie adaptée (CAT II/III/IV)</text>
+          <rect x="160" y="54" width="150" height="24" rx="4" fill="none" stroke={stroke} />
+          <text x="235" y="69" textAnchor="middle" fontSize="8" fill={stroke}>Bon calibre avant de mesurer</text>
+          <rect x="160" y="84" width="150" height="24" rx="4" fill="none" stroke={accent} strokeWidth="2" />
+          <text x="235" y="99" textAnchor="middle" fontSize="8" fill={stroke}>R et continuité : hors tension</text>
+        </g>
+      </svg>
+    );
+  }
+  if (type === "electrical-first-aid") {
+    const steps: Array<[string, string]> = [
+      ["1", "Protéger : couper ou dégager avec un isolant"],
+      ["2", "Alerter : 112 / 15 / 18"],
+      ["3", "Secourir selon sa formation (SST)"],
+    ];
+    return (
+      <svg viewBox="0 0 320 120" className="w-full h-28">
+        {steps.map(([n, label], i) => {
+          const y = 22 + i * 34;
+          return (
+            <g key={n}>
+              <circle cx="30" cy={y} r="13" fill={i === 0 ? "#ef4444" : accent} />
+              <text x="30" y={y + 4} textAnchor="middle" fontSize="11" fill="#1f1300" fontWeight="bold">{n}</text>
+              <text x="52" y={y + 4} fontSize="10" fill={stroke}>{label}</text>
+              {i < steps.length - 1 && <line x1="30" y1={y + 13} x2="30" y2={y + 21} stroke={stroke} />}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (type === "power-distribution") {
+    const stages: Array<[string, string]> = [
+      ["Réseau", "arrivée"],
+      ["TGBT", "tableau général"],
+      ["Tableaux", "divisionnaires"],
+      ["Départs", "machines"],
+    ];
+    return (
+      <svg viewBox="0 0 320 90" className="w-full h-24">
+        {stages.map(([l1, l2], i) => {
+          const x = 8 + i * 78;
+          return (
+            <g key={l1}>
+              <rect x={x} y="26" width="64" height="38" rx="5" fill={i === 3 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 32} y="45" textAnchor="middle" fontSize="9" fill={i === 3 ? "#14151a" : stroke} fontWeight="bold">{l1}</text>
+              <text x={x + 32} y="57" textAnchor="middle" fontSize="7" fill={i === 3 ? "#14151a" : stroke}>{l2}</text>
+              {i < 3 && <line x1={x + 64} y1="45" x2={x + 78} y2="45" stroke={stroke} strokeWidth="1.5" />}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (type === "three-phase-voltages") {
+    const phases: Array<[string, string]> = [
+      ["L1", "phase 1"],
+      ["L2", "phase 2"],
+      ["L3", "phase 3"],
+      ["N", "neutre"],
+    ];
+    return (
+      <svg viewBox="0 0 320 110" className="w-full h-28">
+        {phases.map(([l1, l2], i) => {
+          const x = 26 + i * 72;
+          const isNeutral = l1 === "N";
+          return (
+            <g key={l1}>
+              <line x1={x} y1="20" x2={x} y2="70" stroke={isNeutral ? stroke : accent} strokeWidth="3" />
+              <circle cx={x} cy="70" r="4" fill={isNeutral ? stroke : accent} />
+              <text x={x} y="86" textAnchor="middle" fontSize="10" fill={stroke} fontWeight="bold">{l1}</text>
+              <text x={x} y="98" textAnchor="middle" fontSize="7" fill={stroke}>{l2}</text>
+            </g>
+          );
+        })}
+        {/* Tension simple (phase-neutre) et composée (phase-phase) */}
+        <text x="230" y="34" textAnchor="middle" fontSize="8" fill={stroke}>230 V</text>
+        <text x="230" y="16" textAnchor="middle" fontSize="7" fill={stroke}>phase–neutre</text>
+        <line x1="98" y1="46" x2="170" y2="46" stroke={stroke} strokeDasharray="3 2" />
+        <text x="134" y="42" textAnchor="middle" fontSize="8" fill={stroke}>400 V (phase–phase)</text>
+      </svg>
+    );
+  }
+  if (type === "command-power-circuit") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Circuit de commande */}
+        <text x="80" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Circuit de commande</text>
+        <rect x="20" y="24" width="120" height="90" rx="6" fill="none" stroke={stroke} strokeDasharray="4 3" />
+        <circle cx="50" cy="45" r="4" fill="none" stroke={stroke} />
+        <text x="50" y="66" textAnchor="middle" fontSize="7" fill={stroke}>bouton</text>
+        <line x1="54" y1="45" x2="90" y2="45" stroke={stroke} />
+        <circle cx="110" cy="80" r="12" fill={box} stroke={accent} strokeWidth="2" />
+        <text x="110" y="83" textAnchor="middle" fontSize="8" fill={stroke}>KM1</text>
+        <text x="110" y="104" textAnchor="middle" fontSize="7" fill={stroke}>bobine</text>
+        {/* Circuit de puissance */}
+        <text x="240" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Circuit de puissance</text>
+        <rect x="180" y="24" width="120" height="90" rx="6" fill="none" stroke={stroke} />
+        <line x1="240" y1="30" x2="240" y2="52" stroke={stroke} strokeWidth="2" />
+        <line x1="240" y1="52" x2="255" y2="40" stroke={accent} strokeWidth="3" />
+        <text x="278" y="52" textAnchor="middle" fontSize="7" fill={stroke}>contacts</text>
+        <line x1="240" y1="52" x2="240" y2="74" stroke={stroke} strokeWidth="2" />
+        <circle cx="240" cy="90" r="14" fill={accent} />
+        <text x="240" y="94" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">M</text>
+        {/* Lien commande → puissance */}
+        <text x="160" y="122" textAnchor="middle" fontSize="7" fill={stroke}>la bobine ferme les contacts de puissance →</text>
+      </svg>
+    );
+  }
+  if (type === "asynchronous-motor") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Stator */}
+        <circle cx="120" cy="70" r="52" fill="none" stroke={stroke} strokeWidth="2" />
+        <text x="120" y="18" textAnchor="middle" fontSize="9" fill={stroke}>Stator (fixe)</text>
+        {/* Bobinages (3 paires) */}
+        {[0, 60, 120].map((a) => {
+          const r = (a * Math.PI) / 180;
+          return <line key={a} x1={120 + Math.cos(r) * 40} y1={70 + Math.sin(r) * 40} x2={120 - Math.cos(r) * 40} y2={70 - Math.sin(r) * 40} stroke={accent} strokeWidth="3" />;
+        })}
+        {/* Rotor */}
+        <circle cx="120" cy="70" r="20" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="120" y="73" textAnchor="middle" fontSize="8" fill={stroke}>Rotor</text>
+        {/* Légende champ tournant */}
+        <text x="245" y="55" textAnchor="middle" fontSize="9" fill={stroke}>Champ</text>
+        <text x="245" y="68" textAnchor="middle" fontSize="9" fill={stroke}>tournant</text>
+        <path d="M225 80 a18 18 0 1 1 12 6" fill="none" stroke={accent} strokeWidth="2" markerEnd="url(#am-arrow)" />
+        <defs>
+          <marker id="am-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={accent} />
+          </marker>
+        </defs>
+      </svg>
+    );
+  }
+  if (type === "star-delta-coupling") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Étoile (Y) */}
+        <text x="80" y="18" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Étoile (Y)</text>
+        {[90, 210, 330].map((a, i) => {
+          const r = (a * Math.PI) / 180;
+          return <line key={i} x1="80" y1="70" x2={80 + Math.cos(r) * 34} y2={70 + Math.sin(r) * 34} stroke={accent} strokeWidth="3" />;
+        })}
+        <circle cx="80" cy="70" r="4" fill={stroke} />
+        <text x="80" y="118" textAnchor="middle" fontSize="7" fill={stroke}>point commun (neutre)</text>
+        {/* Triangle (Δ) */}
+        <text x="240" y="18" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Triangle (Δ)</text>
+        <polygon points="240,44 214,88 266,88" fill="none" stroke={accent} strokeWidth="3" />
+        <text x="240" y="108" textAnchor="middle" fontSize="7" fill={stroke}>enroulements en boucle</text>
+      </svg>
+    );
+  }
+  if (type === "vfd-blockdiagram") {
+    const stages: Array<[string, string]> = [
+      ["Réseau", "AC ~"],
+      ["Redresseur", "AC → DC"],
+      ["Bus continu", "DC ="],
+      ["Onduleur", "DC → AC"],
+      ["Moteur", "vitesse réglable"],
+    ];
+    return (
+      <svg viewBox="0 0 320 90" className="w-full h-24">
+        {stages.map(([l1, l2], i) => {
+          const x = 6 + i * 63;
+          return (
+            <g key={l1}>
+              <rect x={x} y="26" width="52" height="40" rx="5" fill={i === 4 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 26} y="44" textAnchor="middle" fontSize="7.5" fill={i === 4 ? "#14151a" : stroke} fontWeight="bold">{l1}</text>
+              <text x={x + 26} y="55" textAnchor="middle" fontSize="6.5" fill={i === 4 ? "#14151a" : stroke}>{l2}</text>
+              {i < 4 && <line x1={x + 52} y1="46" x2={x + 63} y2="46" stroke={stroke} strokeWidth="1.5" />}
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (type === "schematic-comparison") {
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        {/* Unifilaire : une seule ligne pour les 3 phases */}
+        <text x="80" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Unifilaire</text>
+        <line x1="80" y1="24" x2="80" y2="118" stroke={stroke} strokeWidth="2" />
+        <text x="96" y="40" fontSize="7" fill={stroke}>3</text>
+        <line x1="72" y1="36" x2="88" y2="30" stroke={stroke} strokeWidth="1" />
+        <rect x="66" y="52" width="28" height="16" rx="2" fill={box} stroke={stroke} />
+        <text x="80" y="63" textAnchor="middle" fontSize="7" fill={stroke}>Q</text>
+        <rect x="66" y="80" width="28" height="16" rx="2" fill={box} stroke={stroke} />
+        <text x="80" y="91" textAnchor="middle" fontSize="7" fill={stroke}>KM</text>
+        <circle cx="80" cy="112" r="8" fill={accent} />
+        <text x="80" y="115" textAnchor="middle" fontSize="7" fill="#14151a">M</text>
+        <text x="80" y="132" textAnchor="middle" fontSize="6.5" fill={stroke}>vue simplifiée</text>
+        {/* Développé : détaillé, commande séparée */}
+        <text x="230" y="16" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">Développé</text>
+        {[190, 210, 230].map((x, i) => (
+          <g key={i}>
+            <line x1={x} y1="24" x2={x} y2="70" stroke={accent} strokeWidth="1.5" />
+          </g>
+        ))}
+        <text x="210" y="40" textAnchor="middle" fontSize="6.5" fill={stroke}>puissance (3 fils)</text>
+        <rect x="186" y="70" width="48" height="14" rx="2" fill={box} stroke={stroke} />
+        <text x="210" y="80" textAnchor="middle" fontSize="6.5" fill={stroke}>moteur</text>
+        <line x1="270" y1="24" x2="270" y2="96" stroke={stroke} strokeWidth="1.5" />
+        <circle cx="270" cy="50" r="3" fill="none" stroke={stroke} />
+        <text x="286" y="53" fontSize="6.5" fill={stroke}>S (bouton)</text>
+        <circle cx="270" cy="78" r="6" fill={box} stroke={accent} />
+        <text x="286" y="81" fontSize="6.5" fill={stroke}>KM (bobine)</text>
+        <text x="230" y="118" textAnchor="middle" fontSize="6.5" fill={stroke}>puissance + commande</text>
+        <text x="230" y="130" textAnchor="middle" fontSize="6.5" fill={stroke}>détaillées séparément</text>
+      </svg>
+    );
+  }
+  if (type === "diagnostic-flow") {
+    const steps = ["Constater", "Sécuriser", "Analyser", "Localiser", "Réparer", "Contrôler", "Tracer"];
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        {steps.map((label, i) => {
+          const col = i % 4;
+          const row = Math.floor(i / 4);
+          const x = 12 + col * 78;
+          const y = 20 + row * 60;
+          const last = i === steps.length - 1;
+          return (
+            <g key={label}>
+              <rect x={x} y={y} width="66" height="30" rx="6" fill={i === 1 ? "#ef4444" : last ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 33} y={y + 19} textAnchor="middle" fontSize="8.5" fill={i === 1 ? "#fff" : last ? "#14151a" : stroke} fontWeight="bold">{label}</text>
+              {/* flèche horizontale */}
+              {col < 3 && i < steps.length - 1 && <line x1={x + 66} y1={y + 15} x2={x + 78} y2={y + 15} stroke={stroke} strokeWidth="1.5" markerEnd="url(#df-arrow)" />}
+              {/* passage à la ligne (après la 4e case) */}
+              {i === 3 && <line x1={x + 33} y1={y + 30} x2={12 + 33} y2={y + 60} stroke={stroke} strokeWidth="1.5" markerEnd="url(#df-arrow)" />}
+            </g>
+          );
+        })}
+        <defs>
+          <marker id="df-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+      </svg>
+    );
+  }
+  if (type === "po-pc-structure") {
+    return (
+      <svg viewBox="0 0 320 150" className="w-full h-40">
+        <defs>
+          <marker id="popc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Partie commande */}
+        <rect x="90" y="14" width="140" height="40" rx="8" fill={accent} stroke={stroke} strokeWidth="1.5" />
+        <text x="160" y="32" textAnchor="middle" fontSize="10" fill="#14151a" fontWeight="bold">Partie commande (PC)</text>
+        <text x="160" y="46" textAnchor="middle" fontSize="8" fill="#14151a">décide, traite, pilote</text>
+        {/* Partie opérative */}
+        <rect x="90" y="96" width="140" height="40" rx="8" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <text x="160" y="114" textAnchor="middle" fontSize="10" fill={stroke} fontWeight="bold">Partie opérative (PO)</text>
+        <text x="160" y="128" textAnchor="middle" fontSize="8" fill={stroke}>agit : moteurs, vérins…</text>
+        {/* Ordres (PC → PO) */}
+        <line x1="130" y1="54" x2="130" y2="96" stroke={stroke} strokeWidth="1.5" markerEnd="url(#popc-arrow)" />
+        <text x="104" y="78" textAnchor="middle" fontSize="7.5" fill={stroke}>ordres</text>
+        {/* Comptes rendus (PO → PC) */}
+        <line x1="190" y1="96" x2="190" y2="54" stroke={stroke} strokeWidth="1.5" markerEnd="url(#popc-arrow)" />
+        <text x="214" y="78" textAnchor="middle" fontSize="7.5" fill={stroke}>comptes rendus</text>
+      </svg>
+    );
+  }
+  if (type === "energy-info-chains") {
+    return (
+      <svg viewBox="0 0 320 150" className="w-full h-40">
+        <defs>
+          <marker id="eic-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Chaîne d'information */}
+        <text x="10" y="20" fontSize="9" fill={stroke} fontWeight="bold">Chaîne d'information</text>
+        {["Acquérir", "Traiter", "Communiquer"].map((l, i) => {
+          const x = 12 + i * 100;
+          return (
+            <g key={l}>
+              <rect x={x} y="28" width="82" height="26" rx="5" fill={box} stroke="#38bdf8" strokeWidth="1.5" />
+              <text x={x + 41} y="45" textAnchor="middle" fontSize="8.5" fill={stroke}>{l}</text>
+              {i < 2 && <line x1={x + 82} y1="41" x2={x + 100} y2="41" stroke={stroke} strokeWidth="1.5" markerEnd="url(#eic-arrow)" />}
+            </g>
+          );
+        })}
+        {/* Chaîne d'énergie */}
+        <text x="10" y="88" fontSize="9" fill={stroke} fontWeight="bold">Chaîne d'énergie</text>
+        {["Alimenter", "Distribuer", "Convertir", "Agir"].map((l, i) => {
+          const x = 8 + i * 76;
+          return (
+            <g key={l}>
+              <rect x={x} y="96" width="60" height="26" rx="5" fill={i === 3 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 30} y="113" textAnchor="middle" fontSize="8" fill={i === 3 ? "#14151a" : stroke}>{l}</text>
+              {i < 3 && <line x1={x + 60} y1="109" x2={x + 76} y2="109" stroke={stroke} strokeWidth="1.5" markerEnd="url(#eic-arrow)" />}
+            </g>
+          );
+        })}
+        <text x="160" y="140" textAnchor="middle" fontSize="7.5" fill={stroke}>l'information commande l'énergie</text>
+      </svg>
+    );
+  }
+  if (type === "sensor-types-compare") {
+    const sensors: Array<[string, string]> = [
+      ["Inductif", "objets métalliques"],
+      ["Capacitif", "presque tous matériaux"],
+      ["Photoélectrique", "objets qui coupent la lumière"],
+    ];
+    return (
+      <svg viewBox="0 0 320 120" className="w-full h-28">
+        {sensors.map(([name, detects], i) => {
+          const x = 10 + i * 103;
+          return (
+            <g key={name}>
+              <rect x={x} y="20" width="92" height="34" rx="6" fill={box} stroke={accent} strokeWidth="2" />
+              <text x={x + 46} y="41" textAnchor="middle" fontSize="9" fill={stroke} fontWeight="bold">{name}</text>
+              {/* zone de détection */}
+              <path d={`M${x + 46} 54 q 0 14 -14 18 M${x + 46} 54 q 0 14 14 18`} fill="none" stroke={stroke} strokeDasharray="2 2" />
+              <text x={x + 46} y="92" textAnchor="middle" fontSize="7" fill={stroke}>détecte :</text>
+              <text x={x + 46} y="103" textAnchor="middle" fontSize="6.8" fill={stroke}>{detects}</text>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+  if (type === "pneumatic-symbols") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        {/* Vérin simple effet */}
+        <text x="80" y="16" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Vérin simple effet</text>
+        <rect x="24" y="26" width="80" height="26" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <line x1="52" y1="26" x2="52" y2="52" stroke={stroke} strokeWidth="2.5" />
+        <line x1="104" y1="39" x2="128" y2="39" stroke={stroke} strokeWidth="2.5" />
+        <path d="M28 52 l6 -6 m-6 0 l6 6" stroke={accent} strokeWidth="1.5" />
+        <text x="80" y="66" textAnchor="middle" fontSize="6.8" fill={stroke}>1 entrée d'air + ressort de rappel</text>
+        {/* Vérin double effet */}
+        <text x="80" y="86" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Vérin double effet</text>
+        <rect x="24" y="94" width="80" height="24" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <line x1="60" y1="94" x2="60" y2="118" stroke={stroke} strokeWidth="2.5" />
+        <line x1="104" y1="106" x2="128" y2="106" stroke={stroke} strokeWidth="2.5" />
+        <line x1="34" y1="118" x2="34" y2="124" stroke={accent} strokeWidth="1.5" />
+        <line x1="86" y1="118" x2="86" y2="124" stroke={accent} strokeWidth="1.5" />
+        <text x="70" y="128" textAnchor="middle" fontSize="6.5" fill={stroke}>air des 2 côtés</text>
+        {/* Distributeur 5/2 (2 cases) */}
+        <text x="230" y="16" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Distributeur 5/2</text>
+        <rect x="176" y="30" width="52" height="34" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <rect x="228" y="30" width="52" height="34" rx="2" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <path d="M186 56 l14 -18 M214 56 l-14 -18" stroke={accent} strokeWidth="1.5" fill="none" />
+        <path d="M240 47 h28 M240 47 l6 -4 M240 47 l6 4" stroke={accent} strokeWidth="1.5" fill="none" />
+        <text x="230" y="80" textAnchor="middle" fontSize="6.8" fill={stroke}>5 orifices · 2 positions</text>
+        <text x="230" y="92" textAnchor="middle" fontSize="6.8" fill={stroke}>pilote le vérin double effet</text>
+      </svg>
+    );
+  }
+  if (type === "plc-structure") {
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        <defs>
+          <marker id="plc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill={stroke} />
+          </marker>
+        </defs>
+        {/* Automate (cadre) */}
+        <rect x="70" y="30" width="180" height="70" rx="8" fill="none" stroke={stroke} strokeDasharray="4 3" />
+        <text x="160" y="26" textAnchor="middle" fontSize="8" fill={stroke}>Automate (API)</text>
+        {/* Module entrées */}
+        <rect x="78" y="52" width="44" height="30" rx="4" fill={box} stroke="#38bdf8" strokeWidth="1.5" />
+        <text x="100" y="66" textAnchor="middle" fontSize="7.5" fill={stroke}>Entrées</text>
+        <text x="100" y="76" textAnchor="middle" fontSize="6.5" fill={stroke}>(E)</text>
+        {/* CPU + mémoire */}
+        <rect x="134" y="46" width="52" height="42" rx="4" fill={accent} stroke={stroke} strokeWidth="1.5" />
+        <text x="160" y="62" textAnchor="middle" fontSize="7.5" fill="#14151a" fontWeight="bold">Processeur</text>
+        <text x="160" y="74" textAnchor="middle" fontSize="6.5" fill="#14151a">+ mémoire</text>
+        {/* Module sorties */}
+        <rect x="198" y="52" width="44" height="30" rx="4" fill={box} stroke="#10b981" strokeWidth="1.5" />
+        <text x="220" y="66" textAnchor="middle" fontSize="7.5" fill={stroke}>Sorties</text>
+        <text x="220" y="76" textAnchor="middle" fontSize="6.5" fill={stroke}>(S)</text>
+        {/* Liaisons internes */}
+        <line x1="122" y1="67" x2="134" y2="67" stroke={stroke} strokeWidth="1.2" markerEnd="url(#plc-arrow)" />
+        <line x1="186" y1="67" x2="198" y2="67" stroke={stroke} strokeWidth="1.2" markerEnd="url(#plc-arrow)" />
+        {/* Alimentation */}
+        <rect x="134" y="104" width="52" height="16" rx="3" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="160" y="115" textAnchor="middle" fontSize="6.8" fill={stroke}>Alimentation</text>
+        <line x1="160" y1="88" x2="160" y2="104" stroke={stroke} strokeWidth="1" />
+        {/* Capteurs / préactionneurs */}
+        <text x="30" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Capteurs</text>
+        <line x1="52" y1="67" x2="78" y2="67" stroke={stroke} strokeWidth="1.5" markerEnd="url(#plc-arrow)" />
+        <text x="290" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Préact.</text>
+        <line x1="242" y1="67" x2="268" y2="67" stroke={stroke} strokeWidth="1.5" markerEnd="url(#plc-arrow)" />
+      </svg>
+    );
+  }
+  if (type === "air-treatment-frl") {
+    return (
+      <svg viewBox="0 0 320 130" className="w-full h-32">
+        <defs>
+          <marker id="frl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8" />
+          </marker>
+        </defs>
+        <text x="160" y="14" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Unité de conditionnement de l'air (FRL)</text>
+        {/* Arrivée réseau */}
+        <text x="20" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Réseau</text>
+        <line x1="20" y1="64" x2="52" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        {/* Filtre */}
+        <rect x="52" y="42" width="60" height="44" rx="3" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <path d="M62 52 h40 M62 62 h40 M72 66 l10 12 l10 -12 z" stroke={stroke} strokeWidth="1.2" fill="none" />
+        <text x="82" y="98" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Filtre</text>
+        <text x="82" y="108" textAnchor="middle" fontSize="6.3" fill={stroke}>retient eau</text>
+        <text x="82" y="116" textAnchor="middle" fontSize="6.3" fill={stroke}>et impuretés</text>
+        <line x1="112" y1="64" x2="124" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        {/* Régulateur */}
+        <rect x="124" y="42" width="60" height="44" rx="3" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <circle cx="154" cy="60" r="11" fill="none" stroke={stroke} strokeWidth="1.2" />
+        <line x1="154" y1="60" x2="161" y2="53" stroke={accent} strokeWidth="1.5" />
+        <line x1="154" y1="70" x2="154" y2="78" stroke={stroke} strokeWidth="1.2" />
+        <text x="154" y="98" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Régulateur</text>
+        <text x="154" y="108" textAnchor="middle" fontSize="6.3" fill={stroke}>fixe et stabilise</text>
+        <text x="154" y="116" textAnchor="middle" fontSize="6.3" fill={stroke}>la pression</text>
+        <line x1="184" y1="64" x2="196" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        {/* Lubrificateur */}
+        <rect x="196" y="42" width="60" height="44" rx="3" fill={box} stroke={stroke} strokeWidth="1.5" />
+        <circle cx="226" cy="54" r="2.2" fill="#38bdf8" />
+        <path d="M226 58 v10" stroke="#38bdf8" strokeWidth="1.2" />
+        <path d="M218 74 q8 -6 16 0" stroke={stroke} strokeWidth="1.2" fill="none" />
+        <text x="226" y="98" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Lubrificateur</text>
+        <text x="226" y="108" textAnchor="middle" fontSize="6.3" fill={stroke}>ajoute un peu</text>
+        <text x="226" y="116" textAnchor="middle" fontSize="6.3" fill={stroke}>d'huile (option)</text>
+        {/* Sortie vers machine */}
+        <line x1="256" y1="64" x2="292" y2="64" stroke="#38bdf8" strokeWidth="2" markerEnd="url(#frl-arrow)" />
+        <text x="300" y="60" textAnchor="middle" fontSize="7" fill={stroke}>Machine</text>
+      </svg>
+    );
+  }
+  if (type === "grafcet-structure") {
+    return (
+      <svg viewBox="0 0 320 140" className="w-full h-36">
+        <text x="160" y="12" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Les éléments d'un GRAFCET</text>
+        {/* Étape initiale (double carré) */}
+        <rect x="40" y="24" width="30" height="30" rx="2" fill="none" stroke={stroke} strokeWidth="1.2" />
+        <rect x="44" y="28" width="22" height="22" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.4" />
+        <text x="55" y="43" textAnchor="middle" fontSize="11" fontWeight="bold" fill={stroke}>0</text>
+        <text x="55" y="66" textAnchor="middle" fontSize="6.6" fill={stroke}>étape initiale</text>
+        {/* Liaison + transition */}
+        <line x1="55" y1="54" x2="55" y2="78" stroke={stroke} strokeWidth="1.4" />
+        <line x1="43" y1="72" x2="67" y2="72" stroke={accent} strokeWidth="2.4" />
+        <text x="72" y="75" fontSize="7.5" fill={stroke}>réceptivité (condition)</text>
+        {/* Étape 1 + action */}
+        <rect x="44" y="86" width="22" height="22" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.4" />
+        <text x="55" y="101" textAnchor="middle" fontSize="11" fontWeight="bold" fill={stroke}>1</text>
+        <line x1="66" y1="97" x2="96" y2="97" stroke={stroke} strokeWidth="1.2" />
+        <rect x="96" y="88" width="120" height="18" rx="3" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="102" y="100" fontSize="7.6" fill={stroke}>action associée à l'étape</text>
+        {/* Légende */}
+        <line x1="240" y1="30" x2="256" y2="30" stroke={stroke} strokeWidth="1.4" />
+        <text x="262" y="33" fontSize="7" fill={stroke}>liaison orientée</text>
+        <line x1="240" y1="46" x2="256" y2="46" stroke={accent} strokeWidth="2.4" />
+        <text x="262" y="49" fontSize="7" fill={stroke}>transition</text>
+        <rect x="240" y="58" width="16" height="12" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.2" />
+        <text x="262" y="67" fontSize="7" fill={stroke}>étape</text>
+      </svg>
+    );
+  }
+  if (type === "grafcet-structures") {
+    return (
+      <svg viewBox="0 0 320 150" className="w-full h-40">
+        <text x="160" y="11" textAnchor="middle" fontSize="8.5" fill={stroke} fontWeight="bold">Structures de base du GRAFCET</text>
+        {/* Séquence */}
+        <text x="55" y="26" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Séquence</text>
+        <rect x="46" y="32" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <line x1="55" y1="48" x2="55" y2="66" stroke={stroke} strokeWidth="1.3" />
+        <line x1="47" y1="57" x2="63" y2="57" stroke={accent} strokeWidth="2.2" />
+        <rect x="46" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <text x="55" y="98" textAnchor="middle" fontSize="6.4" fill={stroke}>une étape</text>
+        <text x="55" y="107" textAnchor="middle" fontSize="6.4" fill={stroke}>après l'autre</text>
+        {/* Divergence OU (sélection) */}
+        <text x="160" y="26" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Sélection (OU)</text>
+        <rect x="151" y="32" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <line x1="130" y1="54" x2="190" y2="54" stroke={stroke} strokeWidth="1.3" />
+        <line x1="160" y1="48" x2="160" y2="54" stroke={stroke} strokeWidth="1.3" />
+        <line x1="122" y1="62" x2="138" y2="62" stroke={accent} strokeWidth="2.2" />
+        <line x1="182" y1="62" x2="198" y2="62" stroke={accent} strokeWidth="2.2" />
+        <line x1="130" y1="54" x2="130" y2="62" stroke={stroke} strokeWidth="1.3" />
+        <line x1="190" y1="54" x2="190" y2="62" stroke={stroke} strokeWidth="1.3" />
+        <rect x="121" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <rect x="181" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <text x="160" y="98" textAnchor="middle" fontSize="6.4" fill={stroke}>1 seul chemin</text>
+        <text x="160" y="107" textAnchor="middle" fontSize="6.4" fill={stroke}>choisi (1 trait)</text>
+        {/* Divergence ET (parallélisme) */}
+        <text x="265" y="26" textAnchor="middle" fontSize="7.5" fill={stroke} fontWeight="bold">Parallèle (ET)</text>
+        <rect x="256" y="30" width="18" height="15" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <line x1="265" y1="45" x2="265" y2="56" stroke={stroke} strokeWidth="1.3" />
+        <line x1="257" y1="50" x2="273" y2="50" stroke={accent} strokeWidth="2.2" />
+        <line x1="235" y1="55" x2="295" y2="55" stroke={stroke} strokeWidth="1.6" />
+        <line x1="235" y1="58" x2="295" y2="58" stroke={stroke} strokeWidth="1.6" />
+        <line x1="235" y1="58" x2="235" y2="66" stroke={stroke} strokeWidth="1.3" />
+        <line x1="295" y1="58" x2="295" y2="66" stroke={stroke} strokeWidth="1.3" />
+        <rect x="226" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <rect x="286" y="66" width="18" height="16" rx="1.5" fill={box} stroke={stroke} strokeWidth="1.3" />
+        <text x="265" y="98" textAnchor="middle" fontSize="6.4" fill={stroke}>chemins actifs</text>
+        <text x="265" y="107" textAnchor="middle" fontSize="6.4" fill={stroke}>en même temps</text>
+        <text x="160" y="128" textAnchor="middle" fontSize="6.8" fill={stroke}>OU = double trait de sélection (1 chemin) · ET = double barre de synchronisation (chemins simultanés)</text>
       </svg>
     );
   }

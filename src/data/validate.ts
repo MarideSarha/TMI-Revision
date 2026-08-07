@@ -20,6 +20,15 @@ function findDuplicates(values: string[]) {
   return values.filter((value, index) => values.indexOf(value) !== index);
 }
 
+function requiresProfessionalLessonContract(lessonId: string) {
+  if (lessonId.startsWith("4-") || lessonId.startsWith("5-") || lessonId.startsWith("6-")) {
+    return true;
+  }
+
+  const electroLesson = /^3-(\d+)$/.exec(lessonId);
+  return electroLesson ? Number(electroLesson[1]) >= 4 : false;
+}
+
 export function validateLearningData({ modules, questions, faults, badges }: LearningData) {
   const errors: string[] = [];
   const lessons = modules.flatMap((module) => module.lessons);
@@ -44,6 +53,8 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
   }
 
   for (const lesson of lessons) {
+    const professionalLesson = requiresProfessionalLessonContract(lesson.id);
+
     if (lesson.durationMinutes < 5 || lesson.durationMinutes > 90) {
       errors.push(`La durée de la leçon ${lesson.id} doit être comprise entre 5 et 90 minutes.`);
     }
@@ -53,14 +64,14 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
     if (lesson.quizIds.length === 0) {
       errors.push(`La leçon ${lesson.id} ne contient aucune question.`);
     }
-    if (lesson.id.startsWith("4-") && lesson.quizIds.length !== 5) {
-      errors.push(`La leçon de mécanique ${lesson.id} doit contenir exactement cinq questions progressives.`);
+    if (professionalLesson && lesson.quizIds.length !== 5) {
+      errors.push(`La leçon professionnelle ${lesson.id} doit contenir exactement cinq questions progressives.`);
     }
     if (lesson.exercice.consignes.length === 0 || lesson.exercice.criteres.length === 0) {
       errors.push(`L'exercice de la leçon ${lesson.id} doit avoir des consignes et des critères.`);
     }
-    if (lesson.id.startsWith("4-") && (!lesson.ascii || !lesson.astucesPro?.length || !lesson.diagnostic?.length || !lesson.depannage?.length || !lesson.securite?.length || !lesson.etudeDeCas || !lesson.memo?.length || !lesson.resume)) {
-      errors.push(`La leçon de mécanique ${lesson.id} doit contenir le parcours professionnel complet.`);
+    if (professionalLesson && (!lesson.ascii || !lesson.astucesPro?.length || !lesson.diagnostic?.length || !lesson.depannage?.length || !lesson.securite?.length || !lesson.etudeDeCas || !lesson.memo?.length || !lesson.resume)) {
+      errors.push(`La leçon professionnelle ${lesson.id} doit contenir le parcours professionnel complet.`);
     }
 
     const quickCheck = lesson.verification;

@@ -35,12 +35,29 @@ function checkBadges(progress: Progress) {
     }
   });
 
-  const mechanicsExamBadges: Record<string, string> = {
+  const blockExamBadges: Record<string, string> = {
+    "m3-b2": "electro_block_2",
+    "m3-b3": "electro_block_3",
+    "m3-b4": "electro_block_4",
+    "m3-b5": "electro_block_5",
+    "m3-b6": "electro_block_6",
+    "m3-b7": "electro_block_7",
+    "m5-b1": "auto_block_1",
+    "m5-b2": "auto_block_2",
+    "m5-b3": "auto_block_3",
+    "m5-b4": "auto_block_4",
+    "m5-b5": "auto_block_5",
+    "m5-b6": "auto_block_6",
+    "m5-b7": "auto_block_7",
+    "m6-b1": "maint_block_1",
+    "m6-b2": "maint_block_2",
+    "m6-b3": "maint_block_3",
+    "m6-b4": "maint_block_4",
     "m4-b1": "mechanics_block_1",
     "m4-b5": "mechanics_block_5",
     "m4-b6": "mechanics_block_6",
   };
-  for (const [blockId, badgeId] of Object.entries(mechanicsExamBadges)) {
+  for (const [blockId, badgeId] of Object.entries(blockExamBadges)) {
     const result = progress.blockExamScores[blockId];
     if (result && (result.correctCount / result.total) * 100 >= 80) badges.add(badgeId);
   }
@@ -131,7 +148,13 @@ export function useProgress() {
     (result: QuizResult) => {
       if (!progress) return;
 
-      const nextProgress = { ...progress };
+      const nextProgress: Progress = {
+        ...progress,
+        quizAnswers: {
+          ...progress.quizAnswers,
+          [`practice-${Date.now()}`]: Object.values(result.answers),
+        },
+      };
       nextProgress.xp += result.correctCount * 8;
       addHistory(nextProgress, `Quiz terminé (${result.correctCount}/${result.total})`);
       checkBadges(nextProgress);

@@ -55,7 +55,53 @@ export type LessonSchemaType =
   | "balance-vibration"
   | "ohm-triangle"
   | "control-circuit"
-  | "measurement-tools";
+  | "measurement-tools"
+  | "electrical-ppe"
+  | "measurement-safety"
+  | "electrical-first-aid"
+  | "power-distribution"
+  | "three-phase-voltages"
+  | "command-power-circuit"
+  | "asynchronous-motor"
+  | "star-delta-coupling"
+  | "vfd-blockdiagram"
+  | "schematic-comparison"
+  | "diagnostic-flow"
+  | "po-pc-structure"
+  | "energy-info-chains"
+  | "sensor-types-compare"
+  | "pneumatic-symbols"
+  | "plc-structure"
+  | "air-treatment-frl"
+  | "grafcet-structure"
+  | "grafcet-structures";
+
+/**
+ * Schémas pédagogiques interactifs ou animés (SVG + CSS + état React).
+ * Contrairement à LessonSchemaType (illustration fixe), ceux-ci proposent
+ * une interaction (étapes cliquables) ou une animation légère. Chaque
+ * illustration reste compréhensible sans mouvement (repli statique) et
+ * respecte la préférence système « réduire les animations ».
+ */
+export type InteractiveSchemaType =
+  | "consignation-interactive"
+  | "circuit-states"
+  | "habilitation-decoder"
+  | "neutral-regimes"
+  | "contactor-thermal"
+  | "rotation-direction"
+  | "symbol-decoder"
+  | "diagnostic-tree"
+  | "automated-system"
+  | "sensor-detection"
+  | "pneumatic-cylinder"
+  | "plc-scan-cycle"
+  | "auto-diagnostic-tree"
+  | "grafcet-cycle"
+  | "maintenance-strategy"
+  | "condition-trend"
+  | "five-whys"
+  | "pareto-chart";
 
 export interface LessonExercise {
   enonce: string;
@@ -119,6 +165,8 @@ export interface Lesson {
   verification: LessonQuickCheck;
   exercice: LessonExercise;
   activity?: LessonInteractiveActivity;
+  /** Schémas interactifs ou animés affichés dans la leçon (facultatif). */
+  illustrations?: InteractiveSchemaType[];
   ascii?: string;
   astucesPro?: string[];
   diagnostic?: string[];
