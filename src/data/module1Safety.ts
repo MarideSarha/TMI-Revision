@@ -2,6 +2,7 @@ import type { Lesson, TrainingBlock } from "../types";
 import { MODULE1_PREPARATION_LESSONS } from "./module1Preparation";
 import { MODULE1_WORKSHOP_RISK_LESSONS } from "./module1WorkshopRisks";
 import { MODULE1_WORKSHOP_RISK_LESSONS_2 } from "./module1WorkshopRisks2";
+import { MODULE1_WORKSHOP_RISK_LESSONS_3 } from "./module1WorkshopRisks3";
 
 /**
  * Première tranche du parcours sécurité.
@@ -390,9 +391,21 @@ export const MODULE1_SAFETY_BLOCKS: TrainingBlock[] = [
     num: 3,
     title: "Risques spécifiques de l'atelier industriel",
     objective: "Reconnaître les risques mécaniques, électriques, chimiques, thermiques, de manutention, de hauteur, de bruit et d'atmosphère dangereuse.",
-    lessonIds: [...MODULE1_WORKSHOP_RISK_LESSONS, ...MODULE1_WORKSHOP_RISK_LESSONS_2].map((lesson) => lesson.id),
+    lessonIds: [
+      ...MODULE1_WORKSHOP_RISK_LESSONS,
+      ...MODULE1_WORKSHOP_RISK_LESSONS_2,
+      ...MODULE1_WORKSHOP_RISK_LESSONS_3,
+    ].map((lesson) => lesson.id),
     chapterCount: 9,
-    status: "in_progress",
+    status: "available",
+    exam: {
+      questionIds: [
+        "m1w2", "m1w5", "m1w6", "m1w10", "m1w11", "m1w15",
+        "m1w16", "m1w19", "m1w21", "m1w25", "m1w27", "m1w30",
+        "m1w31", "m1w35", "m1w36", "m1w40", "m1w41", "m1w45",
+      ],
+      passPercent: 80,
+    },
   },
   {
     id: "m1-b4",

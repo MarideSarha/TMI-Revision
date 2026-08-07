@@ -22,6 +22,21 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
     </defs>
   );
   const preparationDiagrams: Partial<Record<LessonSchemaType, { title: string; steps: string[]; note: string }>> = {
+    "work-at-height-hierarchy": {
+      title: "Choisir la protection avant de monter",
+      steps: ["Éviter la hauteur", "Plan de travail protégé", "Accès adapté", "Secours préparé"],
+      note: "La protection collective est prioritaire ; un harnais n'autorise jamais une intervention improvisée.",
+    },
+    "noise-prevention-path": {
+      title: "Réduire le bruit avant qu'il atteigne la personne",
+      steps: ["Agir à la source", "Limiter la propagation", "Organiser l'exposition", "Protéger l'ouïe"],
+      note: "Le protecteur auditif complète la prévention à la source et ne doit pas masquer les alarmes utiles.",
+    },
+    "dangerous-atmosphere-gate": {
+      title: "Autoriser l'entrée seulement si toutes les barrières sont prêtes",
+      steps: ["Identifier / isoler", "Ventiler / contrôler", "Permis / surveillant", "Évacuer sur alarme"],
+      note: "Aucune entrée ni aucun secours improvisé : le dispositif de sauvetage est préparé avant l'intervention.",
+    },
     "chemical-exposure-path": {
       title: "Du produit au dommage : rechercher l'exposition réelle",
       steps: ["Danger", "Émission", "Voie d'entrée", "Prévention"],

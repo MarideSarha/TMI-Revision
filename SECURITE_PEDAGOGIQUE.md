@@ -82,6 +82,22 @@ et aux autorisations, formations et habilitations de l'intervenant.
 - priorité à l'évitement, à la réduction ou à la mécanisation de la manutention avant l'apprentissage d'un geste ;
 - interdiction de passer sous une charge suspendue ou d'improviser un point de levage ou un accessoire.
 
+## Risques spécifiques de l'atelier — troisième tranche vérifiée le 7 août 2026
+
+- aucune hauteur minimale universelle n'est présentée comme un seuil de sécurité : le risque dépend de la situation réelle ;
+- priorité à l'évitement du travail en hauteur puis aux protections collectives, avant le recours aux EPI antichute ;
+- interdiction d'improviser un moyen d'accès, un point d'ancrage ou une opération de secours ;
+- prise en compte des objets susceptibles de tomber et de l'exposition des personnes situées sous l'intervention ;
+- préparation du sauvetage avant tout travail avec un système d'arrêt de chute ;
+- analyse du bruit fondée sur le niveau, la durée d'exposition et les bruits impulsionnels ;
+- réduction du bruit à la source et sur sa propagation avant l'organisation du travail et les protecteurs individuels ;
+- rappel qu'un protecteur auditif doit être adapté, correctement porté et compatible avec la perception des alarmes ;
+- distinction explicite entre espace confiné et zone ATEX, qui peuvent toutefois se cumuler ;
+- interdiction d'évaluer une atmosphère avec les sens ou d'entrer sans procédure, autorisation et contrôles prévus ;
+- intégration de l'isolement, la ventilation adaptée, la détection atmosphérique, le permis, le surveillant et le plan de secours ;
+- le surveillant reste à son poste et ne tente jamais un secours improvisé ; toute alarme impose l'évacuation selon la procédure ;
+- interdiction d'utiliser de l'oxygène pour ventiler un espace confiné.
+
 ## Verdict interne
 
 Le contenu est jugé cohérent pour une plateforme pédagogique de révision destinée à un débutant. Il ne doit jamais être
@@ -114,3 +130,11 @@ ou en entreprise, une relecture humaine par un formateur, un préventeur ou un r
 - [INRS — Troubles musculosquelettiques : prévention](https://www.inrs.fr/risques/tms-troubles-musculosquelettiques/prevention.html)
 - [INRS TJ 18 — Manutention manuelle](https://www.inrs.fr/media.html?refINRS=TJ+18)
 - [INRS — Mécanique industrielle : risques du métier](https://www.inrs.fr/metiers/industrie/mecanique-industrielle/les-risques-du-metier)
+- [INRS ED 6110 — Prévention des risques de chutes de hauteur](https://www.inrs.fr/media.html?refINRS=ED+6110)
+- [INRS — Réglementation du travail en hauteur](https://www.inrs.fr/risques/chutes-hauteur/reglementation-travail-hauteur)
+- [INRS — Équipements de protection individuelle contre les chutes de hauteur](https://www.inrs.fr/risques/chutes-hauteur/equipements-protection-individuelle-chutes-hauteur)
+- [INRS — Bruit : démarche de prévention](https://www.inrs.fr/risques/bruit/demarche-prevention.html)
+- [INRS — Bruit : réglementation](https://www.inrs.fr/risques/bruit/reglementation.html)
+- [INRS — Espaces confinés : prévenir les risques](https://www.inrs.fr/risques/espaces-confines/prevenir-risques)
+- [INRS — Procédure de travail en espace confiné](https://www.inrs.fr/risques/espaces-confines/procedure-travail-espaces-confines.html)
+- [INRS — Explosion et ATEX : démarche de prévention](https://www.inrs.fr/risques/explosion/demarche-prevention-risques.html)
