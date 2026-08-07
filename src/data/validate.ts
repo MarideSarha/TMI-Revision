@@ -21,7 +21,7 @@ function findDuplicates(values: string[]) {
 }
 
 function requiresProfessionalLessonContract(lessonId: string) {
-  if (lessonId.startsWith("4-") || lessonId.startsWith("5-") || lessonId.startsWith("6-")) {
+  if (lessonId.startsWith("1-") || lessonId.startsWith("4-") || lessonId.startsWith("5-") || lessonId.startsWith("6-")) {
     return true;
   }
 
@@ -64,8 +64,8 @@ export function validateLearningData({ modules, questions, faults, badges }: Lea
     if (lesson.quizIds.length === 0) {
       errors.push(`La leçon ${lesson.id} ne contient aucune question.`);
     }
-    if (professionalLesson && lesson.quizIds.length !== 5) {
-      errors.push(`La leçon professionnelle ${lesson.id} doit contenir exactement cinq questions progressives.`);
+    if (professionalLesson && lesson.quizIds.length < 5) {
+      errors.push(`La leçon professionnelle ${lesson.id} doit contenir au moins cinq questions progressives.`);
     }
     if (lesson.exercice.consignes.length === 0 || lesson.exercice.criteres.length === 0) {
       errors.push(`L'exercice de la leçon ${lesson.id} doit avoir des consignes et des critères.`);

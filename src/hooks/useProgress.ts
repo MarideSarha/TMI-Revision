@@ -36,6 +36,7 @@ function checkBadges(progress: Progress) {
   });
 
   const blockExamBadges: Record<string, string> = {
+    "m1-b1": "safety_block_1",
     "m3-b2": "electro_block_2",
     "m3-b3": "electro_block_3",
     "m3-b4": "electro_block_4",

@@ -1,6 +1,7 @@
 import { Gauge, HardHat } from "lucide-react";
 // Module 3 (Électrotechnique) est désormais défini dans ./electrotechnique.ts
 import type { TrainingModule } from "../types";
+import { MODULE1_SAFETY_BLOCKS, MODULE1_SAFETY_LESSONS } from "./module1Safety";
 
 /* ---------------------------- DATA: MODULES & LEÇONS ---------------------------- */
 
@@ -66,6 +67,49 @@ export const MODULES: TrainingModule[] = [
           correction:
             "Il devrait analyser l'historique des pannes (dates, causes, durées) pour identifier une cause récurrente, puis mettre en place une action préventive (contrôle régulier, remplacement anticipé d'une pièce), voire une action améliorative si le défaut est structurel. Réparer à répétition sans analyser la cause ne permet pas de maîtriser durablement l'équipement.",
         },
+        ascii: `ENTREPRISE INDUSTRIELLE
+├─ Production : fabrique
+├─ Qualité : vérifie la conformité
+├─ Maintenance
+│  ├─ Réalisation : intervient sur le terrain
+│  ├─ Méthodes : prépare les gammes et analyses
+│  ├─ Ordonnancement : planifie les travaux
+│  └─ Magasin : fournit les pièces
+└─ HSE : organise la prévention des risques`,
+        astucesPro: [
+          "Avant de toucher la machine, demande ce qui s'est passé, depuis quand et dans quelles conditions.",
+          "Une panne bien décrite fait gagner plus de temps qu'un démontage commencé trop vite.",
+          "Observe aussi l'impact sécurité, qualité et environnement : la production n'est jamais le seul critère.",
+        ],
+        diagnostic: [
+          "Recueillir les faits auprès de l'opérateur sans transformer son avis en certitude.",
+          "Comparer l'état constaté au fonctionnement normal attendu.",
+          "Évaluer la criticité avant de décider l'ordre des contrôles.",
+          "Tracer symptôme, cause confirmée, action et résultat.",
+        ],
+        depannage: [
+          "Sécuriser la zone et appliquer les règles du site.",
+          "Décrire précisément le symptôme avant tout démontage.",
+          "Consulter l'historique et la documentation disponible.",
+          "Contrôler du plus simple au plus probable, puis confirmer la cause.",
+          "Réparer, tester dans les conditions autorisées et rendre compte.",
+        ],
+        securite: [
+          "Ne jamais laisser l'urgence de production supprimer l'analyse des risques.",
+          "Ne pas intervenir hors de son autorisation, de sa formation ou de son habilitation.",
+          "Signaler immédiatement une protection absente, neutralisée ou endommagée.",
+        ],
+        etudeDeCas: {
+          situation: "Le convoyeur principal s'arrête plusieurs fois par poste. L'équipe de production demande un redémarrage immédiat.",
+          mission: [
+            "Identifier les interlocuteurs et les informations à recueillir.",
+            "Classer les impacts possibles : sécurité, production, qualité, environnement et coût.",
+            "Proposer une réponse qui concilie sécurité, remise en service et recherche de cause.",
+          ],
+          correction: "Le technicien sécurise d'abord la situation, collecte les faits auprès de l'opérateur et consulte l'historique. Il ne promet pas un redémarrage avant d'avoir identifié les risques et la cause. Après réparation et essais autorisés, il trace l'intervention et propose une action préventive si le défaut est récurrent.",
+        },
+        memo: ["Sécuriser", "Constater", "Diagnostiquer", "Réparer", "Contrôler", "Tracer"],
+        resume: "La maintenance maintient un équipement disponible, sûr et conforme. Le technicien travaille avec la production, la qualité, les méthodes et le HSE ; il priorise selon la criticité et ne sacrifie jamais la sécurité à la vitesse.",
       },
       {
         id: "1-2",
@@ -119,6 +163,47 @@ export const MODULES: TrainingModule[] = [
           correction:
             "(a) préventive conditionnelle — décidée suite à une mesure. (b) préventive systématique — intervalle fixe. (c) corrective — la panne est déjà là. (d) améliorative — on modifie l'équipement pour le rendre plus fiable.",
         },
+        ascii: `ÉTAT DE L'ÉQUIPEMENT
+│
+├─ Défaillance présente ───────────► CORRECTIVE
+│
+├─ Pas de panne, échéance atteinte ► PRÉVENTIVE SYSTÉMATIQUE
+│
+├─ Dérive mesurée ─────────────────► PRÉVENTIVE CONDITIONNELLE
+│
+└─ Défaut récurrent à supprimer ───► AMÉLIORATIVE`,
+        astucesPro: [
+          "Une bonne stratégie dépend de la criticité, du coût d'arrêt et de la possibilité de détecter une dérive.",
+          "Ne remplace pas systématiquement une pièce sans comparer sa durée de vie réelle à la périodicité prévue.",
+          "Après une corrective répétitive, demande toujours si une action améliorative est justifiée.",
+        ],
+        diagnostic: [
+          "Déterminer si la défaillance est déjà présente ou seulement annoncée par un indicateur.",
+          "Rechercher le déclencheur de l'intervention : panne, calendrier, mesure d'état ou retour d'expérience.",
+          "Comparer le choix de maintenance à la criticité et au coût global.",
+        ],
+        depannage: [
+          "Pour une corrective, remettre d'abord l'équipement dans un état sûr.",
+          "Confirmer la cause avant de remplacer une pièce.",
+          "Contrôler la remise en service et enregistrer les résultats.",
+          "Si le défaut se répète, déclencher une analyse de cause et une proposition d'amélioration.",
+        ],
+        securite: [
+          "Le type de maintenance ne change jamais l'obligation de maîtriser les risques de l'intervention.",
+          "Une opération planifiée reste dangereuse si les énergies et coactivités ne sont pas maîtrisées.",
+          "Toute modification améliorative doit être validée selon les règles techniques et l'organisation de l'entreprise.",
+        ],
+        etudeDeCas: {
+          situation: "Un roulement de ventilateur est changé tous les trois mois, mais plusieurs roulements retirés sont encore en bon état.",
+          mission: [
+            "Identifier la stratégie actuelle.",
+            "Proposer les mesures permettant d'envisager une maintenance conditionnelle.",
+            "Expliquer les gains attendus et les risques à maîtriser.",
+          ],
+          correction: "Le remplacement trimestriel est systématique. Une surveillance des vibrations, de la température et du bruit, avec seuils et tendances validés, peut permettre un passage au conditionnel. La décision doit tenir compte de la criticité du ventilateur et conserver une marge de sécurité suffisante.",
+        },
+        memo: ["Panne = corrective", "Échéance = systématique", "Mesure = conditionnelle", "Conception modifiée = améliorative"],
+        resume: "Corrective, préventive systématique, préventive conditionnelle et améliorative répondent à des déclencheurs différents. Le bon choix résulte de la criticité, des données disponibles et du coût global, jamais d'une habitude seule.",
       },
       {
         id: "1-3",
@@ -131,21 +216,22 @@ export const MODULES: TrainingModule[] = [
         simple:
           "Avant toute intervention sur une machine, il faut d'abord protéger sa propre sécurité et celle des autres. On porte des équipements de protection, et on s'assure que la machine ne peut pas redémarrer ni libérer d'énergie dangereuse pendant l'intervention : c'est la consignation.",
         vocab: [
-          ["EPI", "Équipement de Protection Individuelle : gants isolants, lunettes, chaussures de sécurité, casque."],
+          ["EPI", "Équipement de protection porté par une personne, choisi selon le risque : lunettes, chaussures, protection auditive, gants adaptés, etc."],
           ["Consignation", "Ensemble des opérations qui isolent une machine de toutes ses sources d'énergie avant intervention."],
           ["Mise hors énergie", "Couper l'alimentation électrique, pneumatique, hydraulique ou mécanique d'un équipement."],
           ["VAT", "Vérificateur d'Absence de Tension : outil qui confirme qu'un circuit électrique est bien hors tension."],
-          ["Arrêt d'urgence", "Dispositif qui coupe immédiatement le mouvement dangereux d'une machine."],
+          ["Arrêt d'urgence", "Fonction qui commande un arrêt rapide face à un danger ; elle ne remplace ni la séparation des énergies ni la consignation."],
           ["NF C 18-510", "Norme française qui encadre les habilitations électriques et les règles de sécurité électrique."],
         ],
         example:
-          "Avant de changer un contacteur dans une armoire électrique, le technicien coupe le disjoncteur, cadenasse l'interrupteur pour que personne ne le remette en marche, puis vérifie avec un VAT qu'il n'y a plus de tension avant de toucher le moindre fil.",
+          "Avant de changer un contacteur dans une armoire électrique, un technicien habilité pour l'opération applique la procédure du site : séparation, condamnation, identification, puis vérification d'absence de tension avec le matériel prévu.",
         schema: "consignation-steps",
         retenir: [
           "L'ordre de la consignation : séparer (couper) → condamner (cadenasser) → identifier → vérifier l'absence d'énergie (VAT).",
           "On ne shunte JAMAIS un dispositif de sécurité, même pour aller plus vite.",
           "La sécurité passe toujours avant la réparation, sans exception.",
           "Une consignation électrique est réalisée selon l'organisation de l'entreprise par des personnes formées et habilitées pour les opérations concernées.",
+          "Un arrêt d'urgence arrête une situation dangereuse, mais ne prouve pas que toutes les énergies sont isolées.",
         ],
         erreurs: [
           "Vérifier l'absence de tension seulement « à l'oreille » ou en supposant que c'est coupé : il faut toujours mesurer avec un VAT.",
@@ -172,10 +258,62 @@ export const MODULES: TrainingModule[] = [
             "J'ai cité la vérification d'absence de tension.",
           ],
           correction:
-            "Rester à côté ne protège pas contre un redémarrage automatique (automate, minuterie) ni contre une erreur de manipulation par une autre personne non informée. La condamnation physique (cadenas) est obligatoire : elle rend l'action de remise sous tension impossible, pas seulement improbable.",
+            "Rester à côté ne protège pas contre un redémarrage automatique ni contre l'erreur d'un tiers. Il faut appliquer la procédure de consignation du site : séparation, condamnation par le dispositif prévu, identification et vérification de l'absence d'énergie. Seules les personnes formées, autorisées ou habilitées pour l'opération réalisent les étapes qui leur sont confiées.",
         },
+        illustrations: ["consignation-interactive"],
+        activity: {
+          type: "sequence",
+          title: "Remets la préparation en sécurité dans l'ordre",
+          instruction: "Classe les étapes avant une intervention hors énergie. La procédure réelle du site reste prioritaire.",
+          items: ["Analyser la tâche et les énergies", "Arrêter selon la procédure", "Séparer toutes les sources", "Condamner et identifier", "Dissiper les énergies résiduelles", "Vérifier l'état sûr"],
+          correctOrder: [0, 1, 2, 3, 4, 5],
+          success: "La machine n'est considérée sûre qu'après maîtrise des sources et des énergies résiduelles, puis vérification selon la procédure.",
+        },
+        ascii: `RÉSEAU ÉLECTRIQUE ─┐
+AIR COMPRIMÉ ──────┼─► MACHINE ─► mouvement / chaleur / pression
+HYDRAULIQUE ───────┤
+GRAVITÉ / RESSORT ─┘
+
+ARRÊT D'URGENCE = ordre d'arrêt
+CONSIGNATION     = maîtrise durable des énergies`,
+        astucesPro: [
+          "Fais le tour physique de la machine : une seule source oubliée suffit à créer un accident grave.",
+          "Teste l'appareil de vérification avant et après son utilisation lorsque la procédure le prévoit.",
+          "Ton cadenas et ton identification ne se prêtent pas : ils matérialisent ta protection personnelle selon l'organisation du site.",
+        ],
+        diagnostic: [
+          "Identifier la tâche exacte et la zone d'intervention.",
+          "Recenser les sources électriques, pneumatiques, hydrauliques, thermiques, mécaniques et gravitaires.",
+          "Repérer les automatismes, alimentations de secours et énergies accumulées.",
+          "Vérifier l'état sûr avec les moyens prévus avant de commencer.",
+        ],
+        depannage: [
+          "Arrêter et informer les personnes concernées.",
+          "Appliquer la procédure de consignation correspondant à l'équipement et à l'opération.",
+          "Dissiper ou retenir les énergies résiduelles : pression, ressort, inertie, charge suspendue, chaleur.",
+          "Vérifier l'absence d'énergie dangereuse avant intervention.",
+          "Après travaux, contrôler la zone, retirer les protections selon la procédure et effectuer une remise en service maîtrisée.",
+        ],
+        securite: [
+          "Ce cours prépare à comprendre les principes ; il ne délivre aucune habilitation ni autorisation d'intervention.",
+          "L'arrêt normal, l'arrêt d'urgence ou un écran éteint ne constituent pas une consignation.",
+          "Une opération électrique ne se réalise que dans les limites de l'habilitation et des instructions reçues.",
+        ],
+        etudeDeCas: {
+          situation: "Un convoyeur est arrêté par le bouton d'urgence. Un carton reste coincé sous une bande tendue et un vérin pneumatique est encore sous pression.",
+          mission: [
+            "Expliquer pourquoi l'arrêt d'urgence est insuffisant.",
+            "Lister les énergies encore présentes.",
+            "Décrire les principes de mise en sécurité avant le débourrage.",
+          ],
+          correction: "Le bouton d'urgence a commandé l'arrêt, mais l'alimentation électrique, la pression pneumatique, la tension de la bande et les masses mobiles peuvent rester dangereuses. Il faut interdire l'accès, appliquer la procédure multi-énergies, dissiper ou retenir les énergies accumulées, vérifier l'état sûr et n'intervenir que dans les limites de son autorisation.",
+        },
+        memo: ["Identifier les énergies", "Séparer", "Condamner", "Dissiper", "Vérifier", "Intervenir", "Remettre en service avec contrôle"],
+        resume: "Une machine arrêtée n'est pas forcément hors énergie. La consignation vise à empêcher le maintien ou la réapparition d'une énergie dangereuse. Elle suit la procédure de l'entreprise et requiert les compétences, autorisations et habilitations adaptées.",
       },
+      ...MODULE1_SAFETY_LESSONS,
     ],
+    blocks: MODULE1_SAFETY_BLOCKS,
   },
   {
     id: "m2",

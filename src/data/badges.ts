@@ -6,6 +6,7 @@ import type { BadgeDefinition } from "../types";
 export const BADGE_DEFS: BadgeDefinition[] = [
   { id: "first_lesson", label: "Premier pas", desc: "Terminer votre première leçon", icon: BookOpen },
   { id: "module_1", label: "Bases solides", desc: "Terminer le module Environnement & sécurité", icon: HardHat },
+  { id: "safety_block_1", label: "Réflexe sécurité", desc: "Maîtriser les fondamentaux de la prévention et des énergies dangereuses avec au moins 80 %", icon: ShieldCheck },
   { id: "module_2", label: "Calculateur", desc: "Terminer le module Mathématiques appliquées", icon: Gauge },
   { id: "module_3", label: "Électricien", desc: "Terminer le module Électrotechnique", icon: Zap },
   { id: "electro_block_2", label: "Sécurité électrique", desc: "Maîtriser la sécurité électrique et la consignation avec au moins 80 %", icon: ShieldCheck },
