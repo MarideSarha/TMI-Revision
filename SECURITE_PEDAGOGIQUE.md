@@ -1,7 +1,7 @@
 # Revue interne de sécurité pédagogique
 
-Date : 30 juillet 2026
-Périmètre : TMI Révision, pull request #1
+Dernière mise à jour : 7 août 2026
+Périmètre : TMI Révision, modules publiés et première tranche du module 1
 
 ## Statut et limites
 
@@ -36,6 +36,16 @@ et aux autorisations, formations et habilitations de l'intervenant.
 - renforcement des scénarios moteur, capteur, isolement, pneumatique, hydraulique, roulement, courroie et circuit de sécurité ;
 - clarification du contrôle de continuité d'un circuit de sécurité, uniquement hors tension.
 
+## Extension du module 1 vérifiée le 7 août 2026
+
+- distinction explicite entre danger, exposition, événement dangereux, risque et dommage ;
+- priorité donnée à la suppression du danger et aux protections collectives avant les EPI ;
+- clarification : un arrêt normal ou un arrêt d'urgence ne constitue pas une consignation ;
+- prise en compte des énergies électriques, pneumatiques, hydrauliques, mécaniques, gravitaires, thermiques et chimiques ;
+- distinction entre séparation, condamnation, dissipation, rétention, vérification et déconsignation ;
+- rappel visible que l'application ne délivre aucune formation pratique, autorisation ou habilitation ;
+- examen de bloc à 80 % et révision ciblée des chapitres non maîtrisés.
+
 ## Verdict interne
 
 Le contenu est jugé cohérent pour une plateforme pédagogique de révision destinée à un débutant. Il ne doit jamais être
@@ -48,3 +58,6 @@ ou en entreprise, une relecture humaine par un formateur, un préventeur ou un r
 - [INRS — Opérations sur les installations électriques](https://www.inrs.fr/risques/electriques/operations-installations.html)
 - [INRS — Prévention des risques liés à l'utilisation des machines](https://www.inrs.fr/risques/utilisation-machines/prevention-risques-utilisation-machines.html)
 - [INRS ED 6270 — Prévention des risques en maintenance](https://www.inrs.fr/dam/inrs/CataloguePapier/ED/TI-ED-6270.pdf)
+- [INRS — Principes généraux de prévention](https://www.inrs.fr/demarche/fondamentaux-prevention/principes-generaux.html)
+- [INRS — Protection collective](https://www.inrs.fr/demarche/protection-collective/ce-qu-il-faut-retenir.html)
+- [Code du travail — Article L. 4121-2](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019913)

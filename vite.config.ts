@@ -48,6 +48,12 @@ export default defineConfig({
               test: /[\\/]src[\\/]data[\\/]maintenance/,
             },
             {
+              // Le parcours sécurité va continuer à grandir : il dispose de
+              // son propre paquet pour garder une marge durable sous 500 kB.
+              name: "learning-safety",
+              test: /[\\/]src[\\/]data[\\/]module1Safety/,
+            },
+            {
               name: "learning-data",
               test: /[\\/]src[\\/]data[\\/]/,
             },

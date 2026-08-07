@@ -72,6 +72,92 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </svg>
     );
   }
+  if (type === "risk-chain") {
+    const steps = [
+      ["Danger", "énergie"],
+      ["Exposition", "personne"],
+      ["Événement", "contact"],
+      ["Dommage", "conséquence"],
+    ];
+    return (
+      <svg viewBox="0 0 360 120" className="h-28 w-full" role="img" aria-label="Chaîne reliant danger, exposition, événement dangereux et dommage">
+        {arrowDefinition}
+        {steps.map(([title, subtitle], index) => {
+          const x = 8 + index * 89;
+          return (
+            <g key={title}>
+              <rect x={x} y="32" width="72" height="50" rx="7" fill={index === 3 ? accent : box} stroke={stroke} strokeWidth="1.5" />
+              <text x={x + 36} y="53" textAnchor="middle" fontSize="9" fontWeight="bold" fill={index === 3 ? "#14151a" : stroke}>{title}</text>
+              <text x={x + 36} y="69" textAnchor="middle" fontSize="8" fill={index === 3 ? "#14151a" : stroke}>{subtitle}</text>
+              {index < steps.length - 1 && <line x1={x + 72} y1="57" x2={x + 87} y2="57" stroke={stroke} markerEnd={arrowUrl} />}
+            </g>
+          );
+        })}
+        <text x="180" y="17" textAnchor="middle" fontSize="9" fill={stroke}>Décrire le scénario avant de choisir la mesure</text>
+        <text x="180" y="105" textAnchor="middle" fontSize="8" fill={accent}>Agir sur le danger ou empêcher l'exposition</text>
+      </svg>
+    );
+  }
+  if (type === "prevention-hierarchy") {
+    const levels = [
+      ["Éviter / supprimer", 250],
+      ["Réduire à la source", 215],
+      ["Protection collective", 180],
+      ["Organisation", 145],
+      ["EPI adapté", 110],
+    ] as Array<[string, number]>;
+    return (
+      <svg viewBox="0 0 360 180" className="h-44 w-full" role="img" aria-label="Hiérarchie des mesures de prévention de la suppression du danger aux équipements individuels">
+        <text x="180" y="16" textAnchor="middle" fontSize="9" fill={stroke}>Priorité aux mesures qui dépendent le moins du comportement individuel</text>
+        {levels.map(([label, width], index) => {
+          const x = (360 - width) / 2;
+          const y = 28 + index * 28;
+          return (
+            <g key={label}>
+              <rect x={x} y={y} width={width} height="22" rx="5" fill={index === 0 ? accent : box} stroke={stroke} />
+              <text x="180" y={y + 15} textAnchor="middle" fontSize="9" fontWeight={index === 0 ? "bold" : "normal"} fill={index === 0 ? "#14151a" : stroke}>{index + 1}. {label}</text>
+            </g>
+          );
+        })}
+        <text x="180" y="174" textAnchor="middle" fontSize="8" fill={accent}>Toujours vérifier l'efficacité et le risque résiduel</text>
+      </svg>
+    );
+  }
+  if (type === "energy-isolation") {
+    const energies = ["Électrique", "Pression", "Mécanique", "Gravité", "Thermique", "Chimique"];
+    return (
+      <svg viewBox="0 0 360 170" className="h-40 w-full" role="img" aria-label="Carte des énergies dangereuses et étapes de maîtrise avant intervention">
+        {arrowDefinition}
+        {energies.map((energy, index) => {
+          const col = index % 3;
+          const row = Math.floor(index / 3);
+          const x = 8 + col * 91;
+          const y = 22 + row * 38;
+          return (
+            <g key={energy}>
+              <rect x={x} y={y} width="78" height="26" rx="5" fill={box} stroke={stroke} />
+              <text x={x + 39} y={y + 17} textAnchor="middle" fontSize="8" fill={stroke}>{energy}</text>
+              <line x1={x + 78} y1={y + 13} x2="287" y2="60" stroke={stroke} strokeWidth="1" />
+            </g>
+          );
+        })}
+        <rect x="288" y="40" width="64" height="40" rx="7" fill={accent} stroke={stroke} />
+        <text x="320" y="57" textAnchor="middle" fontSize="9" fontWeight="bold" fill="#14151a">MACHINE</text>
+        <text x="320" y="70" textAnchor="middle" fontSize="7" fill="#14151a">multi-énergies</text>
+        {["Séparer", "Condamner", "Dissiper / retenir", "Vérifier"].map((label, index) => {
+          const x = 12 + index * 87;
+          return (
+            <g key={label}>
+              <rect x={x} y="118" width="75" height="28" rx="5" fill={index === 3 ? accent : box} stroke={stroke} />
+              <text x={x + 37.5} y="135" textAnchor="middle" fontSize="8" fontWeight={index === 3 ? "bold" : "normal"} fill={index === 3 ? "#14151a" : stroke}>{label}</text>
+              {index < 3 && <line x1={x + 75} y1="132" x2={x + 85} y2="132" stroke={stroke} markerEnd={arrowUrl} />}
+            </g>
+          );
+        })}
+        <text x="180" y="162" textAnchor="middle" fontSize="8" fill={stroke}>La procédure spécifique du site définit les organes, rôles et vérifications</text>
+      </svg>
+    );
+  }
   if (type === "percentage-bar") {
     return (
       <svg viewBox="0 0 320 60" className="w-full h-16">
