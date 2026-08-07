@@ -21,6 +21,38 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
       </marker>
     </defs>
   );
+  const preparationDiagrams: Partial<Record<LessonSchemaType, { title: string; steps: string[]; note: string }>> = {
+    "work-order": {
+      title: "De la demande exploitable à la restitution",
+      steps: ["Symptôme", "Contexte", "Priorité", "Critères de fin"],
+      note: "Décrire des faits observables, jamais une solution supposée.",
+    },
+    "work-preparation": {
+      title: "Les quatre familles d'une préparation complète",
+      steps: ["Compétences", "Documents", "Pièces / outils", "Accès / moyens"],
+      note: "Un manque détecté avant l'arrêt évite une improvisation dangereuse.",
+    },
+    "intervention-briefing": {
+      title: "Briefing au plus près de la situation réelle",
+      steps: ["Observer", "Écouter", "Réévaluer", "Décider / stopper"],
+      note: "Si la situation diffère du plan, on suspend et on réévalue.",
+    },
+    "authorization-gate": {
+      title: "Autorisation : une barrière avant l'action",
+      steps: ["Personne", "Tâche", "Zone", "Conditions réunies"],
+      note: "Une compétence ne donne pas automatiquement l'autorisation d'agir.",
+    },
+    "coactivity-zone": {
+      title: "Maîtriser les interfaces autour de l'intervention",
+      steps: ["Zone", "Circulations", "Travaux voisins", "Coordination"],
+      note: "Le balisage rend le danger visible ; il ne supprime pas le danger.",
+    },
+    "handback-loop": {
+      title: "Boucle de restitution et remise en service",
+      steps: ["Contrôler", "Évacuer", "Essayer", "Restituer / tracer"],
+      note: "La production reprend seulement après une restitution explicite.",
+    },
+  };
 
   if (type === "orgchart") {
     return (
@@ -155,6 +187,31 @@ export function LessonSchema({ type, dark }: LessonSchemaProps) {
           );
         })}
         <text x="180" y="162" textAnchor="middle" fontSize="8" fill={stroke}>La procédure spécifique du site définit les organes, rôles et vérifications</text>
+      </svg>
+    );
+  }
+  const preparationDiagram = preparationDiagrams[type];
+  if (preparationDiagram) {
+    return (
+      <svg viewBox="0 0 360 138" className="h-36 w-full" role="img" aria-label={preparationDiagram.title}>
+        {arrowDefinition}
+        <text x="180" y="17" textAnchor="middle" fontSize="9.5" fontWeight="bold" fill={stroke}>{preparationDiagram.title}</text>
+        {preparationDiagram.steps.map((label, index) => {
+          const x = 8 + index * 89;
+          return (
+            <g key={label}>
+              <rect x={x} y="38" width="72" height="46" rx="7" fill={index === 3 ? accent : box} stroke={stroke} strokeWidth="1.4" />
+              <circle cx={x + 36} cy="51" r="8" fill={index === 3 ? "#14151a" : accent} />
+              <text x={x + 36} y="54.5" textAnchor="middle" fontSize="8" fontWeight="bold" fill={index === 3 ? accent : "#14151a"}>{index + 1}</text>
+              <text x={x + 36} y="73" textAnchor="middle" fontSize="7.7" fontWeight={index === 3 ? "bold" : "normal"} fill={index === 3 ? "#14151a" : stroke}>{label}</text>
+              {index < preparationDiagram.steps.length - 1 && (
+                <line x1={x + 73} y1="61" x2={x + 86} y2="61" stroke={stroke} markerEnd={arrowUrl} />
+              )}
+            </g>
+          );
+        })}
+        <rect x="18" y="101" width="324" height="25" rx="6" fill={box} stroke={accent} />
+        <text x="180" y="117" textAnchor="middle" fontSize="7.8" fill={stroke}>{preparationDiagram.note}</text>
       </svg>
     );
   }

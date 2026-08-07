@@ -46,6 +46,17 @@ et aux autorisations, formations et habilitations de l'intervenant.
 - rappel visible que l'application ne délivre aucune formation pratique, autorisation ou habilitation ;
 - examen de bloc à 80 % et révision ciblée des chapitres non maîtrisés.
 
+## Préparation et coordination d'une intervention vérifiées le 7 août 2026
+
+- demande d'intervention fondée sur des faits observables, avec contexte, criticité et critères de fin ;
+- préparation des compétences, documents, pièces, outils, accès et moyens de manutention avant l'arrêt ;
+- réévaluation des risques au pied de la machine et arrêt immédiat si la situation réelle diffère du plan ;
+- distinction entre compétence, habilitation, autorisation, permis et responsabilité définie par l'entreprise ;
+- prise en compte de la coactivité, des circulations, du balisage et de la coordination avec les entreprises extérieures ;
+- aucun permis présenté comme universel : les exigences dépendent du site, du risque et de la réglementation applicable ;
+- remise en service précédée du contrôle de la zone, du retrait coordonné des protections temporaires, d'un essai maîtrisé et d'une restitution explicite ;
+- traçabilité des écarts, mesures, pièces remplacées, réserves et actions restant à réaliser.
+
 ## Verdict interne
 
 Le contenu est jugé cohérent pour une plateforme pédagogique de révision destinée à un débutant. Il ne doit jamais être
@@ -61,3 +72,8 @@ ou en entreprise, une relecture humaine par un formateur, un préventeur ou un r
 - [INRS — Principes généraux de prévention](https://www.inrs.fr/demarche/fondamentaux-prevention/principes-generaux.html)
 - [INRS — Protection collective](https://www.inrs.fr/demarche/protection-collective/ce-qu-il-faut-retenir.html)
 - [Code du travail — Article L. 4121-2](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019913)
+- [INRS — Maintenance : mesures de prévention](https://www.inrs.fr/risques/maintenance/prevention.html)
+- [INRS — Entreprises extérieures : mesures préalables à l'intervention](https://www.inrs.fr/risques/entreprises-exterieures/mesures-prevention-prealables-intervention.html)
+- [Code du travail — Plan de prévention, articles R. 4512-6 à R. 4512-12](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018491568/2026-04-19)
+- [INRS — Organisation des activités de maintenance : intervenir en sécurité](https://www.inrs.fr/dam/inrs/CataloguePapier/HST/TI-DO-32.pdf)
+- [INRS — Remise en service des machines après un arrêt prolongé](https://www.inrs.fr/dms/inrs/GenerationPDF/accueil/demarche/conception-utilisation-equipements-travail/Machines%20%3A%20remise%20en%20service%20apr%C3%A8s%20une%20p%C3%A9riode%20d%27arr%C3%AAt.pdf)
