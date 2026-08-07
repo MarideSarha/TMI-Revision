@@ -1,6 +1,7 @@
 import { Gauge, HardHat } from "lucide-react";
 // Module 3 (Électrotechnique) est désormais défini dans ./electrotechnique.ts
 import type { TrainingModule } from "../types";
+import { MODULE1_PREPARATION_LESSONS } from "./module1Preparation";
 import { MODULE1_SAFETY_BLOCKS, MODULE1_SAFETY_LESSONS } from "./module1Safety";
 
 /* ---------------------------- DATA: MODULES & LEÇONS ---------------------------- */
@@ -312,6 +313,7 @@ CONSIGNATION     = maîtrise durable des énergies`,
         resume: "Une machine arrêtée n'est pas forcément hors énergie. La consignation vise à empêcher le maintien ou la réapparition d'une énergie dangereuse. Elle suit la procédure de l'entreprise et requiert les compétences, autorisations et habilitations adaptées.",
       },
       ...MODULE1_SAFETY_LESSONS,
+      ...MODULE1_PREPARATION_LESSONS,
     ],
     blocks: MODULE1_SAFETY_BLOCKS,
   },

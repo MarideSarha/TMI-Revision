@@ -1,4 +1,5 @@
 import type { Lesson, TrainingBlock } from "../types";
+import { MODULE1_PREPARATION_LESSONS } from "./module1Preparation";
 
 /**
  * Première tranche du parcours sécurité.
@@ -374,9 +375,13 @@ export const MODULE1_SAFETY_BLOCKS: TrainingBlock[] = [
     num: 2,
     title: "Préparer, autoriser et coordonner une intervention",
     objective: "Préparer la tâche, définir les rôles, gérer la coactivité, baliser la zone et conduire une remise en service maîtrisée.",
-    lessonIds: [],
+    lessonIds: MODULE1_PREPARATION_LESSONS.map((lesson) => lesson.id),
     chapterCount: 6,
-    status: "planned",
+    status: "available",
+    exam: {
+      questionIds: ["m1p1", "m1p4", "m1p7", "m1p10", "m1p11", "m1p14", "m1p16", "m1p20", "m1p21", "m1p24", "m1p28", "m1p30"],
+      passPercent: 80,
+    },
   },
   {
     id: "m1-b3",
